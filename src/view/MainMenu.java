@@ -1,8 +1,10 @@
 package view;
 
-public class MainMenu {
+import javax.swing.JFrame;
 
-	public static void main(String [] args) {
-		System.out.println("Hello");
+public class MainMenu extends JFrame{
+
+	MainMenu() {
+		
 	}
 }
