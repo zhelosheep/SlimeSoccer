@@ -23,7 +23,7 @@ public class LoginPage extends JFrame{
 		instantiateVariables();
 		addComponents();
 		addListeners();
-		
+		setResizable(false);
 		setVisible(true);
 	}
 	
