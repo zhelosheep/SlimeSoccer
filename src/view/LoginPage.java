@@ -1,8 +1,8 @@
 package view;
 
 import java.awt.Component;
-
-import javax.swing.BoxLayout;
+import java.awt.Dimension;
+import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -10,15 +10,13 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class LoginPage extends JFrame{
-	JLabel welcome, username, password, or;
-	JTextField usernameField, passwordField;
-	JButton login, signup, guest;
-	JPanel usernameLine, passwordLine;
+	private static final long serialVersionUID = 1;
+	private JTextField usernameField, passwordField;
+	private JButton login, signup, guest;
 	
 	LoginPage() {
-		setSize(300, 300);
+		setSize(800, 600);
 		setLocation(300,100);
-		setLayout(new BoxLayout(getContentPane(), BoxLayout.PAGE_AXIS));
 		
 		instantiateVariables();
 		addComponents();
@@ -27,15 +25,7 @@ public class LoginPage extends JFrame{
 		setVisible(true);
 	}
 	
-	private void instantiateVariables() {
-		welcome = new JLabel("Slime Soccer!");
-		username = new JLabel("Username: ");
-		password = new JLabel("Password: ");
-		or = new JLabel("- or -");
-		
-		welcome.setAlignmentX(Component.CENTER_ALIGNMENT);
-		or.setAlignmentX(Component.CENTER_ALIGNMENT);
-		
+	private void instantiateVariables() {		
 		usernameField = new JTextField(15);
 		passwordField = new JTextField(15);
 		
@@ -47,26 +37,39 @@ public class LoginPage extends JFrame{
 		signup.setAlignmentX(Component.CENTER_ALIGNMENT);
 		guest.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
-		usernameLine = new JPanel();
-		passwordLine = new JPanel();
-		
-		usernameLine.setAlignmentX(Component.CENTER_ALIGNMENT);
-		passwordLine.setAlignmentX(Component.CENTER_ALIGNMENT);
 	}
 	
 	private void addComponents() {
+		JLabel welcome = new JLabel("Slime Soccer!");
+		JLabel username = new JLabel("Username: ");
+		JLabel password = new JLabel("Password: ");
+		JPanel usernameLine = new JPanel();
+		JPanel passwordLine = new JPanel();
+
+		welcome.setFont(new Font("Arial", Font.BOLD, 20));
+		welcome.setAlignmentX(Component.CENTER_ALIGNMENT);
+		usernameLine.setAlignmentX(Component.CENTER_ALIGNMENT);
+		passwordLine.setAlignmentX(Component.CENTER_ALIGNMENT);
 		usernameLine.add(username);
 		usernameLine.add(usernameField);
-		
 		passwordLine.add(password);
 		passwordLine.add(passwordField);
+		JPanel jp = new JPanel();
+		jp.add(login);
+		jp.add(signup);
 		
-		add(welcome);
+		setLayout(null);
+		Dimension d = usernameLine.getPreferredSize();
+		usernameLine.setBounds(480, 200, d.width, d.height);
+		d = passwordLine.getPreferredSize();
+		passwordLine.setBounds(480, 240, d.width, d.height);
+		d = jp.getPreferredSize();
+		jp.setBounds(530, 300, d.width, d.height);
+		d = guest.getPreferredSize();
+		guest.setBounds(545, 340, d.width, d.height);
 		add(usernameLine);
 		add(passwordLine);
-		add(login);
-		add(or);
-		add(signup);
+		add(jp);
 		add(guest);
 	}
 	
