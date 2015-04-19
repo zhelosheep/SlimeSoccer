@@ -17,7 +17,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.text.DefaultCaret;
 
-public class MainMenu extends JFrame{
+public class MainMenuUser extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private JLabel[] soccerBalls;
 	private ImageIcon avatar;
@@ -26,7 +26,7 @@ public class MainMenu extends JFrame{
 	private JTextArea chatArea;
 	private JTextField chatField;
 
-	MainMenu() {
+	MainMenuUser() {
 		setSize(800, 600);
 		setLocation(300,100);
 		instantiateVariables();
@@ -119,6 +119,6 @@ public class MainMenu extends JFrame{
 	}
 	
 	public static void main(String[] args) {
-		new MainMenu();
+		new MainMenuUser();
 	}
 }
