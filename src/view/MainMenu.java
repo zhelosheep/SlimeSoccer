@@ -73,6 +73,7 @@ public class MainMenu extends JFrame{
 		JPanel leftPanel = new JPanel();
 		leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
 		JLabel helloLabel = new JLabel("Hello, " + username + "!");
+		helloLabel.setBorder(BorderFactory.createEmptyBorder(20, 0, 0, 0));
 		JPanel jp1 = new JPanel();
 		jp1.add(soccerBalls[0]);
 		jp1.add(playCompButton);
@@ -89,7 +90,7 @@ public class MainMenu extends JFrame{
 		leftPanel.add(jp1);
 		leftPanel.add(jp2);
 		leftPanel.add(jp3);
-		leftPanel.setBorder(BorderFactory.createEmptyBorder(0, 30, 0, 0));
+		leftPanel.setBorder(BorderFactory.createEmptyBorder(0, 100, 0, 0));
 		JPanel rightPanel = new JPanel();
 		rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
 		JLabel chatLabel = new JLabel("Chat");
@@ -105,7 +106,7 @@ public class MainMenu extends JFrame{
 		rightPanel.add(chatLabel);
 		rightPanel.add(jsp);
 		rightPanel.add(jp4);
-		rightPanel.setPreferredSize(new Dimension(100, 400));
+		rightPanel.setPreferredSize(new Dimension(130, 400));
 		rightPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 15));
 		centerPanel.add(leftPanel);
 		centerPanel.add(Box.createGlue());
