@@ -1,11 +1,13 @@
 package view;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -73,18 +75,20 @@ public class LoginPage extends JFrame{
 		jp.add(login);
 		jp.add(signup);
 		
-		
 		setContentPane(new JLabel(new ImageIcon(backgroundImage)));
 
 		setLayout(null);
 		Dimension d = usernameLine.getPreferredSize();
-		usernameLine.setBounds(480, 200, d.width, d.height);
+		usernameLine.setBounds(495, 200, d.width, d.height);
 		d = passwordLine.getPreferredSize();
-		passwordLine.setBounds(480, 240, d.width, d.height);
+		passwordLine.setBounds(495, 240, d.width, d.height);
 		d = jp.getPreferredSize();
-		jp.setBounds(530, 300, d.width, d.height);
+		jp.setBounds(545, 290, d.width, d.height);
 		d = guest.getPreferredSize();
-		guest.setBounds(545, 340, d.width, d.height);
+		guest.setBounds(560, 330, d.width, d.height);
+		usernameLine.setBackground(new Color(253, 255, 215));
+		passwordLine.setBackground(new Color(253, 255, 215));
+		jp.setBackground(new Color(253, 255, 215));
 		add(usernameLine);
 		add(passwordLine);
 		add(jp);
