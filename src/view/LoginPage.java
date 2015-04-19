@@ -3,6 +3,13 @@ package view;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -11,8 +18,10 @@ import javax.swing.JTextField;
 
 public class LoginPage extends JFrame{
 	private static final long serialVersionUID = 1;
+	private JPanel background;
 	private JTextField usernameField, passwordField;
 	private JButton login, signup, guest;
+	private BufferedImage backgroundImage;
 	
 	LoginPage() {
 		setSize(800, 600);
@@ -25,7 +34,10 @@ public class LoginPage extends JFrame{
 		setVisible(true);
 	}
 	
-	private void instantiateVariables() {		
+	private void instantiateVariables() {
+		background = new JPanel();
+		background.setLayout(null);
+		
 		usernameField = new JTextField(15);
 		passwordField = new JTextField(15);
 		
@@ -37,6 +49,11 @@ public class LoginPage extends JFrame{
 		signup.setAlignmentX(Component.CENTER_ALIGNMENT);
 		guest.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
+		try {
+			backgroundImage = ImageIO.read(new File("./resources/SlimeSoccerLogin.png"));
+		} catch (IOException e) {
+			System.out.println("IOException in instantiateVariables (trying to load image): " + e.getMessage());
+		}
 	}
 	
 	private void addComponents() {
@@ -58,6 +75,9 @@ public class LoginPage extends JFrame{
 		jp.add(login);
 		jp.add(signup);
 		
+		
+		setContentPane(new JLabel(new ImageIcon(backgroundImage)));
+
 		setLayout(null);
 		Dimension d = usernameLine.getPreferredSize();
 		usernameLine.setBounds(480, 200, d.width, d.height);
@@ -73,6 +93,12 @@ public class LoginPage extends JFrame{
 		add(guest);
 	}
 	
+//	public void paintComponent(Graphics g) {
+//		super.paintComponents(g);
+//		g.drawImage(backgroundImage, 0, 0, null);
+//		System.out.println("hey");
+//	}
+//	
 	private void addListeners() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
