@@ -1,7 +1,6 @@
 package controller;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -80,6 +79,8 @@ public class SqlInstance {
 			System.out.println("SQLException: " + sqle.getMessage());
 		} catch (ClassNotFoundException cnfe) {
 			System.out.println("Class not found exception: " + cnfe.getMessage());
+		} finally {
+			close();
 		}
 	}
 	
@@ -110,6 +111,24 @@ public class SqlInstance {
 	    System.out.println("Table: " + resultSet.getMetaData().getTableName(1));
 	    for  (int i = 1; i<= resultSet.getMetaData().getColumnCount(); i++){
 	      System.out.println("Column " +i  + " "+ resultSet.getMetaData().getColumnName(i));
+	    }
+	  }
+	
+	private void close() {
+	    try {
+	      if (resultSet != null) {
+	        resultSet.close();
+	      }
+
+	      if (statement != null) {
+	        statement.close();
+	      }
+
+	      if (connect != null) {
+	        connect.close();
+	      }
+	    } catch (Exception e) {
+
 	    }
 	  }
 	
