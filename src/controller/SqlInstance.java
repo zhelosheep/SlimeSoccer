@@ -30,22 +30,23 @@ public class SqlInstance {
 		      // Statements allow to issue SQL queries to the database
 		      statement = connect.createStatement();
 		      // Result set get the result of the SQL query
-		      resultSet = statement.executeQuery("SELECT * FROM users");
+		      resultSet = statement.executeQuery("SELECT * FROM ball_data");
 		      writeResultSet(resultSet);
 
 		      
-		      preparedStatement = connect.prepareStatement("INSERT INTO users VALUES (default, ?, ?, ?, ?)");
-		      preparedStatement.setString(1, "Test");
+		      preparedStatement = connect.prepareStatement("INSERT INTO ball_data VALUES (default, ?, ?, ?, ?, ?)");
+		      //populates the table
+		      preparedStatement.setString(1, 5);
 		      preparedStatement.setString(2, "Testing");
 		      preparedStatement.setString(3, "TestWebpage");
 		      preparedStatement.setString(4, "No");
 		      preparedStatement.executeUpdate();
 		      
-		      preparedStatement = connect.prepareStatement("SELECT * FROM users");
+		      preparedStatement = connect.prepareStatement("SELECT * FROM ball_data");
 		      resultSet = preparedStatement.executeQuery();
 		      writeResultSet(resultSet);
 		      
-		      resultSet = statement.executeQuery("SELECT * FROM users");
+		      resultSet = statement.executeQuery("SELECT * FROM ball_data");
 		      writeMetaData(resultSet);
 		      
 /*		      // PreparedStatements can use variables and are more efficient
