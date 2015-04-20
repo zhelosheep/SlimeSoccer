@@ -19,9 +19,8 @@ import javax.swing.text.DefaultCaret;
 
 public class MainMenuUser extends JFrame{
 	private static final long serialVersionUID = 1L;
-	private JLabel[] soccerBalls;
 	private ImageIcon avatar;
-	private JButton playCompButton, playPlayerButton, spectateButton, sendButton;
+	private JButton sendButton, playCompButton, playPlayerButton, spectateButton, logoutButton;
 	private String username;
 	private JTextArea chatArea;
 	private JTextField chatField;
@@ -37,9 +36,7 @@ public class MainMenuUser extends JFrame{
 	}
 	
 	private void instantiateVariables() {
-		soccerBalls = new JLabel[3];
-		for (int i = 0; i < 3; i++) soccerBalls[i] = new JLabel(new ImageIcon(new ImageIcon("resources/soccerBall.png").getImage().getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH)));
-		avatar = new ImageIcon(new ImageIcon("resources/avatar.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH));
+		avatar = new ImageIcon(new ImageIcon("resources/SoccerBall.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH));
 		username = "techguychen";
 		playCompButton = new JButton("Play Computer");
 		playPlayerButton = new JButton("Play Player");
@@ -47,6 +44,7 @@ public class MainMenuUser extends JFrame{
 		sendButton = new JButton("Send");
 		chatArea = new JTextArea();
 		chatField = new JTextField(10);
+		logoutButton = new JButton("Logout");
 	}
 	
 	private void addComponents() {
@@ -57,16 +55,15 @@ public class MainMenuUser extends JFrame{
 		slimeSoccerLabel.setBorder(BorderFactory.createEmptyBorder(5, 15, 5, 5));
 		JLabel avatarLabel = new JLabel(avatar);
 		avatarLabel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-		JLabel settingsLabel = new JLabel(new ImageIcon(new ImageIcon("resources/settings.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)));
-		settingsLabel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-		JLabel logoutLabel = new JLabel("Logout");
-		logoutLabel.setFont(new Font("Arial", Font.BOLD, 16));
-		logoutLabel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 15));
+		JButton settingsButton = new JButton(new ImageIcon(new ImageIcon("resources/SoccerBall.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)));
+		settingsButton.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+		logoutButton.setFont(new Font("Arial", Font.BOLD, 16));
+		logoutButton.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 15));
 		northPanel.add(slimeSoccerLabel);
 		northPanel.add(Box.createGlue());
 		northPanel.add(avatarLabel);
-		northPanel.add(settingsLabel);
-		northPanel.add(logoutLabel);
+		northPanel.add(settingsButton);
+		northPanel.add(logoutButton);
 		add(northPanel, BorderLayout.NORTH);
 		JPanel centerPanel = new JPanel();
 		centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.X_AXIS));
@@ -75,15 +72,10 @@ public class MainMenuUser extends JFrame{
 		JLabel helloLabel = new JLabel("Hello, " + username + "!");
 		helloLabel.setBorder(BorderFactory.createEmptyBorder(20, 0, 0, 0));
 		JPanel jp1 = new JPanel();
-		jp1.add(soccerBalls[0]);
 		jp1.add(playCompButton);
 		JPanel jp2 = new JPanel();
-		jp2.add(soccerBalls[1]);
-		soccerBalls[1].setVisible(false);
 		jp2.add(playPlayerButton);		
 		JPanel jp3 = new JPanel();
-		jp3.add(soccerBalls[2]);
-		soccerBalls[2].setVisible(false);
 		jp3.add(spectateButton);
 		leftPanel.add(helloLabel);
 		leftPanel.add(Box.createGlue());
