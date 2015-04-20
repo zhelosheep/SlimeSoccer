@@ -69,7 +69,10 @@ public class MainMenuGuest extends JFrame{
 		JLabel searchLabel = new JLabel("Search by ID: ");
 		jp3.add(searchLabel);
 		jp3.add(gameIDField);
-		jp3.add(searchButton);		
+		jp3.add(searchButton);
+		JPanel orPanel = new JPanel();
+		JLabel orLabel = new JLabel("- OR -");
+		orPanel.add(orLabel);
 		JPanel jp4 = new JPanel();
 		jp4.add(randomButton);
 		jp4.setBorder(BorderFactory.createEmptyBorder(0, 0, 60, 0));;
@@ -77,6 +80,7 @@ public class MainMenuGuest extends JFrame{
 		leftPanel.add(jp2);
 		leftPanel.add(Box.createGlue());
 		leftPanel.add(jp3);
+		leftPanel.add(orPanel);
 		leftPanel.add(jp4);
 		leftPanel.setBorder(BorderFactory.createEmptyBorder(0, 100, 0, 0));
 		JPanel rightPanel = new JPanel();
