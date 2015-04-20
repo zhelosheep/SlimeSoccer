@@ -3,11 +3,9 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
-
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -19,12 +17,9 @@ import javax.swing.text.DefaultCaret;
 
 public class MainMenuGuest extends JFrame{
 	private static final long serialVersionUID = 1L;
-	private JLabel[] soccerBalls;
-	private ImageIcon avatar;
-	private JButton playCompButton, playPlayerButton, spectateButton, sendButton;
-	private String username;
+	private JButton searchButton, sendButton, backButton, randomButton;
 	private JTextArea chatArea;
-	private JTextField chatField;
+	private JTextField chatField, gameIDField;
 
 	MainMenuGuest() {
 		setSize(800, 600);
@@ -37,16 +32,13 @@ public class MainMenuGuest extends JFrame{
 	}
 	
 	private void instantiateVariables() {
-		soccerBalls = new JLabel[3];
-		for (int i = 0; i < 3; i++) soccerBalls[i] = new JLabel(new ImageIcon(new ImageIcon("resources/soccerBall.png").getImage().getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH)));
-		avatar = new ImageIcon(new ImageIcon("resources/avatar.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH));
-		username = "techguychen";
-		playCompButton = new JButton("Play Computer");
-		playPlayerButton = new JButton("Play Player");
-		spectateButton = new JButton("Spectate Battle");
+		searchButton = new JButton("Search");
+		randomButton = new JButton("?? Random ??");
 		sendButton = new JButton("Send");
 		chatArea = new JTextArea();
 		chatField = new JTextField(10);
+		backButton = new JButton("Back");
+		gameIDField = new JTextField(6);
 	}
 	
 	private void addComponents() {
@@ -55,41 +47,41 @@ public class MainMenuGuest extends JFrame{
 		JLabel slimeSoccerLabel = new JLabel("Slime Soccer");
 		slimeSoccerLabel.setFont(new Font("Arial", Font.BOLD, 20));
 		slimeSoccerLabel.setBorder(BorderFactory.createEmptyBorder(5, 15, 5, 5));
-		JLabel avatarLabel = new JLabel(avatar);
-		avatarLabel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-		JLabel settingsLabel = new JLabel(new ImageIcon(new ImageIcon("resources/settings.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)));
-		settingsLabel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-		JLabel logoutLabel = new JLabel("Logout");
-		logoutLabel.setFont(new Font("Arial", Font.BOLD, 16));
-		logoutLabel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 15));
+		backButton.setFont(new Font("Arial", Font.BOLD, 16));
+		backButton.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 15));
 		northPanel.add(slimeSoccerLabel);
 		northPanel.add(Box.createGlue());
-		northPanel.add(avatarLabel);
-		northPanel.add(settingsLabel);
-		northPanel.add(logoutLabel);
+		northPanel.add(backButton);
 		add(northPanel, BorderLayout.NORTH);
 		JPanel centerPanel = new JPanel();
 		centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.X_AXIS));
 		JPanel leftPanel = new JPanel();
 		leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
-		JLabel helloLabel = new JLabel("Hello, " + username + "!");
-		helloLabel.setBorder(BorderFactory.createEmptyBorder(20, 0, 0, 0));
 		JPanel jp1 = new JPanel();
-		jp1.add(soccerBalls[0]);
-		jp1.add(playCompButton);
+		JLabel helloLabel = new JLabel("Hello, Guest!");
+		helloLabel.setBorder(BorderFactory.createEmptyBorder(20, 0, 0, 0));
+		jp1.add(helloLabel);
 		JPanel jp2 = new JPanel();
-		jp2.add(soccerBalls[1]);
-		soccerBalls[1].setVisible(false);
-		jp2.add(playPlayerButton);		
+		JLabel spectateLabel = new JLabel("Spectate Battle");
+		jp2.add(spectateLabel);
+		jp2.setBorder(BorderFactory.createEmptyBorder(30, 0, 0, 0));
 		JPanel jp3 = new JPanel();
-		jp3.add(soccerBalls[2]);
-		soccerBalls[2].setVisible(false);
-		jp3.add(spectateButton);
-		leftPanel.add(helloLabel);
-		leftPanel.add(Box.createGlue());
+		JLabel searchLabel = new JLabel("Search by ID: ");
+		jp3.add(searchLabel);
+		jp3.add(gameIDField);
+		jp3.add(searchButton);
+		JPanel orPanel = new JPanel();
+		JLabel orLabel = new JLabel("- OR -");
+		orPanel.add(orLabel);
+		JPanel jp4 = new JPanel();
+		jp4.add(randomButton);
+		jp4.setBorder(BorderFactory.createEmptyBorder(0, 0, 60, 0));;
 		leftPanel.add(jp1);
 		leftPanel.add(jp2);
+		leftPanel.add(Box.createGlue());
 		leftPanel.add(jp3);
+		leftPanel.add(orPanel);
+		leftPanel.add(jp4);
 		leftPanel.setBorder(BorderFactory.createEmptyBorder(0, 100, 0, 0));
 		JPanel rightPanel = new JPanel();
 		rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
@@ -100,13 +92,13 @@ public class MainMenuGuest extends JFrame{
 		((DefaultCaret)chatArea.getCaret()).setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
 		JScrollPane jsp = new JScrollPane(chatArea);
 		jsp.setPreferredSize(new Dimension(40, 420));
-		JPanel jp4 = new JPanel();
-		jp4.add(chatField);
-		jp4.add(sendButton);
+		JPanel jp5 = new JPanel();
+		jp5.add(chatField);
+		jp5.add(sendButton);
 		rightPanel.add(chatLabel);
 		rightPanel.add(jsp);
-		rightPanel.add(jp4);
-		rightPanel.setPreferredSize(new Dimension(130, 400));
+		rightPanel.add(jp5);
+		rightPanel.setPreferredSize(new Dimension(150, 400));
 		rightPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 15));
 		centerPanel.add(leftPanel);
 		centerPanel.add(Box.createGlue());
