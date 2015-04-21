@@ -35,7 +35,7 @@ public class SqlInstance {
 		      
 		      preparedStatement = connect.prepareStatement("INSERT INTO ball_data VALUES (default, ?, ?, ?, ?, ?)");
 		      //populates the table
-		      preparedStatement.setString(1, 5);
+		      preparedStatement.setString(1, "5");
 		      preparedStatement.setString(2, "Testing");
 		      preparedStatement.setString(3, "TestWebpage");
 		      preparedStatement.setString(4, "No");
