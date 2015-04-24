@@ -3,6 +3,8 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -20,24 +22,24 @@ import javax.swing.text.DefaultCaret;
 public class MainMenuUser extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private ImageIcon avatar;
-	private JButton sendButton, playCompButton, playPlayerButton, spectateButton, logoutButton;
+	private JButton sendButton, playCompButton, playPlayerButton, spectateButton, logoutButton, settingsButton;
 	private String username;
 	private JTextArea chatArea;
 	private JTextField chatField;
+	private SettingsPage settingsPage;
 
-	public MainMenuUser() {
+	public MainMenuUser(String username) {
 		setSize(800, 600);
 		setLocation(300,100);
+		this.username = username;
 		instantiateVariables();
 		addComponents();
 		addListeners();
 		setResizable(false);
-		setVisible(true);		
 	}
 	
 	private void instantiateVariables() {
 		avatar = new ImageIcon(new ImageIcon("resources/SoccerBall.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH));
-		username = "techguychen";
 		playCompButton = new JButton("Play Computer");
 		playPlayerButton = new JButton("Play Player");
 		spectateButton = new JButton("Spectate Battle");
@@ -45,6 +47,8 @@ public class MainMenuUser extends JFrame{
 		chatArea = new JTextArea();
 		chatField = new JTextField(10);
 		logoutButton = new JButton("Logout");
+		settingsButton = new JButton(new ImageIcon(new ImageIcon("resources/SoccerBall.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)));
+		settingsPage = new SettingsPage();
 	}
 	
 	private void addComponents() {
@@ -55,7 +59,6 @@ public class MainMenuUser extends JFrame{
 		slimeSoccerLabel.setBorder(BorderFactory.createEmptyBorder(5, 15, 5, 5));
 		JLabel avatarLabel = new JLabel(avatar);
 		avatarLabel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-		JButton settingsButton = new JButton(new ImageIcon(new ImageIcon("resources/SoccerBall.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)));
 		settingsButton.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		logoutButton.setFont(new Font("Arial", Font.BOLD, 16));
 		logoutButton.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 15));
@@ -110,9 +113,26 @@ public class MainMenuUser extends JFrame{
 	
 	private void addListeners() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		logoutButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new LoginPage();
+				dispose();
+			}
+		});
+		settingsButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				settingsPage.setPrevScreen(MainMenuUser.this);
+				settingsPage.setVisible(true);
+				setVisible(false);
+			}
+		});
+	}
+	
+	SettingsPage getSettingsPage() {
+		return settingsPage;
 	}
 	
 	public static void main(String[] args) {
-		new MainMenuUser();
+		new MainMenuUser("faketechguy");
 	}
 }
