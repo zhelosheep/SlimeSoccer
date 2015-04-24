@@ -31,7 +31,7 @@ public class Game {
 			imgSlimeMagnet = ImageIO.read(new File("./resources/slimes/MagnetSlime.png"));
 			imgSlimeSuperSize = ImageIO.read(new File("./resources/slimes/SuperSizeSlime.png"));
 			imgSlimeSuper = ImageIO.read(new File("./resources/slimes/SuperSlime.png"));
-			imgBall = ImageIO.read(new File("./resources/slimes/SoccerBall.png"));
+			imgBall = ImageIO.read(new File("./resources/SoccerBall.png"));
 		} catch (IOException e) {
 			System.out.println("IOException in load resources (Frame): " + e.getMessage());
 		}

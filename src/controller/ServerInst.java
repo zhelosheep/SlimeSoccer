@@ -5,24 +5,25 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class ServerInst {
-	Socket s;
-	ServerSocket ss;
+	int port;
 	
 	ServerInst() {
-		try {
-			ss = new ServerSocket(3306);
-			System.out.println("Waiting for connection...");
-			s = ss.accept();
+		port = 3306;
+		System.out.println("Server started!");
+		
+		new Thread(new Runnable() {
+			public void run() {
+				try {
+					ServerSocket ss = new ServerSocket(port);
 			
-		} catch (IOException ioe) {
-			System.out.println("IOException: " + ioe.getMessage());
-		} finally {
-			try {
-				s.close();
-				ss.close();
-			} catch (IOException e) {
-				System.out.println("IOException: " + e.getMessage());
+					while (true) {
+						Socket s = ss.accept();
+					}
+				
+				} catch (IOException ioe) {
+					System.out.println("IOException in ServerInst constructor: " + ioe.getMessage());
+				}
 			}
-		}
+		}).start();
 	}
 }

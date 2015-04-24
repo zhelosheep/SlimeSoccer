@@ -1,5 +1,6 @@
 package controller;
 
+import java.awt.Image;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -9,18 +10,71 @@ import java.sql.Statement;
 
 public class SqlInstance {
 	
-	private Connection connect;
-	private Statement statement;
-	private PreparedStatement preparedStatement;
-	private ResultSet resultSet;
+	private Connection c;
+	private PreparedStatement ps;
+	private ResultSet rs;
 	  
-	SqlInstance() {
-		connect = null;
-		statement = null;
-		preparedStatement = null;
-		resultSet = null;
+	private String connection;
+	private static final String driver = "com.mysql.jdbc.Driver";
+	private static final String db = "slime_soccer_db";
+	private static final String user = "user";
+	private static final String password = "";
+	
+	public SqlInstance(String host) {
+		connection = "jdbc:mysql://" + host + "/";
 		
 		try {
+			//load driver
+			Class.forName(driver);
+			
+			//establish connection
+			c = DriverManager.getConnection(connection + db, user, password);
+			
+			
+			
+		} catch (ClassNotFoundException cnfe) {
+			System.out.println("CNFE in SqlInstance constructor: " + cnfe.getMessage());
+		} catch (SQLException sqle) {
+			System.out.println("SQLException in SqlInstance constructor: " + sqle.getMessage());
+		}
+	}
+	
+	public boolean login(String u, String pw) {
+		try {
+			Statement st = c.createStatement();
+			ResultSet rs_temp = st.executeQuery("SELECT * FROM account_data WHERE username = " + u);
+			
+			if (rs_temp.next()) {
+				if (rs_temp.getString("password") == pw) {
+					rs = rs_temp;
+					return true;
+				}
+			}
+		} catch (SQLException e) {
+			System.out.println("SQLException in SqlInstance.login: " + e.getMessage());
+		}
+		
+		
+		return false;
+	}
+	
+	public void register(String fn, String ln, String u, String pw, Image img, String desc) {
+		try {
+			ps = c.prepareStatement("INSERT INTO account_data (firstname, lastname, username, password, image, description) VALUES (?, ?, ?, ?, ?, ?)");
+			ps.setString(1, fn);
+			ps.setString(2,  ln);
+			ps.setString(3,  u);
+			ps.setString(4,  pw);
+			ps.setObject(5,  img);
+			ps.setString(6, desc);
+			
+		} catch (SQLException sqle) {
+			System.out.println("SQL Exception in SqlInstance.register: " + sqle.getMessage());
+		}
+	}
+}
+	
+/*		try {
 			// This will load the MySQL driver, each DB has its own driver
 		      Class.forName("com.mysql.jdbc.Driver");
 		      // Setup the connection with the DB
@@ -48,7 +102,7 @@ public class SqlInstance {
 		      resultSet = statement.executeQuery("SELECT * FROM ball_data");
 		      writeMetaData(resultSet);
 		      
-/*		      // PreparedStatements can use variables and are more efficient
+		      // PreparedStatements can use variables and are more efficient
 		      preparedStatement = connect
 		          .prepareStatement("insert into  feedback.comments values (default, ?, ?, ?, ?, ?, ?)");
 		      // "myuser, webpage, datum, summery, COMMENTS from feedback.comments");
@@ -74,7 +128,7 @@ public class SqlInstance {
 		      
 		      resultSet = statement
 		      .executeQuery("select * from feedback.comments");
-		      writeMetaData(resultSet);*/
+		      writeMetaData(resultSet);
 
 		} catch (SQLException sqle) {
 			System.out.println("SQLException: " + sqle.getMessage());
@@ -136,4 +190,4 @@ public class SqlInstance {
 	public static void main (String [] args) {
 		new SqlInstance();
 	}
-}
+}*/
