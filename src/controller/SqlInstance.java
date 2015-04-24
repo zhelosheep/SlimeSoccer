@@ -72,6 +72,10 @@ public class SqlInstance {
 			System.out.println("SQL Exception in SqlInstance.register: " + sqle.getMessage());
 		}
 	}
+	
+	public void getScore (String user) {
+		
+	}
 }
 	
 /*		try {
