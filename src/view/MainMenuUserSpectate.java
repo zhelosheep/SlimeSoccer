@@ -3,6 +3,9 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -18,19 +21,20 @@ import javax.swing.text.DefaultCaret;
 
 public class MainMenuUserSpectate extends JFrame{
 	private static final long serialVersionUID = 1L;
-	private JButton searchButton, sendButton, backButton, randomButton, logoutButton;
+	private JButton searchButton, sendButton, backButton, randomButton, logoutButton, settingsButton;
 	private JTextArea chatArea;
 	private JTextField chatField, gameIDField;
 	private ImageIcon avatar;
+	private MainMenuUser prevScreen;
 
-	public MainMenuUserSpectate() {
+	public MainMenuUserSpectate(MainMenuUser prevScreen) {
 		setSize(800, 600);
 		setLocation(300,100);
+		this.prevScreen = prevScreen;
 		instantiateVariables();
 		addComponents();
 		addListeners();
 		setResizable(false);
-		setVisible(true);		
 	}
 	
 	private void instantiateVariables() {
@@ -43,6 +47,7 @@ public class MainMenuUserSpectate extends JFrame{
 		backButton = new JButton("Back");
 		gameIDField = new JTextField(6);
 		logoutButton = new JButton("Log Out");
+		settingsButton = new JButton(new ImageIcon(new ImageIcon("resources/SoccerBall.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)));
 	}
 	
 	private void addComponents() {
@@ -53,7 +58,6 @@ public class MainMenuUserSpectate extends JFrame{
 		slimeSoccerLabel.setBorder(BorderFactory.createEmptyBorder(5, 15, 5, 5));
 		JLabel avatarLabel = new JLabel(avatar);
 		avatarLabel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-		JButton settingsButton = new JButton(new ImageIcon(new ImageIcon("resources/SoccerBall.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)));
 		settingsButton.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		logoutButton.setFont(new Font("Arial", Font.BOLD, 16));
 		logoutButton.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 15));
@@ -122,9 +126,21 @@ public class MainMenuUserSpectate extends JFrame{
 	
 	private void addListeners() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		logoutButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new LoginPage();
+				dispose();
+			}
+		});
+		backButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				prevScreen.setVisible(true);
+			}
+		});
 	}
 	
 	public static void main(String[] args) {
-		new MainMenuUserSpectate();
+		new MainMenuUserSpectate(new MainMenuUser("derp"));
 	}
 }

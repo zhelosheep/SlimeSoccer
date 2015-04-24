@@ -3,7 +3,8 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -12,12 +13,14 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class SignUpPage extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private JButton submitButton, backButton;
-	private JTextField fNameField, lNameField, usernameField, passwordField, descField;
+	private JTextField fNameField, lNameField, usernameField, descField;
+	private JPasswordField passwordField;
 	private JButton[] avatarButtons;
 
 	public SignUpPage() {
@@ -36,7 +39,7 @@ public class SignUpPage extends JFrame{
 		fNameField = new JTextField(15);
 		lNameField = new JTextField(15);
 		usernameField = new JTextField(15);
-		passwordField = new JTextField(15);
+		passwordField = new JPasswordField(15);
 		descField = new JTextField(15);
 		avatarButtons = new JButton[10];
 		for (int i = 0; i < 10; i++) avatarButtons[i] = new JButton(new ImageIcon("resources/SoccerBall.png"));
@@ -102,6 +105,18 @@ public class SignUpPage extends JFrame{
 	
 	private void addListeners() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		backButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new LoginPage();
+				dispose();
+			}
+		});
+		submitButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new MainMenuUser(usernameField.getText());
+				dispose();
+			}
+		});
 	}
 	
 	public static void main(String[] args) {

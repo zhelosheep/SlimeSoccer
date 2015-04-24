@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -14,14 +16,14 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class LoginPage extends JFrame{
 	private static final long serialVersionUID = 1;
-	private JPanel background;
-	private JTextField usernameField, passwordField;
+	private JTextField usernameField;
+	private JPasswordField passwordField;
 	private JButton login, signup, guest;
-	private BufferedImage backgroundImage;
 	
 	public LoginPage() {
 		setSize(800, 600);
@@ -34,12 +36,9 @@ public class LoginPage extends JFrame{
 		setVisible(true);
 	}
 	
-	private void instantiateVariables() {
-		background = new JPanel();
-		background.setLayout(null);
-		
+	private void instantiateVariables() {		
 		usernameField = new JTextField(15);
-		passwordField = new JTextField(15);
+		passwordField = new JPasswordField(15);
 		
 		login = new JButton("Login");
 		signup = new JButton("Sign up");
@@ -48,12 +47,6 @@ public class LoginPage extends JFrame{
 		login.setAlignmentX(Component.CENTER_ALIGNMENT);
 		signup.setAlignmentX(Component.CENTER_ALIGNMENT);
 		guest.setAlignmentX(Component.CENTER_ALIGNMENT);
-		
-		try {
-			backgroundImage = ImageIO.read(new File("./resources/SlimeSoccerLogin.png"));
-		} catch (IOException e) {
-			System.out.println("IOException in instantiateVariables (trying to load image): " + e.getMessage());
-		}
 	}
 	
 	private void addComponents() {
@@ -75,6 +68,12 @@ public class LoginPage extends JFrame{
 		jp.add(login);
 		jp.add(signup);
 		
+		BufferedImage backgroundImage = null;
+		try {
+			backgroundImage = ImageIO.read(new File("./resources/SlimeSoccerLogin.png"));
+		} catch (IOException e) {
+			System.out.println("IOException in addComponents (trying to load image): " + e.getMessage());
+		}
 		setContentPane(new JLabel(new ImageIcon(backgroundImage)));
 
 		setLayout(null);
@@ -103,6 +102,24 @@ public class LoginPage extends JFrame{
 //	
 	private void addListeners() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		login.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new MainMenuUser(usernameField.getText());
+				dispose();
+			}
+		});
+		signup.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new SignUpPage();
+				dispose();
+			}			
+		});
+		guest.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new MainMenuGuest();
+				dispose();
+			}
+		});
 	}
 	
 	public static void main(String [] args) {

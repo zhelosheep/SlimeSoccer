@@ -2,6 +2,8 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -16,6 +18,7 @@ public class SettingsPage extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private JButton cancelButton, saveButton;
 	private JSlider sfxSlider, musicSlider; 
+	private JFrame prevScreen = null;
 
 	public SettingsPage() {
 		setSize(800, 600);
@@ -24,7 +27,6 @@ public class SettingsPage extends JFrame{
 		addComponents();
 		addListeners();
 		setResizable(false);
-		setVisible(true);		
 	}
 	
 	private void instantiateVariables() {
@@ -69,6 +71,22 @@ public class SettingsPage extends JFrame{
 	
 	private void addListeners() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		saveButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				prevScreen.setVisible(true);
+				setVisible(false);
+			}
+		});
+		cancelButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				prevScreen.setVisible(true);
+				setVisible(false);
+			}
+		});
+	}
+	
+	void setPrevScreen(JFrame prevScreen) {
+		this.prevScreen = prevScreen;
 	}
 	
 	public static void main(String[] args) {

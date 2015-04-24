@@ -2,6 +2,8 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -14,10 +16,12 @@ import javax.swing.JPanel;
 public class MainMenuUserWaiting extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private JButton cancelButton;
+	private MainMenuUserPlayPlayer prevScreen;
 
-	public MainMenuUserWaiting() {
+	public MainMenuUserWaiting(MainMenuUserPlayPlayer prevScreen) {
 		setSize(800, 600);
 		setLocation(300,100);
+		this.prevScreen = prevScreen;
 		instantiateVariables();
 		addComponents();
 		addListeners();
@@ -54,9 +58,15 @@ public class MainMenuUserWaiting extends JFrame{
 	
 	private void addListeners() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		cancelButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				prevScreen.setVisible(true);
+			}
+		});
 	}
 	
 	public static void main(String[] args) {
-		new MainMenuUserWaiting();
+		new MainMenuUserWaiting(new MainMenuUserPlayPlayer(new MainMenuUser("faketechguy")));
 	}
 }
