@@ -31,7 +31,7 @@ public class SignUpPage extends JFrame{
 	}
 	
 	private void instantiateVariables() {
-		submitButton = new JButton("Continue");
+		submitButton = new JButton("Submit");
 		backButton = new JButton("Back");
 		fNameField = new JTextField(15);
 		lNameField = new JTextField(15);
