@@ -27,7 +27,7 @@ public class MainMenuUserPlaySlime extends JFrame{
 	private JSlider regenRateSlider, totalManaSlider; 
 	private boolean isPlayer1 = true;
 
-	MainMenuUserPlaySlime(boolean isPlayer1) {
+	public MainMenuUserPlaySlime(boolean isPlayer1) {
 		setSize(800, 600);
 		setLocation(300,100);
 		this.isPlayer1 = isPlayer1;

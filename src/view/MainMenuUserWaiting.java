@@ -15,7 +15,7 @@ public class MainMenuUserWaiting extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private JButton cancelButton;
 
-	MainMenuUserWaiting() {
+	public MainMenuUserWaiting() {
 		setSize(800, 600);
 		setLocation(300,100);
 		instantiateVariables();

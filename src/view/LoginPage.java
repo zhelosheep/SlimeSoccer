@@ -23,7 +23,7 @@ public class LoginPage extends JFrame{
 	private JButton login, signup, guest;
 	private BufferedImage backgroundImage;
 	
-	LoginPage() {
+	public LoginPage() {
 		setSize(800, 600);
 		setLocation(300,100);
 		

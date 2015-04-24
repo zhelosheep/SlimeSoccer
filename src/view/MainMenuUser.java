@@ -25,7 +25,7 @@ public class MainMenuUser extends JFrame{
 	private JTextArea chatArea;
 	private JTextField chatField;
 
-	MainMenuUser() {
+	public MainMenuUser() {
 		setSize(800, 600);
 		setLocation(300,100);
 		instantiateVariables();

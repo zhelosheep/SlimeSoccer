@@ -23,7 +23,7 @@ public class MainMenuUserPlayPlayer extends JFrame{
 	private JTextField chatField, usernameField;
 	private ImageIcon avatar;
 
-	MainMenuUserPlayPlayer() {
+	public MainMenuUserPlayPlayer() {
 		setSize(800, 600);
 		setLocation(300,100);
 		instantiateVariables();

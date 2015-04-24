@@ -23,7 +23,7 @@ public class MainMenuUserSpectate extends JFrame{
 	private JTextField chatField, gameIDField;
 	private ImageIcon avatar;
 
-	MainMenuUserSpectate() {
+	public MainMenuUserSpectate() {
 		setSize(800, 600);
 		setLocation(300,100);
 		instantiateVariables();
