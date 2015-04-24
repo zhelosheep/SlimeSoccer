@@ -95,7 +95,9 @@ public class MainMenuGuest extends JFrame{
 		JPanel jp5 = new JPanel();
 		jp5.add(chatField);
 		jp5.add(sendButton);
-		rightPanel.add(chatLabel);
+		JPanel jp6 = new JPanel();
+		jp6.add(chatLabel);
+		rightPanel.add(jp6);
 		rightPanel.add(jsp);
 		rightPanel.add(jp5);
 		rightPanel.setPreferredSize(new Dimension(150, 400));

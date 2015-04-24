@@ -16,14 +16,14 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.text.DefaultCaret;
 
-public class MainMenuUserPlayPlayer extends JFrame{
+public class MainMenuUserSpectate extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private JButton searchButton, sendButton, backButton, randomButton, logoutButton;
 	private JTextArea chatArea;
-	private JTextField chatField, usernameField;
+	private JTextField chatField, gameIDField;
 	private ImageIcon avatar;
 
-	MainMenuUserPlayPlayer() {
+	MainMenuUserSpectate() {
 		setSize(800, 600);
 		setLocation(300,100);
 		instantiateVariables();
@@ -41,8 +41,8 @@ public class MainMenuUserPlayPlayer extends JFrame{
 		chatArea = new JTextArea();
 		chatField = new JTextField(10);
 		backButton = new JButton("Back");
+		gameIDField = new JTextField(6);
 		logoutButton = new JButton("Log Out");
-		usernameField = new JTextField(6);
 	}
 	
 	private void addComponents() {
@@ -68,24 +68,23 @@ public class MainMenuUserPlayPlayer extends JFrame{
 		JPanel leftPanel = new JPanel();
 		leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
 		JPanel jp1 = new JPanel();
-		JLabel helloLabel = new JLabel("Hello, Derp!");
+		JLabel helloLabel = new JLabel("Hello, Guest!");
 		helloLabel.setBorder(BorderFactory.createEmptyBorder(20, 0, 0, 0));
 		jp1.add(helloLabel);
 		JPanel jp2 = new JPanel();
-		JLabel playPlayerLabel = new JLabel("Play Player");
-		jp2.add(playPlayerLabel);
+		JLabel spectateLabel = new JLabel("Spectate Battle");
+		jp2.add(spectateLabel);
 		jp2.setBorder(BorderFactory.createEmptyBorder(30, 0, 0, 0));
 		JPanel jp3 = new JPanel();
-		JLabel searchLabel = new JLabel("Search by Username: ");
+		JLabel searchLabel = new JLabel("Search by ID: ");
 		jp3.add(searchLabel);
-		jp3.add(usernameField);
+		jp3.add(gameIDField);
 		jp3.add(searchButton);
 		JPanel orPanel = new JPanel();
 		JLabel orLabel = new JLabel("- OR -");
 		orPanel.add(orLabel);
 		JPanel jp4 = new JPanel();
 		jp4.add(randomButton);
-		jp4.setBorder(BorderFactory.createEmptyBorder(0, 0, 60, 0));;
 		JPanel jp5 = new JPanel();
 		jp5.add(backButton);
 		leftPanel.add(jp1);
@@ -95,7 +94,7 @@ public class MainMenuUserPlayPlayer extends JFrame{
 		leftPanel.add(orPanel);
 		leftPanel.add(jp4);
 		leftPanel.add(jp5);
-		leftPanel.setBorder(BorderFactory.createEmptyBorder(0, 70, 0, 0));
+		leftPanel.setBorder(BorderFactory.createEmptyBorder(0, 100, 0, 0));
 		JPanel rightPanel = new JPanel();
 		rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
 		JLabel chatLabel = new JLabel("Chat");
@@ -113,7 +112,7 @@ public class MainMenuUserPlayPlayer extends JFrame{
 		rightPanel.add(jp7);
 		rightPanel.add(jsp);
 		rightPanel.add(jp6);
-		rightPanel.setPreferredSize(new Dimension(150, 600));
+		rightPanel.setPreferredSize(new Dimension(150, 400));
 		rightPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 15));
 		centerPanel.add(leftPanel);
 		centerPanel.add(Box.createGlue());
@@ -126,6 +125,6 @@ public class MainMenuUserPlayPlayer extends JFrame{
 	}
 	
 	public static void main(String[] args) {
-		new MainMenuUserPlayPlayer();
+		new MainMenuUserSpectate();
 	}
 }

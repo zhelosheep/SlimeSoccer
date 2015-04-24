@@ -95,7 +95,9 @@ public class MainMenuUser extends JFrame{
 		JPanel jp4 = new JPanel();
 		jp4.add(chatField);
 		jp4.add(sendButton);
-		rightPanel.add(chatLabel);
+		JPanel jp5 = new JPanel();
+		jp5.add(chatLabel);
+		rightPanel.add(jp5);
 		rightPanel.add(jsp);
 		rightPanel.add(jp4);
 		rightPanel.setPreferredSize(new Dimension(130, 400));
