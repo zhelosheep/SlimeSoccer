@@ -31,7 +31,6 @@ public class MainMenuGuest extends JFrame{
 		addComponents();
 		addListeners();
 		setResizable(false);
-		setVisible(true);		
 	}
 	
 	private void instantiateVariables() {

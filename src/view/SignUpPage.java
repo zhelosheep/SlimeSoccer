@@ -30,7 +30,6 @@ public class SignUpPage extends JFrame{
 		addComponents();
 		addListeners();
 		setResizable(false);
-		setVisible(true);		
 	}
 	
 	private void instantiateVariables() {
