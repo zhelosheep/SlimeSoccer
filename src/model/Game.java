@@ -20,18 +20,18 @@ public class Game {
 	public Game() {
 		// load resources
 		try {
-			imgBackgroundSoccerfield = ImageIO.read(new File("./resources/game/backgrounds/soccerfield.png"));
-			imgSlimeBomb = ImageIO.read(new File("./resources/game/slimes/BombSlime.png"));
-			imgSlimeBowAndArrow = ImageIO.read(new File("./resources/game/slimes/BowAndArrowSlime.png"));
-			imgSlimeClone = ImageIO.read(new File("./resources/game/slimes/CloneSlime.png"));
-			imgSlimeCosmic = ImageIO.read(new File("./resources/game/slimes/CosmicSlime.png"));
-			imgSlimeFireball = ImageIO.read(new File("./resources/game/slimes/FireballSlime.png"));
-			imgSlimeFisher = ImageIO.read(new File("./resources/game/slimes/FisherSlime.png"));
-			imgSlimeGeyser = ImageIO.read(new File("./resources/game/slimes/GeyserSlime.png"));
-			imgSlimeMagnet = ImageIO.read(new File("./resources/game/slimes/MagnetSlime.png"));
-			imgSlimeSuperSize = ImageIO.read(new File("./resources/game/slimes/SuperSizeSlime.png"));
-			imgSlimeSuper = ImageIO.read(new File("./resources/game/slimes/SuperSlime.png"));
-			imgBall = ImageIO.read(new File("./resources/game/slimes/SoccerBall.png"));
+			imgBackgroundSoccerfield = ImageIO.read(new File("./resources/backgrounds/soccerfield.png"));
+			imgSlimeBomb = ImageIO.read(new File("./resources/slimes/BombSlime.png"));
+			imgSlimeBowAndArrow = ImageIO.read(new File("./resources/slimes/BowAndArrowSlime.png"));
+			imgSlimeClone = ImageIO.read(new File("./resources/slimes/CloneSlime.png"));
+			imgSlimeCosmic = ImageIO.read(new File("./resources/slimes/CosmicSlime.png"));
+			imgSlimeFireball = ImageIO.read(new File("./resources/slimes/FireballSlime.png"));
+			imgSlimeFisher = ImageIO.read(new File("./resources/slimes/FisherSlime.png"));
+			imgSlimeGeyser = ImageIO.read(new File("./resources/slimes/GeyserSlime.png"));
+			imgSlimeMagnet = ImageIO.read(new File("./resources/slimes/MagnetSlime.png"));
+			imgSlimeSuperSize = ImageIO.read(new File("./resources/slimes/SuperSizeSlime.png"));
+			imgSlimeSuper = ImageIO.read(new File("./resources/slimes/SuperSlime.png"));
+			imgBall = ImageIO.read(new File("./resources/slimes/SoccerBall.png"));
 		} catch (IOException e) {
 			System.out.println("IOException in load resources (Frame): " + e.getMessage());
 		}
