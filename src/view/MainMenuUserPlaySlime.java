@@ -120,6 +120,7 @@ public class MainMenuUserPlaySlime extends JFrame{
 		JPanel jp4 = new JPanel();
 		jp4.setLayout(new GridLayout(2, 5));
 		for (int i = 0; i < 10; i++) jp4.add(slimeButtons[i]);
+		jp4.setBorder(BorderFactory.createEmptyBorder(0, 100, 0, 100));
 		centerPanel.add(jp1);
 		centerPanel.add(jp4);		
 		JLabel specialLabel = new JLabel("Special Mode");

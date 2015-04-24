@@ -2,9 +2,12 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
+import java.awt.GridLayout;
+
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -15,6 +18,7 @@ public class SignUpPage extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private JButton submitButton, backButton;
 	private JTextField fNameField, lNameField, usernameField, passwordField, descField;
+	private JButton[] avatarButtons;
 
 	public SignUpPage() {
 		setSize(800, 600);
@@ -27,13 +31,15 @@ public class SignUpPage extends JFrame{
 	}
 	
 	private void instantiateVariables() {
-		submitButton = new JButton("Continue");
+		submitButton = new JButton("Submit");
 		backButton = new JButton("Back");
 		fNameField = new JTextField(15);
 		lNameField = new JTextField(15);
 		usernameField = new JTextField(15);
 		passwordField = new JTextField(15);
 		descField = new JTextField(15);
+		avatarButtons = new JButton[10];
+		for (int i = 0; i < 10; i++) avatarButtons[i] = new JButton(new ImageIcon("resources/SoccerBall.png"));
 	}
 	
 	private void addComponents() {
@@ -67,11 +73,21 @@ public class SignUpPage extends JFrame{
 		jp5.add(new JLabel("Password: "));
 		jp5.add(passwordField);
 		JPanel jp6 = new JPanel();
-		jp6.add(new JLabel("Description: "));
-		jp6.add(descField);
+		jp6.setLayout(new BoxLayout(jp6, BoxLayout.Y_AXIS));
+		JPanel avatarPanel = new JPanel();
+		avatarPanel.setLayout(new GridLayout(2, 5));
+		for (int i = 0; i < 10; i++) avatarPanel.add(avatarButtons[i]);
+		avatarPanel.setBorder(BorderFactory.createEmptyBorder(0, 230, 0, 230));
+		JPanel c1 = new JPanel();
+		c1.add(new JLabel("<html><div style=\"text-align: center;\">Choose an avatar: "));
+		jp6.add(c1);
+		jp6.add(avatarPanel);
 		JPanel jp7 = new JPanel();
-		jp7.add(submitButton);
-		jp7.setBorder(BorderFactory.createEmptyBorder(0, 0, 50, 0));
+		jp7.add(new JLabel("Description: "));
+		jp7.add(descField);
+		JPanel jp8 = new JPanel();
+		jp8.add(submitButton);
+		jp8.setBorder(BorderFactory.createEmptyBorder(0, 0, 50, 0));
 		centerPanel.add(Box.createGlue());
 		centerPanel.add(jp1);
 		centerPanel.add(jp2);
@@ -80,6 +96,7 @@ public class SignUpPage extends JFrame{
 		centerPanel.add(jp5);
 		centerPanel.add(jp6);
 		centerPanel.add(jp7);
+		centerPanel.add(jp8);
 		add(centerPanel, BorderLayout.CENTER);
 	}
 	
