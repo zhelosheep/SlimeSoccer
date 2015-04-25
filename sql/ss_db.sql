@@ -37,6 +37,7 @@ CREATE TABLE `account_data` (
   `player_days` int(11) NOT NULL DEFAULT '0',
   `player_messages` int(11) DEFAULT NULL,
   `player_volume` int(11) NOT NULL DEFAULT '50',
+  `password` varchar(45) NOT NULL,
   PRIMARY KEY (`userID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -200,4 +201,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-04-24 17:31:31
+-- Dump completed on 2015-04-24 17:48:58
