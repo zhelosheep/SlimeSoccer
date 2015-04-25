@@ -113,7 +113,7 @@ public class LoginPage extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		login.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				(new MainMenuUser(usernameField.getText())).setVisible(true);;
+				(new MainMenuUser(usernameField.getText(), hostField.getText())).setVisible(true);;
 				dispose();
 			}
 		});
@@ -125,7 +125,7 @@ public class LoginPage extends JFrame{
 		});
 		guest.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				(new MainMenuGuest()).setVisible(true);;
+				(new MainMenuGuest(hostField.getText())).setVisible(true);;
 				dispose();
 			}
 		});
