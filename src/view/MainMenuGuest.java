@@ -26,12 +26,10 @@ public class MainMenuGuest extends JFrame{
 	private JButton searchButton, sendButton, backButton, randomButton;
 	private JTextArea chatArea;
 	private JTextField chatField, gameIDField;
-	private String hostIP;
 
-	public MainMenuGuest(String hostIP) {
+	public MainMenuGuest() {
 		setSize(800, 600);
 		setLocation(300,100);
-		this.hostIP = hostIP;
 		instantiateVariables();
 		addComponents();
 		addListeners();
@@ -126,6 +124,6 @@ public class MainMenuGuest extends JFrame{
 	}
 	
 	public static void main(String[] args) {
-		(new MainMenuGuest("localhost")).setVisible(true);
+		(new MainMenuGuest()).setVisible(true);
 	}
 }

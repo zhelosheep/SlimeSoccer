@@ -25,7 +25,7 @@ public class MainMenuUser extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private ImageIcon avatar;
 	private JButton sendButton, playCompButton, playPlayerButton, spectateButton, logoutButton, settingsButton;
-	private String username, hostIP;
+	private String username;
 	private JTextArea chatArea;
 	private JTextField chatField;
 	private SettingsPage settingsPage;
@@ -33,11 +33,10 @@ public class MainMenuUser extends JFrame{
 	private MainMenuUserSpectate mainMenuUserSpectate;
 	private MainMenuUserPlaySlime mainMenuUserPlaySlime;
 	
-	public MainMenuUser(String username, String hostIP) {
+	public MainMenuUser(String username) {
 		setSize(800, 600);
 		setLocation(300,100);
 		this.username = username;
-		this.hostIP = hostIP;
 		instantiateVariables();
 		addComponents();
 		addListeners();
@@ -166,6 +165,6 @@ public class MainMenuUser extends JFrame{
 	}
 	
 	public static void main(String[] args) {
-		(new MainMenuUser("faketechguy", "localhost")).setVisible(true);
+		(new MainMenuUser("faketechguy")).setVisible(true);
 	}
 }
