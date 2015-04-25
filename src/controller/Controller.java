@@ -6,8 +6,6 @@ import java.awt.event.KeyListener;
 public class Controller implements KeyListener {
     // Keyboard states (true = pressed, false = not pressed)
     private static boolean[] keyboardState = new boolean[525];
-//    private static boolean[] keyboardStateWASD = new boolean [4]; // keyboard states of 'w','a','s','d' keys
-//    private static boolean[] keyboardStateUpLeftDownRight = new boolean [4]; // keyboard states of up,left,down,right arrow keys
 	
     public static boolean keyboardKeyState(int key) {
         return keyboardState[key];
