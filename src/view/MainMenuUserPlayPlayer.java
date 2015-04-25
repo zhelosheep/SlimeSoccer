@@ -22,7 +22,7 @@ import javax.swing.text.DefaultCaret;
 public class MainMenuUserPlayPlayer extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private JButton searchButton, sendButton, backButton, randomButton, logoutButton, settingsButton;
-	private JTextArea chatArea;
+	JTextArea chatArea;
 	private JTextField chatField, usernameField;
 	private ImageIcon avatar;
 	private MainMenuUser prevScreen;
@@ -144,6 +144,14 @@ public class MainMenuUserPlayPlayer extends JFrame{
 				prevScreen.getSettingsPage().setPrevScreen(MainMenuUserPlayPlayer.this);
 				prevScreen.getSettingsPage().setVisible(true);
 				setVisible(false);
+			}
+		});
+		sendButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				prevScreen.sWriter.println("C" + prevScreen.getUsername() + ": " + chatField.getText());
+				prevScreen.sWriter.flush();
+				chatArea.setText(chatArea.getText() + "\n" + prevScreen.getUsername() + ": " + chatField.getText());
+				chatField.setText("");
 			}
 		});
 	}

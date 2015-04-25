@@ -1,6 +1,9 @@
 package network;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.util.Vector;
 
@@ -21,7 +24,18 @@ public class ServerThread extends Thread{
 	public void run() {
 		while (true) {
 			if (ss == null) break;
-			(new AcceptThread(this)).start();
+			try {
+				ServerHelperThread sht = new ServerHelperThread(shtVector.size(), this);
+				sht.s = null;
+				sht.s = ss.accept();
+				sht.br = new BufferedReader(new InputStreamReader(sht.s.getInputStream()));
+				sht.pw = new PrintWriter(sht.s.getOutputStream());
+				shtVector.addElement(sht);
+				sht.start();
+				System.out.println("accepted " + shtVector.size());
+			} catch (IOException ioe) {
+				System.out.println("IOException in AcceptThread: " + ioe.getMessage());
+			}
 		}
 		b = false;
 	}

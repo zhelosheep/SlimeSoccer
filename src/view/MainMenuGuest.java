@@ -5,6 +5,9 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.PrintWriter;
+import java.net.Socket;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -16,6 +19,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.text.DefaultCaret;
 
 import chat.ChatClient;
@@ -24,9 +29,12 @@ import chat.ChatServer;
 public class MainMenuGuest extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private JButton searchButton, sendButton, backButton, randomButton;
-	private JTextArea chatArea;
+	public JTextArea chatArea;
 	private JTextField chatField, gameIDField;
-
+	Socket s;
+	public BufferedReader sReader;
+	public PrintWriter sWriter;
+	
 	public MainMenuGuest() {
 		setSize(800, 600);
 		setLocation(300,100);
@@ -119,6 +127,14 @@ public class MainMenuGuest extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				(new LoginPage()).setVisible(true);
 				dispose();
+			}
+		});
+		sendButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				sWriter.println("CGuest: " + chatField.getText());
+				sWriter.flush();
+				chatArea.setText(chatArea.getText() + "\nGuest: " + chatField.getText());
+				chatField.setText("");
 			}
 		});
 	}

@@ -18,7 +18,6 @@ public class SqlInstance {
 	private static final String db = "slime_soccer_db";
 	private static final String user = "ttrojan";
 	private static final String password = "thinmints";
-	//private static final String host = "11.48.1.2";
 	
 	public SqlInstance(String host) {
 		connection += host + "/";
@@ -71,16 +70,16 @@ public class SqlInstance {
 		return false;
 	}
 	
-	public void register(String fn, String ln, String u, String pw, Image img, String desc) {
+	public void register(String fn, String ln, String u, String pw, int img, String desc) {
 		try {
-			ps = c.prepareStatement("INSERT INTO account_data (player_firstName, player_lastName, username, player_password, player_avatar, player_description) VALUES (?, ?, ?, ?, ?, ?)");
+			ps = c.prepareStatement("INSERT INTO account_data (player_firstName, player_lastName, username, password, player_avatar, player_description) VALUES (?, ?, ?, ?, ?, ?)");
 			ps.setString(1, fn);
 			ps.setString(2,  ln);
 			ps.setString(3,  u);
 			ps.setString(4,  pw);
-			ps.setObject(5,  img);
+			ps.setInt(5,  img);
 			ps.setString(6, desc);
-			ps.executeQuery();
+			ps.executeUpdate();
 			
 		} catch (SQLException sqle) {
 			System.out.println("SQL Exception in SqlInstance.register: " + sqle.getMessage());
@@ -88,8 +87,8 @@ public class SqlInstance {
 	}
 	
 	public static void main (String [] args) {
-		SqlInstance si = new SqlInstance("192.186.193.1");
-		si.register("hi", "hi",  "hii",  "hi",  null, "hi");
+		SqlInstance si = new SqlInstance("slimesoccerdbinstance.cbx5rxifld4q.us-west-2.rds.amazonaws.com");
+		si.register("hi", "hi",  "hii",  "hi",  0, "hi");
 	}
 }
 	
