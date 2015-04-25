@@ -197,6 +197,8 @@ public class MainMenuUserPlaySlime extends JFrame{
 				//no need to add code that updates chat. Chat should not be retroactive since login
 			}
 		});
+		
+		//addd action listener on continue button; this should bring us to a settingspage
 	}
 	
 	public static void main(String[] args) {
