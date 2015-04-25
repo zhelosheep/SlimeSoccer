@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 
@@ -29,30 +30,35 @@ public class Canvas extends JPanel implements Runnable {
 		super.paintComponent(g);
 		// draw background
 		g.drawImage(Game.imgBackground, 0,0, null);
+		if (Game.background.equals("outerspace")) { g.setColor(Color.WHITE); }
 		g.drawLine(Game.leftBoundary, Game.groundLevel, Game.rightBoundary, Game.groundLevel);
 		
 		// draw player1 stats
 		g.setFont(new Font("Helvetica", Font.PLAIN, 14));
+		if (Game.background.equals("outerspace")) { g.setColor(Color.WHITE); }
 		g.drawString(Game.player1_slimeType, 20, 20);
 		g.drawString(Game.player1_username, 20, 40);
 		g.drawRoundRect(20, 50, 80, 10, 5, 5);
-		g.fillRoundRect(20, 50, (Game.player1_manaCurrent/Game.player1_manaMax)*80, 10, 5, 5);
+		g.fillRoundRect(20, 50, (int)((Game.player1_manaCurrent/Game.player1_manaMax)*80), 10, 5, 5);
 		g.setFont(new Font("Helvetica", Font.PLAIN, 40));
+		if (Game.background.equals("outerspace")) { g.setColor(Color.WHITE); }
 		g.drawString(Game.player1_score.toString(), 130, 45);
 		
 		// draw player2 stats
 		g.setFont(new Font("Helvetica", Font.PLAIN, 14));
+		if (Game.background.equals("outerspace")) { g.setColor(Color.WHITE); }
 		g.drawString(Game.player2_slimeType, 500, 20);
 		g.drawString(Game.player2_username, 500, 40);
 		g.drawRoundRect(500, 50, 80, 10, 5, 5);
-		g.fillRoundRect(500, 50, (Game.player2_manaCurrent/Game.player2_manaMax)*80, 10, 5, 5);
+		g.fillRoundRect(500, 50, (int)((Game.player2_manaCurrent/Game.player2_manaMax)*80), 10, 5, 5);
 		g.setFont(new Font("Helvetica", Font.PLAIN, 40));
+		if (Game.background.equals("outerspace")) { g.setColor(Color.WHITE); }
 		g.drawString(Game.player2_score.toString(), 450, 45);
 		
 		// if a player scores, let them know
 		if (Game.player1scored) {
-			System.out.println("me");
 			g.setFont(new Font("Helvetica", Font.PLAIN, 30));
+			if (Game.background.equals("outerspace")) { g.setColor(Color.WHITE); }
 			g.drawString("Player 1 scored!", 200, 300 - 100);
 			if (numTimesLeftToPrintScore == -1) { // first loop in which Game.player1scored is true
 				numTimesLeftToPrintScore = numTimesToPrintScore;
@@ -65,6 +71,7 @@ public class Canvas extends JPanel implements Runnable {
 		}
 		if (Game.player2scored) {
 			g.setFont(new Font("Helvetica", Font.PLAIN, 30));
+			if (Game.background.equals("outerspace")) { g.setColor(Color.WHITE); }
 			g.drawString("Player 2 scored!", 200, 300 - 100);
 			if (numTimesLeftToPrintScore == -1) { // first loop in which Game.player1scored is true
 				numTimesLeftToPrintScore = numTimesToPrintScore;

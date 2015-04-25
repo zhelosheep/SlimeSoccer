@@ -60,7 +60,11 @@ public class Goal {
 		}
 	}
 	public void paint(Graphics g) {
-		g.setColor(Color.BLACK);
+		if (Game.background.equals("outerspace")) { 
+			g.setColor(Color.WHITE); }
+		else {
+			g.setColor(Color.BLACK);
+		}
 		if (x == Game.leftBoundary) {
 			g.drawRect(x, y, width, height);
 		} else if (x == Game.rightBoundary) {

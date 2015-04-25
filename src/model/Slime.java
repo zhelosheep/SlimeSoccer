@@ -7,64 +7,47 @@ import java.awt.image.BufferedImage;
 
 import view.Frame;
 
-public class Slime {
-	public int x, y; // displacement
-	public double velocityX = 0, velocityY = 0; // velocity
+public abstract class Slime {
+	// numbers for painting slime in right position, direction, etc
+	public int x, y; 
+	public double velocityX = 0, velocityY = 0; 
 	boolean facingLeft; // true if slime is facing left, right if slime is facing right
-	private String slimeType;
 	private BufferedImage slimeImage;
+	public boolean specialPowerBeingUsed;
 
 	// constants
 	final private int maxSpeed = 6;
 	final private int acceleration = 1, decceleration = 1, jumpAcceleration = 12; // acceleration — Note: these values are scalar, unlike velocity
-	//temporary: faster constants
-//	final private int maxSpeed = 13; 
-//	final private int acceleration = 3, decceleration = 1, jumpAcceleration = 12; // acceleration — Note: these values are scalar, unlike velocity
-	//temporary: faster constants
+	protected int width = 54, height = 54, radius = 27;
+	final public int mass = 1;
+	protected int player;
+	final protected int manaUsageRate = 5; // determines how fast mana is consumed when slime uses special power
+	private int upKey, leftKey, rightKey, powerKey; // KeyEvent codes
 	
-//	final private int width = 70, height = 70, radius = 35;
-	final private int width = 54, height = 54, radius = 27;
-	public final int mass = 1;
-	private int upKey, leftKey, rightKey; // KeyEvent codes
-	
-	public Slime(int x, int y, int player, String slimeType) {
+	public Slime(int x, int y, int player, BufferedImage slimeImage) {
 		this.x = x;
 		this.y = y;
-		this.slimeType = slimeType;
+		specialPowerBeingUsed = false;
+		this.slimeImage = slimeImage;
+		this.player = player;
 		if (player == 1) {
 			upKey = KeyEvent.VK_W;
 			leftKey = KeyEvent.VK_A;
 			rightKey = KeyEvent.VK_D;
+			powerKey = KeyEvent.VK_1;
 			facingLeft = false;
 		} else if (player == 2) {
 			upKey = KeyEvent.VK_UP;
 			leftKey = KeyEvent.VK_LEFT;
 			rightKey = KeyEvent.VK_RIGHT;
+			powerKey = KeyEvent.VK_SPACE;
 			facingLeft = true;
 		}
-		if (slimeType.equals("SlimeBomb")) {
-			slimeImage = Game.imgSlimeBomb;
-		} else if (slimeType.equals("SlimeBowAndArrow")) {
-			slimeImage = Game.imgSlimeBowAndArrow;
-		} else if (slimeType.equals("SlimeClone")) {
-			slimeImage = Game.imgSlimeClone;
-		} else if (slimeType.equals("SlimeCosmic")) {
-			slimeImage = Game.imgSlimeCosmic;
-		} else if (slimeType.equals("SlimeFireball")) {
-			slimeImage = Game.imgSlimeFireball;
-		} else if (slimeType.equals("SlimeFisher")) {
-			slimeImage = Game.imgSlimeFisher;
-		} else if (slimeType.equals("SlimeGeyser")) {
-			slimeImage = Game.imgSlimeGeyser;
-		} else if (slimeType.equals("SlimeMagnet")) {
-			slimeImage = Game.imgSlimeMagnet;
-		} else if (slimeType.equals("SlimeSuperSize")) {
-			slimeImage = Game.imgSlimeSuperSize;
-		} else if (slimeType.equals("SlimeSuper")) {
-			slimeImage = Game.imgSlimeSuper;
-		}
+		this.slimeImage = slimeImage;
 	}
 	
+	public abstract void useSpecialPower();
+
 	public void update() {
         // Calculating velocity for moving up or down
         if(Frame.controller.keyboardKeyState(upKey) && y == Game.groundLevel) {
@@ -96,6 +79,33 @@ public class Slime {
         } else if (velocityX > 0) {
             velocityX -= decceleration;
         }
+        
+        // User special power
+        if(Frame.controller.keyboardKeyState(powerKey) && !specialPowerBeingUsed) {
+        	if (this.player == 1) {
+        		if (Game.player1_manaCurrent > 0) {
+                	this.useSpecialPower();
+                	Game.player1_manaCurrent -= manaUsageRate;
+        		}
+        	}
+        	else if (this.player == 2) {
+        		if (Game.player2_manaCurrent > 0) {
+                	this.useSpecialPower();
+                	Game.player2_manaCurrent -= manaUsageRate;
+        		}
+        	}
+//        	System.out.println("SPECIAL POWER");
+        }
+        // regenerate special power
+        if(!Frame.controller.keyboardKeyState(powerKey)) {
+			if (Game.player1_manaCurrent < Game.player1_manaMax) {
+	        	Game.player1_manaCurrent += Game.manaRegenerationRate;
+			}
+			if (Game.player2_manaCurrent < Game.player2_manaMax) {
+	        	Game.player2_manaCurrent += Game.manaRegenerationRate;
+			}
+        }
+
         
         if (x - width/2 < Game.leftBoundary) { // if slime is outside of left boundary, put slime back in boundary and stop movement
         	velocityX = 0; 
@@ -134,7 +144,6 @@ public class Slime {
 		return (this.y - ((3*height)/4) - 3); // slightly adjusted values for returning y value of image because images aren't exactly 70x70
 	}
 
-
 	public Double[] detectCollision(Ball ball) {
 		Double [] newVelocities = new Double[2];
 		
@@ -154,7 +163,6 @@ public class Slime {
 			double distance = Math.sqrt(((this.x - ball.x) * (this.x - ball.x)) + ((this.y - ball.y) * (this.y - ball.y)));
 			if (distance < this.radius + ball.radius) {
 				collision = true;
-//				System.out.println("collision!");
 			} else {
 				collision = false;
 				return newVelocities;
@@ -164,9 +172,6 @@ public class Slime {
 		// 3) if slime has collided with a ball, determine resulting velocity of ball (slime will not bounce away from ball — just like in the online version —
 		// even though it technically should according to the rules of momentum 
 		if (collision) {
-//			double newVelocityX = (ball.mass * ball.velocityX + this.mass * this.velocityX) / ball.mass;
-//			double newVelocityY = (ball.mass * ball.velocityY + this.mass * this.velocityY) / ball.mass;
-			
 			Double newVelocityX = null, newVelocityY = null;
 			
 			// Find x velocity resulting from collision
