@@ -5,6 +5,10 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.PrintWriter;
+import java.net.Socket;
+
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -16,6 +20,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.text.DefaultCaret;
 
 import chat.ChatClient;
@@ -26,12 +32,15 @@ public class MainMenuUser extends JFrame{
 	private ImageIcon avatar;
 	private JButton sendButton, playCompButton, playPlayerButton, spectateButton, logoutButton, settingsButton;
 	private String username;
-	private JTextArea chatArea;
+	public JTextArea chatArea;
 	private JTextField chatField;
 	private SettingsPage settingsPage;
 	private MainMenuUserPlayPlayer mainMenuUserPlayPlayer;
 	private MainMenuUserSpectate mainMenuUserSpectate;
 	private MainMenuUserPlaySlime mainMenuUserPlaySlime;
+	Socket s;
+	public BufferedReader sReader;
+	PrintWriter sWriter;
 	
 	public MainMenuUser(String username) {
 		setSize(800, 600);
@@ -144,14 +153,36 @@ public class MainMenuUser extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				mainMenuUserPlayPlayer.setVisible(true);
 				setVisible(false);
-				//should pass chat data forward to mainMenuUserPlayPlayer class/frame
 			}
 		});
 		spectateButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				mainMenuUserSpectate.setVisible(true);
 				setVisible(false);
-				//should pass chat data forward to mainMenuUserSpectate class/frame
+			}
+		});
+		chatArea.getDocument().addDocumentListener(new DocumentListener() {
+			public void insertUpdate(DocumentEvent e) {
+				mainMenuUserPlayPlayer.chatArea.setText(chatArea.getText());
+				mainMenuUserSpectate.chatArea.setText(chatArea.getText());
+			}
+
+			public void removeUpdate(DocumentEvent e) {
+				mainMenuUserPlayPlayer.chatArea.setText(chatArea.getText());
+				mainMenuUserSpectate.chatArea.setText(chatArea.getText());
+			}
+
+			public void changedUpdate(DocumentEvent e) {
+				mainMenuUserPlayPlayer.chatArea.setText(chatArea.getText());
+				mainMenuUserSpectate.chatArea.setText(chatArea.getText());
+			}
+		});
+		sendButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				sWriter.println("C" + username + ": " + chatField.getText());
+				sWriter.flush();
+				chatArea.setText(chatArea.getText() + "\n" + username + ": " + chatField.getText());
+				chatField.setText("");
 			}
 		});
 	}
