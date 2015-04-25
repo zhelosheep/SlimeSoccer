@@ -70,7 +70,6 @@ public class LoginPage extends JFrame{
 		usernameLine.setAlignmentX(Component.CENTER_ALIGNMENT);
 		passwordLine.setAlignmentX(Component.CENTER_ALIGNMENT);
 		hostField.setText("localhost");
-		hostField.setEnabled(false);
 		hostLine.add(host);
 		hostLine.add(hostField);
 		usernameLine.add(username);
