@@ -13,14 +13,16 @@ public class SqlInstance {
 	private Connection c;
 	private PreparedStatement ps;
 	  
-	private String connection;
+	private String connection = "jdbc:mysql://";
 	private static final String driver = "com.mysql.jdbc.Driver";
 	private static final String db = "slime_soccer_db";
-	private static final String user = "user";
-	private static final String password = "";
+	private static final String user = "ttrojan";
+	private static final String password = "thinmints";
+	//private static final String host = "11.48.1.2";
 	
 	public SqlInstance(String host) {
-		connection = "jdbc:mysql://" + host + "/";
+		connection += host + "/";
+		c = null;
 		
 		try {
 			//load driver
@@ -28,7 +30,6 @@ public class SqlInstance {
 			
 			//establish connection
 			c = DriverManager.getConnection(connection + db, user, password);
-			
 			
 			
 		} catch (ClassNotFoundException cnfe) {
@@ -72,7 +73,7 @@ public class SqlInstance {
 	
 	public void register(String fn, String ln, String u, String pw, Image img, String desc) {
 		try {
-			ps = c.prepareStatement("INSERT INTO account_data (firstname, lastname, username, password, image, description) VALUES (?, ?, ?, ?, ?, ?)");
+			ps = c.prepareStatement("INSERT INTO account_data (player_firstName, player_lastName, username, player_password, player_avatar, player_description) VALUES (?, ?, ?, ?, ?, ?)");
 			ps.setString(1, fn);
 			ps.setString(2,  ln);
 			ps.setString(3,  u);
@@ -86,20 +87,9 @@ public class SqlInstance {
 		}
 	}
 	
-	public void getScore (String user) {
-		/*try {
-			Statement st = c.createStatement();
-			ResultSet rs_temp = st.executeQuery("SELECT * FROM account_data WHERE username = " + u);
-			
-			if (rs_temp.next()) {
-				if (rs_temp.getString("password") == pw) {
-					//return true;
-				}
-			}
-			
-		} catch (SQLException sqle) {
-			System.out.println("SQL Exception in SqlInstance.register: " + sqle.getMessage());
-		}*/
+	public static void main (String [] args) {
+		SqlInstance si = new SqlInstance("192.186.193.1");
+		si.register("hi", "hi",  "hii",  "hi",  null, "hi");
 	}
 }
 	

@@ -72,7 +72,7 @@ public class MainMenuUserSpectate extends JFrame{
 		JPanel leftPanel = new JPanel();
 		leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
 		JPanel jp1 = new JPanel();
-		JLabel helloLabel = new JLabel("Hello, Guest!");
+		JLabel helloLabel = new JLabel("Hello, " + prevScreen.getUsername() + "!");
 		helloLabel.setBorder(BorderFactory.createEmptyBorder(20, 0, 0, 0));
 		jp1.add(helloLabel);
 		JPanel jp2 = new JPanel();
@@ -128,7 +128,7 @@ public class MainMenuUserSpectate extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		logoutButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new LoginPage();
+				(new LoginPage()).setVisible(true);
 				dispose();
 			}
 		});
@@ -138,9 +138,16 @@ public class MainMenuUserSpectate extends JFrame{
 				prevScreen.setVisible(true);
 			}
 		});
+		settingsButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				prevScreen.getSettingsPage().setPrevScreen(MainMenuUserSpectate.this);
+				prevScreen.getSettingsPage().setVisible(true);
+				setVisible(false);
+			}
+		});
 	}
 	
 	public static void main(String[] args) {
-		new MainMenuUserSpectate(new MainMenuUser("derp"));
+		(new MainMenuUserSpectate(new MainMenuUser("derp"))).setVisible(true);
 	}
 }
