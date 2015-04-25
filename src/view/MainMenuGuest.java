@@ -18,6 +18,9 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.text.DefaultCaret;
 
+import chat.ChatClient;
+import chat.ChatServer;
+
 public class MainMenuGuest extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private JButton searchButton, sendButton, backButton, randomButton;
@@ -114,13 +117,13 @@ public class MainMenuGuest extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new LoginPage();
+				(new LoginPage()).setVisible(true);
 				dispose();
 			}
 		});
 	}
 	
 	public static void main(String[] args) {
-		new MainMenuGuest();
+		(new MainMenuGuest()).setVisible(true);
 	}
 }

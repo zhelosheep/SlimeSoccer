@@ -25,12 +25,15 @@ public class MainMenuUserPlaySlime extends JFrame{
 	private JLabel p1SlimeNameLabel, p2SlimeNameLabel, p1SlimeImageLabel, p2SlimeImageLabel, p1SlimeAbilityLabel, p2SlimeAbilityLabel;
 	private JComboBox<String> specialModeCombo, backgroundCombo;
 	private JSlider regenRateSlider, totalManaSlider; 
-	private boolean isPlayer1 = true;
+	private boolean isPlayer1 = true, isPvCGame = true;
+	private JFrame prevScreen;
 
-	public MainMenuUserPlaySlime(boolean isPlayer1) {
+	public MainMenuUserPlaySlime(JFrame prevScreen, boolean isPlayer1, boolean isPvCGame) {
 		setSize(800, 600);
 		setLocation(300,100);
+		this.prevScreen = prevScreen;
 		this.isPlayer1 = isPlayer1;
+		this.isPvCGame = isPvCGame;
 		instantiateVariables();
 		addComponents();
 		addListeners();
@@ -38,8 +41,18 @@ public class MainMenuUserPlaySlime extends JFrame{
 	}
 	
 	private void instantiateVariables() {
-		p1Username = "<html><div style=\"text-align: center;\">techguychen";
-		p2Username = "<html><div style=\"text-align: center;\">derpyderp";
+		if (isPvCGame) {
+			p1Username = "<html><div style=\"text-align: center;\">" + ((MainMenuUser)prevScreen).getUsername();
+			p2Username = "<html><div style=\"text-align: center;\">Computer";
+		} else {
+			if (isPlayer1) {
+				p1Username = "<html><div style=\"text-align: center;\">" + ((MainMenuUserPlayPlayer)prevScreen).getUsername();			
+				p2Username = "<html><div style=\"text-align: center;\">derpyderp";
+			} else {
+				p1Username = "<html><div style=\"text-align: center;\">derpyderp";
+				p2Username = "<html><div style=\"text-align: center;\">" + ((MainMenuUserPlayPlayer)prevScreen).getUsername();						
+			}			
+		}
 		continueButton = new JButton("Continue");
 		backButton = new JButton("Back");
 		p1SlimeNameLabel = new JLabel("<html><div style=\"text-align: center;\">Bomber Slime");
@@ -177,9 +190,15 @@ public class MainMenuUserPlaySlime extends JFrame{
 		for (int i = 0; i < 10; i++) {
 			slimeButtons[i].addActionListener(new SlimeButtonListener(i));
 		}
+		backButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				prevScreen.setVisible(true);
+			}
+		});
 	}
 	
 	public static void main(String[] args) {
-		new MainMenuUserPlaySlime(true);
+		(new MainMenuUserPlaySlime(new MainMenuUserPlayPlayer(new MainMenuUser("faketechguy")), true, false)).setVisible(true);;
 	}
 }
