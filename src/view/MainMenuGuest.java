@@ -18,6 +18,9 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.text.DefaultCaret;
 
+import chat.ChatClient;
+import chat.ChatServer;
+
 public class MainMenuGuest extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private JButton searchButton, sendButton, backButton, randomButton;
