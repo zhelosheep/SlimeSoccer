@@ -13,21 +13,20 @@ public class SqlInstance {
 	private Connection c;
 	private PreparedStatement ps;
 	  
-	private String connection;
+	private String connection = "jdbc:mysql://";
 	private static final String driver = "com.mysql.jdbc.Driver";
 	private static final String db = "slime_soccer_db";
-	private static final String user = "user";
-	private static final String password = "Password5";
-	private static final String host = "11.48.1.2";
+	private static final String user = "ttrojan";
+	private static final String password = "thinmints";
+	//private static final String host = "11.48.1.2";
 	
-	public SqlInstance() {
-		connection = "jdbc:mysql://" + host + "/";
+	public SqlInstance(String host) {
+		connection += host + "/";
+		c = null;
 		
 		try {
 			//load driver
 			Class.forName(driver);
-			
-			System.out.println("hi");
 			
 			//establish connection
 			c = DriverManager.getConnection(connection + db, user, password);
@@ -89,7 +88,7 @@ public class SqlInstance {
 	}
 	
 	public static void main (String [] args) {
-		SqlInstance si = new SqlInstance();
+		SqlInstance si = new SqlInstance("192.186.193.1");
 		si.register("hi", "hi",  "hii",  "hi",  null, "hi");
 	}
 }
