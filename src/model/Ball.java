@@ -44,9 +44,9 @@ public class Ball {
 
 		// Keep ball within left boundary
 		// 1) If ball is about to hit left boundary, make sure it doesn't go past it
-		if ( velocityX < Game.leftBoundary && (x - width/2 + velocityX <= 0) && bounceAccelerationX == null) {
+		if ( velocityX < 0 && (x - width/2 + velocityX <= Game.leftBoundary) && bounceAccelerationX == null) {
 			bounceAccelerationX = (int)((double)-velocityX * bounceMultiplier);
-			velocityX = - (x - width/2);
+			velocityX = Game.leftBoundary - (x - width/2);
     	}
 		// 2) If ball just hit ground, make it bounce
 		if (x - width/2 <= Game.leftBoundary && bounceAccelerationX != null) {
@@ -80,6 +80,11 @@ public class Ball {
         y += velocityY;
         
         numTimesUpdateWasCalledSinceLastXDecceleration++;
+	}
+	
+	public void callMove() {
+        x += velocityX;
+        y += velocityY;
 	}
 
 	public void paint(Graphics g) {

@@ -26,7 +26,7 @@ public class Frame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		// set up model
-		model = new Game();
+		model = new Game("laptop", "SlimeMagnet", "SlimeSuper", "shawnren", "josemama", 100, 100, 10, null);
 		// set up controller
 		controller = new Controller();
 		// set up view
