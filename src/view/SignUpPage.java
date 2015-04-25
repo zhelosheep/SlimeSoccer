@@ -16,13 +16,19 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 public class SignUpPage extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private JButton submitButton, backButton;
 	private JTextField fNameField, lNameField, usernameField, descField;
 	private JPasswordField passwordField;
-	private JButton[] avatarButtons;
+	private int avatar = -1;
+	
+	private String fn, ln, u, pw, desc;
+	
+	public JButton[] avatarButtons;
 
 	public SignUpPage() {
 		setSize(800, 600);
@@ -53,6 +59,7 @@ public class SignUpPage extends JFrame{
 		slimeSoccerLabel.setBorder(BorderFactory.createEmptyBorder(5, 15, 5, 5));
 		backButton.setFont(new Font("Arial", Font.BOLD, 16));
 		backButton.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 15));
+		submitButton.setEnabled(false);
 		northPanel.add(slimeSoccerLabel);
 		northPanel.add(Box.createGlue());
 		northPanel.add(backButton);
@@ -112,17 +119,63 @@ public class SignUpPage extends JFrame{
 			}
 		});
 		
+		for (int i = 0; i < avatarButtons.length; i++) {
+			avatarButtons[i].addActionListener(new ActionListener() {
+				int i;
+				
+				public ActionListener init(int i) {
+					this.i = i;
+					return this;
+				}
+				
+				public void actionPerformed(ActionEvent e) {
+					avatar = i;
+				}
+			}.init(i));
+		}
+		
 		submitButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//register(String fn, String ln, String u, String pw, int img, String desc)
-				String fn = fNameField.getText();
-				String ln = lNameField.getText();
-				String u = usernameField.getText();
-				String pw = String.valueOf(passwordField.getPassword());
-				
+				LoginPage.sqli.register(fn, ln, u, pw, avatar, desc);
+
 				(new MainMenuUser(usernameField.getText())).setVisible(true);
 				dispose();
 			}
 		});
+		
+		fNameField.getDocument().addDocumentListener(new checkFields());
+		lNameField.getDocument().addDocumentListener(new checkFields());
+		usernameField.getDocument().addDocumentListener(new checkFields());
+		passwordField.getDocument().addDocumentListener(new checkFields());
+		descField.getDocument().addDocumentListener(new checkFields());
+		
 	}
+	
+	private void changed() {
+		fn = fNameField.getText();
+		ln = lNameField.getText();
+		u = usernameField.getText();
+		pw = String.valueOf(passwordField.getPassword());
+		desc = descField.getText();
+		
+		if (fn.equals("") || ln.equals("") || u.equals("") || pw.equals("") || avatar == -1) submitButton.setEnabled(false);
+		else submitButton.setEnabled(true);
+	}
+	
+	private class checkFields implements DocumentListener {
+		//checks to see if all textfields are filled to enable submit button
+		public void insertUpdate(DocumentEvent e) {
+			changed();
+		}
+		
+		public void removeUpdate(DocumentEvent e) {
+			changed();
+		}
+
+		public void changedUpdate(DocumentEvent e) {
+			changed();
+		}
+	}
+	
 }

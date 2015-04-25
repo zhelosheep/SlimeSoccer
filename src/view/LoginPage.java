@@ -23,6 +23,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import network.ClientThread;
 
@@ -31,6 +33,11 @@ public class LoginPage extends JFrame{
 	private JTextField usernameField, hostField;
 	private JPasswordField passwordField;
 	private JButton login, signup, guest;
+	
+	private String u, pw;
+	
+	//starts up static mysql instance
+	public static final controller.SqlInstance sqli= new controller.SqlInstance();
 	
 	public LoginPage() {
 		setSize(800, 600);
@@ -152,6 +159,29 @@ public class LoginPage extends JFrame{
 				dispose();
 			}
 		});
+	}
+	
+	private void changed() {
+		u = usernameField.getText();
+		pw = String.valueOf(passwordField.getPassword());
+		
+		if (u.equals("") || pw.equals("")) login.setEnabled(false);
+		else login.setEnabled(true);
+	}
+	
+	private class checkFields implements DocumentListener {
+		//checks to see if all textfields are filled to enable submit button
+		public void insertUpdate(DocumentEvent e) {
+			changed();
+		}
+		
+		public void removeUpdate(DocumentEvent e) {
+			changed();
+		}
+
+		public void changedUpdate(DocumentEvent e) {
+			changed();
+		}
 	}
 	
 	public static void main(String [] args) {
