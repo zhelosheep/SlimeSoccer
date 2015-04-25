@@ -13,6 +13,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -24,6 +25,7 @@ public class LoginPage extends JFrame{
 	private JTextField usernameField, hostField;
 	private JPasswordField passwordField;
 	private JButton login, signup, guest;
+	private JCheckBox hostCB;
 	
 	public LoginPage() {
 		setSize(800, 600);
@@ -39,7 +41,7 @@ public class LoginPage extends JFrame{
 		hostField = new JTextField(15);
 		usernameField = new JTextField(15);
 		passwordField = new JPasswordField(15);
-		
+		hostCB = new JCheckBox();
 		login = new JButton("Login");
 		signup = new JButton("Sign up");
 		guest = new JButton("Continue as guest");
@@ -51,7 +53,7 @@ public class LoginPage extends JFrame{
 	
 	private void addComponents() {
 		JLabel welcome = new JLabel("Slime Soccer!");
-		JLabel host = new JLabel("    Host: ");
+		JLabel host = new JLabel("Host: ");
 		JLabel username = new JLabel("Username: ");
 		JLabel password = new JLabel("Password: ");
 		JPanel hostLine = new JPanel();
@@ -64,6 +66,9 @@ public class LoginPage extends JFrame{
 		usernameLine.setAlignmentX(Component.CENTER_ALIGNMENT);
 		passwordLine.setAlignmentX(Component.CENTER_ALIGNMENT);
 		hostField.setText("localhost");
+		hostField.setEnabled(false);
+		hostCB.setSelected(true);
+		hostLine.add(hostCB);
 		hostLine.add(host);
 		hostLine.add(hostField);
 		usernameLine.add(username);
@@ -122,6 +127,14 @@ public class LoginPage extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				(new MainMenuGuest()).setVisible(true);;
 				dispose();
+			}
+		});
+		hostCB.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (hostCB.isSelected()) {
+					hostField.setText("localhost");
+					hostField.setEnabled(false);
+				} else hostField.setEnabled(true);
 			}
 		});
 	}
