@@ -106,13 +106,13 @@ public class SignUpPage extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new LoginPage();
+				(new LoginPage()).setVisible(true);
 				dispose();
 			}
 		});
 		submitButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new MainMenuUser(usernameField.getText());
+				(new MainMenuUser(usernameField.getText())).setVisible(true);;
 				dispose();
 			}
 		});

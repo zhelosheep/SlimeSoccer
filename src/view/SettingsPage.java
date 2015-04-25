@@ -90,6 +90,6 @@ public class SettingsPage extends JFrame{
 	}
 	
 	public static void main(String[] args) {
-		new SettingsPage();
+		(new SettingsPage()).setVisible(true);
 	}
 }

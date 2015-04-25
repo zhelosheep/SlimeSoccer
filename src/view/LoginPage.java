@@ -33,7 +33,6 @@ public class LoginPage extends JFrame{
 		addComponents();
 		addListeners();
 		setResizable(false);
-		setVisible(true);
 	}
 	
 	private void instantiateVariables() {		
@@ -104,25 +103,25 @@ public class LoginPage extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		login.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new MainMenuUser(usernameField.getText());
+				(new MainMenuUser(usernameField.getText())).setVisible(true);;
 				dispose();
 			}
 		});
 		signup.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new SignUpPage();
+				(new SignUpPage()).setVisible(true);
 				dispose();
 			}			
 		});
 		guest.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new MainMenuGuest();
+				(new MainMenuGuest()).setVisible(true);;
 				dispose();
 			}
 		});
 	}
 	
 	public static void main(String [] args) {
-		new LoginPage();
+		(new LoginPage()).setVisible(true);
 	}
 }

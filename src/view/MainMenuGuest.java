@@ -114,13 +114,13 @@ public class MainMenuGuest extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new LoginPage();
+				(new LoginPage()).setVisible(true);
 				dispose();
 			}
 		});
 	}
 	
 	public static void main(String[] args) {
-		new MainMenuGuest();
+		(new MainMenuGuest()).setVisible(true);
 	}
 }

@@ -5,7 +5,6 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -27,7 +26,10 @@ public class MainMenuUser extends JFrame{
 	private JTextArea chatArea;
 	private JTextField chatField;
 	private SettingsPage settingsPage;
-
+	private MainMenuUserPlayPlayer mainMenuUserPlayPlayer;
+	private MainMenuUserSpectate mainMenuUserSpectate;
+	private MainMenuUserPlaySlime mainMenuUserPlaySlime;
+	
 	public MainMenuUser(String username) {
 		setSize(800, 600);
 		setLocation(300,100);
@@ -49,6 +51,9 @@ public class MainMenuUser extends JFrame{
 		logoutButton = new JButton("Logout");
 		settingsButton = new JButton(new ImageIcon(new ImageIcon("resources/SoccerBall.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)));
 		settingsPage = new SettingsPage();
+		mainMenuUserPlayPlayer = new MainMenuUserPlayPlayer(this);
+		mainMenuUserSpectate = new MainMenuUserSpectate(this);
+		mainMenuUserPlaySlime = new MainMenuUserPlaySlime(this, true, true);
 	}
 	
 	private void addComponents() {
@@ -115,7 +120,7 @@ public class MainMenuUser extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		logoutButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new LoginPage();
+				(new LoginPage()).setVisible(true);
 				dispose();
 			}
 		});
@@ -126,13 +131,35 @@ public class MainMenuUser extends JFrame{
 				setVisible(false);
 			}
 		});
+		playCompButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				mainMenuUserPlaySlime.setVisible(true);
+				setVisible(false);
+			}
+		});
+		playPlayerButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				mainMenuUserPlayPlayer.setVisible(true);
+				setVisible(false);
+			}
+		});
+		spectateButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				mainMenuUserSpectate.setVisible(true);
+				setVisible(false);
+			}
+		});
 	}
 	
 	SettingsPage getSettingsPage() {
 		return settingsPage;
 	}
 	
+	String getUsername() {
+		return username;
+	}
+	
 	public static void main(String[] args) {
-		new MainMenuUser("faketechguy");
+		(new MainMenuUser("faketechguy")).setVisible(true);
 	}
 }
