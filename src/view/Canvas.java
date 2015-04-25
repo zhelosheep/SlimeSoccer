@@ -24,7 +24,9 @@ public class Canvas extends JPanel implements Runnable {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		g.drawImage(Game.imgBackgroundSoccerfield, 0,0, null);
-		g.drawLine(0, Game.groundLevel, 800, Game.groundLevel);
+		g.drawLine(0, Game.groundLevel, 600, Game.groundLevel);
+		g.drawRect(0, Game.groundLevel - 100, 50, 100);
+		g.drawRect(550, Game.groundLevel - 100, 50, 100);
 		Game.slime1.paint(g);
 		Game.slime2.paint(g);
 		Game.ball.paint(g);

@@ -20,7 +20,8 @@ public class Frame extends JFrame {
 	public Frame() {
 		// default JFrame stuff
 		super("Slime Soccer");
-		setSize(800,600);
+//		setSize(800,600);
+		setSize(600,450);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
