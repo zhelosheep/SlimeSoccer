@@ -21,7 +21,7 @@ import javax.swing.JTextField;
 
 public class LoginPage extends JFrame{
 	private static final long serialVersionUID = 1;
-	private JTextField usernameField;
+	private JTextField usernameField, hostField;
 	private JPasswordField passwordField;
 	private JButton login, signup, guest;
 	
@@ -35,7 +35,8 @@ public class LoginPage extends JFrame{
 		setResizable(false);
 	}
 	
-	private void instantiateVariables() {		
+	private void instantiateVariables() {
+		hostField = new JTextField(15);
 		usernameField = new JTextField(15);
 		passwordField = new JPasswordField(15);
 		
@@ -50,15 +51,21 @@ public class LoginPage extends JFrame{
 	
 	private void addComponents() {
 		JLabel welcome = new JLabel("Slime Soccer!");
+		JLabel host = new JLabel("    Host: ");
 		JLabel username = new JLabel("Username: ");
 		JLabel password = new JLabel("Password: ");
+		JPanel hostLine = new JPanel();
 		JPanel usernameLine = new JPanel();
 		JPanel passwordLine = new JPanel();
 
 		welcome.setFont(new Font("Arial", Font.BOLD, 20));
 		welcome.setAlignmentX(Component.CENTER_ALIGNMENT);
+		hostLine.setAlignmentX((Component.CENTER_ALIGNMENT));
 		usernameLine.setAlignmentX(Component.CENTER_ALIGNMENT);
 		passwordLine.setAlignmentX(Component.CENTER_ALIGNMENT);
+		hostField.setText("localhost");
+		hostLine.add(host);
+		hostLine.add(hostField);
 		usernameLine.add(username);
 		usernameLine.add(usernameField);
 		passwordLine.add(password);
@@ -76,29 +83,27 @@ public class LoginPage extends JFrame{
 		setContentPane(new JLabel(new ImageIcon(backgroundImage)));
 
 		setLayout(null);
-		Dimension d = usernameLine.getPreferredSize();
-		usernameLine.setBounds(495, 200, d.width, d.height);
+		Dimension d = hostLine.getPreferredSize();
+		hostLine.setBounds(495, 200, d.width, d.height);
+		d = usernameLine.getPreferredSize();
+		usernameLine.setBounds(495, 240, d.width, d.height);
 		d = passwordLine.getPreferredSize();
-		passwordLine.setBounds(495, 240, d.width, d.height);
+		passwordLine.setBounds(495, 280, d.width, d.height);
 		d = jp.getPreferredSize();
-		jp.setBounds(545, 290, d.width, d.height);
+		jp.setBounds(545, 330, d.width, d.height);
 		d = guest.getPreferredSize();
-		guest.setBounds(560, 330, d.width, d.height);
+		guest.setBounds(560, 370, d.width, d.height);
+		hostLine.setBackground(new Color(253, 255, 215));
 		usernameLine.setBackground(new Color(253, 255, 215));
 		passwordLine.setBackground(new Color(253, 255, 215));
 		jp.setBackground(new Color(253, 255, 215));
+		add(hostLine);
 		add(usernameLine);
 		add(passwordLine);
 		add(jp);
 		add(guest);
 	}
 	
-//	public void paintComponent(Graphics g) {
-//		super.paintComponents(g);
-//		g.drawImage(backgroundImage, 0, 0, null);
-//		System.out.println("hey");
-//	}
-//	
 	private void addListeners() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		login.addActionListener(new ActionListener() {
