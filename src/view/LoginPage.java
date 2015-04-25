@@ -7,25 +7,30 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
+import java.net.UnknownHostException;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import network.ClientThread;
+
 public class LoginPage extends JFrame{
 	private static final long serialVersionUID = 1;
 	private JTextField usernameField, hostField;
 	private JPasswordField passwordField;
 	private JButton login, signup, guest;
-	private JCheckBox hostCB;
 	
 	public LoginPage() {
 		setSize(800, 600);
@@ -41,7 +46,6 @@ public class LoginPage extends JFrame{
 		hostField = new JTextField(15);
 		usernameField = new JTextField(15);
 		passwordField = new JPasswordField(15);
-		hostCB = new JCheckBox();
 		login = new JButton("Login");
 		signup = new JButton("Sign up");
 		guest = new JButton("Continue as guest");
@@ -53,7 +57,7 @@ public class LoginPage extends JFrame{
 	
 	private void addComponents() {
 		JLabel welcome = new JLabel("Slime Soccer!");
-		JLabel host = new JLabel("Host: ");
+		JLabel host = new JLabel("   Host: ");
 		JLabel username = new JLabel("Username: ");
 		JLabel password = new JLabel("Password: ");
 		JPanel hostLine = new JPanel();
@@ -67,8 +71,6 @@ public class LoginPage extends JFrame{
 		passwordLine.setAlignmentX(Component.CENTER_ALIGNMENT);
 		hostField.setText("localhost");
 		hostField.setEnabled(false);
-		hostCB.setSelected(true);
-		hostLine.add(hostCB);
 		hostLine.add(host);
 		hostLine.add(hostField);
 		usernameLine.add(username);
@@ -113,7 +115,18 @@ public class LoginPage extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		login.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				(new MainMenuUser(usernameField.getText())).setVisible(true);;
+				MainMenuUser mmu = new MainMenuUser(usernameField.getText());
+				try {
+					mmu.s = new Socket(hostField.getText(), 6789);
+					mmu.sReader = new BufferedReader(new InputStreamReader(mmu.s.getInputStream()));
+					mmu.sWriter = new PrintWriter(mmu.s.getOutputStream());
+					(new ClientThread(mmu, false)).start();
+				} catch (UnknownHostException uhe) {
+					System.out.println("UnknownHostException: " + uhe.getMessage());
+				} catch (IOException ioe) {
+					System.out.println("IOException in login listener: " + ioe.getMessage());
+				}
+				mmu.setVisible(true);
 				dispose();
 			}
 		});
@@ -125,16 +138,19 @@ public class LoginPage extends JFrame{
 		});
 		guest.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				(new MainMenuGuest()).setVisible(true);;
+				MainMenuGuest mmg = new MainMenuGuest();
+				try {
+					mmg.s = new Socket(hostField.getText(), 6789);
+					mmg.sReader = new BufferedReader(new InputStreamReader(mmg.s.getInputStream()));
+					mmg.sWriter = new PrintWriter(mmg.s.getOutputStream());
+					(new ClientThread(mmg, true)).start();
+				} catch (UnknownHostException uhe) {
+					System.out.println("UnknownHostException: " + uhe.getMessage());
+				} catch (IOException ioe) {
+					System.out.println("IOException in login listener: " + ioe.getMessage());
+				}
+				mmg.setVisible(true);
 				dispose();
-			}
-		});
-		hostCB.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (hostCB.isSelected()) {
-					hostField.setText("localhost");
-					hostField.setEnabled(false);
-				} else hostField.setEnabled(true);
 			}
 		});
 	}
