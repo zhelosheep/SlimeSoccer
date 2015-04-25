@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -110,15 +111,18 @@ public class SignUpPage extends JFrame{
 				dispose();
 			}
 		});
+		
 		submitButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				(new MainMenuUser(usernameField.getText())).setVisible(true);;
+				//register(String fn, String ln, String u, String pw, int img, String desc)
+				String fn = fNameField.getText();
+				String ln = lNameField.getText();
+				String u = usernameField.getText();
+				String pw = String.valueOf(passwordField.getPassword());
+				
+				(new MainMenuUser(usernameField.getText())).setVisible(true);
 				dispose();
 			}
 		});
-	}
-	
-	public static void main(String[] args) {
-		new SignUpPage();
 	}
 }

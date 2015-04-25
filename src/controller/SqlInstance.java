@@ -13,14 +13,15 @@ public class SqlInstance {
 	private Connection c;
 	private PreparedStatement ps;
 	  
-	private String connection = "jdbc:mysql://";
+	private String connection = "jdbc:mysql://slimesoccerdbinstance.cbx5rxifld4q.us-west-2.rds.amazonaws.com/";
 	private static final String driver = "com.mysql.jdbc.Driver";
 	private static final String db = "slime_soccer_db";
 	private static final String user = "ttrojan";
 	private static final String password = "thinmints";
 	
-	public SqlInstance(String host) {
-		connection += host + "/";
+	
+	
+	public SqlInstance() {
 		c = null;
 		
 		try {
@@ -87,8 +88,7 @@ public class SqlInstance {
 	}
 	
 	public static void main (String [] args) {
-		SqlInstance si = new SqlInstance("slimesoccerdbinstance.cbx5rxifld4q.us-west-2.rds.amazonaws.com");
-		si.register("hi", "hi",  "hii",  "hi",  0, "hi");
+		SqlInstance si = new SqlInstance();
 	}
 }
 	
