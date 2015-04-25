@@ -144,12 +144,14 @@ public class MainMenuUser extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				mainMenuUserPlayPlayer.setVisible(true);
 				setVisible(false);
+				//should pass chat data forward to mainMenuUserPlayPlayer class/frame
 			}
 		});
 		spectateButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				mainMenuUserSpectate.setVisible(true);
 				setVisible(false);
+				//should pass chat data forward to mainMenuUserSpectate class/frame
 			}
 		});
 	}

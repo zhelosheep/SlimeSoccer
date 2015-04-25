@@ -194,6 +194,7 @@ public class MainMenuUserPlaySlime extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				prevScreen.setVisible(true);
+				//no need to add code that updates chat. Chat should not be retroactive since login
 			}
 		});
 	}
