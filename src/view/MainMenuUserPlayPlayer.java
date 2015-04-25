@@ -152,6 +152,6 @@ public class MainMenuUserPlayPlayer extends JFrame{
 		return prevScreen.getUsername();
 	}
 	public static void main(String[] args) {
-		(new MainMenuUserPlayPlayer(new MainMenuUser("tommytro"))).setVisible(true);
+		(new MainMenuUserPlayPlayer(new MainMenuUser("tommytro", "localhost"))).setVisible(true);
 	}
 }

@@ -66,6 +66,6 @@ public class MainMenuUserWaiting extends JFrame{
 	}
 	
 	public static void main(String[] args) {
-		(new MainMenuUserWaiting(new MainMenuUserPlayPlayer(new MainMenuUser("faketechguy")))).setVisible(true);
+		(new MainMenuUserWaiting(new MainMenuUserPlayPlayer(new MainMenuUser("faketechguy", "localhost")))).setVisible(true);
 	}
 }
