@@ -9,7 +9,7 @@ import view.Frame;
 
 public class Slime {
 	public int x, y; // displacement
-	private double velocityX = 0, velocityY = 0; // velocity
+	public double velocityX = 0, velocityY = 0; // velocity
 	boolean facingLeft; // true if slime is facing left, right if slime is facing right
 	private String slimeType;
 	private BufferedImage slimeImage;
@@ -93,13 +93,13 @@ public class Slime {
         	if (velocityX <= maxSpeed) {
         		velocityX += acceleration;
         	}
-        } else if (velocityX > Game.leftBoundary) {
+        } else if (velocityX > 0) {
             velocityX -= decceleration;
         }
         
-        if (x < width/2) { // if slime is outside of left boundary, put slime back in boundary and stop movement
+        if (x - width/2 < Game.leftBoundary) { // if slime is outside of left boundary, put slime back in boundary and stop movement
         	velocityX = 0; 
-        	x = width/2;
+        	x = width/2 + Game.leftBoundary;
         }
         if (x > Game.rightBoundary - width/2) { // if slime is outside of right boundary, put slime back in boundary and stop movement
         	velocityX = 0;
@@ -154,7 +154,7 @@ public class Slime {
 			double distance = Math.sqrt(((this.x - ball.x) * (this.x - ball.x)) + ((this.y - ball.y) * (this.y - ball.y)));
 			if (distance < this.radius + ball.radius) {
 				collision = true;
-				System.out.println("collision!");
+//				System.out.println("collision!");
 			} else {
 				collision = false;
 				return newVelocities;
