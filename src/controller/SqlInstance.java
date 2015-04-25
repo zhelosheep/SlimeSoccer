@@ -12,7 +12,6 @@ public class SqlInstance {
 	
 	private Connection c;
 	private PreparedStatement ps;
-	private ResultSet rs;
 	  
 	private String connection;
 	private static final String driver = "com.mysql.jdbc.Driver";
@@ -39,21 +38,34 @@ public class SqlInstance {
 		}
 	}
 	
-	public boolean login(String u, String pw) {
+	public boolean findUser(String u) {
+		try {
+			Statement st = c.createStatement();
+			ResultSet rs = st.executeQuery("SELECT * FROM account_data WHERE username = " + u);
+			
+			if (rs.next()) return true;
+		} catch (SQLException sqle) {
+			System.out.println("SQLException in SqlInstance.login: " + sqle.getMessage());
+		}
+		
+		return false;
+	}
+	
+	public boolean validateLogin(String u, String pw) {
+		if (!findUser(u)) return false;
+		
 		try {
 			Statement st = c.createStatement();
 			ResultSet rs_temp = st.executeQuery("SELECT * FROM account_data WHERE username = " + u);
 			
 			if (rs_temp.next()) {
 				if (rs_temp.getString("password") == pw) {
-					rs = rs_temp;
 					return true;
 				}
 			}
 		} catch (SQLException e) {
-			System.out.println("SQLException in SqlInstance.login: " + e.getMessage());
+			System.out.println("SQLException in SqlInstance.validateLogin: " + e.getMessage());
 		}
-		
 		
 		return false;
 	}
@@ -67,6 +79,18 @@ public class SqlInstance {
 			ps.setString(4,  pw);
 			ps.setObject(5,  img);
 			ps.setString(6, desc);
+			ps.executeQuery();
+			
+		} catch (SQLException sqle) {
+			System.out.println("SQL Exception in SqlInstance.register: " + sqle.getMessage());
+		}
+	}
+	
+	public void getScore (String u) {
+		try {
+			Statement st = c.createStatement();
+			ResultSet rs_temp = st.executeQuery("SELECT * FROM account_data WHERE username = " + u);
+			
 			
 		} catch (SQLException sqle) {
 			System.out.println("SQL Exception in SqlInstance.register: " + sqle.getMessage());
