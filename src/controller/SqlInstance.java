@@ -86,20 +86,15 @@ public class SqlInstance {
 		}
 	}
 	
-	public void getScore (String user) {
-		/*try {
+	public void getScore (String u) {
+		try {
 			Statement st = c.createStatement();
 			ResultSet rs_temp = st.executeQuery("SELECT * FROM account_data WHERE username = " + u);
 			
-			if (rs_temp.next()) {
-				if (rs_temp.getString("password") == pw) {
-					//return true;
-				}
-			}
 			
 		} catch (SQLException sqle) {
 			System.out.println("SQL Exception in SqlInstance.register: " + sqle.getMessage());
-		}*/
+		}
 	}
 }
 	
