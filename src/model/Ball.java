@@ -11,7 +11,6 @@ public class Ball {
 	private Integer numTimesUpdateWasCalledSinceLastXDecceleration;
 	
 	// constants
-//	public final int width = 24, height = 24, radius = 12;
 	public final int width = 24, height = 24, radius = 12;
 	public final int mass = 1;
 	final private int decceleration = 1; 
@@ -74,7 +73,6 @@ public class Ball {
 				velocityX += decceleration;
 			}
 			numTimesUpdateWasCalledSinceLastXDecceleration = 0;
-			System.out.println(velocityX);
 		}
 
         // Moves the ball
