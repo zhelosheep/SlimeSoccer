@@ -243,15 +243,11 @@ public class MainMenuUser extends JFrame{
 	
 	void quit() {
 		try {
-			if (sReader != null) {
-				sReader.close();
-				sReader = null;
-			}
-			if (sWriter != null) {
-				sWriter.close();
-				sWriter = null;
-			}
+			System.out.println("here");
 			if (s != null) {
+				s.shutdownInput();
+				s.shutdownOutput();
+				System.out.println("here");
 				s.close();
 				s = null;
 			}
