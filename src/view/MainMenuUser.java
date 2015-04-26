@@ -53,9 +53,9 @@ public class MainMenuUser extends JFrame{
 	}
 	
 	private void instantiateVariables() {
-		PvPIcon = new ImageIcon("resources/PvP.png");
-		PvCIcon = new ImageIcon("resources/PvC.png");
-		SpectateIcon = new ImageIcon("resources/Spectate.png");
+		PvPIcon = new ImageIcon(new ImageIcon("resources/PvP.png").getImage().getScaledInstance(340, 120, java.awt.Image.SCALE_SMOOTH));
+		PvCIcon = new ImageIcon(new ImageIcon("resources/PvC.png").getImage().getScaledInstance(340, 120, java.awt.Image.SCALE_SMOOTH));
+		SpectateIcon = new ImageIcon(new ImageIcon("resources/Spectate.png").getImage().getScaledInstance(340, 120, java.awt.Image.SCALE_SMOOTH));
 		avatar = new ImageIcon(new ImageIcon("resources/SoccerBall.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH));
 		playCompButton = new JButton(PvCIcon);
 		playPlayerButton = new JButton(PvPIcon);
@@ -95,7 +95,6 @@ public class MainMenuUser extends JFrame{
 		JPanel jp1 = new JPanel();
 		JLabel helloLabel = new JLabel("<html><div style=\"text-align: center;\">Hello, " + username + "!");
 		jp1.add(helloLabel);
-//		helloLabel.setBorder(BorderFactory.createEmptyBorder(20, 0, 0, 0));
 		JPanel jp2 = new JPanel();
 		jp2.add(playCompButton);
 		JPanel jp3 = new JPanel();
@@ -126,8 +125,9 @@ public class MainMenuUser extends JFrame{
 		rightPanel.add(jp6);
 		rightPanel.add(jsp);
 		rightPanel.add(jp5);
-		rightPanel.setPreferredSize(new Dimension(130, 420));
+		rightPanel.setPreferredSize(new Dimension(180, 420));
 		rightPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 15));
+		centerPanel.add(Box.createGlue());
 		centerPanel.add(leftPanel);
 		centerPanel.add(Box.createGlue());
 		centerPanel.add(rightPanel);
