@@ -39,7 +39,7 @@ public class LoginPage extends JFrame{
 	
 	//achievements
 	public static final Achievement[] ach;
-	public static final ImageIcon chrisronaldo, loser, nolife, noob, packingpounds, socbutterfly, unathathlete, victorious;
+	private static final ImageIcon chrisronaldo, loser, nolife, noob, packingpounds, socbutterfly, unathathlete, victorious;
 	
 	static {
 		ach = new Achievement[8];
