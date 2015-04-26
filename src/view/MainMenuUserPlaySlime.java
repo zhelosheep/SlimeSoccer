@@ -22,7 +22,7 @@ import javax.swing.JSlider;
 public class MainMenuUserPlaySlime extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private JButton continueButton, backButton;
-	public String p1Username, p2Username;
+	public String p1Username, p2Username, p1SlimeType, p2SlimeType;
 	private String[] slimeNames, slimeAbilities, specialSlimeNames, specialSlimeDescriptions;	//for label purposes
 	private JButton[] slimeButtons;
 	private JButton[] specialSlimes;
@@ -312,12 +312,12 @@ public class MainMenuUserPlaySlime extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				if (!isPvCGame) {
 					if (isPlayer1) {
-						((MainMenuUserPlayPlayer) prevScreen).prevScreen.sWriter.println("O1" + "$" + specialModeCombo.getSelectedItem().toString() + "$" + backgroundCombo.getSelectedItem().toString() + "$" + regenRateSlider.getValue() + "$" + totalManaSlider.getValue()); // append game settings!						
-						System.out.println("O1" + "$" + specialModeCombo.getSelectedItem().toString() + "$" + backgroundCombo.getSelectedItem().toString() + "$" + regenRateSlider.getValue() + "$" + totalManaSlider.getValue());
+						((MainMenuUserPlayPlayer) prevScreen).prevScreen.sWriter.println("O1" + "$" + p1Username + "$" + p2Username + "$" + specialModeCombo.getSelectedItem().toString() + "$" + backgroundCombo.getSelectedItem().toString() + "$" + regenRateSlider.getValue() + "$" + totalManaSlider.getValue()); // append game settings!						
+						//System.out.println("O1" + "$" + specialModeCombo.getSelectedItem().toString() + "$" + backgroundCombo.getSelectedItem().toString() + "$" + regenRateSlider.getValue() + "$" + totalManaSlider.getValue());
 						((MainMenuUserPlayPlayer) prevScreen).prevScreen.sWriter.flush();						
 					} else {
 						((MainMenuUserPlayPlayer) prevScreen).prevScreen.sWriter.println("O2" + "$" + specialModeCombo.getSelectedItem().toString() + "$" + backgroundCombo.getSelectedItem().toString() + "$" + regenRateSlider.getValue() + "$" + totalManaSlider.getValue()); // append game settings!						
-						System.out.println("O2" + "$" + specialModeCombo.getSelectedItem().toString() + "$" + backgroundCombo.getSelectedItem().toString() + "$" + regenRateSlider.getValue() + "$" + totalManaSlider.getValue());												
+						//System.out.println("O2" + "$" + specialModeCombo.getSelectedItem().toString() + "$" + backgroundCombo.getSelectedItem().toString() + "$" + regenRateSlider.getValue() + "$" + totalManaSlider.getValue());												
 						((MainMenuUserPlayPlayer) prevScreen).prevScreen.sWriter.flush();
 					}
 				}

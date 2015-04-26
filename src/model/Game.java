@@ -41,18 +41,18 @@ public class Game {
 			imgBall = ImageIO.read(new File("./resources/game/others/SoccerBall.png"));
 			
 			// load background image
-			if (background.equals("soccerfield")) {
+			if (background.equals("Soccer Field")) {
 				imgBackground = ImageIO.read(new File("./resources/game/backgrounds/soccerfield.png"));
-			} else if (background.equals("desk")) {
+			} else if (background.equals("Desk")) {
 				imgBackground = ImageIO.read(new File("./resources/game/backgrounds/desk.jpg"));
 				groundLevel = 238;
-			} else if (background.equals("laptop")) {
+			} else if (background.equals("Laptop Screen")) {
 				imgBackground = ImageIO.read(new File("./resources/game/backgrounds/laptop.png"));
 				topLevel = 90;
 				groundLevel = 352;
 				leftBoundary = 88;
 				rightBoundary = 511;
-			} else if (background.equals("outerspace")) {
+			} else if (background.equals("Outer Space")) {
 				imgBackground = ImageIO.read(new File("./resources/game/backgrounds/outerspace.jpg"));
 			}
 			

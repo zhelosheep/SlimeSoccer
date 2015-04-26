@@ -53,7 +53,7 @@ public class Slime {
 			facingLeft = true;
 		}
 		this.slimeImage = slimeImage;
-		if (game.specialMode.equals("minislime")) {
+		if (game.specialMode.equals("Mini Slime")) {
 			this.width = 30;
 			this.height = 30;
 			this.radius = 15;
@@ -65,7 +65,7 @@ public class Slime {
 
 	public void update() {
 		// normal instances
-		if (!game.specialMode.equals("antigravity")) {
+		if (!game.specialMode.equals("Anti-Gravity")) {
 
 			// Calculating velocity for moving up or down
 			if(Controller.keyboardKeyState(upKey) && y == game.groundLevel) {

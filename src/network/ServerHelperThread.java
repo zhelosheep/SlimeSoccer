@@ -117,7 +117,19 @@ public class ServerHelperThread extends Thread {
 								set.add(opponentThread);
 								set.add(this);
 								// this shouldn't be hardcoded, decode the string here!!
-								st.ongoingGames.put(new GameThread("desk", "SlimeBowAndArrow", "SlimeGeyser", "shawnren", "josemama", 100, 100, 1, "antigravity"), set);
+								
+								str = str.substring(2);
+								String delims = "[$]";
+								String [] tokens = str.split(delims);
+								for (int i = 0; i < tokens.length; i++)
+								{
+									System.out.println(tokens[i]);
+									//tokens[0] = special mode
+									//tokens[1] = background
+									//tokens[2] = regenRate
+									//tokens[3] = totalMana
+								}
+								st.ongoingGames.put(new GameThread(tokens[1], "SlimeBowAndArrow", "SlimeGeyser", "shawnren", "josemama", Integer.valueOf(tokens[3]), Integer.valueOf(tokens[3]), Integer.valueOf(tokens[2]), tokens[0]), set);
 								System.out.println("making game");
 							} else {
 								this.readyToPlay = true;
