@@ -171,7 +171,7 @@ public class GameScreen extends JFrame{
 		}
 
 		// Unathletic Athlete – Have a 1:10 win/loss ratio or less
-		if (LoginPage.sqli.getRatio(username) <= 1/10 && LoginPage.sqli.getGames(username) >= 10 && LoginPage.sqli.checkAchievement(player1_username, LoginPage.unath_a.getName())) {
+		if (LoginPage.sqli.getRatio(username) <= 1/10 && LoginPage.sqli.getGames(username) >= 10 && LoginPage.sqli.checkAchievement(username, LoginPage.unath_a.getName())) {
 			LoginPage.sqli.setAchievement(username, LoginPage.unath_a);
 		}
 		
