@@ -1,6 +1,9 @@
 package controller;
 
 import java.awt.Image;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.sql.Array;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,6 +11,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+
+
 
 public class SqlInstance {
 	
@@ -103,33 +109,36 @@ public class SqlInstance {
 		}
 	}
 	
-	public model.Achievement[] getAchievements(String u) {
+	public ArrayList<model.Achievement> getAchievements(String u) {
 		ResultSet u_rs = getUser(u);
 		
-		model.Achievement[] achieve = null;
+		ArrayList<model.Achievement> achieve = new ArrayList<model.Achievement>();
 		
 		try {
 			int userID = u_rs.getInt("userID");
 			Statement st = c.createStatement();
 			ResultSet a_rs = st.executeQuery("SELECT achievement FROM achievement_data WHERE userID = " + userID);
-			Array temp = a_rs.getArray(0);
-			achieve = (model.Achievement[])temp.getArray();
-			System.out.println(achieve.length);
-		} catch (SQLException sqle) {}
-		
-		//insert into achievement_data (achievementID, userID) value (2, 2)
-		
+			while (a_rs.next()) {
+				byte[] obj = (byte[])a_rs.getObject("achievement");
+				
+				//convert byte array into object!!!
+				ByteArrayInputStream in = new ByteArrayInputStream(obj);
+			    ObjectInputStream is = new ObjectInputStream(in);
+				achieve.add((model.Achievement)(is.readObject()));
+			}
+		} catch (SQLException sqle) {} 
+		catch (IOException e) { System.out.println("ioe error");} 
+		catch (ClassNotFoundException e) {System.out.println("cnfe error");}
 		return achieve;
 	}
 	
 	public static void main (String [] args) {
 		SqlInstance sql = new SqlInstance();
-		sql.setAchievement("zhelo", view.LoginPage.ach[0]);
-		model.Achievement[] a = sql.getAchievements("zhelo");
-		System.out.println(a == null);
-		for (int i = 0; i < a.length; i++) {
-			System.out.println(a[i].getName());
-			System.out.println(a[i].getDescription());
+		sql.setAchievement("zhelo", view.LoginPage.ach[6]);
+		ArrayList<model.Achievement> a = sql.getAchievements("zhelo");
+		for (int i = 0; i < a.size(); i++) {
+			System.out.println(a.get(i).getName());
+			System.out.println(a.get(i).getDescription());
 		}
 	}
 }

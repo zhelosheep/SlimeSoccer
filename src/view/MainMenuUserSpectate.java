@@ -29,6 +29,7 @@ public class MainMenuUserSpectate extends JFrame{
 	private ImageIcon avatar;
 	private MainMenuUser prevScreen;
 	private static JLabel spectateLabel;
+	private SpectateScreen spectateScreen;
 
 	public MainMenuUserSpectate(MainMenuUser prevScreen) {
 		setSize(800, 600);

@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -28,6 +29,7 @@ public class MainMenuUserPlayPlayer extends JFrame{
 	private ImageIcon avatar;
 	private MainMenuUser prevScreen;
 	private static JLabel playPlayerLabel;
+	private MainMenuUserWaiting mainMenuUserWaiting;
 
 	public MainMenuUserPlayPlayer(MainMenuUser prevScreen) {
 		setSize(800, 600);
@@ -51,6 +53,7 @@ public class MainMenuUserPlayPlayer extends JFrame{
 		usernameField = new JTextField(6);
 		settingsButton = new JButton(new ImageIcon(new ImageIcon("resources/SoccerBall.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)));
 		playPlayerLabel = new JLabel(new ImageIcon("resources/PvP.png"));
+		mainMenuUserWaiting = new MainMenuUserWaiting(this);
 	}
 	
 	private void addComponents() {
@@ -159,6 +162,18 @@ public class MainMenuUserPlayPlayer extends JFrame{
 				prevScreen.sWriter.flush();
 				prevScreen.chatArea.setText(prevScreen.chatArea.getText() + "\n" + prevScreen.getUsername() + ": " + chatField.getText());
 				chatField.setText("");
+			}
+		});
+		searchButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				mainMenuUserWaiting.setVisible(true);
+				setVisible(false);
+			}
+		});
+		randomButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				mainMenuUserWaiting.setVisible(true);
+				setVisible(false);
 			}
 		});
 	}
