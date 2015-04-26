@@ -47,7 +47,7 @@ public class Profile extends JFrame{
 		backButton = new JButton("Back");
 		addFriend = new JButton("Add Friend");
 		
-		if (MainMenuUser.username.equals(u)) {
+		if (MainMenuUser.username.equals(u) || LoginPage.sqli.findFriend(MainMenuUser.username, u)) {
 			addFriend.setEnabled(false);
 			addFriend.setVisible(false);
 		}

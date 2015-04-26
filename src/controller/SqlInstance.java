@@ -297,6 +297,8 @@ public class SqlInstance {
 	}
 	
 	public void setFriends(String u, String fu) {
+		if (findFriend(u, fu)) return;
+		
 		ResultSet u_rs = getUser(u);
 		ResultSet fu_rs = getUser(fu);
 		
@@ -321,7 +323,7 @@ public class SqlInstance {
 		try {
 			int userID = u_rs.getInt("userID");
 			Statement st = c.createStatement();
-			ResultSet f_rs = st.executeQuery("SELECT friendName from friends WHERE userID = " + userID);
+			ResultSet f_rs = st.executeQuery("SELECT friendName FROM friends WHERE userID = " + userID);
 			while (f_rs.next()) {
 				franz.add(f_rs.getString("friendName"));
 			}
@@ -329,6 +331,20 @@ public class SqlInstance {
 			System.out.println("SQLException in SqlInstance.getFriends: " + sqle.getMessage());
 		} 
 		return franz;
+	}
+	
+	public boolean findFriend(String u, String fu) {
+		ResultSet u_rs = getUser(u);
+		
+		try {
+			int userID = u_rs.getInt("userID");
+			Statement st = c.createStatement();
+			ResultSet f_rs = st.executeQuery("SELECT friendID FROM friends WHERE userID = " + userID + " AND friendName = '" + fu + "'");
+			if (f_rs.next()) return true;
+		} catch (SQLException sqle) {
+			System.out.println("SQLException in SqlInstance.findFriend: " + sqle.getMessage());
+		} 
+		return false;
 	}
 	
 	public static void main (String [] args) {
