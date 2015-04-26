@@ -117,7 +117,7 @@ public class MainMenuGuest extends JFrame{
 		rightPanel.add(jp6);
 		rightPanel.add(jsp);
 		rightPanel.add(jp5);
-		rightPanel.setPreferredSize(new Dimension(150, 400));
+		rightPanel.setPreferredSize(new Dimension(200, 400));
 		rightPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 15));
 		centerPanel.add(leftPanel);
 		centerPanel.add(Box.createGlue());

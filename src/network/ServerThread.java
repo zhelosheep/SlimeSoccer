@@ -5,11 +5,19 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
+import java.util.Map;
+import java.util.Queue;
+import java.util.Set;
 import java.util.Vector;
+
+import model.Game;
 
 public class ServerThread extends Thread{
 	ServerSocket ss;
 	Vector<ServerHelperThread> shtVector;
+	Map<Game, Set<ServerHelperThread>> ongoingGames;
+	Queue<ServerHelperThread> randomPlayers;
+	Set<ServerHelperThread> waitingPlayers;
 	boolean b = true;
 	
 	ServerThread(int port) {

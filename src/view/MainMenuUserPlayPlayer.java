@@ -122,7 +122,7 @@ public class MainMenuUserPlayPlayer extends JFrame{
 		rightPanel.add(jp7);
 		rightPanel.add(jsp);
 		rightPanel.add(jp6);
-		rightPanel.setPreferredSize(new Dimension(150, 600));
+		rightPanel.setPreferredSize(new Dimension(180, 600));
 		rightPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 15));
 		centerPanel.add(leftPanel);
 		centerPanel.add(Box.createGlue());
