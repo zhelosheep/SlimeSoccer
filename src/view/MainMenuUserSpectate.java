@@ -23,7 +23,7 @@ import javax.swing.text.DefaultCaret;
 
 public class MainMenuUserSpectate extends JFrame{
 	private static final long serialVersionUID = 1L;
-	private JButton searchButton, sendButton, backButton, randomButton, logoutButton, settingsButton;
+	private JButton searchButton, sendButton, backButton, randomButton, logoutButton, settingsButton, avatarButton;
 	JTextArea chatArea;
 	private JTextField chatField, gameIDField;
 	private ImageIcon avatar;
@@ -43,7 +43,8 @@ public class MainMenuUserSpectate extends JFrame{
 	
 	private void instantiateVariables() {
 		spectateLabel = new JLabel(new ImageIcon("resources/Spectate.png"));
-		avatar = new ImageIcon(new ImageIcon("resources/SoccerBall.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH));
+		avatar = SignUpPage.avatarImages[LoginPage.sqli.getImage(prevScreen.getUsername())];
+		avatarButton = new JButton(avatar);
 		searchButton = new JButton("Search");
 		randomButton = new JButton("?? Random ??");
 		sendButton = new JButton("Send");
@@ -52,7 +53,7 @@ public class MainMenuUserSpectate extends JFrame{
 		backButton = new JButton("Back");
 		gameIDField = new JTextField(6);
 		logoutButton = new JButton("Log Out");
-		settingsButton = new JButton(new ImageIcon(new ImageIcon("resources/SoccerBall.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)));
+		settingsButton = new JButton(new ImageIcon(new ImageIcon("resources/OptionsButton.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)));
 		spectateScreen = new SpectateScreen(false, this);
 	}
 	
@@ -62,14 +63,13 @@ public class MainMenuUserSpectate extends JFrame{
 		JLabel slimeSoccerLabel = new JLabel("Slime Soccer");
 		slimeSoccerLabel.setFont(new Font("Arial", Font.BOLD, 20));
 		slimeSoccerLabel.setBorder(BorderFactory.createEmptyBorder(5, 15, 5, 5));
-		JLabel avatarLabel = new JLabel(avatar);
-		avatarLabel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+		avatarButton.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		settingsButton.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		logoutButton.setFont(new Font("Arial", Font.BOLD, 16));
 		logoutButton.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 15));
 		northPanel.add(slimeSoccerLabel);
 		northPanel.add(Box.createGlue());
-		northPanel.add(avatarLabel);
+		northPanel.add(avatarButton);
 		northPanel.add(settingsButton);
 		northPanel.add(logoutButton);
 		add(northPanel, BorderLayout.NORTH);
@@ -173,6 +173,14 @@ public class MainMenuUserSpectate extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				spectateScreen.setVisible(true);
 				setVisible(false);
+			}
+		});
+		
+		avatarButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				Profile pro = new Profile(MainMenuUserSpectate.this.prevScreen.getUsername(), MainMenuUserSpectate.this);
+				pro.setVisible(true);
 			}
 		});
 	}

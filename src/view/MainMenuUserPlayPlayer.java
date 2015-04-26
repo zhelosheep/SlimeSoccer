@@ -23,13 +23,13 @@ import javax.swing.text.DefaultCaret;
 
 public class MainMenuUserPlayPlayer extends JFrame{
 	private static final long serialVersionUID = 1L;
-	private JButton searchButton, sendButton, backButton, randomButton, logoutButton, settingsButton;
+	private JButton searchButton, sendButton, backButton, randomButton, logoutButton, settingsButton, avatarButton;
 	JTextArea chatArea;
 	private JTextField chatField, usernameField;
 	private ImageIcon avatar;
 	private MainMenuUser prevScreen;
 	private static JLabel playPlayerLabel;
-	private MainMenuUserWaiting mainMenuUserWaiting;
+	public MainMenuUserWaiting mainMenuUserWaiting;
 
 	public MainMenuUserPlayPlayer(MainMenuUser prevScreen) {
 		setSize(800, 600);
@@ -42,7 +42,8 @@ public class MainMenuUserPlayPlayer extends JFrame{
 	}
 	
 	private void instantiateVariables() {
-		avatar = new ImageIcon(new ImageIcon("resources/SoccerBall.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH));
+		avatar = SignUpPage.avatarImages[LoginPage.sqli.getImage(getUsername())];
+		avatarButton = new JButton(avatar);
 		searchButton = new JButton("Search");
 		randomButton = new JButton("?? Random ??");
 		sendButton = new JButton("Send");
@@ -51,7 +52,7 @@ public class MainMenuUserPlayPlayer extends JFrame{
 		backButton = new JButton("Back");
 		logoutButton = new JButton("Log Out");
 		usernameField = new JTextField(6);
-		settingsButton = new JButton(new ImageIcon(new ImageIcon("resources/SoccerBall.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)));
+		settingsButton = new JButton(new ImageIcon(new ImageIcon("resources/OptionsButton.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)));
 		playPlayerLabel = new JLabel(new ImageIcon("resources/PvP.png"));
 		mainMenuUserWaiting = new MainMenuUserWaiting(this);
 	}
@@ -62,14 +63,13 @@ public class MainMenuUserPlayPlayer extends JFrame{
 		JLabel slimeSoccerLabel = new JLabel("Slime Soccer");
 		slimeSoccerLabel.setFont(new Font("Arial", Font.BOLD, 20));
 		slimeSoccerLabel.setBorder(BorderFactory.createEmptyBorder(5, 15, 5, 5));
-		JLabel avatarLabel = new JLabel(avatar);
-		avatarLabel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+		avatarButton.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		settingsButton.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		logoutButton.setFont(new Font("Arial", Font.BOLD, 16));
 		logoutButton.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 15));
 		northPanel.add(slimeSoccerLabel);
 		northPanel.add(Box.createGlue());
-		northPanel.add(avatarLabel);
+		northPanel.add(avatarButton);
 		northPanel.add(settingsButton);
 		northPanel.add(logoutButton);
 		add(northPanel, BorderLayout.NORTH);
@@ -122,7 +122,7 @@ public class MainMenuUserPlayPlayer extends JFrame{
 		rightPanel.add(jp7);
 		rightPanel.add(jsp);
 		rightPanel.add(jp6);
-		rightPanel.setPreferredSize(new Dimension(150, 600));
+		rightPanel.setPreferredSize(new Dimension(180, 600));
 		rightPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 15));
 		centerPanel.add(leftPanel);
 		centerPanel.add(Box.createGlue());
@@ -166,14 +166,26 @@ public class MainMenuUserPlayPlayer extends JFrame{
 		});
 		searchButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				prevScreen.sWriter.println("Q" + usernameField.getText());
+				prevScreen.sWriter.flush();
 				mainMenuUserWaiting.setVisible(true);
 				setVisible(false);
 			}
 		});
 		randomButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				prevScreen.sWriter.println("P");
+				prevScreen.sWriter.flush();
 				mainMenuUserWaiting.setVisible(true);
 				setVisible(false);
+			}
+		});
+		
+		avatarButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				Profile pro = new Profile(MainMenuUserPlayPlayer.this.getUsername(), MainMenuUserPlayPlayer.this);
+				pro.setVisible(true);
 			}
 		});
 	}

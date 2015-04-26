@@ -5,8 +5,6 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
@@ -21,6 +19,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -32,14 +31,14 @@ import javax.swing.text.DefaultCaret;
 public class MainMenuUser extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private ImageIcon avatar;
-	private JButton sendButton, playCompButton, playPlayerButton, spectateButton, logoutButton, settingsButton;
+	private JButton sendButton, playCompButton, playPlayerButton, spectateButton, logoutButton, settingsButton, avatarButton;
 	private static ImageIcon PvPIcon, PvCIcon, SpectateIcon;
-	private String username;
+	public static String username;
 	public JTextArea chatArea;
 	private JTextField chatField;
 	private SettingsPage settingsPage;
-	private MainMenuUserPlayPlayer mainMenuUserPlayPlayer;
-	private MainMenuUserSpectate mainMenuUserSpectate;
+	public MainMenuUserPlayPlayer mainMenuUserPlayPlayer;
+	public MainMenuUserSpectate mainMenuUserSpectate;
 	private MainMenuUserPlaySlime mainMenuUserPlaySlime;
 	Socket s;
 	public BufferedReader sReader;
@@ -59,7 +58,7 @@ public class MainMenuUser extends JFrame{
 		PvPIcon = new ImageIcon(new ImageIcon("resources/PvP.png").getImage().getScaledInstance(340, 120, java.awt.Image.SCALE_SMOOTH));
 		PvCIcon = new ImageIcon(new ImageIcon("resources/PvC.png").getImage().getScaledInstance(340, 120, java.awt.Image.SCALE_SMOOTH));
 		SpectateIcon = new ImageIcon(new ImageIcon("resources/Spectate.png").getImage().getScaledInstance(340, 120, java.awt.Image.SCALE_SMOOTH));
-		avatar = new ImageIcon(new ImageIcon("resources/SoccerBall.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH));
+		avatar = SignUpPage.avatarImages[LoginPage.sqli.getImage(username)];
 		playCompButton = new JButton(PvCIcon);
 		playPlayerButton = new JButton(PvPIcon);
 		spectateButton = new JButton(SpectateIcon);
@@ -67,11 +66,11 @@ public class MainMenuUser extends JFrame{
 		chatArea = new JTextArea();
 		chatField = new JTextField(10);
 		logoutButton = new JButton("Logout");
-		settingsButton = new JButton(new ImageIcon(new ImageIcon("resources/SoccerBall.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)));
+		settingsButton = new JButton(new ImageIcon(new ImageIcon("resources/OptionsButton.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)));
 		settingsPage = new SettingsPage();
 		mainMenuUserPlayPlayer = new MainMenuUserPlayPlayer(this);
 		mainMenuUserSpectate = new MainMenuUserSpectate(this);
-		mainMenuUserPlaySlime = new MainMenuUserPlaySlime(this, true, true);
+		mainMenuUserPlaySlime = new MainMenuUserPlaySlime(this, true);
 	}
 	
 	private void addComponents() {
@@ -80,14 +79,14 @@ public class MainMenuUser extends JFrame{
 		JLabel slimeSoccerLabel = new JLabel("Slime Soccer");
 		slimeSoccerLabel.setFont(new Font("Arial", Font.BOLD, 20));
 		slimeSoccerLabel.setBorder(BorderFactory.createEmptyBorder(5, 15, 5, 5));
-		JLabel avatarLabel = new JLabel(avatar);
-		avatarLabel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+		avatarButton = new JButton(avatar);
+		avatarButton.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		settingsButton.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		logoutButton.setFont(new Font("Arial", Font.BOLD, 16));
 		logoutButton.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 15));
 		northPanel.add(slimeSoccerLabel);
 		northPanel.add(Box.createGlue());
-		northPanel.add(avatarLabel);
+		northPanel.add(avatarButton);
 		northPanel.add(settingsButton);
 		northPanel.add(logoutButton);
 		add(northPanel, BorderLayout.NORTH);
@@ -198,14 +197,6 @@ public class MainMenuUser extends JFrame{
 				chatArea.setText(chatArea.getText() + "\n" + username + ": " + chatField.getText());
 				chatField.setText("");
 			}
-			
-			public void KeyPressed(KeyEvent e)
-			{
-				sWriter.println("C" + username + ": " + chatField.getText());
-				sWriter.flush();
-				chatArea.setText(chatArea.getText() + "\n" + username + ": " + chatField.getText());
-				chatField.setText("");
-			}
 		});
 		
 		chatField.addActionListener(new ActionListener() {
@@ -217,23 +208,31 @@ public class MainMenuUser extends JFrame{
 				chatField.setText("");
 			}
 		});
+		
+		avatarButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				Profile pro = new Profile(username, MainMenuUser.this);
+				pro.setVisible(true);
+			}
+		});
 	}
 	
 	SettingsPage getSettingsPage() {
 		return settingsPage;
 	}
 	
-	String getUsername() {
+	public String getUsername() {
 		return username;
 	}
 	
 	void quit() {
 		try {
-			System.out.println("here");
+			sWriter.println("Z");
+			sWriter.flush();
 			if (s != null) {
 				s.shutdownInput();
 				s.shutdownOutput();
-				System.out.println("here");
 				s.close();
 				s = null;
 			}

@@ -5,14 +5,25 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
+import java.util.HashSet;
+import java.util.Hashtable;
+import java.util.LinkedList;
 import java.util.Vector;
+
+import model.Game;
 
 public class ServerThread extends Thread{
 	ServerSocket ss;
 	Vector<ServerHelperThread> shtVector;
+	Hashtable<Game, HashSet<ServerHelperThread>> ongoingGames;
+	LinkedList<ServerHelperThread> randomPlayers;
+	HashSet<ServerHelperThread> waitingPlayers;
 	boolean b = true;
 	
 	ServerThread(int port) {
+		ongoingGames = new Hashtable<Game, HashSet<ServerHelperThread>>();
+		randomPlayers = new LinkedList<ServerHelperThread>();
+		waitingPlayers = new HashSet<ServerHelperThread>();
 		try {
 			ss = new ServerSocket(port);
 		} catch (IOException ioe) {

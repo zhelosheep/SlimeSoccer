@@ -5,15 +5,12 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
-
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -117,7 +114,7 @@ public class MainMenuGuest extends JFrame{
 		rightPanel.add(jp6);
 		rightPanel.add(jsp);
 		rightPanel.add(jp5);
-		rightPanel.setPreferredSize(new Dimension(150, 400));
+		rightPanel.setPreferredSize(new Dimension(200, 400));
 		rightPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 15));
 		centerPanel.add(leftPanel);
 		centerPanel.add(Box.createGlue());
@@ -141,14 +138,6 @@ public class MainMenuGuest extends JFrame{
 		
 		sendButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				sWriter.println("CGuest: " + chatField.getText());
-				sWriter.flush();
-				chatArea.setText(chatArea.getText() + "\nGuest: " + chatField.getText());
-				chatField.setText("");
-			}
-			
-			public void KeyPressed(KeyEvent e)
-			{
 				sWriter.println("CGuest: " + chatField.getText());
 				sWriter.flush();
 				chatArea.setText(chatArea.getText() + "\nGuest: " + chatField.getText());
@@ -181,15 +170,11 @@ public class MainMenuGuest extends JFrame{
 	
 	void quit() {
 		try {
-			if (sReader != null) {
-				sReader.close();
-				sReader = null;
-			}
-			if (sWriter != null) {
-				sWriter.close();
-				sWriter = null;
-			}
+			sWriter.println("Z");
+			sWriter.flush();
 			if (s != null) {
+				s.shutdownInput();
+				s.shutdownOutput();
 				s.close();
 				s = null;
 			}

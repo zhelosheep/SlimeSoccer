@@ -5,6 +5,8 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -20,20 +22,20 @@ import javax.swing.JSlider;
 public class MainMenuUserPlaySlime extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private JButton continueButton, backButton;
-	private String p1Username, p2Username;
+	public String p1Username, p2Username;
 	private String[] slimeNames, slimeAbilities;	//for label purposes
 	private JButton[] slimeButtons;
+	public JLabel p1UsernameLabel, p2UsernameLabel;
 	private JLabel p1SlimeNameLabel, p2SlimeNameLabel, p1SlimeImageLabel, p2SlimeImageLabel, p1SlimeAbilityLabel, p2SlimeAbilityLabel;
 	private JComboBox<String> specialModeCombo, backgroundCombo;
 	private JSlider regenRateSlider, totalManaSlider; 
-	private boolean isPlayer1 = true, isPvCGame = true;
+	public boolean isPlayer1 = true, isPvCGame = true;
 	private JFrame prevScreen;
 
-	public MainMenuUserPlaySlime(JFrame prevScreen, boolean isPlayer1, boolean isPvCGame) {
+	public MainMenuUserPlaySlime(JFrame prevScreen, boolean isPvCGame) {
 		setSize(800, 600);
 		setLocation(300,100);
 		this.prevScreen = prevScreen;
-		this.isPlayer1 = isPlayer1;
 		this.isPvCGame = isPvCGame;
 		instantiateVariables();
 		addComponents();
@@ -60,7 +62,8 @@ public class MainMenuUserPlaySlime extends JFrame{
 		p2SlimeNameLabel = new JLabel("<html><div style=\"text-align: center;\">Bow And Arrow Slime");
 		p1SlimeAbilityLabel = new JLabel("<html><div style=\"text-align: center;\">Explode");
 		p2SlimeAbilityLabel = new JLabel("<html><div style=\"text-align: center;\">Shoot Arrows");
-		
+		p1UsernameLabel = new JLabel();
+		p2UsernameLabel= new JLabel();		
 		//Instantiate slimeButtons JButton array to hold image icons of each slime
 		slimeButtons = new JButton[10];
 		slimeButtons[0] = new JButton(new ImageIcon("resources/game/slimes/BombSlime.png"));
@@ -90,15 +93,15 @@ public class MainMenuUserPlaySlime extends JFrame{
 		//Instantiate slimeAbilities
 		slimeAbilities = new String[10];
 		slimeAbilities[0] = "<html><div style=\"text-align: center;\">Explode";
-		slimeAbilities[1] = "<html><div style=\"text-align: center;\">Shoot Arrows";
+		slimeAbilities[1] = "<html><div style=\"text-align: center;\">Katniss?";
 		slimeAbilities[2] = "<html><div style=\"text-align: center;\">Multiple Slimes";
 		slimeAbilities[3] = "<html><div style=\"text-align: center;\">Wormhole";
-		slimeAbilities[4] = "<html><div style=\"text-align: center;\">Ball on Fire";
-		slimeAbilities[5] = "<html><div style=\"text-align: center;\">Gone Fishing";
-		slimeAbilities[6] = "<html><div style=\"text-align: center;\">Water Geyser";
-		slimeAbilities[7] = "<html><div style=\"text-align: center;\">Super Attractive";
+		slimeAbilities[4] = "<html><div style=\"text-align: center;\">This Ball is on Fiyah";
+		slimeAbilities[5] = "<html><div style=\"text-align: center;\">Gone Fishin'";
+		slimeAbilities[6] = "<html><div style=\"text-align: center;\">HM03 Surf";
+		slimeAbilities[7] = "<html><div style=\"text-align: center;\">Super Attractive ;)";
 		slimeAbilities[8] = "<html><div style=\"text-align: center;\">Super-Size Me";
-		slimeAbilities[9] = "<html><div style=\"text-align: center;\">Fly";
+		slimeAbilities[9] = "<html><div style=\"text-align: center;\">Superslime, away!";
 		
 		p1SlimeImageLabel = new JLabel(slimeButtons[0].getIcon());
 		p2SlimeImageLabel = new JLabel(slimeButtons[1].getIcon());
@@ -133,7 +136,6 @@ public class MainMenuUserPlaySlime extends JFrame{
 		JPanel c2 = new JPanel();
 		JPanel c3 = new JPanel();
 		JPanel c4 = new JPanel();
-		JLabel p1UsernameLabel = new JLabel("<html><div style=\"text-align: center;\">" + p1Username);
 		c1.add(p1UsernameLabel);
 		c2.add(p1SlimeNameLabel);
 		c3.add(p1SlimeImageLabel);
@@ -148,7 +150,6 @@ public class MainMenuUserPlaySlime extends JFrame{
 		JPanel c6 = new JPanel();
 		JPanel c7 = new JPanel();
 		JPanel c8 = new JPanel();
-		JLabel p2UsernameLabel = new JLabel("<html><div style=\"text-align: center;\">" + p2Username);
 		c5.add(p2UsernameLabel);
 		c6.add(p2SlimeNameLabel);
 		c7.add(p2SlimeImageLabel);
@@ -200,7 +201,12 @@ public class MainMenuUserPlaySlime extends JFrame{
 	}
 	
 	private void addListeners() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				quit();
+			}
+		});
 		class SlimeButtonListener implements ActionListener {
 			int index = -1;
 			
@@ -237,7 +243,11 @@ public class MainMenuUserPlaySlime extends JFrame{
 		//addd action listener on continue button; this should bring us to a settingspage
 	}
 	
-	public static void main(String[] args) {
-		(new MainMenuUserPlaySlime(new MainMenuUserPlayPlayer(new MainMenuUser("faketechguy")), true, false)).setVisible(true);;
+	void quit() {
+		if (isPvCGame) {
+			((MainMenuUser) prevScreen).quit();
+		} else {
+			((MainMenuUserPlayPlayer) prevScreen).quit();
+		}
 	}
 }
