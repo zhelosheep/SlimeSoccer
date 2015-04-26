@@ -29,7 +29,6 @@ public class Profile extends JFrame{
 	private String u;
 	private JFrame prevScreen;
 	
-	private JScrollPane achieveScroll, friendScroll;
 	private JTextField searchField;
 	private JButton searchButton, backButton, addFriend;
 	
@@ -85,11 +84,9 @@ public class Profile extends JFrame{
 		JPanel right = new JPanel();
 		JPanel achievementPanel = new JPanel();
 		JPanel friendsPanel = new JPanel();
-		JScrollPane achieveScroll = new JScrollPane(achievementPanel, ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		JScrollPane friendScroll = new JScrollPane(friendsPanel, ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		
+
 		northPanel.setLayout(new BoxLayout(northPanel, BoxLayout.Y_AXIS));
-		header.setLayoust(new BoxLayout(header, BoxLayout.X_AXIS));
+		header.setLayout(new BoxLayout(header, BoxLayout.X_AXIS));
 		centerPanel.setLayout(new BorderLayout());
 		left.setLayout(new BoxLayout(left, BoxLayout.Y_AXIS));
 		otherSide.setLayout(new BoxLayout(otherSide, BoxLayout.Y_AXIS));
@@ -98,8 +95,12 @@ public class Profile extends JFrame{
 		achievementPanel.setLayout(new BoxLayout(achievementPanel, BoxLayout.X_AXIS));
 		friendsPanel.setLayout(new BoxLayout(friendsPanel, BoxLayout.X_AXIS));
 		
-		achievementPanel.setPreferredSize(new Dimension(200, 80));
-		friendsPanel.setPreferredSize(new Dimension(200, 80));
+		JScrollPane achieveScroll = new JScrollPane(achievementPanel, ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+		JScrollPane friendScroll = new JScrollPane(friendsPanel, ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+		achieveScroll.setMinimumSize(new Dimension(200, 120));
+		achieveScroll.setPreferredSize(new Dimension(200, 120));
+		friendScroll.setMinimumSize(new Dimension(200, 120));
+		friendScroll.setPreferredSize(new Dimension(200, 120));
 		
 		otherSide.setBorder(BorderFactory.createEmptyBorder(30, 0, 0, 0));
 		middle.setBorder(BorderFactory.createEmptyBorder(50, 0, 0, 20));
