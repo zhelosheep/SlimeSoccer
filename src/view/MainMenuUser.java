@@ -5,15 +5,12 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
-
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -67,7 +64,7 @@ public class MainMenuUser extends JFrame{
 		chatArea = new JTextArea();
 		chatField = new JTextField(10);
 		logoutButton = new JButton("Logout");
-		settingsButton = new JButton(new ImageIcon(new ImageIcon("resources/SoccerBall.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)));
+		settingsButton = new JButton(new ImageIcon(new ImageIcon("resources/OptionsButton.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)));
 		settingsPage = new SettingsPage();
 		mainMenuUserPlayPlayer = new MainMenuUserPlayPlayer(this);
 		mainMenuUserSpectate = new MainMenuUserSpectate(this);
@@ -198,14 +195,6 @@ public class MainMenuUser extends JFrame{
 				chatArea.setText(chatArea.getText() + "\n" + username + ": " + chatField.getText());
 				chatField.setText("");
 			}
-			
-			public void KeyPressed(KeyEvent e)
-			{
-				sWriter.println("C" + username + ": " + chatField.getText());
-				sWriter.flush();
-				chatArea.setText(chatArea.getText() + "\n" + username + ": " + chatField.getText());
-				chatField.setText("");
-			}
 		});
 		
 		chatField.addActionListener(new ActionListener() {
@@ -229,11 +218,9 @@ public class MainMenuUser extends JFrame{
 	
 	void quit() {
 		try {
-			System.out.println("here");
 			if (s != null) {
 				s.shutdownInput();
 				s.shutdownOutput();
-				System.out.println("here");
 				s.close();
 				s = null;
 			}

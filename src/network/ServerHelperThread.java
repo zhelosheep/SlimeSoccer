@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.Set;
 
 public class ServerHelperThread extends Thread {
 	Socket s;
@@ -41,6 +42,11 @@ public class ServerHelperThread extends Thread {
 					
 					I - ball xcoord
 					J - ball ycoord
+					
+					P - play!
+					Q - also play!
+					R - remove from Vector
+					S - spectate!
 					*/
 					
 					// TO DO: Parser in the clientthread!
@@ -72,6 +78,21 @@ public class ServerHelperThread extends Thread {
 					else if (str.charAt(0) == 'J') //ball ycoord
 					{
 						//push the string to a ball handler which will parse into integer
+					} else if (str.charAt(0) == 'R')
+					{
+						st.shtVector.removeElementAt(i);
+						synchronized (st.ongoingGames) {
+							for (Set<ServerHelperThread> set : st.ongoingGames.values()) {
+								if (set.contains(this)) set.remove(this);
+							}
+						}
+						synchronized (st.randomPlayers) {
+							if (st.randomPlayers.contains(this)) st.randomPlayers.remove(this);
+						}
+						synchronized (st.waitingPlayers) {
+							if (st.waitingPlayers.contains(this)) st.waitingPlayers.remove(this);
+						}
+						break;
 					}
 				}
 			} catch (IOException ioe) {
