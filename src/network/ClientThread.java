@@ -24,12 +24,14 @@ public class ClientThread extends Thread {
 				String str;
 				if (isGuest) { // this one uses mmg
 					str = mmg.sReader.readLine();
+					if (str == null) break;
 					// str.charAt(0) is an identifier we add which tells us what to do with the string
 					if (str.charAt(0) == 'C') { // chat
 						mmg.chatArea.setText(mmg.chatArea.getText() + "\n" + str.substring(1));
 					}
 				} else { // this one uses mmu
 					str = mmu.sReader.readLine();
+					if (str == null) break;
 					if (str.charAt(0) == 'C') { // chat
 						mmu.chatArea.setText(mmu.chatArea.getText() + "\n" + str.substring(1));
 					}
