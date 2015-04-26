@@ -3,13 +3,7 @@ package view;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-
 import javax.swing.JPanel;
-
-import model.Ball;
-import model.Goal;
-import model.Slime;
 import model.Variables;
 
 public class Canvas extends JPanel implements Runnable {

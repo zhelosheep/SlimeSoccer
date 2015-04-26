@@ -1,12 +1,9 @@
 package view;
 
 import java.awt.BorderLayout;
-
 import javax.swing.JFrame;
-
 import network.GameThread;
 import controller.Controller;
-import model.Game;
 
 @SuppressWarnings("serial")
 public class Frame extends JFrame {

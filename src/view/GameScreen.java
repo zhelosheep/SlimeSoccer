@@ -32,8 +32,8 @@ public class GameScreen extends JFrame{
 	private String username;
 	public BufferedReader sReader;
 	PrintWriter sWriter;
-	public static Canvas primary;
-	public static Controller controller;
+	public Canvas primary;
+	public Controller controller;
 	
 	public GameScreen(String username)
 	{

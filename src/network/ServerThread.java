@@ -10,8 +10,6 @@ import java.util.Hashtable;
 import java.util.LinkedList;
 import java.util.Vector;
 
-import model.Game;
-
 public class ServerThread extends Thread{
 	ServerSocket ss;
 	Vector<ServerHelperThread> shtVector;
