@@ -105,9 +105,10 @@ public class SqlInstance {
 		
 		try {
 			int userID = u_rs.getInt("userID");
-			ps = c.prepareStatement("INSERT INTO achievement_data (achievement, userID) VALUE (?, ?)");
+			ps = c.prepareStatement("INSERT INTO achievement_data (achievement, userID, achievementName) VALUE (?, ?, ?)");
 			ps.setObject(1, ach);
 			ps.setInt(2, userID);
+			ps.setString(3,  ach.getName());
 			ps.executeUpdate();
 			
 		} catch (SQLException sqle) {
@@ -142,6 +143,21 @@ public class SqlInstance {
 			System.out.println("ClassNotFoundException in SqlInstance.getAchievements: " + e.getMessage());
 		}
 		return achieve;
+	}
+	
+	public boolean checkAchievement(String u, String ach) {
+		ResultSet u_rs = getUser(u);
+		
+		try {
+			int userID = u_rs.getInt("userID");
+			Statement st = c.createStatement();
+			ResultSet a_rs = st.executeQuery("SELECT achievement FROM achievement_data WHERE userID = " + userID + " AND achievementName = '" + ach + "'");
+			if (a_rs.next()) return true;
+		} catch (SQLException sqle) {
+			System.out.println("SQLException in SqlInstance.checkAchievement: " + sqle.getMessage());
+		}
+		
+		return false;
 	}
 	
 	public void updateStats(String u, boolean wl) {

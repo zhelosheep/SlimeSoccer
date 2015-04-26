@@ -35,7 +35,7 @@ public class SignUpPage extends JFrame{
 		avatarImages = new ImageIcon[8];
 		
 		for (int i = 0; i < avatarImages.length; i++) {
-			avatarImages[i] = new ImageIcon("resources/SoccerBall.png");
+			avatarImages[i] = new ImageIcon("resources/avatars/" + i + ".png");
 		}
 	}
 	
@@ -56,8 +56,8 @@ public class SignUpPage extends JFrame{
 		usernameField = new JTextField(15);
 		passwordField = new JPasswordField(15);
 		descField = new JTextField(15);
-		avatarButtons = new JButton[10];
-		for (int i = 0; i < 10; i++) avatarButtons[i] = new JButton(avatarImages[i]);
+		avatarButtons = new JButton[avatarImages.length];
+		for (int i = 0; i < avatarImages.length; i++) avatarButtons[i] = new JButton(avatarImages[i]);
 	}
 	
 	private void addComponents() {
@@ -95,7 +95,7 @@ public class SignUpPage extends JFrame{
 		jp6.setLayout(new BoxLayout(jp6, BoxLayout.Y_AXIS));
 		JPanel avatarPanel = new JPanel();
 		avatarPanel.setLayout(new GridLayout(2, 5));
-		for (int i = 0; i < 10; i++) avatarPanel.add(avatarButtons[i]);
+		for (int i = 0; i < avatarImages.length; i++) avatarPanel.add(avatarButtons[i]);
 		avatarPanel.setBorder(BorderFactory.createEmptyBorder(0, 230, 0, 230));
 		JPanel c1 = new JPanel();
 		c1.add(new JLabel("<html><div style=\"text-align: center;\">Choose an avatar: "));
