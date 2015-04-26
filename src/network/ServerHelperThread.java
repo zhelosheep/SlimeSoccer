@@ -45,6 +45,8 @@ public class ServerHelperThread extends Thread {
 					}
 					
 					/*Corresponding data transfers
+					C - chat
+					
 					E - player1 xcoord
 					F - player1 ycoord
 					G - player2 xcoord
