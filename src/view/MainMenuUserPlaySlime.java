@@ -21,6 +21,7 @@ public class MainMenuUserPlaySlime extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private JButton continueButton, backButton;
 	private String p1Username, p2Username;
+	private String[] slimeNames, slimeAbilities;	//for label purposes
 	private JButton[] slimeButtons;
 	private JLabel p1SlimeNameLabel, p2SlimeNameLabel, p1SlimeImageLabel, p2SlimeImageLabel, p1SlimeAbilityLabel, p2SlimeAbilityLabel;
 	private JComboBox<String> specialModeCombo, backgroundCombo;
@@ -59,6 +60,8 @@ public class MainMenuUserPlaySlime extends JFrame{
 		p2SlimeNameLabel = new JLabel("<html><div style=\"text-align: center;\">Bow And Arrow Slime");
 		p1SlimeAbilityLabel = new JLabel("<html><div style=\"text-align: center;\">Explode");
 		p2SlimeAbilityLabel = new JLabel("<html><div style=\"text-align: center;\">Shoot Arrows");
+		
+		//Instantiate slimeButtons JButton array to hold image icons of each slime
 		slimeButtons = new JButton[10];
 		slimeButtons[0] = new JButton(new ImageIcon("resources/game/slimes/BombSlime.png"));
 		slimeButtons[1] = new JButton(new ImageIcon("resources/game/slimes/BowAndArrowSlime.png"));
@@ -70,6 +73,33 @@ public class MainMenuUserPlaySlime extends JFrame{
 		slimeButtons[7] = new JButton(new ImageIcon("resources/game/slimes/MagnetSlime.png"));
 		slimeButtons[8] = new JButton(new ImageIcon("resources/game/slimes/SuperSizeSlime.png"));
 		slimeButtons[9] = new JButton(new ImageIcon("resources/game/slimes/SuperSlime.png"));
+		
+		//Instantiate slimeNames
+		slimeNames = new String[10];
+		slimeNames[0] = "<html><div style=\"text-align: center;\">Bomber Slime";
+		slimeNames[1] = "<html><div style=\"text-align: center;\">Bow And Arrow Slime";
+		slimeNames[2] = "<html><div style=\"text-align: center;\">Clone Slime";
+		slimeNames[3] = "<html><div style=\"text-align: center;\">Cosmic Slime";
+		slimeNames[4] = "<html><div style=\"text-align: center;\">Fireball Slime";
+		slimeNames[5] = "<html><div style=\"text-align: center;\">Fisher Slime";
+		slimeNames[6] = "<html><div style=\"text-align: center;\">Geyser Slime";
+		slimeNames[7] = "<html><div style=\"text-align: center;\">Magnet Slime";
+		slimeNames[8] = "<html><div style=\"text-align: center;\">Super Size Slime";
+		slimeNames[9] = "<html><div style=\"text-align: center;\">Super Slime";
+		
+		//Instantiate slimeAbilities
+		slimeAbilities = new String[10];
+		slimeAbilities[0] = "<html><div style=\"text-align: center;\">Explode";
+		slimeAbilities[1] = "<html><div style=\"text-align: center;\">Shoot Arrows";
+		slimeAbilities[2] = "<html><div style=\"text-align: center;\">Multiple Slimes";
+		slimeAbilities[3] = "<html><div style=\"text-align: center;\">Wormhole";
+		slimeAbilities[4] = "<html><div style=\"text-align: center;\">Ball on Fire";
+		slimeAbilities[5] = "<html><div style=\"text-align: center;\">Gone Fishing";
+		slimeAbilities[6] = "<html><div style=\"text-align: center;\">Water Geyser";
+		slimeAbilities[7] = "<html><div style=\"text-align: center;\">Super Attractive";
+		slimeAbilities[8] = "<html><div style=\"text-align: center;\">Super-Size Me";
+		slimeAbilities[9] = "<html><div style=\"text-align: center;\">Fly";
+		
 		p1SlimeImageLabel = new JLabel(slimeButtons[0].getIcon());
 		p2SlimeImageLabel = new JLabel(slimeButtons[1].getIcon());
 		String[] specialModeOptions = { "Anti-Gravity", "Giant Ball", "Multiple Balls", "Mini Slime" };
@@ -181,8 +211,14 @@ public class MainMenuUserPlaySlime extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				if (isPlayer1) {
 					p1SlimeImageLabel.setIcon(slimeButtons[index].getIcon());
+					p1SlimeNameLabel.setText(slimeNames[index]);
+					p1SlimeAbilityLabel.setText(slimeAbilities[index]);
+					
 				} else {
 					p2SlimeImageLabel.setIcon(slimeButtons[index].getIcon());
+					p2SlimeNameLabel.setText(slimeNames[index]);
+					p2SlimeAbilityLabel.setText(slimeAbilities[index]);
+					
 				}
 			}
 			
