@@ -73,6 +73,9 @@ public class GameScreen extends JFrame{
 		northPanel.add(logoutButton);
 		add(northPanel, BorderLayout.NORTH);
 		
+		JPanel centerPanel = new JPanel();
+		centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.X_AXIS));
+		
 		JPanel rightPanel = new JPanel();
 		rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
 		JLabel chatLabel = new JLabel("Chat");
@@ -93,6 +96,8 @@ public class GameScreen extends JFrame{
 		rightPanel.setPreferredSize(new Dimension(180, 420));
 		rightPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 15));
 		
+		centerPanel.add(rightPanel);
+		add(centerPanel, BorderLayout.CENTER);
 	}
 	
 	private void addListeners()
