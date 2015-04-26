@@ -119,6 +119,7 @@ public class Ball {
         y += velocityY;
 	}
 
+	// update x y width height
 	public void paint(Graphics g) {
 //		g.setColor(Color.GREEN);
 //		g.fillArc(getXforPaint(), getYforPaint(), this.width, this.height, 0, 360);

@@ -18,11 +18,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.text.DefaultCaret;
-import model.Slime;
 
 public class SpectateScreen extends JFrame {
 	private static final long serialVersionUID = 1L;
-	private Slime slime1, slime2;
 	private JFrame prevScreen;
 	private boolean isGuest;
 	private JButton backButton, switchButton, randomButton, sendButton;

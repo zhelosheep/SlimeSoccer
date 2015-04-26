@@ -186,6 +186,7 @@ public class Slime {
         y += velocityY;
 	}
 	
+	// update x y width height facingleft
 	public void paint(Graphics g) {
 		g.setColor(Color.GRAY);
 		g.fillArc(getXforPaint(), getYforPaint(), width, height, 0, 180);
