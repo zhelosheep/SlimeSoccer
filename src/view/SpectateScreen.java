@@ -125,6 +125,25 @@ public class SpectateScreen extends JFrame {
 				setVisible(false);
 			}
 		});
+		
+		sendButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+//				sWriter.println("C" + username + ": " + chatField.getText());
+//				sWriter.flush();
+//				chatArea.setText(chatArea.getText() + "\n" + username + ": " + chatField.getText());
+//				chatField.setText("");
+			}
+		});
+		
+		chatField.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e)
+			{
+//				sWriter.println("C" + username + ": " + chatField.getText());
+//				sWriter.flush();
+//				chatArea.setText(chatArea.getText() + "\n" + username + ": " + chatField.getText());
+//				chatField.setText("");
+			}
+		});
 	}
 	
 	void quit() {
