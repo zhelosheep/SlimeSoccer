@@ -55,18 +55,18 @@ public class Variables {
 	public void setBackground(String background) {
 		this.background = background;
 		try {
-			if (background.equals("soccerfield")) {
+			if (background.equals("Soccer Field")) {
 				imgBackground = ImageIO.read(new File("./resources/game/backgrounds/soccerfield.png"));
-			} else if (background.equals("desk")) {
+			} else if (background.equals("Desk")) {
 				imgBackground = ImageIO.read(new File("./resources/game/backgrounds/desk.jpg"));
 				groundLevel = 238;
-			} else if (background.equals("laptop")) {
+			} else if (background.equals("Laptop Screen")) {
 				imgBackground = ImageIO.read(new File("./resources/game/backgrounds/laptop.png"));
 				topLevel = 90;
 				groundLevel = 352;
 				leftBoundary = 88;
 				rightBoundary = 511;
-			} else if (background.equals("outerspace")) {
+			} else if (background.equals("Outer Space")) {
 				imgBackground = ImageIO.read(new File("./resources/game/backgrounds/outerspace.jpg"));
 			}			
 		} catch (IOException ioe) {
@@ -102,7 +102,26 @@ public class Variables {
 					imgSlime1 = ImageIO.read(new File("./resources/game/slimes/SuperSizeSlime.png"));
 				} else if (player1_slimeType.equals("SlimeSuper")) {
 					imgSlime1 = ImageIO.read(new File("./resources/game/slimes/SuperSlime.png"));
-				}
+				} else if (player1_slimeType.equals("Slime3D")) {
+					imgSlime1 = ImageIO.read(new File("./resources/game/specialslimes/3DSlime.png"));
+				} else if (player1_slimeType.equals("SlimeButterfly")) {
+					imgSlime1 = ImageIO.read(new File("./resources/game/specialslimes/Butterfly.png"));
+				} else if (player1_slimeType.equals("SlimeRonaldo")) {
+					imgSlime1 = ImageIO.read(new File("./resources/game/specialslimes/CristianoRonaldoSlime.png"));
+				} else if (player1_slimeType.equals("SlimeCrossEyed")) {
+					imgSlime1 = ImageIO.read(new File("./resources/game/specialslimes/CrossEyed.png"));
+				} else if (player1_slimeType.equals("SlimeCrown")) {
+					imgSlime1 = ImageIO.read(new File("./resources/game/specialslimes/Crown.png"));
+				} else if (player1_slimeType.equals("SlimeDunce")) {
+					imgSlime1 = ImageIO.read(new File("./resources/game/specialslimes/Dunce.png"));
+				} else if (player1_slimeType.equals("LSlime")) {
+					imgSlime1 = ImageIO.read(new File("./resources/game/specialslimes/LSlime.png"));
+				} else if (player1_slimeType.equals("SlimePotato")) {
+					imgSlime1 = ImageIO.read(new File("./resources/game/specialslimes/Potato.png"));
+				} else if (player1_slimeType.equals("SlimeSweater")) {
+					imgSlime1 = ImageIO.read(new File("./resources/game/specialslimes/SweaterSlime.png"));
+				}	
+				
 			} else if (slimeNum == 2) {
 				player2_slimeType = slimeType;
 				if (player2_slimeType.equals("SlimeBomb")) {
@@ -129,6 +148,24 @@ public class Variables {
 					imgSlime2 = ImageIO.read(new File("./resources/game/slimes/SuperSizeSlime.png"));
 				} else if (player2_slimeType.equals("SlimeSuper")) {
 					imgSlime2 = ImageIO.read(new File("./resources/game/slimes/SuperSlime.png"));
+				} else if (player2_slimeType.equals("Slime3D")) {
+					imgSlime2 = ImageIO.read(new File("./resources/game/specialslimes/3DSlime.png"));
+				} else if (player2_slimeType.equals("SlimeButterfly")) {
+					imgSlime2 = ImageIO.read(new File("./resources/game/specialslimes/Butterfly.png"));
+				} else if (player2_slimeType.equals("SlimeRonaldo")) {
+					imgSlime2 = ImageIO.read(new File("./resources/game/specialslimes/CristianoRonaldoSlime.png"));
+				} else if (player2_slimeType.equals("SlimeCrossEyed")) {
+					imgSlime2 = ImageIO.read(new File("./resources/game/specialslimes/CrossEyed.png"));
+				} else if (player2_slimeType.equals("SlimeCrown")) {
+					imgSlime2 = ImageIO.read(new File("./resources/game/specialslimes/Crown.png"));
+				} else if (player2_slimeType.equals("SlimeDunce")) {
+					imgSlime2 = ImageIO.read(new File("./resources/game/specialslimes/Dunce.png"));
+				} else if (player2_slimeType.equals("LSlime")) {
+					imgSlime2 = ImageIO.read(new File("./resources/game/specialslimes/LSlime.png"));
+				} else if (player2_slimeType.equals("SlimePotato")) {
+					imgSlime2 = ImageIO.read(new File("./resources/game/specialslimes/Potato.png"));
+				} else if (player2_slimeType.equals("SlimeSweater")) {
+					imgSlime2 = ImageIO.read(new File("./resources/game/specialslimes/SweaterSlime.png"));
 				}
 			}
 		} catch (IOException ioe) {

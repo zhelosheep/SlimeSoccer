@@ -13,6 +13,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JSlider;
@@ -22,7 +23,7 @@ public class SettingsPage extends JFrame{
 	private JButton cancelButton, saveButton, changePassword;
 	private JSlider sfxSlider, musicSlider; 
 	private JFrame prevScreen = null;
-	private JPasswordField jpf;
+	private JPasswordField jpf, currentPassword;
 
 	public SettingsPage() {
 		setSize(800, 600);
@@ -36,10 +37,11 @@ public class SettingsPage extends JFrame{
 	private void instantiateVariables() {
 		cancelButton = new JButton("Cancel");
 		saveButton = new JButton("Save");
-		changePassword = new JButton("changePassword");
+		changePassword = new JButton("Change Password");
 		sfxSlider = new JSlider(JSlider.HORIZONTAL);
 		musicSlider = new JSlider(JSlider.HORIZONTAL);
 		jpf = new JPasswordField(20);
+		currentPassword = new JPasswordField(20);
 	}
 	
 	private void addComponents() {
@@ -67,12 +69,17 @@ public class SettingsPage extends JFrame{
 		JPanel jp4 = new JPanel();
 		jp4.add(saveButton);
 		jp4.add(cancelButton);
+		jp4.add(changePassword);
 		JPanel jp5 = new JPanel();
+		jp5.add(new JLabel("New Password: "));
 		jp5.add(jpf);
-		jp5.add(changePassword);
+		JPanel jp6 = new JPanel();
+		jp6.add(new JLabel("Current Password: "));
+		jp6.add(currentPassword);
 		centerPanel.add(jp1);
 		centerPanel.add(jp2);
 		centerPanel.add(jp3);
+		centerPanel.add(jp6);
 		centerPanel.add(jp5);
 		centerPanel.add(jp4);
 		centerPanel.add(Box.createGlue());
@@ -87,12 +94,14 @@ public class SettingsPage extends JFrame{
 				setVisible(false);
 			}
 		});
+		
 		saveButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				prevScreen.setVisible(true);
 				setVisible(false);
 			}
 		});
+		
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				prevScreen.setVisible(true);
@@ -102,7 +111,12 @@ public class SettingsPage extends JFrame{
 		
 		changePassword.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				LoginPage.sqli.changePassword(MainMenuUser.username, String.copyValueOf(jpf.getPassword()));
+				if (LoginPage.sqli.validateLogin(MainMenuUser.username, String.copyValueOf(currentPassword.getPassword()))) {
+					LoginPage.sqli.changePassword(MainMenuUser.username, String.copyValueOf(jpf.getPassword()));
+				} else {
+					JOptionPane.showMessageDialog(SettingsPage.this, "Enter current password to change password", "Incorrect Password", JOptionPane.ERROR_MESSAGE);
+				}
+				currentPassword.setText("");
 				jpf.setText("");
 			}
 		});
