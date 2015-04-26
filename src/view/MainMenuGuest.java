@@ -198,8 +198,4 @@ public class MainMenuGuest extends JFrame{
 		}
 		System.exit(0);
 	}
-
-	public static void main(String[] args) {
-		(new MainMenuGuest()).setVisible(true);
-	}
 }
