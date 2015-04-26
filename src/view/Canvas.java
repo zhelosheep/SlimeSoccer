@@ -21,10 +21,12 @@ public class Canvas extends JPanel implements Runnable {
         numTimesLeftToPrintScore = -1;
         
         gameLoop = new Thread(this);
+        variables = new Variables();
 	}
 	
-	public void start() {
+	public void begin() {
 		gameLoop.start();
+		System.out.println("begun");
 	}
 	
 	public void paintComponent(Graphics g) {
@@ -86,11 +88,18 @@ public class Canvas extends JPanel implements Runnable {
 		}
 		
 		// draw game objects
-		variables.slime1.paint(g); // update
-		variables.slime2.paint(g); // update
-		variables.ball.paint(g); // update
-		variables.goal1.paint(g); // update
-		variables.goal2.paint(g); // update
+		System.out.println("in paint component");
+		if (variables.slime1 != null) variables.slime1.paint(g); // update
+		else System.out.println("slime1 is null");
+		if (variables.slime2 != null) variables.slime2.paint(g); // update
+		System.out.println("slime2 is null");
+		if (variables.ball != null) variables.ball.paint(g); // update
+		System.out.println("ball is null");
+		if (variables.goal1 != null) variables.goal1.paint(g); // update
+		System.out.println("goal1 is null");
+		if (variables.goal2 != null) variables.goal2.paint(g); // update
+		System.out.println("goal2 is null");
+		System.out.println("painted?");
 		
 		// if game over, let user know
 		if (variables.gameOver) {  // update
@@ -114,7 +123,8 @@ public class Canvas extends JPanel implements Runnable {
             beginTime = System.nanoTime();
             
             // repaint screen
-            repaint();
+            System.out.println("paintttt meeee");
+            this.repaint();
             
             // determine how long to wait until loop starts again
             timeTaken = System.nanoTime() - beginTime;

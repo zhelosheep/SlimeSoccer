@@ -33,6 +33,7 @@ public class MainMenuUserPlaySlime extends JFrame{
 	private JSlider regenRateSlider, totalManaSlider; 
 	public boolean isPlayer1 = true, isPvCGame = true;
 	private JFrame prevScreen;
+	public GameScreen gameScreen;
 
 	public MainMenuUserPlaySlime(JFrame prevScreen, boolean isPvCGame) {
 		setSize(800, 600);
@@ -198,6 +199,12 @@ public class MainMenuUserPlaySlime extends JFrame{
 		backgroundCombo = new JComboBox<String>(backgroundOptions);
 		regenRateSlider = new JSlider(JSlider.HORIZONTAL);
 		totalManaSlider = new JSlider(JSlider.HORIZONTAL);
+		
+		if (isPlayer1) {
+			gameScreen = new GameScreen(p1Username);			
+		} else {
+			gameScreen = new GameScreen(p2Username);
+		}
 	}
 	
 	private void addComponents() {

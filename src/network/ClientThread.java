@@ -51,7 +51,23 @@ public class ClientThread extends Thread {
 						}
 						mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.setVisible(true);
 						mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.setVisible(false);
-					}
+					} else if (str.charAt(0) == 'G') {
+						String delims = "[$]";
+						String [] tokens = str.substring(1).split(delims);
+						for (int i = 0; i < tokens.length; i++)
+						{
+							System.out.println(tokens[i]);
+							//tokens[0] = p1SlimeType
+							//tokens[1] = p2SlimeType
+							//tokens[2] = p1Username
+							//tokens[3] = p2Username
+							//tokens[4] = special mode
+							//tokens[5] = backgroundCombo
+							//tokens[6] = regenRate
+							//tokens[7] = totalMana
+						}
+						mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.gameScreen.setVariables(tokens[5], tokens[0], tokens[1], tokens[2], tokens[3], Integer.valueOf(tokens[7]), Integer.valueOf(tokens[7]), Integer.valueOf(tokens[6]), tokens[4]);
+						mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.gameScreen.setVisible(true);					}
 				}
 			} catch (IOException ioe) {
 				System.out.println("IOException in ClientThread.run(): " + ioe.getMessage());
