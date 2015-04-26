@@ -118,8 +118,31 @@ public class MainMenuUserPlaySlime extends JFrame{
 		specialSlimes[6] = new JButton(new ImageIcon("resources/game/specialslimes/LSlime.png"));
 		specialSlimes[7] = new JButton(new ImageIcon("resources/game/specialslimes/Potato.png"));
 		
-		for (int i = 0; i < specialSlimes.length; i++) {
-			specialSlimes[i].setEnabled(false);
+		
+		// check unlock of special achievement slimes
+		if (!LoginPage.sqli.checkAchievement(MainMenuUser.username, LoginPage.pack_a.getName())) {
+			specialSlimes[0].setEnabled(false);
+		}
+		if (!LoginPage.sqli.checkAchievement(MainMenuUser.username, LoginPage.soc_a.getName())) {
+			specialSlimes[1].setEnabled(false);
+		} 
+		if (!LoginPage.sqli.checkAchievement(MainMenuUser.username, LoginPage.chris_a.getName())) {
+			specialSlimes[2].setEnabled(false);
+		}
+		if (!LoginPage.sqli.checkAchievement(MainMenuUser.username, LoginPage.unath_a.getName())) {
+			specialSlimes[3].setEnabled(false);
+		}
+		if (!LoginPage.sqli.checkAchievement(MainMenuUser.username, LoginPage.vict_a.getName())) {
+			specialSlimes[4].setEnabled(false);
+		}
+		if (!LoginPage.sqli.checkAchievement(MainMenuUser.username, LoginPage.noob_a.getName())) {
+			specialSlimes[5].setEnabled(false);
+		}
+		if (!LoginPage.sqli.checkAchievement(MainMenuUser.username, LoginPage.loser_a.getName())) {
+			specialSlimes[6].setEnabled(false);
+		}
+		if (!LoginPage.sqli.checkAchievement(MainMenuUser.username, LoginPage.nolife_a.getName())) {
+			specialSlimes[7].setEnabled(false);
 		}
 		
 		// names
