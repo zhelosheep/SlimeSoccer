@@ -32,7 +32,7 @@ import javax.swing.text.DefaultCaret;
 public class MainMenuUser extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private ImageIcon avatar;
-	private JButton sendButton, playCompButton, playPlayerButton, spectateButton, logoutButton, settingsButton;
+	private JButton sendButton, playCompButton, playPlayerButton, spectateButton, logoutButton, settingsButton, avatarButton;
 	private static ImageIcon PvPIcon, PvCIcon, SpectateIcon;
 	private String username;
 	public JTextArea chatArea;
@@ -59,7 +59,7 @@ public class MainMenuUser extends JFrame{
 		PvPIcon = new ImageIcon(new ImageIcon("resources/PvP.png").getImage().getScaledInstance(340, 120, java.awt.Image.SCALE_SMOOTH));
 		PvCIcon = new ImageIcon(new ImageIcon("resources/PvC.png").getImage().getScaledInstance(340, 120, java.awt.Image.SCALE_SMOOTH));
 		SpectateIcon = new ImageIcon(new ImageIcon("resources/Spectate.png").getImage().getScaledInstance(340, 120, java.awt.Image.SCALE_SMOOTH));
-		avatar = new ImageIcon(new ImageIcon("resources/SoccerBall.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH));
+		avatar = SignUpPage.avatarImages[LoginPage.sqli.getImage(username)];
 		playCompButton = new JButton(PvCIcon);
 		playPlayerButton = new JButton(PvPIcon);
 		spectateButton = new JButton(SpectateIcon);
@@ -80,14 +80,14 @@ public class MainMenuUser extends JFrame{
 		JLabel slimeSoccerLabel = new JLabel("Slime Soccer");
 		slimeSoccerLabel.setFont(new Font("Arial", Font.BOLD, 20));
 		slimeSoccerLabel.setBorder(BorderFactory.createEmptyBorder(5, 15, 5, 5));
-		JLabel avatarLabel = new JLabel(avatar);
-		avatarLabel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+		avatarButton = new JButton(avatar);
+		avatarButton.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		settingsButton.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		logoutButton.setFont(new Font("Arial", Font.BOLD, 16));
 		logoutButton.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 15));
 		northPanel.add(slimeSoccerLabel);
 		northPanel.add(Box.createGlue());
-		northPanel.add(avatarLabel);
+		northPanel.add(avatarButton);
 		northPanel.add(settingsButton);
 		northPanel.add(logoutButton);
 		add(northPanel, BorderLayout.NORTH);
