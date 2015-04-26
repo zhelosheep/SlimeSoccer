@@ -12,6 +12,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 
 
@@ -52,7 +54,9 @@ public class SqlInstance {
 			ResultSet rs = st.executeQuery("SELECT * FROM account_data WHERE username = '" + u + "'");
 			
 			if (rs.next()) return rs;
-		} catch (SQLException sqle) {}
+		} catch (SQLException sqle) {
+			System.out.println("SQLException in SqlInstance.getUser: " + sqle.getMessage());
+		}
 		
 		return null;
 	}
@@ -73,7 +77,9 @@ public class SqlInstance {
 			if (rs.getString("password").equals(pw)) {
 				return true;
 			}
-		} catch (SQLException sqle) {}
+		} catch (SQLException sqle) {
+			System.out.println("SQLException in SqlInstance.validateLogin: " + sqle.getMessage());
+		}
 			
 		return false;
 	}
@@ -105,7 +111,7 @@ public class SqlInstance {
 			ps.executeUpdate();
 			
 		} catch (SQLException sqle) {
-			System.out.println("ERROR: " + sqle.getMessage());
+			System.out.println("SQLException in SqlInstance.setAchievement: " + sqle.getMessage());
 		}
 	}
 	
@@ -126,19 +132,144 @@ public class SqlInstance {
 			    ObjectInputStream is = new ObjectInputStream(in);
 				achieve.add((model.Achievement)(is.readObject()));
 			}
-		} catch (SQLException sqle) {} 
-		catch (IOException e) { System.out.println("ioe error");} 
-		catch (ClassNotFoundException e) {System.out.println("cnfe error");}
+		} catch (SQLException sqle) {
+			System.out.println("SQLException in SqlInstance.getAchievements: " + sqle.getMessage());
+		} 
+		catch (IOException e) { 
+			System.out.println("IOException in SqlInstance.getAchievements: " + e.getMessage());
+		} 
+		catch (ClassNotFoundException e) {
+			System.out.println("ClassNotFoundException in SqlInstance.getAchievements: " + e.getMessage());
+		}
 		return achieve;
 	}
 	
-	public static void main (String [] args) {
-		SqlInstance sql = new SqlInstance();
-		sql.setAchievement("zhelo", view.LoginPage.ach[6]);
-		ArrayList<model.Achievement> a = sql.getAchievements("zhelo");
-		for (int i = 0; i < a.size(); i++) {
-			System.out.println(a.get(i).getName());
-			System.out.println(a.get(i).getDescription());
+	public void updateStats(String u, boolean wl) {
+		//if wl is true, user won
+		//if wl is false, user lost
+		
+		ResultSet u_rs = getUser(u);
+		
+		try {
+			int userID = u_rs.getInt("userID");
+			int numgames = u_rs.getInt("player_games") + 1;
+			int numwin = u_rs.getInt("player_won");
+			int numloss = u_rs.getInt("player_loss");
+			long ratio = u_rs.getLong("player_ratio");
+			
+			if (wl) numwin++;
+			else numloss++;
+			
+			ratio = (long) numwin/ (long) numloss;
+			
+			ps = c.prepareStatement("UPDATE account_data SET player_games = ?, player_won = ?, player_loss = ?,"
+					+ " player_ratio = ? WHERE userID = ?");
+			ps.setInt(1,  numgames);
+			ps.setInt(2,  numwin);
+			ps.setInt(3,  numloss);
+			ps.setLong(4, ratio);
+			ps.setInt(5,  userID);
+			ps.executeUpdate();
+			
+		} catch (SQLException sqle) {
+			System.out.println("SQLException in SqlInstance.updateStats: " + sqle.getMessage());
 		}
 	}
+	
+	public String getName(String u) {
+		ResultSet u_rs = getUser(u);
+		String name = "";
+		try {
+			name = u_rs.getString("player_firstName") + u_rs.getString("player_lastName");
+		} catch (SQLException sqle) {
+			System.out.println("SQLException in SqlInstance.getName: " + sqle.getMessage());
+		} 
+		return name;
+	}
+	
+	public String getDesc(String u) {
+		ResultSet u_rs = getUser(u);
+		String desc = "";
+		try {
+			desc = u_rs.getString("player_description");
+		} catch (SQLException sqle) {
+			System.out.println("SQLException in SqlInstance.getDesc: " + sqle.getMessage());
+		} 
+		return desc;
+	}
+	
+	public int getImage(String u) {
+		ResultSet u_rs = getUser(u);
+		int img = -1;
+		try {
+			img = u_rs.getInt("player_avatar");
+		} catch (SQLException sqle) {
+			System.out.println("SQLException in SqlInstance.getImage: " + sqle.getMessage());
+		} 
+		return img;
+	}
+	
+	public long getRatio(String u) {
+		ResultSet u_rs = getUser(u);
+		long ratio = 0;
+		try {
+			ratio = u_rs.getLong("player_ratio");
+		} catch (SQLException sqle) {
+			System.out.println("SQLException in SqlInstance.getRatio: " + sqle.getMessage());
+		} 
+		return ratio;
+	}
+	
+	public int getWins(String u) {
+		ResultSet u_rs = getUser(u);
+		int wins = -1;
+		try {
+			wins = u_rs.getInt("player_won");
+		} catch (SQLException sqle) {
+			System.out.println("SQLException in SqlInstance.getWins: " + sqle.getMessage());
+		} 
+		return wins;
+	}
+	
+	public int getLosses(String u) {
+		ResultSet u_rs = getUser(u);
+		int loss = -1;
+		try {
+			loss = u_rs.getInt("player_loss");
+		} catch (SQLException sqle) {
+			System.out.println("SQLException in SqlInstance.getLosses: " + sqle.getMessage());
+		} 
+		return loss;
+	}
+	
+	public void updateDate(String u) {
+		ResultSet u_rs = getUser(u);
+		try {
+			Date p_date = u_rs.getDate("player_days");
+			Date c_date = Calendar.getInstance().getTime();
+			//this'll work later yall
+		} catch (SQLException sqle) {
+			System.out.println("SQLException in SqlInstance.updateDate: " + sqle.getMessage());
+		}
+	}
+	
+	public void changePassword(String u, String pw) {
+		ResultSet u_rs = getUser(u);
+		
+		try {
+			int userID = u_rs.getInt("userID");
+			ps = c.prepareStatement("UPDATE account_data SET password = '?' WHERE userID = ?");
+			ps.setString(1, pw);
+			ps.setInt(2, userID);
+			ps.executeUpdate();
+			
+		} catch (SQLException sqle) {
+			System.out.println("SQLException in SqlInstance.changePassword: " + sqle.getMessage());
+		}
+	}
+	
+/*	public static void main (String [] args) {
+		SqlInstance s = new SqlInstance();
+		s.updateStats("zhelo", true);
+	}*/
 }
