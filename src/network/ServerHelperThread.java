@@ -41,9 +41,25 @@ public class ServerHelperThread extends Thread {
 							}
 						}
 					}
+					else if (str.charAt(0) == 'D' )
+					{
+						synchronized (st.ongoingGames) {
+							for (Set<ServerHelperThread> set : st.ongoingGames.values()) {
+								if (set.contains(this)) {
+									for (int j = 0; j < set.size(); j++) {
+										if (j != i) {
+											st.shtVector.elementAt(j).pw.println(str);
+											st.shtVector.elementAt(j).pw.flush();
+										}
+									}
+								}
+							}
+						}
+					}
 					
 					/*Corresponding data transfers
 					C - chat
+					D - lobbychat
 					
 					E - player1 xcoord
 					F - player1 ycoord
@@ -60,7 +76,9 @@ public class ServerHelperThread extends Thread {
 					Q - add to waiting (play)
 					R - remove from random and waiting
 					S - spectate!
-
+					T - finish playing game
+					U - leave spectating
+					
 					Z - remove all
 					*/
 					
@@ -97,7 +115,7 @@ public class ServerHelperThread extends Thread {
 
 					else if (str.charAt(0) == 'M')
 					{
-
+						
 					}
 
 					else if (str.charAt(0) == 'N')
@@ -119,9 +137,9 @@ public class ServerHelperThread extends Thread {
 								str = str.substring(2);
 								String delims = "[$]";
 								String [] tokens = str.split(delims);
-								for (int i = 0; i < tokens.length; i++)
+								for (int j = 0; j < tokens.length; j++)
 								{
-									System.out.println(tokens[i]);
+									System.out.println(tokens[j]);
 									//tokens[0] = p1SlimeType
 									//tokens[1] = p2SlimeType
 									//tokens[2] = p1Username
@@ -134,6 +152,10 @@ public class ServerHelperThread extends Thread {
 								GameThread gt = new GameThread(tokens[5], tokens[0], tokens[1], tokens[2], tokens[3], Integer.valueOf(tokens[7]), Integer.valueOf(tokens[7]), Integer.valueOf(tokens[6]), tokens[4]);
 								st.ongoingGames.put(gt, set);
 								// made the game on the server, now set variables for the two clients
+								this.pw.println("G" + str.substring(2));
+								this.pw.flush();
+								opponentThread.pw.println("G" + str.substring(2));
+								opponentThread.pw.flush();
 							} else {
 								this.readyToPlay = true;
 							}
@@ -190,7 +212,10 @@ public class ServerHelperThread extends Thread {
 					
 					else if (str.charAt(0) == 'Z')
 					{
-						st.shtVector.removeElementAt(i);
+						synchronized (st.shtVector) {
+							if (st.shtVector.contains(this)) st.shtVector.remove(this);
+
+						}
 						synchronized (st.ongoingGames) {
 							for (Set<ServerHelperThread> set : st.ongoingGames.values()) {
 								if (set.contains(this)) set.remove(this);

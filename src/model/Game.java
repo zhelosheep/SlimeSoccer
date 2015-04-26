@@ -16,7 +16,7 @@ public class Game {
 	public Goal goal1, goal2;
 	public int groundLevel = 400, topLevel = 0; // y value of where ground level and top of screen are in game
 	public int leftBoundary = 0, rightBoundary = 600; 
-	public ArtificialIntelligence ai;
+//	public ArtificialIntelligence ai;
 	
 	// game stats
 	public String background;
