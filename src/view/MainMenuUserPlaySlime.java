@@ -95,7 +95,7 @@ public class MainMenuUserPlaySlime extends JFrame{
 		slimeAbilities[3] = "<html><div style=\"text-align: center;\">Wormhole";
 		slimeAbilities[4] = "<html><div style=\"text-align: center;\">This Ball is on Fiyah";
 		slimeAbilities[5] = "<html><div style=\"text-align: center;\">Gone Fishin'";
-		slimeAbilities[6] = "<html><div style=\"text-align: center;\">Water Geyser";
+		slimeAbilities[6] = "<html><div style=\"text-align: center;\">HM03 Surf";
 		slimeAbilities[7] = "<html><div style=\"text-align: center;\">Super Attractive ;)";
 		slimeAbilities[8] = "<html><div style=\"text-align: center;\">Super-Size Me";
 		slimeAbilities[9] = "<html><div style=\"text-align: center;\">Superslime, away!";
