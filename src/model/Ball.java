@@ -9,6 +9,7 @@ public class Ball {
 	BufferedImage ballImage;
 	private Integer bounceAccelerationY, bounceAccelerationX;
 	private Integer numTimesUpdateWasCalledSinceLastXDecceleration;
+	private Game game;
 	
 	// constants
 	public final int width = 24, height = 24, radius = 12;
@@ -16,13 +17,14 @@ public class Ball {
 	final private int decceleration = 1; 
 	final private double bounceMultiplier = 0.8;
 
-	Ball(int x, int y) {
+	Ball(int x, int y, Game game) {
 		this.x = x;
 		this.y = y;
+		this.game = game;
 		bounceAccelerationY = null;
 		bounceAccelerationX = null;
 		numTimesUpdateWasCalledSinceLastXDecceleration = 0;
-		ballImage = Game.imgBall;
+		ballImage = game.imgBall;
 	}
 	
 	public void update() {
@@ -30,38 +32,38 @@ public class Ball {
 		
 		// Keep ball within bottom boundary
 		// 1) If ball is about to hit ground, make sure it doesn't go beneath ground level
-		if ( (yBottom + velocityY >= Game.groundLevel) && bounceAccelerationY == null) {
+		if ( (yBottom + velocityY >= game.groundLevel) && bounceAccelerationY == null) {
 			bounceAccelerationY = (int)((double)velocityY * bounceMultiplier);
-			velocityY = Game.groundLevel - yBottom;
+			velocityY = game.groundLevel - yBottom;
     	} else {
     		velocityY += decceleration;
     	}
 		// 2) If ball just hit ground, make it bounce
-		if (yBottom >= Game.groundLevel && bounceAccelerationY != null) {
+		if (yBottom >= game.groundLevel && bounceAccelerationY != null) {
 			velocityY = -bounceAccelerationY;
 			bounceAccelerationY = null;
 		}
 
 		// Keep ball within left boundary
 		// 1) If ball is about to hit left boundary, make sure it doesn't go past it
-		if ( velocityX < 0 && (x - width/2 + velocityX <= Game.leftBoundary) && bounceAccelerationX == null) {
+		if ( velocityX < 0 && (x - width/2 + velocityX <= game.leftBoundary) && bounceAccelerationX == null) {
 			bounceAccelerationX = (int)((double)-velocityX * bounceMultiplier);
-			velocityX = Game.leftBoundary - (x - width/2);
+			velocityX = game.leftBoundary - (x - width/2);
     	}
 		// 2) If ball just hit ground, make it bounce
-		if (x - width/2 <= Game.leftBoundary && bounceAccelerationX != null) {
+		if (x - width/2 <= game.leftBoundary && bounceAccelerationX != null) {
 			velocityX = bounceAccelerationX;
 			bounceAccelerationX = null;
 		}
 
 		// Keep ball within right boundary
 		// 1) If ball is about to hit right boundary, make sure it doesn't go past it
-		if ( velocityX > 0 && (x + width/2 + velocityX >= Game.rightBoundary) && bounceAccelerationX == null) {
+		if ( velocityX > 0 && (x + width/2 + velocityX >= game.rightBoundary) && bounceAccelerationX == null) {
 			bounceAccelerationX = (int)((double)-velocityX * bounceMultiplier);
-			velocityX = (Game.rightBoundary - x - width/2);
+			velocityX = (game.rightBoundary - x - width/2);
     	}
 		// 2) If ball just hit ground, make it bounce
-		if (x + width/2 >= Game.rightBoundary && bounceAccelerationX != null) {
+		if (x + width/2 >= game.rightBoundary && bounceAccelerationX != null) {
 			velocityX = bounceAccelerationX;
 			bounceAccelerationX = null;
 		}

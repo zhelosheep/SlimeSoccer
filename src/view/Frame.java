@@ -1,11 +1,6 @@
 package view;
 
 import java.awt.BorderLayout;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
 import controller.Controller;
@@ -30,7 +25,7 @@ public class Frame extends JFrame {
 		// set up controller
 		controller = new Controller();
 		// set up view
-		view = new Canvas();
+		view = new Canvas(model);
 		add(view, BorderLayout.CENTER);
 	}
 	public static void main (String [] args) {

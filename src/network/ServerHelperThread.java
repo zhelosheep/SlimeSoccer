@@ -90,14 +90,22 @@ public class ServerHelperThread extends Thread {
 						//push the string to a ball handler which will parse into integer
 					} 
 
+					else if (str.charAt(0) == 'M')
+					{
+
+					}
+
+					else if (str.charAt(0) == 'N')
+					{
+
+					}
+
 					else if (str.charAt(0) == 'P')
 					{
-						System.out.println("hereP");
 						synchronized (st.randomPlayers) {
 							System.out.println(username);
 							if (st.randomPlayers.isEmpty()) st.randomPlayers.add(this);
 							else {
-								System.out.println("pls");
 								st.randomPlayers.peek().pw.println("Y1" + this.username);
 								st.randomPlayers.peek().pw.flush();
 								this.pw.println("Y2" + st.randomPlayers.peek().username);

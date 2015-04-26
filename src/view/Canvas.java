@@ -12,14 +12,16 @@ import model.Game;
 public class Canvas extends JPanel implements Runnable {
 	Thread gameLoop;
 	int numTimesLeftToPrintScore, numTimesToPrintScore = 30;
+	private Game game;
 	
-	public Canvas() {
+	public Canvas(Game game) {
 		// set up JPanel stuff
 		setFocusable(true);
 		requestFocusInWindow();
 		addKeyListener(Frame.controller);
         setDoubleBuffered(true);
         
+        this.game = game;
         numTimesLeftToPrintScore = -1;
         
         gameLoop = new Thread(this);
@@ -29,54 +31,54 @@ public class Canvas extends JPanel implements Runnable {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		// draw background
-		g.drawImage(Game.imgBackground, 0,0, null);
-		if (Game.background.equals("outerspace")) { g.setColor(Color.WHITE); }
-		g.drawLine(Game.leftBoundary, Game.groundLevel, Game.rightBoundary, Game.groundLevel);
+		g.drawImage(game.imgBackground, 0,0, null);
+		if (game.background.equals("outerspace")) { g.setColor(Color.WHITE); }
+		g.drawLine(game.leftBoundary, game.groundLevel, game.rightBoundary, game.groundLevel);
 		
 		// draw player1 stats
 		g.setFont(new Font("Helvetica", Font.PLAIN, 14));
-		if (Game.background.equals("outerspace")) { g.setColor(Color.WHITE); }
-		g.drawString(Game.player1_slimeType, 20, 20);
-		g.drawString(Game.player1_username, 20, 40);
+		if (game.background.equals("outerspace")) { g.setColor(Color.WHITE); }
+		g.drawString(game.player1_slimeType, 20, 20);
+		g.drawString(game.player1_username, 20, 40);
 		g.drawRoundRect(20, 50, 80, 10, 5, 5);
-		g.fillRoundRect(20, 50, (int)((Game.player1_manaCurrent/Game.player1_manaMax)*80), 10, 5, 5);
+		g.fillRoundRect(20, 50, (int)((game.player1_manaCurrent/game.player1_manaMax)*80), 10, 5, 5);
 		g.setFont(new Font("Helvetica", Font.PLAIN, 40));
-		if (Game.background.equals("outerspace")) { g.setColor(Color.WHITE); }
-		g.drawString(Game.player1_score.toString(), 130, 45);
+		if (game.background.equals("outerspace")) { g.setColor(Color.WHITE); }
+		g.drawString(game.player1_score.toString(), 130, 45);
 		
 		// draw player2 stats
 		g.setFont(new Font("Helvetica", Font.PLAIN, 14));
-		if (Game.background.equals("outerspace")) { g.setColor(Color.WHITE); }
-		g.drawString(Game.player2_slimeType, 500, 20);
-		g.drawString(Game.player2_username, 500, 40);
+		if (game.background.equals("outerspace")) { g.setColor(Color.WHITE); }
+		g.drawString(game.player2_slimeType, 500, 20);
+		g.drawString(game.player2_username, 500, 40);
 		g.drawRoundRect(500, 50, 80, 10, 5, 5);
-		g.fillRoundRect(500, 50, (int)((Game.player2_manaCurrent/Game.player2_manaMax)*80), 10, 5, 5);
+		g.fillRoundRect(500, 50, (int)((game.player2_manaCurrent/game.player2_manaMax)*80), 10, 5, 5);
 		g.setFont(new Font("Helvetica", Font.PLAIN, 40));
-		if (Game.background.equals("outerspace")) { g.setColor(Color.WHITE); }
-		g.drawString(Game.player2_score.toString(), 450, 45);
+		if (game.background.equals("outerspace")) { g.setColor(Color.WHITE); }
+		g.drawString(game.player2_score.toString(), 450, 45);
 		
 		// if a player scores, let them know
-		if (Game.player1scored) {
+		if (game.player1scored) {
 			g.setFont(new Font("Helvetica", Font.PLAIN, 30));
-			if (Game.background.equals("outerspace")) { g.setColor(Color.WHITE); }
+			if (game.background.equals("outerspace")) { g.setColor(Color.WHITE); }
 			g.drawString("Player 1 scored!", 200, 300 - 100);
 			if (numTimesLeftToPrintScore == -1) { // first loop in which Game.player1scored is true
 				numTimesLeftToPrintScore = numTimesToPrintScore;
 			} else if (numTimesLeftToPrintScore == 0) { // last loop in which Game.player1scored will be true and last time drawString will be called
-				Game.player1scored = false;
+				game.player1scored = false;
 				numTimesLeftToPrintScore--;
 			} else if (numTimesLeftToPrintScore <= numTimesToPrintScore && numTimesLeftToPrintScore > 0) {
 				numTimesLeftToPrintScore--;
 			}
 		}
-		if (Game.player2scored) {
+		if (game.player2scored) {
 			g.setFont(new Font("Helvetica", Font.PLAIN, 30));
-			if (Game.background.equals("outerspace")) { g.setColor(Color.WHITE); }
+			if (game.background.equals("outerspace")) { g.setColor(Color.WHITE); }
 			g.drawString("Player 2 scored!", 200, 300 - 100);
 			if (numTimesLeftToPrintScore == -1) { // first loop in which Game.player1scored is true
 				numTimesLeftToPrintScore = numTimesToPrintScore;
 			} else if (numTimesLeftToPrintScore == 0) { // last loop in which Game.player1scored will be true and last time drawString will be called
-				Game.player2scored = false;
+				game.player2scored = false;
 				numTimesLeftToPrintScore--;
 			} else if (numTimesLeftToPrintScore <= numTimesToPrintScore && numTimesLeftToPrintScore > 0) {
 				numTimesLeftToPrintScore--;
@@ -84,11 +86,11 @@ public class Canvas extends JPanel implements Runnable {
 		}
 		
 		// draw game objects
-		Game.slime1.paint(g);
-		Game.slime2.paint(g);
-		Game.ball.paint(g);
-		Game.goal1.paint(g);
-		Game.goal2.paint(g);
+		game.slime1.paint(g);
+		game.slime2.paint(g);
+		game.ball.paint(g);
+		game.goal1.paint(g);
+		game.goal2.paint(g);
 		
 	}
 	
@@ -101,7 +103,7 @@ public class Canvas extends JPanel implements Runnable {
             beginTime = System.nanoTime();
             
             // do something
-            Game.update();
+            game.update();
             
             // repaint screen
             repaint();

@@ -14,6 +14,7 @@ public abstract class Slime {
 	boolean facingLeft; // true if slime is facing left, right if slime is facing right
 	private BufferedImage slimeImage;
 	public boolean specialPowerBeingUsed;
+	protected Game game;
 
 	// constants
 	final private int maxSpeed = 6;
@@ -24,9 +25,10 @@ public abstract class Slime {
 	final protected int manaUsageRate = 5; // determines how fast mana is consumed when slime uses special power
 	private int upKey, leftKey, rightKey, powerKey; // KeyEvent codes
 	
-	public Slime(int x, int y, int player, BufferedImage slimeImage) {
+	public Slime(int x, int y, int player, BufferedImage slimeImage, Game game) {
 		this.x = x;
 		this.y = y;
+		this.game = game;
 		specialPowerBeingUsed = false;
 		this.slimeImage = slimeImage;
 		this.player = player;
@@ -50,10 +52,10 @@ public abstract class Slime {
 
 	public void update() {
         // Calculating velocity for moving up or down
-        if(Frame.controller.keyboardKeyState(upKey) && y == Game.groundLevel) {
+        if(Frame.controller.keyboardKeyState(upKey) && y == game.groundLevel) {
             velocityY -= jumpAcceleration;
         } else {
-        	if (y >= Game.groundLevel) {
+        	if (y >= game.groundLevel) {
         		velocityY = 0;
         	} else {
         		velocityY += decceleration;
@@ -83,37 +85,37 @@ public abstract class Slime {
         // User special power
         if(Frame.controller.keyboardKeyState(powerKey) && !specialPowerBeingUsed) {
         	if (this.player == 1) {
-        		if (Game.player1_manaCurrent > 0) {
+        		if (game.player1_manaCurrent > 0) {
                 	this.useSpecialPower();
-                	Game.player1_manaCurrent -= manaUsageRate;
+                	game.player1_manaCurrent -= manaUsageRate;
         		}
         	}
         	else if (this.player == 2) {
-        		if (Game.player2_manaCurrent > 0) {
+        		if (game.player2_manaCurrent > 0) {
                 	this.useSpecialPower();
-                	Game.player2_manaCurrent -= manaUsageRate;
+                	game.player2_manaCurrent -= manaUsageRate;
         		}
         	}
 //        	System.out.println("SPECIAL POWER");
         }
         // regenerate special power
         if(!Frame.controller.keyboardKeyState(powerKey)) {
-			if (Game.player1_manaCurrent < Game.player1_manaMax) {
-	        	Game.player1_manaCurrent += Game.manaRegenerationRate;
+			if (game.player1_manaCurrent < game.player1_manaMax) {
+	        	game.player1_manaCurrent += game.manaRegenerationRate;
 			}
-			if (Game.player2_manaCurrent < Game.player2_manaMax) {
-	        	Game.player2_manaCurrent += Game.manaRegenerationRate;
+			if (game.player2_manaCurrent < game.player2_manaMax) {
+	        	game.player2_manaCurrent += game.manaRegenerationRate;
 			}
         }
 
         
-        if (x - width/2 < Game.leftBoundary) { // if slime is outside of left boundary, put slime back in boundary and stop movement
+        if (x - width/2 < game.leftBoundary) { // if slime is outside of left boundary, put slime back in boundary and stop movement
         	velocityX = 0; 
-        	x = width/2 + Game.leftBoundary;
+        	x = width/2 + game.leftBoundary;
         }
-        if (x > Game.rightBoundary - width/2) { // if slime is outside of right boundary, put slime back in boundary and stop movement
+        if (x > game.rightBoundary - width/2) { // if slime is outside of right boundary, put slime back in boundary and stop movement
         	velocityX = 0;
-        	x = Game.rightBoundary - width/2;
+        	x = game.rightBoundary - width/2;
         }
         // Moves the slime
         x += velocityX;
