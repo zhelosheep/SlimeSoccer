@@ -44,18 +44,19 @@ public class Canvas extends JPanel implements Runnable {
 		g.fillRoundRect(20, 50, (int)((game.player1_manaCurrent/game.player1_manaMax)*80), 10, 5, 5);
 		g.setFont(new Font("Helvetica", Font.PLAIN, 40));
 		if (game.background.equals("outerspace")) { g.setColor(Color.WHITE); }
-		g.drawString(game.player1_score.toString(), 130, 45);
+		g.drawString(game.player1_score.toString(), 160, 45);
 		
 		// draw player2 stats
+		int drawAtLeft = 460;
 		g.setFont(new Font("Helvetica", Font.PLAIN, 14));
 		if (game.background.equals("outerspace")) { g.setColor(Color.WHITE); }
-		g.drawString(game.player2_slimeType, 500, 20);
-		g.drawString(game.player2_username, 500, 40);
-		g.drawRoundRect(500, 50, 80, 10, 5, 5);
-		g.fillRoundRect(500, 50, (int)((game.player2_manaCurrent/game.player2_manaMax)*80), 10, 5, 5);
+		g.drawString(game.player2_slimeType, drawAtLeft, 20);
+		g.drawString(game.player2_username, drawAtLeft, 40);
+		g.drawRoundRect(drawAtLeft, 50, 80, 10, 5, 5);
+		g.fillRoundRect(drawAtLeft, 50, (int)((game.player2_manaCurrent/game.player2_manaMax)*80), 10, 5, 5);
 		g.setFont(new Font("Helvetica", Font.PLAIN, 40));
 		if (game.background.equals("outerspace")) { g.setColor(Color.WHITE); }
-		g.drawString(game.player2_score.toString(), 450, 45);
+		g.drawString(game.player2_score.toString(), drawAtLeft - 50, 45);
 		
 		// if a player scores, let them know
 		if (game.player1scored) {
@@ -92,6 +93,17 @@ public class Canvas extends JPanel implements Runnable {
 		game.goal1.paint(g);
 		game.goal2.paint(g);
 		
+		// if game over, let user know
+		if (game.gameOver) { 
+			if (game.playerThatWon == 1) {
+				g.drawImage(game.imgGameoverPlayer1, 0, 0, null);
+			} else if (game.playerThatWon == 2) {
+				g.drawImage(game.imgGameoverPlayer2, 0, 0, null);
+			}
+			g.setColor(Color.WHITE);
+			g.setFont(new Font("Arial", Font.PLAIN, 20));
+			g.drawString("Score: " + game.player1_score + "-" + game.player2_score, 250, 250);
+		}
 	}
 	
 	public void run() {

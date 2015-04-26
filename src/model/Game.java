@@ -12,6 +12,7 @@ public class Game {
 	public BufferedImage imgGoal;
 	public BufferedImage imgSlime1, imgSlime2;
 	public BufferedImage imgSlimeBombSpecial, imgSlimeBowAndArrowSpecial, imgSlimeCosmicSpecial, imgFisherSpecial;
+	public BufferedImage imgGameoverPlayer1, imgGameoverPlayer2;
 	
 	// game objects
 	public Slime slime1, slime2;
@@ -30,12 +31,14 @@ public class Game {
 	public boolean player1scored, player2scored;
 	public int manaRegenerationRate;
 	public String specialMode;
+	public boolean gameOver;
+	public int playerThatWon;
 	
 	public Game(String background, String player1_slimeType, String player2_slimeType, String player1_username, String player2_username, int player1_manaMax, int player2_manaMax, int manaRegenerationRate, String specialMode) {
 		// load resources
 		try {
 			// load soccer ball image
-			imgBall = ImageIO.read(new File("./resources/game/slimes/SoccerBall.png"));
+			imgBall = ImageIO.read(new File("./resources/game/others/SoccerBall.png"));
 			
 			// load background image
 			if (background.equals("soccerfield")) {
@@ -54,7 +57,11 @@ public class Game {
 			}
 			
 			// load goal image
-			imgGoal = ImageIO.read(new File("./resources/game/Goal.png"));
+			imgGoal = ImageIO.read(new File("./resources/game/others/Goal.png"));
+			
+			// load game over images
+			imgGameoverPlayer1 = ImageIO.read(new File("./resources/game/others/gameover1.png"));
+			imgGameoverPlayer2 = ImageIO.read(new File("./resources/game/others/gameover2.png"));
 
 			// load slime images
 			if (player1_slimeType.equals("SlimeBomb")) {
@@ -215,7 +222,6 @@ public class Game {
 			ball.callMove();
 		}
 		
-		
 		// check for goals
 		if (goal1.checkGoal(ball.x, ball.y)) {
 			goalScored(2);
@@ -235,10 +241,18 @@ public class Game {
 		if (playerThatScored == 1) {
 			player1_score++;
 			player1scored = true;
+			if (player1_score == 5) {
+				gameOver = true;
+				playerThatWon = 1;
+			}
 		}
 		else if (playerThatScored == 2) {
 			player2_score++;
 			player2scored = true;
+			if (player2_score == 5) {
+				gameOver = true;
+				playerThatWon = 2;
+			}
 		}
 		if (playerThatScored == 1 || playerThatScored == 2) { // then reset ball position, slime positions, etc
 			ball.x = (leftBoundary + rightBoundary)/2;
