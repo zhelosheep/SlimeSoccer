@@ -3,7 +3,10 @@ package model;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+
 import javax.imageio.ImageIO;
+
+import view.LoginPage;
 
 public class Game {
 	// image resources
@@ -33,6 +36,9 @@ public class Game {
 	public String specialMode;
 	public boolean gameOver;
 	public int playerThatWon;
+	
+	public boolean slimeHasMoved_1 = false;
+	public boolean slimeHasMoved_2 = false;
 	
 	public Game(String background, String player1_slimeType, String player2_slimeType, String player1_username, String player2_username, int player1_manaMax, int player2_manaMax, int manaRegenerationRate, String specialMode) {
 		// load resources
@@ -244,6 +250,7 @@ public class Game {
 			if (player1_score == 5) {
 				gameOver = true;
 				playerThatWon = 1;
+				saveStats(playerThatWon);
 			}
 		}
 		else if (playerThatScored == 2) {
@@ -252,6 +259,7 @@ public class Game {
 			if (player2_score == 5) {
 				gameOver = true;
 				playerThatWon = 2;
+				saveStats(playerThatWon);
 			}
 		}
 		if (playerThatScored == 1 || playerThatScored == 2) { // then reset ball position, slime positions, etc
@@ -270,4 +278,13 @@ public class Game {
 		}
 	}
 	
+	public void saveStats(int playerThatWon) {
+		if (playerThatWon == 1) {
+			LoginPage.sqli.updateStats(player1_username, true);
+			LoginPage.sqli.updateStats(player2_username, false);
+		} else {
+			LoginPage.sqli.updateStats(player1_username, false);
+			LoginPage.sqli.updateStats(player2_username, true);
+		}
+	}
 }
