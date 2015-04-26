@@ -1,0 +1,28 @@
+E	player1 xcoord; string -> int
+F	player1 ycoord; string -> int
+G	player2 xcoord; string -> int
+H	player2 ycoord; string -> int
+
+I	ball xcoord; string -> int
+K	ball ycoord; string -> int
+
+
+
+
+Best two out of three games
+Whoever reaches a score of two first.
+
+
+Computer AI
+
+if ball xcoord <= 300
+	comp xcoord = ballxcoord - 12
+
+if ball xcoord > 300
+	comp xcoord = ballxcoord - 12
+
+
+Notes:
+Gotta update so that physics will be updating independent of each user - the server instance will be calculating
+
+Each client will simply receive the six data coordinate points and then draw the objects on their frame clients/spectate client
