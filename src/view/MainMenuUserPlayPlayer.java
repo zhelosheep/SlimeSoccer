@@ -27,6 +27,7 @@ public class MainMenuUserPlayPlayer extends JFrame{
 	private JTextField chatField, usernameField;
 	private ImageIcon avatar;
 	private MainMenuUser prevScreen;
+	private static JLabel playPlayerLabel;
 
 	public MainMenuUserPlayPlayer(MainMenuUser prevScreen) {
 		setSize(800, 600);
@@ -49,6 +50,7 @@ public class MainMenuUserPlayPlayer extends JFrame{
 		logoutButton = new JButton("Log Out");
 		usernameField = new JTextField(6);
 		settingsButton = new JButton(new ImageIcon(new ImageIcon("resources/SoccerBall.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)));
+		playPlayerLabel = new JLabel(new ImageIcon("resources/PvP.png"));
 	}
 	
 	private void addComponents() {
@@ -77,11 +79,10 @@ public class MainMenuUserPlayPlayer extends JFrame{
 		helloLabel.setBorder(BorderFactory.createEmptyBorder(20, 0, 0, 0));
 		jp1.add(helloLabel);
 		JPanel jp2 = new JPanel();
-		JLabel playPlayerLabel = new JLabel("Play Player");
 		jp2.add(playPlayerLabel);
 		jp2.setBorder(BorderFactory.createEmptyBorder(30, 0, 0, 0));
 		JPanel jp3 = new JPanel();
-		JLabel searchLabel = new JLabel("Search by Username: ");
+		JLabel searchLabel = new JLabel("<html><div style=\"text-align: center;\">Search by<br>Username: ");
 		jp3.add(searchLabel);
 		jp3.add(usernameField);
 		jp3.add(searchButton);
