@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import view.LoginPage;
+
 
 
 public class SqlInstance {
@@ -173,8 +175,9 @@ public class SqlInstance {
 			
 			if (wl) numwin++;
 			else numloss++;
-			
-			ratio = (long) numwin/ (long) numloss;
+			if (numloss > 0) {
+				ratio = (long) numwin/ (long) numloss;
+			} else ratio = 0;
 			
 			ps = c.prepareStatement("UPDATE account_data SET player_games = ?, player_won = ?, player_loss = ?,"
 					+ " player_ratio = ? WHERE userID = ?");
@@ -234,6 +237,17 @@ public class SqlInstance {
 		return ratio;
 	}
 	
+	public int getGames(String u) {
+		ResultSet u_rs = getUser(u);
+		int games = -1;
+		try {
+			games = u_rs.getInt("player_games");
+		} catch (SQLException sqle) {
+			System.out.println("SQLException in SqlInstance.getGames: " + sqle.getMessage());
+		} 
+		return games;
+	}
+	
 	public int getWins(String u) {
 		ResultSet u_rs = getUser(u);
 		int wins = -1;
@@ -256,17 +270,6 @@ public class SqlInstance {
 		return loss;
 	}
 	
-	public void updateDate(String u) {
-		ResultSet u_rs = getUser(u);
-		try {
-			Date p_date = u_rs.getDate("player_days");
-			Date c_date = Calendar.getInstance().getTime();
-			//this'll work later yall
-		} catch (SQLException sqle) {
-			System.out.println("SQLException in SqlInstance.updateDate: " + sqle.getMessage());
-		}
-	}
-	
 	public void changePassword(String u, String pw) {
 		ResultSet u_rs = getUser(u);
 		
@@ -282,8 +285,56 @@ public class SqlInstance {
 		}
 	}
 	
-/*	public static void main (String [] args) {
+	public void updateDate(String u) {
+		ResultSet u_rs = getUser(u);
+		try {
+			Date p_date = u_rs.getDate("player_days");
+			Date c_date = Calendar.getInstance().getTime();
+			//this'll work later yall
+		} catch (SQLException sqle) {
+			System.out.println("SQLException in SqlInstance.updateDate: " + sqle.getMessage());
+		}
+	}
+	
+	public void setFriends(String u, String fu) {
+		ResultSet u_rs = getUser(u);
+		ResultSet fu_rs = getUser(fu);
+		
+		try {
+			int fuserID = fu_rs.getInt("userID");
+			int userID = u_rs.getInt("userID");
+			ps = c.prepareStatement("INSERT INTO friends (userID, friendID, friendName) VALUE (?, ?, ?)");
+			ps.setInt(1, userID);
+			ps.setInt(2, userID);
+			ps.setString(3,  fu);
+			ps.executeUpdate();
+			
+		} catch (SQLException sqle) {
+			System.out.println("SQLException in SqlInstance.setFriends: " + sqle.getMessage());
+		}
+	}
+	
+	public ArrayList<String> getFriends(String u) {
+		ResultSet u_rs = getUser(u);
+		
+		ArrayList<String> franz = new ArrayList<String>();
+		try {
+			int userID = u_rs.getInt("userID");
+			Statement st = c.createStatement();
+			ResultSet f_rs = st.executeQuery("SELECT friendName from friends WHERE userID = " + userID);
+			while (f_rs.next()) {
+				franz.add(f_rs.getString("friendName"));
+			}
+		} catch (SQLException sqle) {
+			System.out.println("SQLException in SqlInstance.getFriends: " + sqle.getMessage());
+		} 
+		return franz;
+	}
+	
+	public static void main (String [] args) {
 		SqlInstance s = new SqlInstance();
-		s.updateStats("zhelo", true);
-	}*/
+		//s.setFriends("zhelo", "tashleyy");
+		//s.setAchievement("zhelo", LoginPage.loser_a);
+		//s.updateStats("zhelo", true);
+	}
 }
