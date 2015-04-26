@@ -11,9 +11,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
+
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -31,6 +33,7 @@ public class MainMenuGuest extends JFrame{
 	Socket s;
 	public BufferedReader sReader;
 	public PrintWriter sWriter;
+	private static JLabel spectateLabel;
 	
 	public MainMenuGuest() {
 		setSize(800, 600);
@@ -42,6 +45,7 @@ public class MainMenuGuest extends JFrame{
 	}
 	
 	private void instantiateVariables() {
+		spectateLabel = new JLabel(new ImageIcon("resources/Spectate.png"));
 		searchButton = new JButton("Search");
 		randomButton = new JButton("?? Random ??");
 		sendButton = new JButton("Send");
@@ -68,11 +72,10 @@ public class MainMenuGuest extends JFrame{
 		JPanel leftPanel = new JPanel();
 		leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
 		JPanel jp1 = new JPanel();
-		JLabel helloLabel = new JLabel("Hello, Guest!");
+		JLabel helloLabel = new JLabel("<html><div style=\"text-align: center;\">Hello, Guest!");
 		helloLabel.setBorder(BorderFactory.createEmptyBorder(20, 0, 0, 0));
 		jp1.add(helloLabel);
 		JPanel jp2 = new JPanel();
-		JLabel spectateLabel = new JLabel("Spectate Battle");
 		jp2.add(spectateLabel);
 		jp2.setBorder(BorderFactory.createEmptyBorder(30, 0, 0, 0));
 		JPanel jp3 = new JPanel();

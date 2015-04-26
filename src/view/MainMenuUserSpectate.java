@@ -28,6 +28,7 @@ public class MainMenuUserSpectate extends JFrame{
 	private JTextField chatField, gameIDField;
 	private ImageIcon avatar;
 	private MainMenuUser prevScreen;
+	private static JLabel spectateLabel;
 
 	public MainMenuUserSpectate(MainMenuUser prevScreen) {
 		setSize(800, 600);
@@ -40,6 +41,7 @@ public class MainMenuUserSpectate extends JFrame{
 	}
 	
 	private void instantiateVariables() {
+		spectateLabel = new JLabel(new ImageIcon("resources/Spectate.png"));
 		avatar = new ImageIcon(new ImageIcon("resources/SoccerBall.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH));
 		searchButton = new JButton("Search");
 		randomButton = new JButton("?? Random ??");
@@ -78,7 +80,6 @@ public class MainMenuUserSpectate extends JFrame{
 		helloLabel.setBorder(BorderFactory.createEmptyBorder(20, 0, 0, 0));
 		jp1.add(helloLabel);
 		JPanel jp2 = new JPanel();
-		JLabel spectateLabel = new JLabel("Spectate Battle");
 		jp2.add(spectateLabel);
 		jp2.setBorder(BorderFactory.createEmptyBorder(30, 0, 0, 0));
 		JPanel jp3 = new JPanel();

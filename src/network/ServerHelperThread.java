@@ -23,9 +23,10 @@ public class ServerHelperThread extends Thread {
 			try {
 				String str = br.readLine();
 				if (str != null) {
-					if (str.charAt(0) == 'C') {
+					// again, str.charAt(0) is an identifier that tells us what to do with the string
+					if (str.charAt(0) == 'C') { // chat
 						for (int j = 0; j < st.shtVector.size(); j++) {
-							if (j != i) {
+							if (j != i) { // push the string to all other threads
 								st.shtVector.elementAt(j).pw.println(str);
 								st.shtVector.elementAt(j).pw.flush();
 							}
