@@ -7,27 +7,29 @@ import javax.imageio.ImageIO;
 
 public class Game {
 	// image resources
-	public static BufferedImage imgBall;
-	public static BufferedImage imgBackground;
-	public static BufferedImage imgSlime1, imgSlime2;
+	public BufferedImage imgBall;
+	public BufferedImage imgBackground;
+	public BufferedImage imgGoal;
+	public BufferedImage imgSlime1, imgSlime2;
+	public BufferedImage imgSlimeBombSpecial, imgSlimeBowAndArrowSpecial, imgSlimeCosmicSpecial, imgFisherSpecial;
 	
 	// game objects
-	public static Slime slime1, slime2;
-	public static Ball ball;
-	public static Goal goal1, goal2;
-	static public int groundLevel = 400; // y value of where ground level is in game
-	static public int leftBoundary = 0, rightBoundary = 600; // y value of where ground level is in game
+	public Slime slime1, slime2;
+	public Ball ball;
+	public Goal goal1, goal2;
+	public int groundLevel = 400, topLevel = 0; // y value of where ground level and top of screen are in game
+	public int leftBoundary = 0, rightBoundary = 600; 
 	
 	// game stats
-	public static String background;
-	public static String player1_slimeType, player2_slimeType;
-	public static String player1_username, player2_username;
-	public static double player1_manaCurrent, player2_manaCurrent; // live data
-	public static int player1_manaMax, player2_manaMax;
-	public static Integer player1_score, player2_score; // live data
-	public static boolean player1scored, player2scored;
-	public static int manaRegenerationRate;
-	public static String specialMode;
+	public String background;
+	public String player1_slimeType, player2_slimeType;
+	public String player1_username, player2_username;
+	public double player1_manaCurrent, player2_manaCurrent; // live data
+	public int player1_manaMax, player2_manaMax;
+	public Integer player1_score, player2_score; // live data
+	public boolean player1scored, player2scored;
+	public int manaRegenerationRate;
+	public String specialMode;
 	
 	public Game(String background, String player1_slimeType, String player2_slimeType, String player1_username, String player2_username, int player1_manaMax, int player2_manaMax, int manaRegenerationRate, String specialMode) {
 		// load resources
@@ -40,24 +42,37 @@ public class Game {
 				imgBackground = ImageIO.read(new File("./resources/game/backgrounds/soccerfield.png"));
 			} else if (background.equals("desk")) {
 				imgBackground = ImageIO.read(new File("./resources/game/backgrounds/desk.jpg"));
+				groundLevel = 238;
 			} else if (background.equals("laptop")) {
 				imgBackground = ImageIO.read(new File("./resources/game/backgrounds/laptop.png"));
+				topLevel = 90;
+				groundLevel = 352;
+				leftBoundary = 88;
+				rightBoundary = 511;
 			} else if (background.equals("outerspace")) {
 				imgBackground = ImageIO.read(new File("./resources/game/backgrounds/outerspace.jpg"));
 			}
+			
+			// load goal image
+			imgGoal = ImageIO.read(new File("./resources/game/Goal.png"));
+
 			// load slime images
 			if (player1_slimeType.equals("SlimeBomb")) {
 				imgSlime1 = ImageIO.read(new File("./resources/game/slimes/BombSlime.png"));
+				imgSlimeBombSpecial = ImageIO.read(new File("./resources/game/slimes/SlimeSpecialEffects/Bomb.png"));
 			} else if (player1_slimeType.equals("SlimeBowAndArrow")) {
 				imgSlime1 = ImageIO.read(new File("./resources/game/slimes/BowAndArrowSlime.png"));
+				imgSlimeBowAndArrowSpecial = ImageIO.read(new File("./resources/game/slimes/SlimeSpecialEffects/BowAndArrow.png"));
 			} else if (player1_slimeType.equals("SlimeClone")) {
 				imgSlime1 = ImageIO.read(new File("./resources/game/slimes/CloneSlime.png"));
 			} else if (player1_slimeType.equals("SlimeCosmic")) {
 				imgSlime1 = ImageIO.read(new File("./resources/game/slimes/CosmicSlime.png"));
+				imgSlimeCosmicSpecial = ImageIO.read(new File("./resources/game/slimes/SlimeSpecialEffects/Cosmic.png"));
 			} else if (player1_slimeType.equals("SlimeFireball")) {
 				imgSlime1 = ImageIO.read(new File("./resources/game/slimes/FireballSlime.png"));
 			} else if (player1_slimeType.equals("SlimeFisher")) {
 				imgSlime1 = ImageIO.read(new File("./resources/game/slimes/FisherSlime.png"));
+				imgFisherSpecial = ImageIO.read(new File("./resources/game/slimes/SlimeSpecialEffects/Fisher.png"));
 			} else if (player1_slimeType.equals("SlimeGeyser")) {
 				imgSlime1 = ImageIO.read(new File("./resources/game/slimes/GeyserSlime.png"));
 			} else if (player1_slimeType.equals("SlimeMagnet")) {
@@ -69,16 +84,20 @@ public class Game {
 			}
 			if (player2_slimeType.equals("SlimeBomb")) {
 				imgSlime2 = ImageIO.read(new File("./resources/game/slimes/BombSlime.png"));
+				imgSlimeBombSpecial = ImageIO.read(new File("./resources/game/slimes/SlimeSpecialEffects/Bomb.png"));
 			} else if (player2_slimeType.equals("SlimeBowAndArrow")) {
 				imgSlime2 = ImageIO.read(new File("./resources/game/slimes/BowAndArrowSlime.png"));
+				imgSlimeBowAndArrowSpecial = ImageIO.read(new File("./resources/game/slimes/SlimeSpecialEffects/BowAndArrow.png"));
 			} else if (player2_slimeType.equals("SlimeClone")) {
 				imgSlime2 = ImageIO.read(new File("./resources/game/slimes/CloneSlime.png"));
 			} else if (player2_slimeType.equals("SlimeCosmic")) {
 				imgSlime2 = ImageIO.read(new File("./resources/game/slimes/CosmicSlime.png"));
+				imgSlimeCosmicSpecial = ImageIO.read(new File("./resources/game/slimes/SlimeSpecialEffects/Cosmic.png"));
 			} else if (player2_slimeType.equals("SlimeFireball")) {
 				imgSlime2 = ImageIO.read(new File("./resources/game/slimes/FireballSlime.png"));
 			} else if (player2_slimeType.equals("SlimeFisher")) {
 				imgSlime2 = ImageIO.read(new File("./resources/game/slimes/FisherSlime.png"));
+				imgFisherSpecial = ImageIO.read(new File("./resources/game/slimes/SlimeSpecialEffects/Fisher.png"));
 			} else if (player2_slimeType.equals("SlimeGeyser")) {
 				imgSlime2 = ImageIO.read(new File("./resources/game/slimes/GeyserSlime.png"));
 			} else if (player2_slimeType.equals("SlimeMagnet")) {
@@ -93,71 +112,77 @@ public class Game {
 		}
 		
 		// set game stats
-		Game.background = background;
-		Game.player1_slimeType = player1_slimeType;
-		Game.player2_slimeType = player2_slimeType;
-		Game.player1_username = player1_username;
-		Game.player2_username = player2_username;
-		Game.player1_manaCurrent = player1_manaMax;
-		Game.player2_manaCurrent = player2_manaMax;
-		Game.player1_manaMax = player1_manaMax;
-		Game.player2_manaMax = player2_manaMax;
-		Game.player1_score = 0;
-		Game.player2_score = 0;
-		Game.manaRegenerationRate = manaRegenerationRate;
-		Game.specialMode = specialMode;
-		Game.player1scored = false;
-		Game.player2scored = false;
+		this.background = background;
+		this.player1_slimeType = player1_slimeType;
+		this.player2_slimeType = player2_slimeType;
+		this.player1_username = player1_username;
+		this.player2_username = player2_username;
+		player1_manaCurrent = player1_manaMax;
+		player2_manaCurrent = player2_manaMax;
+		this.player1_manaMax = player1_manaMax;
+		this.player2_manaMax = player2_manaMax;
+		player1_score = 0;
+		player2_score = 0;
+		this.manaRegenerationRate = manaRegenerationRate;
+		this.specialMode = specialMode;
+		player1scored = false;
+		player2scored = false;
+		player1_manaCurrent = player1_manaMax;
+		player2_manaCurrent = player2_manaMax;
+		player1_score = 0;
+		player2_score = 0;
+		player1scored = false;
+		player2scored = false;
 		
 		// initialize objects
 		if (player1_slimeType.equals("SlimeBomb")) {
-			slime1 = new SlimeBomb(leftBoundary + 50, groundLevel, 1, imgSlime1);
+			slime1 = new SlimeBomb(leftBoundary + 50, groundLevel, 1, imgSlime1, this);
 		} else if (player1_slimeType.equals("SlimeBowAndArrow")) {
-			slime1 = new SlimeBowAndArrow(leftBoundary + 50, groundLevel, 1, imgSlime1);
+			slime1 = new SlimeBowAndArrow(leftBoundary + 50, groundLevel, 1, imgSlime1, this);
 		} else if (player1_slimeType.equals("SlimeClone")) {
-			slime1 = new SlimeClone(leftBoundary + 50, groundLevel, 1, imgSlime1);
+			slime1 = new SlimeClone(leftBoundary + 50, groundLevel, 1, imgSlime1, this);
 		} else if (player1_slimeType.equals("SlimeCosmic")) {
-			slime1 = new SlimeCosmic(leftBoundary + 50, groundLevel, 1, imgSlime1);
+			slime1 = new SlimeCosmic(leftBoundary + 50, groundLevel, 1, imgSlime1, this);
 		} else if (player1_slimeType.equals("SlimeFireball")) {
-			slime1 = new SlimeFireball(leftBoundary + 50, groundLevel, 1, imgSlime1);
+			slime1 = new SlimeFireball(leftBoundary + 50, groundLevel, 1, imgSlime1, this);
 		} else if (player1_slimeType.equals("SlimeFisher")) {
-			slime1 = new SlimeFisher(leftBoundary + 50, groundLevel, 1, imgSlime1);
+			slime1 = new SlimeFisher(leftBoundary + 50, groundLevel, 1, imgSlime1, this);
 		} else if (player1_slimeType.equals("SlimeGeyser")) {
-			slime1 = new SlimeGeyser(leftBoundary + 50, groundLevel, 1, imgSlime1);
+			slime1 = new SlimeGeyser(leftBoundary + 50, groundLevel, 1, imgSlime1, this);
 		} else if (player1_slimeType.equals("SlimeMagnet")) {
-			slime1 = new SlimeMagnet(leftBoundary + 50, groundLevel, 1, imgSlime1);
+			slime1 = new SlimeMagnet(leftBoundary + 50, groundLevel, 1, imgSlime1, this);
 		} else if (player1_slimeType.equals("SlimeSuperSize")) {
-			slime1 = new SlimeSuperSize(leftBoundary + 50, groundLevel, 1, imgSlime1);
+			slime1 = new SlimeSuperSize(leftBoundary + 50, groundLevel, 1, imgSlime1, this);
 		} else if (player1_slimeType.equals("SlimeSuper")) {
-			slime1 = new SlimeSuper(leftBoundary + 50, groundLevel, 1, imgSlime1);
+			slime1 = new SlimeSuper(leftBoundary + 50, groundLevel, 1, imgSlime1, this);
 		}
 		if (player2_slimeType.equals("SlimeBomb")) {
-			slime2 = new SlimeBomb(rightBoundary - 50, groundLevel, 2, imgSlime2);
+			slime2 = new SlimeBomb(rightBoundary - 50, groundLevel, 2, imgSlime2, this);
 		} else if (player2_slimeType.equals("SlimeBowAndArrow")) {
-			slime2 = new SlimeBowAndArrow(rightBoundary - 50, groundLevel, 2, imgSlime2);
+			slime2 = new SlimeBowAndArrow(rightBoundary - 50, groundLevel, 2, imgSlime2, this);
 		} else if (player2_slimeType.equals("SlimeClone")) {
-			slime2 = new SlimeClone(rightBoundary - 50, groundLevel, 2, imgSlime2);
+			slime2 = new SlimeClone(rightBoundary - 50, groundLevel, 2, imgSlime2, this);
 		} else if (player2_slimeType.equals("SlimeCosmic")) {
-			slime2 = new SlimeCosmic(rightBoundary - 50, groundLevel, 2, imgSlime2);
+			slime2 = new SlimeCosmic(rightBoundary - 50, groundLevel, 2, imgSlime2, this);
 		} else if (player2_slimeType.equals("SlimeFireball")) {
-			slime2 = new SlimeFireball(rightBoundary - 50, groundLevel, 2, imgSlime2);
+			slime2 = new SlimeFireball(rightBoundary - 50, groundLevel, 2, imgSlime2, this);
 		} else if (player2_slimeType.equals("SlimeFisher")) {
-			slime2 = new SlimeFisher(rightBoundary - 50, groundLevel, 2, imgSlime2);
+			slime2 = new SlimeFisher(rightBoundary - 50, groundLevel, 2, imgSlime2, this);
 		} else if (player2_slimeType.equals("SlimeGeyser")) {
-			slime2 = new SlimeGeyser(rightBoundary - 50, groundLevel, 2, imgSlime2);
+			slime2 = new SlimeGeyser(rightBoundary - 50, groundLevel, 2, imgSlime2, this);
 		} else if (player2_slimeType.equals("SlimeMagnet")) {
-			slime2 = new SlimeMagnet(rightBoundary - 50, groundLevel, 2, imgSlime2);
+			slime2 = new SlimeMagnet(rightBoundary - 50, groundLevel, 2, imgSlime2, this);
 		} else if (player2_slimeType.equals("SlimeSuperSize")) {
-			slime2 = new SlimeSuperSize(rightBoundary - 50, groundLevel, 2, imgSlime2);
+			slime2 = new SlimeSuperSize(rightBoundary - 50, groundLevel, 2, imgSlime2, this);
 		} else if (player2_slimeType.equals("SlimeSuper")) {
-			slime2 = new SlimeSuper(rightBoundary - 50, groundLevel, 2, imgSlime2);
+			slime2 = new SlimeSuper(rightBoundary - 50, groundLevel, 2, imgSlime2, this);
 		}
-		ball = new Ball((leftBoundary + rightBoundary)/2, groundLevel - 12 - 20);
-		goal1 = new Goal(leftBoundary);
-		goal2 = new Goal(rightBoundary);
+		ball = new Ball((leftBoundary + rightBoundary)/2, groundLevel - 12 - 100, this);
+		goal1 = new Goal(leftBoundary, this);
+		goal2 = new Goal(rightBoundary, this);
 	}
 	
-	public static void update() {
+	public void update() {
 		// update positions
 		slime1.update();
 		slime2.update();
@@ -201,7 +226,7 @@ public class Game {
 
 	}
 	
-	private static void goalScored(int playerThatScored) {
+	private void goalScored(int playerThatScored) {
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
