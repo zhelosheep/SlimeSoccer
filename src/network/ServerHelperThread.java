@@ -32,6 +32,47 @@ public class ServerHelperThread extends Thread {
 							}
 						}
 					}
+					
+					/*Corresponding data transfers
+					E - player1 xcoord
+					F - player1 ycoord
+					G - player2 xcoord
+					H - player2 ycoord
+					
+					I - ball xcoord
+					J - ball ycoord
+					*/
+					
+					// TO DO: Parser in the clientthread!
+					else if (str.charAt(0) == 'E')	//player1 xcoord
+					{
+						//push the string to a player1 handler which will parse into integer
+					}
+					
+					else if (str.charAt(0) == 'F') //player1 ycoord
+					{
+						//push the string to a player1 handler which will parse into integer
+					}
+					
+					else if (str.charAt(0) == 'G') //player2 xcoord
+					{
+						//push the string to a player2 handler which will parse into integer
+					}
+					
+					else if (str.charAt(0) == 'H') //player2 ycoord
+					{
+						//push the string to a player2 handler which will parse into integer
+					}
+					
+					else if (str.charAt(0) == 'I') //ball xcoord
+					{
+						//push the string to a ball handler which will parse into integer
+					}
+					
+					else if (str.charAt(0) == 'J') //ball ycoord
+					{
+						//push the string to a ball handler which will parse into integer
+					}
 				}
 			} catch (IOException ioe) {
 				System.out.println("IOException in ServerHelperThread.run(): " + ioe.getMessage());
