@@ -151,13 +151,14 @@ public class SignUpPage extends JFrame{
 				
 				if (!LoginPage.sqli.findUser(u)) {
 					LoginPage.sqli.register(fn, ln, u, pw, avatar, desc);
+					if (LoginPage.sqli.findUser(u)) {
+						(new MainMenuUser(usernameField.getText())).setVisible(true);
+						dispose();
+					} else {
+						JOptionPane.showMessageDialog(SignUpPage.this, "Signup failed", "Registration Error", JOptionPane.ERROR_MESSAGE);
+					}
 				} else {
-					JOptionPane.showMessageDialog(SignUpPage.this, "User already Exists", "Invalid Sign Up", JOptionPane.ERROR_MESSAGE);
-				}
-				
-				if (LoginPage.sqli.findUser(u)) {
-					(new MainMenuUser(usernameField.getText())).setVisible(true);
-					dispose();
+					JOptionPane.showMessageDialog(SignUpPage.this, "User already Exists", "Invalid Signup", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
