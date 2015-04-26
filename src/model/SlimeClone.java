@@ -7,14 +7,14 @@ import java.awt.image.BufferedImage;
 public class SlimeClone extends Slime {
 	Slime clone;
 	
-public SlimeClone(int x, int y, int player, BufferedImage slimeImage, Game game) {
-	super(x, y, player, slimeImage, game);
+public SlimeClone(int x, int y, int player, BufferedImage slimeImage, Variables variables) {
+	super(x, y, player, slimeImage, variables);
 	}
 
 	public void useSpecialPower() {
 		new Thread() {
 			public void run() {
-				clone = new Slime(x, y, player, slimeImage, game);
+				clone = new Slime(x, y, player, slimeImage, variables);
 				specialPowerBeingUsed = true;
 				try {
 					Thread.sleep(5000);
@@ -52,11 +52,11 @@ public SlimeClone(int x, int y, int player, BufferedImage slimeImage, Game game)
 			
 			
 			// not good programming practice but I put it in here anyways (model functionality in paint component)
-			Double [] cloneCollideNewVelocities = clone.detectCollision(game.ball);
+			Double [] cloneCollideNewVelocities = clone.detectCollision(variables.ball);
 			if (cloneCollideNewVelocities[0] != null) {
-				game.ball.velocityX = cloneCollideNewVelocities[0].intValue();
-				game.ball.velocityY = cloneCollideNewVelocities[1].intValue();
-				game.ball.callMove();
+				variables.ball.velocityX = cloneCollideNewVelocities[0].intValue();
+				variables.ball.velocityY = cloneCollideNewVelocities[1].intValue();
+				variables.ball.callMove();
 			}
 		}
 		

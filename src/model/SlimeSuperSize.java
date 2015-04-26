@@ -5,8 +5,8 @@ import java.awt.image.BufferedImage;
 public class SlimeSuperSize extends Slime {
 	int maxSize = 268;
 	
-	public SlimeSuperSize(int x, int y, int player, BufferedImage slimeImage, Game game) {
-		super(x, y, player, slimeImage, game);
+	public SlimeSuperSize(int x, int y, int player, BufferedImage slimeImage, Variables variables) {
+		super(x, y, player, slimeImage, variables);
 	}
 
 	public void useSpecialPower() {

@@ -7,8 +7,6 @@ import java.net.Socket;
 import java.util.HashSet;
 import java.util.Set;
 
-import model.Game;
-
 public class ServerHelperThread extends Thread {
 	Socket s;
 	PrintWriter pw;
@@ -110,15 +108,32 @@ public class ServerHelperThread extends Thread {
 					else if (str.charAt(0) == 'O')
 					{
 						System.out.println("in O");
+						System.out.println(str);
+						
 						synchronized (st) {
 							if (opponentThread.readyToPlay) {
 								opponentThread.readyToPlay = false;
 								HashSet<ServerHelperThread> set = new HashSet<ServerHelperThread>();
 								set.add(opponentThread);
 								set.add(this);
-								// this shouldn't be hardcoded, decode the string here!!
-								st.ongoingGames.put(new Game("desk", "SlimeBowAndArrow", "SlimeGeyser", "shawnren", "josemama", 100, 100, 1, "antigravity"), set);
-								System.out.println("making game");
+								str = str.substring(2);
+								String delims = "[$]";
+								String [] tokens = str.split(delims);
+								for (int i = 0; i < tokens.length; i++)
+								{
+									System.out.println(tokens[i]);
+									//tokens[0] = p1SlimeType
+									//tokens[1] = p2SlimeType
+									//tokens[2] = p1Username
+									//tokens[3] = p2Username
+									//tokens[4] = special mode
+									//tokens[5] = backgroundCombo
+									//tokens[6] = regenRate
+									//tokens[7] = totalMana
+								}
+								GameThread gt = new GameThread(tokens[5], tokens[0], tokens[1], tokens[2], tokens[3], Integer.valueOf(tokens[7]), Integer.valueOf(tokens[7]), Integer.valueOf(tokens[6]), tokens[4]);
+								st.ongoingGames.put(gt, set);
+								// made the game on the server, now set variables for the two clients
 							} else {
 								this.readyToPlay = true;
 							}

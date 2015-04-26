@@ -9,11 +9,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -26,6 +24,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 
 public class Profile extends JFrame{
+	private static final long serialVersionUID = 1L;
 	private String u;
 	private JFrame prevScreen;
 	
@@ -278,6 +277,13 @@ public class Profile extends JFrame{
 		addFriend.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				LoginPage.sqli.setFriends(MainMenuUser.username, u);
+				
+				// check achievement
+				// Social Butterfly – Have over 25 friends
+				if (LoginPage.sqli.getFriends(MainMenuUser.username).size() == 25 && !LoginPage.sqli.checkAchievement(MainMenuUser.username, LoginPage.soc_a.getName())) {
+					LoginPage.sqli.setAchievement(MainMenuUser.username, LoginPage.soc_a);
+					JOptionPane.showMessageDialog(Profile.this, "You received the SOCIAL BUTTERFLY achievement!", "Achievement Earned!", JOptionPane.INFORMATION_MESSAGE);
+				}
 			}
 		});
 	}

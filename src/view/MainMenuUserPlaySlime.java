@@ -22,8 +22,9 @@ import javax.swing.JSlider;
 public class MainMenuUserPlaySlime extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private JButton continueButton, backButton;
-	public String p1Username, p2Username;
+	public String p1Username, p2Username, p1SlimeType, p2SlimeType;
 	private String[] slimeNames, slimeAbilities, specialSlimeNames, specialSlimeDescriptions;	//for label purposes
+	private String[] slimeTypes; //for passing to game instantiation
 	private JButton[] slimeButtons;
 	private JButton[] specialSlimes;
 	public JLabel p1UsernameLabel, p2UsernameLabel;
@@ -107,49 +108,91 @@ public class MainMenuUserPlaySlime extends JFrame{
 		// ~ *** ~~ SPECIAL SLIMES ~~~ *** ~
 		// list of achievements: chris_a, loser_a, nolife_a, noob_a, pack_a, soc_a, unath_a, vict_a, wrongw_a
 		// images
-		specialSlimes = new JButton[9];
+		specialSlimes = new JButton[8];
 		specialSlimes[0] = new JButton(new ImageIcon("resources/game/specialslimes/3DSlime.png"));
 		specialSlimes[1] = new JButton(new ImageIcon("resources/game/specialslimes/Butterfly.png"));
 		specialSlimes[2] = new JButton(new ImageIcon("resources/game/specialslimes/CristianoRonaldoSlime.png"));
-		specialSlimes[3] = new JButton(new ImageIcon("resources/game/specialslimes/CrossEyed.png"));
+		specialSlimes[3] = new JButton(new ImageIcon("resources/game/specialslimes/SweaterSlime.png"));
 		specialSlimes[4] = new JButton(new ImageIcon("resources/game/specialslimes/Crown.png"));
 		specialSlimes[5] = new JButton(new ImageIcon("resources/game/specialslimes/Dunce.png"));
 		specialSlimes[6] = new JButton(new ImageIcon("resources/game/specialslimes/LSlime.png"));
 		specialSlimes[7] = new JButton(new ImageIcon("resources/game/specialslimes/Potato.png"));
-		specialSlimes[8] = new JButton(new ImageIcon("resources/game/specialslimes/SweaterSlime.png"));
 		
-		for (int i = 0; i < specialSlimes.length; i++) {
-			specialSlimes[i].setEnabled(false);
+		
+		// check unlock of special achievement slimes
+		if (!LoginPage.sqli.checkAchievement(MainMenuUser.username, LoginPage.pack_a.getName())) {
+			specialSlimes[0].setEnabled(false);
+		}
+		if (!LoginPage.sqli.checkAchievement(MainMenuUser.username, LoginPage.soc_a.getName())) {
+			specialSlimes[1].setEnabled(false);
+		} 
+		if (!LoginPage.sqli.checkAchievement(MainMenuUser.username, LoginPage.chris_a.getName())) {
+			specialSlimes[2].setEnabled(false);
+		}
+		if (!LoginPage.sqli.checkAchievement(MainMenuUser.username, LoginPage.unath_a.getName())) {
+			specialSlimes[3].setEnabled(false);
+		}
+		if (!LoginPage.sqli.checkAchievement(MainMenuUser.username, LoginPage.vict_a.getName())) {
+			specialSlimes[4].setEnabled(false);
+		}
+		if (!LoginPage.sqli.checkAchievement(MainMenuUser.username, LoginPage.noob_a.getName())) {
+			specialSlimes[5].setEnabled(false);
+		}
+		if (!LoginPage.sqli.checkAchievement(MainMenuUser.username, LoginPage.loser_a.getName())) {
+			specialSlimes[6].setEnabled(false);
+		}
+		if (!LoginPage.sqli.checkAchievement(MainMenuUser.username, LoginPage.nolife_a.getName())) {
+			specialSlimes[7].setEnabled(false);
 		}
 		
 		// names
-		specialSlimeNames = new String[9];
+		specialSlimeNames = new String[8];
 		specialSlimeNames[0] = "<html><div style=\"text-align: center;\">3D Slime";
 		specialSlimeNames[1] = "<html><div style=\"text-align: center;\">Butterfly Slime";
 		specialSlimeNames[2] = "<html><div style=\"text-align: center;\">Cristiano Ronaldo Slime";
-		specialSlimeNames[3] = "<html><div style=\"text-align: center;\">Cross Eyed Slime";
+		specialSlimeNames[3] = "<html><div style=\"text-align: center;\">Sweater Slime";
 		specialSlimeNames[4] = "<html><div style=\"text-align: center;\">Crown Slime";
 		specialSlimeNames[5] = "<html><div style=\"text-align: center;\">Dunce Slime'";
 		specialSlimeNames[6] = "<html><div style=\"text-align: center;\">LSlime";
 		specialSlimeNames[7] = "<html><div style=\"text-align: center;\">Potato Slime";
-		specialSlimeNames[8] = "<html><div style=\"text-align: center;\">Sweater Slime";
+		
+		// slimeTypes for passing to SHT and using in game instantiation
+		slimeTypes = new String[19];
+		slimeTypes[0] = "SlimeBomb";
+		slimeTypes[1] = "SlimeBowAndArrow";
+		slimeTypes[2] = "SlimeClone";
+		slimeTypes[3] = "SlimeCosmic";
+		slimeTypes[4] = "SlimeFireBall";
+		slimeTypes[5] = "SlimeFisher";
+		slimeTypes[6] = "SlimeGeyser";
+		slimeTypes[7] = "SlimeMagnet";
+		slimeTypes[8] = "SlimeSuperSize";
+		slimeTypes[9] = "SlimeSuper";
+		slimeTypes[10] = "Slime3D";
+		slimeTypes[11] = "SlimeButterfly";
+		slimeTypes[12] = "SlimeRonaldo";
+		slimeTypes[13] = "SlimeCrossEyed";
+		slimeTypes[14] = "SlimeCrown";
+		slimeTypes[15] = "SlimeDunce";
+		slimeTypes[16] = "LSlime";
+		slimeTypes[17] = "SlimePotato";
+		slimeTypes[18] = "SlimeSweater";
 		
 		// descriptions
-		specialSlimeDescriptions = new String[9];
-		specialSlimeDescriptions[0] = "<html><div style=\"text-align: center;\">Don’t move your slime at all during a game";
-		specialSlimeDescriptions[1] = "<html><div style=\"text-align: center;\">Have over 25 friends";
-		specialSlimeDescriptions[2] = "<html><div style=\"text-align: center;\">Have a 2:1 win lose ratio or greater";
-		specialSlimeDescriptions[3] = "<html><div style=\"text-align: center;\">Score on yourself";
-		specialSlimeDescriptions[4] = "<html><div style=\"text-align: center;\">Win 10 games";
-		specialSlimeDescriptions[5] = "<html><div style=\"text-align: center;\">Play first game'";
-		specialSlimeDescriptions[6] = "<html><div style=\"text-align: center;\">Lose 5 games in a row";
-		specialSlimeDescriptions[7] = "<html><div style=\"text-align: center;\">Play 1000 games";
-		specialSlimeDescriptions[8] = "<html><div style=\"text-align: center;\">Have a 1:10 win/loss ratio or less";
+		specialSlimeDescriptions = new String[8];
+		specialSlimeDescriptions[0] = "<html><div style=\"text-align: center;\">Packing on the Pounds";
+		specialSlimeDescriptions[1] = "<html><div style=\"text-align: center;\">Social Butterfly";
+		specialSlimeDescriptions[2] = "<html><div style=\"text-align: center;\">Cristiano Ronaldo";
+		specialSlimeDescriptions[3] = "<html><div style=\"text-align: center;\">Unathletic Athlete";
+		specialSlimeDescriptions[4] = "<html><div style=\"text-align: center;\">Victorious";
+		specialSlimeDescriptions[5] = "<html><div style=\"text-align: center;\">N00b'";
+		specialSlimeDescriptions[6] = "<html><div style=\"text-align: center;\">Loser";
+		specialSlimeDescriptions[7] = "<html><div style=\"text-align: center;\">No Life Award";
 		
 		p1SlimeImageLabel = new JLabel(slimeButtons[0].getIcon());
 		p2SlimeImageLabel = new JLabel(slimeButtons[1].getIcon());
 		
-		String[] specialModeOptions = { "Anti-Gravity", "Giant Ball", "Multiple Balls", "Mini Slime" };
+		String[] specialModeOptions = { "None", "Anti-Gravity", "Giant Ball", "Mini Slime" };
 		String[] backgroundOptions = { "Desk", "Soccer Field", "Outer Space", "Laptop Screen" };
 		specialModeCombo = new JComboBox<String>(specialModeOptions);
 		backgroundCombo = new JComboBox<String>(backgroundOptions);
@@ -206,8 +249,8 @@ public class MainMenuUserPlaySlime extends JFrame{
 		jp1.add(jp3);
 		JPanel jp4 = new JPanel();
 		jp4.setLayout(new GridLayout(2, 5));
-		for (int i = 0; i < 10; i++) jp4.add(slimeButtons[i]);
-		for (int i = 0; i < 9; i++) jp4.add(specialSlimes[i]);
+		for (int i = 0; i < slimeButtons.length; i++) jp4.add(slimeButtons[i]);
+		for (int i = 0; i < specialSlimes.length; i++) jp4.add(specialSlimes[i]);
 		jp4.setBorder(BorderFactory.createEmptyBorder(0, 100, 0, 100));
 		centerPanel.add(jp1);
 		centerPanel.add(jp4);		
@@ -265,11 +308,12 @@ public class MainMenuUserPlaySlime extends JFrame{
 					p1SlimeImageLabel.setIcon(slimeButtons[index].getIcon());
 					p1SlimeNameLabel.setText(slimeNames[index]);
 					p1SlimeAbilityLabel.setText(slimeAbilities[index]);
-					
+					p1SlimeType = slimeTypes[index];
 				} else {
 					p2SlimeImageLabel.setIcon(slimeButtons[index].getIcon());
 					p2SlimeNameLabel.setText(slimeNames[index]);
 					p2SlimeAbilityLabel.setText(slimeAbilities[index]);
+					p2SlimeType = slimeTypes[index];
 				}
 			}	
 		}
@@ -286,19 +330,21 @@ public class MainMenuUserPlaySlime extends JFrame{
 					p1SlimeImageLabel.setIcon(specialSlimes[index].getIcon());
 					p1SlimeNameLabel.setText(specialSlimeNames[index]);
 					p1SlimeAbilityLabel.setText(specialSlimeDescriptions[index]);
+					p1SlimeType = slimeTypes[10 + index];
 				} else {
 					p2SlimeImageLabel.setIcon(specialSlimes[index].getIcon());
 					p2SlimeNameLabel.setText(specialSlimeNames[index]);
 					p2SlimeAbilityLabel.setText(specialSlimeDescriptions[index]);
+					p2SlimeType = slimeTypes[10 + index];
 				}
 			}
 		}
 		
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < slimeButtons.length; i++) {
 			slimeButtons[i].addActionListener(new SlimeButtonListener(i));
 		}
 		
-		for (int i = 0; i < 9; i++) {
+		for (int i = 0; i < specialSlimes.length; i++) {
 			specialSlimes[i].addActionListener(new SpecialSlimeListener(i));
 		}
 		backButton.addActionListener(new ActionListener() {
@@ -312,10 +358,12 @@ public class MainMenuUserPlaySlime extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				if (!isPvCGame) {
 					if (isPlayer1) {
-						((MainMenuUserPlayPlayer) prevScreen).prevScreen.sWriter.println("O1"); // append game settings!						
+						((MainMenuUserPlayPlayer) prevScreen).prevScreen.sWriter.println("O1" + p1SlimeType + "$" + p2SlimeType + "$" + p1Username + "$" + p2Username + "$" + specialModeCombo.getSelectedItem().toString() + "$" + backgroundCombo.getSelectedItem().toString() + "$" + regenRateSlider.getValue() + "$" + totalManaSlider.getValue()); // append game settings!						
+						//System.out.println("O1" + "$" + specialModeCombo.getSelectedItem().toString() + "$" + backgroundCombo.getSelectedItem().toString() + "$" + regenRateSlider.getValue() + "$" + totalManaSlider.getValue());
 						((MainMenuUserPlayPlayer) prevScreen).prevScreen.sWriter.flush();						
 					} else {
-						((MainMenuUserPlayPlayer) prevScreen).prevScreen.sWriter.println("O2");												
+						((MainMenuUserPlayPlayer) prevScreen).prevScreen.sWriter.println("O2" + p1SlimeType + "$" + p2SlimeType + "$" + p1Username + "$" + p2Username + "$" + specialModeCombo.getSelectedItem().toString() + "$" + backgroundCombo.getSelectedItem().toString() + "$" + regenRateSlider.getValue() + "$" + totalManaSlider.getValue()); // append game settings!						
+						//System.out.println("O2" + "$" + specialModeCombo.getSelectedItem().toString() + "$" + backgroundCombo.getSelectedItem().toString() + "$" + regenRateSlider.getValue() + "$" + totalManaSlider.getValue());												
 						((MainMenuUserPlayPlayer) prevScreen).prevScreen.sWriter.flush();
 					}
 				}

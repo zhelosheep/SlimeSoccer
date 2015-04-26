@@ -13,6 +13,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -147,7 +148,13 @@ public class SignUpPage extends JFrame{
 		submitButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//register(String fn, String ln, String u, String pw, int img, String desc)
-				LoginPage.sqli.register(fn, ln, u, pw, avatar, desc);
+				
+				if (!LoginPage.sqli.findUser(u)) {
+					LoginPage.sqli.register(fn, ln, u, pw, avatar, desc);
+				} else {
+					JOptionPane.showMessageDialog(SignUpPage.this, "User already Exists", "Invalid Sign Up", JOptionPane.ERROR_MESSAGE);
+				}
+				
 				if (LoginPage.sqli.findUser(u)) {
 					(new MainMenuUser(usernameField.getText())).setVisible(true);
 					dispose();

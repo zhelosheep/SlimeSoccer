@@ -7,7 +7,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.PrintWriter;
-
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -20,11 +19,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.text.DefaultCaret;
-
-import model.Game;
+import network.GameThread;
 import controller.Controller;
 
 public class GameScreen extends JFrame{
+	private static final long serialVersionUID = 1L;
 	public JTextArea chatArea;
 	private JTextField chatField;
 	private JButton sendButton, logoutButton, settingsButton;
@@ -34,8 +33,8 @@ public class GameScreen extends JFrame{
 	public BufferedReader sReader;
 	PrintWriter sWriter;
 	public static Canvas primary;
-	public static Game model;
 	public static Controller controller;
+	public static GameThread gt;
 	
 	public GameScreen(String username)
 	{
@@ -46,7 +45,6 @@ public class GameScreen extends JFrame{
 		addComponents();
 		addListeners();
 		setResizable(false);
-		setVisible(true);
 	}
 
 	private void instantiateVariables()
@@ -60,12 +58,11 @@ public class GameScreen extends JFrame{
 		slimeSoccerLabel.setFont(new Font("Arial", Font.BOLD, 20));
 		slimeSoccerLabel.setBorder(BorderFactory.createEmptyBorder(5, 15, 5, 5));
 		
-		// set up model
-		model = new Game("outerspace", "SlimeFireball", "SlimeSuperSize", "shawnren", "josemama", 100, 100, 1, "");
+		gt = new GameThread("Outer Space", "SlimeBowAndArrow", "SlimeSuperSize", "shawnren", "josemama", 100, 100, 1, "");
 		// set up controller
 		controller = new Controller();
 
-		primary = new Canvas(model);
+		primary = new Canvas();
 	}
 	
 	private void addComponents()
@@ -144,8 +141,51 @@ public class GameScreen extends JFrame{
 		});
 	}
 	
+	public void checkAchievements() {
+		// N00b – Play first game
+		if (LoginPage.sqli.getGames(username) == 1 && !LoginPage.sqli.checkAchievement(username, LoginPage.noob_a.getName())) {
+			LoginPage.sqli.setAchievement(username, LoginPage.noob_a);
+		}
+		
+		// No Life Award – Play 1000 games
+		if (LoginPage.sqli.getGames(username) == 1000 && !LoginPage.sqli.checkAchievement(username, LoginPage.nolife_a.getName())) {
+			LoginPage.sqli.setAchievement(username, LoginPage.nolife_a);
+		}
+	
+		// Victorious – Win 10 games
+		if (LoginPage.sqli.getWins(username) == 10 && !LoginPage.sqli.checkAchievement(username, LoginPage.vict_a.getName())) {
+			LoginPage.sqli.setAchievement(username, LoginPage.vict_a);
+		}
+		
+		// Loser – Lose 5 games in a row
+		if (LoginPage.sqli.getGamesLostInARow(username) == 5 && !LoginPage.sqli.checkAchievement(username, LoginPage.loser_a.getName())) {
+			LoginPage.sqli.setAchievement(username, LoginPage.loser_a);
+		}
+		
+		// Cristiano Ronaldo – Have a 2:1 win lose ratio or greater
+		if (LoginPage.sqli.getRatio(username) >= 2 && !LoginPage.sqli.checkAchievement(username, LoginPage.chris_a.getName())) {
+			LoginPage.sqli.setAchievement(username, LoginPage.chris_a);
+		}
+
+		// Unathletic Athlete – Have a 1:10 win/loss ratio or less
+		if (LoginPage.sqli.getRatio(username) <= 1/10 && LoginPage.sqli.getGames(username) >= 10 && !LoginPage.sqli.checkAchievement(username, LoginPage.unath_a.getName())) {
+			LoginPage.sqli.setAchievement(username, LoginPage.unath_a);
+		}
+		
+		// Packing on the Pounds – Don’t move your slime at all during a game
+		if (!primary.variables.slimeHasMoved_1 && !LoginPage.sqli.checkAchievement(username, LoginPage.pack_a.getName())) {
+			LoginPage.sqli.setAchievement(username, LoginPage.pack_a);
+		}
+
+	}
+	
 	public static void main (String [] args)
 	{
 		GameScreen gamescreen = new GameScreen("techguychen");
+		primary.variables = gt.game.variables;
+		primary.addKeyListener(controller);
+		gamescreen.setVisible(true);
+		gt.start();
+		primary.start();
 	}
 }

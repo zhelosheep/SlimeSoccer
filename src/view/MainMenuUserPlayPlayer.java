@@ -19,6 +19,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.text.DefaultCaret;
 
 public class MainMenuUserPlayPlayer extends JFrame{
@@ -45,6 +47,7 @@ public class MainMenuUserPlayPlayer extends JFrame{
 		avatar = SignUpPage.avatarImages[LoginPage.sqli.getImage(getUsername())];
 		avatarButton = new JButton(avatar);
 		searchButton = new JButton("Search");
+		searchButton.setEnabled(false);
 		randomButton = new JButton("?? Random ??");
 		sendButton = new JButton("Send");
 		chatArea = new JTextArea();
@@ -188,6 +191,37 @@ public class MainMenuUserPlayPlayer extends JFrame{
 				pro.setVisible(true);
 			}
 		});
+		
+		usernameField.getDocument().addDocumentListener(new CheckEmpty());
+	}
+	
+	private class CheckEmpty implements DocumentListener{
+		public void insertUpdate(DocumentEvent e) {
+			EmptyCheck();
+		}
+		
+		public void removeUpdate(DocumentEvent e) {
+			EmptyCheck();
+		}
+
+		public void changedUpdate(DocumentEvent e) {
+			EmptyCheck();
+		}
+	}
+	
+	private void EmptyCheck()
+	{
+		String u = usernameField.getText();
+		
+		if (u.equals(""))
+		{
+			searchButton.setEnabled(false);
+		}
+		
+		else
+		{
+			searchButton.setEnabled(true);
+		}
 	}
 	
 	String getUsername() {
