@@ -116,8 +116,6 @@ public class ServerHelperThread extends Thread {
 								HashSet<ServerHelperThread> set = new HashSet<ServerHelperThread>();
 								set.add(opponentThread);
 								set.add(this);
-								// this shouldn't be hardcoded, decode the string here!!
-								
 								str = str.substring(2);
 								String delims = "[$]";
 								String [] tokens = str.split(delims);
@@ -133,8 +131,9 @@ public class ServerHelperThread extends Thread {
 									//tokens[6] = regenRate
 									//tokens[7] = totalMana
 								}
-								st.ongoingGames.put(new GameThread(tokens[5], tokens[0], tokens[1], tokens[2], tokens[3], Integer.valueOf(tokens[7]), Integer.valueOf(tokens[7]), Integer.valueOf(tokens[6]), tokens[4]), set);
-								System.out.println("making game");
+								GameThread gt = new GameThread(tokens[5], tokens[0], tokens[1], tokens[2], tokens[3], Integer.valueOf(tokens[7]), Integer.valueOf(tokens[7]), Integer.valueOf(tokens[6]), tokens[4]);
+								st.ongoingGames.put(gt, set);
+								// made the game on the server, now set variables for the two clients
 							} else {
 								this.readyToPlay = true;
 							}

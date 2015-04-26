@@ -19,7 +19,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.text.DefaultCaret;
-import model.Ball;
+import network.GameThread;
 import controller.Controller;
 
 public class GameScreen extends JFrame{
@@ -32,8 +32,9 @@ public class GameScreen extends JFrame{
 	private String username;
 	public BufferedReader sReader;
 	PrintWriter sWriter;
-	public Canvas primary;
-	public Controller controller;
+	public static Canvas primary;
+	public static Controller controller;
+	public static GameThread gt;
 	
 	public GameScreen(String username)
 	{
@@ -44,7 +45,6 @@ public class GameScreen extends JFrame{
 		addComponents();
 		addListeners();
 		setResizable(false);
-		setVisible(true);
 	}
 
 	private void instantiateVariables()
@@ -58,6 +58,7 @@ public class GameScreen extends JFrame{
 		slimeSoccerLabel.setFont(new Font("Arial", Font.BOLD, 20));
 		slimeSoccerLabel.setBorder(BorderFactory.createEmptyBorder(5, 15, 5, 5));
 		
+		gt = new GameThread("outerspace", "SlimeBowAndArrow", "SlimeSuperSize", "shawnren", "josemama", 100, 100, 1, "");
 		// set up controller
 		controller = new Controller();
 
@@ -181,7 +182,9 @@ public class GameScreen extends JFrame{
 	public static void main (String [] args)
 	{
 		GameScreen gamescreen = new GameScreen("techguychen");
-		gamescreen.primary.variables.background = "outerspace";
-		gamescreen.primary.variables.ball = new Ball((gamescreen.primary.variables.leftBoundary + gamescreen.primary.variables.rightBoundary)/2, gamescreen.primary.variables.groundLevel - 12 - 100, gamescreen.primary.variables);
+		primary.variables = gt.game.variables;
+		gamescreen.setVisible(true);
+		gt.start();
+		primary.start();
 	}
 }
