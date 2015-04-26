@@ -1,6 +1,7 @@
 package controller;
 
 import java.awt.Image;
+import java.sql.Array;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -78,7 +79,7 @@ public class SqlInstance {
 			ps.setString(2,  ln);
 			ps.setString(3,  u);
 			ps.setString(4,  pw);
-			ps.setInt(5,  img);
+			ps.setObject(5,  img);
 			ps.setString(6, desc);
 			ps.executeUpdate();
 			
@@ -87,126 +88,48 @@ public class SqlInstance {
 		}
 	}
 	
-	public void getAchievement(String u) {
+	public void setAchievement(String u, model.Achievement ach) {
+		ResultSet u_rs = getUser(u);
 		
-	}
-	
-}
-	
-/*		try {
-			// This will load the MySQL driver, each DB has its own driver
-		      Class.forName("com.mysql.jdbc.Driver");
-		      // Setup the connection with the DB
-		      connect = DriverManager.getConnection("jdbc:mysql://localhost/users?user=root&password=rootpassword", "root", "");
-		      
-		      // Statements allow to issue SQL queries to the database
-		      statement = connect.createStatement();
-		      // Result set get the result of the SQL query
-		      resultSet = statement.executeQuery("SELECT * FROM ball_data");
-		      writeResultSet(resultSet);
-
-		      
-		      preparedStatement = connect.prepareStatement("INSERT INTO ball_data VALUES (default, ?, ?, ?, ?, ?)");
-		      //populates the table
-		      preparedStatement.setString(1, "5");
-		      preparedStatement.setString(2, "Testing");
-		      preparedStatement.setString(3, "TestWebpage");
-		      preparedStatement.setString(4, "No");
-		      preparedStatement.executeUpdate();
-		      
-		      preparedStatement = connect.prepareStatement("SELECT * FROM ball_data");
-		      resultSet = preparedStatement.executeQuery();
-		      writeResultSet(resultSet);
-		      
-		      resultSet = statement.executeQuery("SELECT * FROM ball_data");
-		      writeMetaData(resultSet);
-		      
-		      // PreparedStatements can use variables and are more efficient
-		      preparedStatement = connect
-		          .prepareStatement("insert into  feedback.comments values (default, ?, ?, ?, ?, ?, ?)");
-		      // "myuser, webpage, datum, summery, COMMENTS from feedback.comments");
-		      // Parameters start with 1
-		      preparedStatement.setString(1, "Test");
-		      preparedStatement.setString(2, "TestEmail");
-		      preparedStatement.setString(3, "TestWebpage");
-		      preparedStatement.setDate(4, new Date(2009, 12, 11));
-		      preparedStatement.setString(5, "TestSummary");
-		      preparedStatement.setString(6, "TestComment");
-		      preparedStatement.executeUpdate();
-
-		      preparedStatement = connect
-		          .prepareStatement("SELECT myuser, webpage, datum, summery, COMMENTS from feedback.comments");
-		      resultSet = preparedStatement.executeQuery();
-		      writeResultSet(resultSet);
-				
-		      // Remove again the insert comment
-		      preparedStatement = connect
-		      .prepareStatement("delete from feedback.comments where myuser= ? ; ");
-		      preparedStatement.setString(1, "Test");
-		      preparedStatement.executeUpdate();
-		      
-		      resultSet = statement
-		      .executeQuery("select * from feedback.comments");
-		      writeMetaData(resultSet);
-
+		try {
+			int userID = u_rs.getInt("userID");
+			ps = c.prepareStatement("INSERT INTO achievement_data (achievement, userID) VALUE (?, ?)");
+			ps.setObject(1, ach);
+			ps.setInt(2, userID);
+			ps.executeUpdate();
+			
 		} catch (SQLException sqle) {
-			System.out.println("SQLException: " + sqle.getMessage());
-		} catch (ClassNotFoundException cnfe) {
-			System.out.println("Class not found exception: " + cnfe.getMessage());
-		} finally {
-			close();
+			System.out.println("ERROR: " + sqle.getMessage());
 		}
 	}
 	
-	private void writeResultSet(ResultSet resultSet) throws SQLException {
-	    // ResultSet is initially before the first data set
-	    while (resultSet.next()) {
-	      // It is possible to get the columns via name
-	      // also possible to get the columns via the column number
-	      // which starts at 1
-	      // e.g. resultSet.getSTring(2);
-	      String user = resultSet.getString("username");
-	      String firstname = resultSet.getString("firstname");
-	      String lastname = resultSet.getString("lastname");
-	      String password = resultSet.getString("password");
-	      System.out.println("User: " + user);
-	      System.out.println("First name: " + firstname);
-	      System.out.println("Last name: " + lastname);
-	      System.out.println("Password: " + password);
-	    }
-	  }
-	
-	private void writeMetaData(ResultSet resultSet) throws SQLException {
-	    //   Now get some metadata from the database
-	    // Result set get the result of the SQL query
-	    
-	    System.out.println("The columns in the table are: ");
-	    
-	    System.out.println("Table: " + resultSet.getMetaData().getTableName(1));
-	    for  (int i = 1; i<= resultSet.getMetaData().getColumnCount(); i++){
-	      System.out.println("Column " +i  + " "+ resultSet.getMetaData().getColumnName(i));
-	    }
-	  }
-	
-	private void close() {
-	    try {
-	      if (resultSet != null) {
-	        resultSet.close();
-	      }
-
-	      if (statement != null) {
-	        statement.close();
-	      }
-
-	      if (connect != null) {
-	        connect.close();
-	      }
-	    } catch (Exception e) {
-
-	    }
-	  }
+	public model.Achievement[] getAchievements(String u) {
+		ResultSet u_rs = getUser(u);
+		
+		model.Achievement[] achieve = null;
+		
+		try {
+			int userID = u_rs.getInt("userID");
+			Statement st = c.createStatement();
+			ResultSet a_rs = st.executeQuery("SELECT achievement FROM achievement_data WHERE userID = " + userID);
+			Array temp = a_rs.getArray(0);
+			achieve = (model.Achievement[])temp.getArray();
+			System.out.println(achieve.length);
+		} catch (SQLException sqle) {}
+		
+		//insert into achievement_data (achievementID, userID) value (2, 2)
+		
+		return achieve;
+	}
 	
 	public static void main (String [] args) {
-		new SqlInstance();
+		SqlInstance sql = new SqlInstance();
+		sql.setAchievement("zhelo", view.LoginPage.ach[0]);
+		model.Achievement[] a = sql.getAchievements("zhelo");
+		System.out.println(a == null);
+		for (int i = 0; i < a.length; i++) {
+			System.out.println(a[i].getName());
+			System.out.println(a[i].getDescription());
+		}
 	}
-}*/
+}
