@@ -19,6 +19,9 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.text.DefaultCaret;
 
+import model.Game;
+import controller.Controller;
+
 public class GameScreen extends JFrame{
 	public JTextArea chatArea;
 	private JTextField chatField;
@@ -29,6 +32,8 @@ public class GameScreen extends JFrame{
 	public BufferedReader sReader;
 	PrintWriter sWriter;
 	public static Canvas primary;
+	public static Game model;
+	public static Controller controller;
 	
 	public GameScreen(String username)
 	{
@@ -54,6 +59,10 @@ public class GameScreen extends JFrame{
 		slimeSoccerLabel.setBorder(BorderFactory.createEmptyBorder(5, 15, 5, 5));
 		
 		primary = new Canvas();
+		// set up model
+		model = new Game("outerspace", "SlimeFireball", "SlimeSuperSize", "shawnren", "josemama", 100, 100, 1, null);
+		// set up controller
+		controller = new Controller();
 	}
 	
 	private void addComponents()
