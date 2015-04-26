@@ -3,10 +3,17 @@ package model;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.UUID;
 
 import javax.imageio.ImageIO;
 
+import network.ServerThread;
+
 public class Variables {
+	// try 
+	private static boolean[] p1_keyboardState = new boolean[535];
+	private static boolean[] p2_keyboardState = new boolean[535];
+	
 	// image resources
 	public BufferedImage imgBall;
 	public BufferedImage imgBackground;
@@ -36,6 +43,7 @@ public class Variables {
 	public int playerThatWon;
 	public boolean slimeHasMoved_1 = false;
 	public boolean slimeHasMoved_2 = false;
+	public String gameID;
 	
 	public Variables() {
 		try {
@@ -46,6 +54,8 @@ public class Variables {
 		} catch (IOException ioe) {
 			System.out.println("IOException in Variables(): " + ioe.getMessage());
 		}
+		gameID = String.valueOf(ServerThread.idCounter.getAndIncrement());
+
 	}
 	
 	public void setBackground(String background) {

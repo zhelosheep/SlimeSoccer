@@ -27,7 +27,7 @@ public class GameScreen extends JFrame{
 	public JTextArea chatArea;
 	private JTextField chatField;
 	private JButton sendButton, logoutButton, settingsButton;
-	private JLabel slimeSoccerLabel;
+	private JLabel slimeSoccerLabel, uniqueIDLabel;
 	private ImageIcon avatar;
 	private String username;
 	public BufferedReader sReader;
@@ -59,6 +59,12 @@ public class GameScreen extends JFrame{
 		slimeSoccerLabel.setBorder(BorderFactory.createEmptyBorder(5, 15, 5, 5));
 		
 		gt = new GameThread("Outer Space", "SlimeBowAndArrow", "SlimeSuperSize", "shawnren", "josemama", 100, 100, 1, "");
+
+		// has to be after new GameThread() because JLabel takes in a String that is generated in GameThread.Game.Variable
+		uniqueIDLabel = new JLabel("Game ID: " + gt.game.variables.gameID); 
+		uniqueIDLabel.setFont(new Font("Arial", Font.BOLD, 20));
+		uniqueIDLabel.setBorder(BorderFactory.createEmptyBorder(5, 15, 5, 5));
+		
 		// set up controller
 		controller = new Controller();
 
@@ -78,6 +84,7 @@ public class GameScreen extends JFrame{
 		logoutButton.setFont(new Font("Arial", Font.BOLD, 16));
 		logoutButton.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 15));
 		northPanel.add(slimeSoccerLabel);
+		northPanel.add(uniqueIDLabel);
 		northPanel.add(Box.createGlue());
 		northPanel.add(avatarLabel);
 		northPanel.add(settingsButton);
@@ -183,6 +190,7 @@ public class GameScreen extends JFrame{
 	{
 		GameScreen gamescreen = new GameScreen("techguychen");
 		primary.variables = gt.game.variables;
+		primary.addKeyListener(controller);
 		gamescreen.setVisible(true);
 		gt.start();
 		primary.start();

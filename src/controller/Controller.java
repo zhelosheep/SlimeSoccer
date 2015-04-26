@@ -11,7 +11,12 @@ public class Controller implements KeyListener {
         return keyboardState[key];
     }
 
+    public static void changeKeyboardKeyState(int key, boolean state) {
+        keyboardState[key] = state;
+    }
+
 	public void keyPressed(KeyEvent event) {
+		System.out.println("here");
         keyboardState[event.getKeyCode()] = true;
 	}
 

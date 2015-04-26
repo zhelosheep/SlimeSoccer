@@ -16,7 +16,6 @@ public class Canvas extends JPanel implements Runnable {
 		// set up JPanel stuff
 		setFocusable(true);
 		requestFocusInWindow();
-		addKeyListener(Frame.controller);
         setDoubleBuffered(true);
         
         numTimesLeftToPrintScore = -1;
