@@ -23,7 +23,7 @@ import javax.swing.text.DefaultCaret;
 
 public class MainMenuUserPlayPlayer extends JFrame{
 	private static final long serialVersionUID = 1L;
-	private JButton searchButton, sendButton, backButton, randomButton, logoutButton, settingsButton;
+	private JButton searchButton, sendButton, backButton, randomButton, logoutButton, settingsButton, avatarButton;
 	JTextArea chatArea;
 	private JTextField chatField, usernameField;
 	private ImageIcon avatar;
@@ -43,6 +43,7 @@ public class MainMenuUserPlayPlayer extends JFrame{
 	
 	private void instantiateVariables() {
 		avatar = SignUpPage.avatarImages[LoginPage.sqli.getImage(getUsername())];
+		avatarButton = new JButton(avatar);
 		searchButton = new JButton("Search");
 		randomButton = new JButton("?? Random ??");
 		sendButton = new JButton("Send");
@@ -62,7 +63,6 @@ public class MainMenuUserPlayPlayer extends JFrame{
 		JLabel slimeSoccerLabel = new JLabel("Slime Soccer");
 		slimeSoccerLabel.setFont(new Font("Arial", Font.BOLD, 20));
 		slimeSoccerLabel.setBorder(BorderFactory.createEmptyBorder(5, 15, 5, 5));
-		JButton avatarButton = new JButton(avatar);
 		avatarButton.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		settingsButton.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		logoutButton.setFont(new Font("Arial", Font.BOLD, 16));
@@ -174,6 +174,14 @@ public class MainMenuUserPlayPlayer extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				mainMenuUserWaiting.setVisible(true);
 				setVisible(false);
+			}
+		});
+		
+		avatarButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				Profile pro = new Profile(MainMenuUserPlayPlayer.this.getUsername(), MainMenuUserPlayPlayer.this);
+				pro.setVisible(true);
 			}
 		});
 	}
