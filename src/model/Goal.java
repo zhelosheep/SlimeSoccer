@@ -6,17 +6,19 @@ import java.awt.Graphics;
 public class Goal {
 	int x, y;
 	Boolean facingLeft = null;
+	private Game game;
 	
 	final int width = 50, height = 100;
-	public Goal(int boundary) {
-		if (boundary == Game.leftBoundary) {
+	public Goal(int boundary, Game game) {
+		this.game = game;
+		if (boundary == game.leftBoundary) {
 			facingLeft = true;
 			x = boundary;
-		} else if (boundary == Game.rightBoundary) {
+		} else if (boundary == game.rightBoundary) {
 			facingLeft = false;
 			x = boundary; 
 		}
-		y = Game.groundLevel - height;
+		y = game.groundLevel - height;
 	}
 	
 	
@@ -60,15 +62,17 @@ public class Goal {
 		}
 	}
 	public void paint(Graphics g) {
-		if (Game.background.equals("outerspace")) { 
+		if (game.background.equals("outerspace")) { 
 			g.setColor(Color.WHITE); }
 		else {
 			g.setColor(Color.BLACK);
 		}
-		if (x == Game.leftBoundary) {
-			g.drawRect(x, y, width, height);
-		} else if (x == Game.rightBoundary) {
-			g.drawRect(x - 50, y, width, height); //TODO CHANGE THIS WHEN YOU SWITCH TO AN IMAGE
+		if (x == game.leftBoundary) {
+//			g.drawRect(x, y, width, height);
+			g.drawImage(game.imgGoal, x, y, width, height, null);
+		} else if (x == game.rightBoundary) {
+//			g.drawRect(x - 50, y, width, height); //TODO CHANGE THIS WHEN YOU SWITCH TO AN IMAGE
+			g.drawImage(game.imgGoal, x, y, -width, height, null);
 		}
 	}
 }

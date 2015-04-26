@@ -239,7 +239,17 @@ public class MainMenuUserPlaySlime extends JFrame{
 				//no need to add code that updates chat. Chat should not be retroactive since login
 			}
 		});
-		
+		continueButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (!isPvCGame) {
+					if (isPlayer1) {
+						((MainMenuUserPlayPlayer) prevScreen).prevScreen.sWriter.println("O1"); // append game settings!						
+					} else {
+						((MainMenuUserPlayPlayer) prevScreen).prevScreen.sWriter.println("O2");												
+					}
+				}
+			}
+		});
 		//addd action listener on continue button; this should bring us to a settingspage
 	}
 	

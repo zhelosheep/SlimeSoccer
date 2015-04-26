@@ -58,11 +58,12 @@ public class GameScreen extends JFrame{
 		slimeSoccerLabel.setFont(new Font("Arial", Font.BOLD, 20));
 		slimeSoccerLabel.setBorder(BorderFactory.createEmptyBorder(5, 15, 5, 5));
 		
-		primary = new Canvas();
 		// set up model
 		model = new Game("outerspace", "SlimeFireball", "SlimeSuperSize", "shawnren", "josemama", 100, 100, 1, null);
 		// set up controller
 		controller = new Controller();
+
+		primary = new Canvas(model);
 	}
 	
 	private void addComponents()

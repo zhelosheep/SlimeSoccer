@@ -2,6 +2,7 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,8 +19,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 
 public class Profile extends JFrame{
@@ -47,7 +50,7 @@ public class Profile extends JFrame{
 		backButton = new JButton("Back");
 		addFriend = new JButton("Add Friend");
 		
-		if (MainMenuUser.username.equals(u)) {
+		if (MainMenuUser.username.equals(u) || LoginPage.sqli.findFriend(MainMenuUser.username, u)) {
 			addFriend.setEnabled(false);
 			addFriend.setVisible(false);
 		}
@@ -81,7 +84,7 @@ public class Profile extends JFrame{
 		JPanel right = new JPanel();
 		JPanel achievementPanel = new JPanel();
 		JPanel friendsPanel = new JPanel();
-		
+
 		northPanel.setLayout(new BoxLayout(northPanel, BoxLayout.Y_AXIS));
 		header.setLayout(new BoxLayout(header, BoxLayout.X_AXIS));
 		centerPanel.setLayout(new BorderLayout());
@@ -91,6 +94,13 @@ public class Profile extends JFrame{
 		right.setLayout(new BoxLayout(right, BoxLayout.Y_AXIS));
 		achievementPanel.setLayout(new BoxLayout(achievementPanel, BoxLayout.X_AXIS));
 		friendsPanel.setLayout(new BoxLayout(friendsPanel, BoxLayout.X_AXIS));
+		
+		JScrollPane achieveScroll = new JScrollPane(achievementPanel, ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+		JScrollPane friendScroll = new JScrollPane(friendsPanel, ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+		achieveScroll.setMinimumSize(new Dimension(200, 120));
+		achieveScroll.setPreferredSize(new Dimension(200, 120));
+		friendScroll.setMinimumSize(new Dimension(200, 120));
+		friendScroll.setPreferredSize(new Dimension(200, 120));
 		
 		otherSide.setBorder(BorderFactory.createEmptyBorder(30, 0, 0, 0));
 		middle.setBorder(BorderFactory.createEmptyBorder(50, 0, 0, 20));
@@ -153,6 +163,7 @@ public class Profile extends JFrame{
 		
 		for (int i = 0; i < friends.size(); i++) {
 			JPanel group = new JPanel();
+			
 			group.setLayout(new BoxLayout(group, BoxLayout.Y_AXIS));
 			
 			JLabel friendAvatar = new JLabel(SignUpPage.avatarImages[LoginPage.sqli.getImage(friends.get(i))]);
@@ -160,7 +171,6 @@ public class Profile extends JFrame{
 				int i;
 				
 				public void mouseClicked(MouseEvent me) {
-					System.out.println("hi");
 					setVisible(false);
 					Profile pro = new Profile(friends.get(i), Profile.this);
 					pro.setVisible(true);
@@ -182,7 +192,7 @@ public class Profile extends JFrame{
 			friendsPanel.add(group);
 		}
 		
-		right.add(friendsPanel);
+		right.add(friendScroll);
 		
 		for (int i = 0; i< ach.size(); i++) {
 			JPanel group = new JPanel();
@@ -211,7 +221,7 @@ public class Profile extends JFrame{
 			group.add(temp);
 			achievementPanel.add(group);
 		}
-		middle.add(achievementPanel);
+		middle.add(achieveScroll);
 		
 		northPanel.add(header);
 		northPanel.add(searchBar);
