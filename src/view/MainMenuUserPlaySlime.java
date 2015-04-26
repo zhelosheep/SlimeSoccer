@@ -136,7 +136,7 @@ public class MainMenuUserPlaySlime extends JFrame{
 		
 		// descriptions
 		specialSlimeDescriptions = new String[9];
-		specialSlimeDescriptions[0] = "<html><div style=\"text-align: center;\">Don’t move your slime at all during a game";
+		specialSlimeDescriptions[0] = "<html><div style=\"text-align: center;\">Don't move your slime at all during a game";
 		specialSlimeDescriptions[1] = "<html><div style=\"text-align: center;\">Have over 25 friends";
 		specialSlimeDescriptions[2] = "<html><div style=\"text-align: center;\">Have a 2:1 win lose ratio or greater";
 		specialSlimeDescriptions[3] = "<html><div style=\"text-align: center;\">Score on yourself";
@@ -149,7 +149,7 @@ public class MainMenuUserPlaySlime extends JFrame{
 		p1SlimeImageLabel = new JLabel(slimeButtons[0].getIcon());
 		p2SlimeImageLabel = new JLabel(slimeButtons[1].getIcon());
 		
-		String[] specialModeOptions = { "Anti-Gravity", "Giant Ball", "Multiple Balls", "Mini Slime" };
+		String[] specialModeOptions = { "Anti-Gravity", "Giant Ball", "Mini Slime" };
 		String[] backgroundOptions = { "Desk", "Soccer Field", "Outer Space", "Laptop Screen" };
 		specialModeCombo = new JComboBox<String>(specialModeOptions);
 		backgroundCombo = new JComboBox<String>(backgroundOptions);
