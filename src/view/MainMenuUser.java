@@ -33,7 +33,7 @@ public class MainMenuUser extends JFrame{
 	private ImageIcon avatar;
 	private JButton sendButton, playCompButton, playPlayerButton, spectateButton, logoutButton, settingsButton, avatarButton;
 	private static ImageIcon PvPIcon, PvCIcon, SpectateIcon;
-	private String username;
+	public static String username;
 	public JTextArea chatArea;
 	private JTextField chatField;
 	private SettingsPage settingsPage;
