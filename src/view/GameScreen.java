@@ -28,6 +28,7 @@ public class GameScreen extends JFrame{
 	private String username;
 	public BufferedReader sReader;
 	PrintWriter sWriter;
+	public static Canvas primary;
 	
 	public GameScreen(String username)
 	{
@@ -52,6 +53,7 @@ public class GameScreen extends JFrame{
 		slimeSoccerLabel.setFont(new Font("Arial", Font.BOLD, 20));
 		slimeSoccerLabel.setBorder(BorderFactory.createEmptyBorder(5, 15, 5, 5));
 		
+		primary = new Canvas();
 	}
 	
 	private void addComponents()
@@ -80,7 +82,7 @@ public class GameScreen extends JFrame{
 		leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
 		leftPanel.setPreferredSize(new Dimension(300, 200));
 		leftPanel.setBorder(BorderFactory.createEmptyBorder(0, 30, 15, 0));
-		
+		leftPanel.add(primary);
 		
 		
 		JPanel rightPanel = new JPanel();
