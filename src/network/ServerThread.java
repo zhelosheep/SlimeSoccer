@@ -15,13 +15,13 @@ import model.Game;
 public class ServerThread extends Thread{
 	ServerSocket ss;
 	Vector<ServerHelperThread> shtVector;
-	Hashtable<Game, HashSet<ServerHelperThread>> ongoingGames;
+	Hashtable<GameThread, HashSet<ServerHelperThread>> ongoingGames;
 	LinkedList<ServerHelperThread> randomPlayers;
 	HashSet<ServerHelperThread> waitingPlayers;
 	boolean b = true;
 	
 	ServerThread(int port) {
-		ongoingGames = new Hashtable<Game, HashSet<ServerHelperThread>>();
+		ongoingGames = new Hashtable<GameThread, HashSet<ServerHelperThread>>();
 		randomPlayers = new LinkedList<ServerHelperThread>();
 		waitingPlayers = new HashSet<ServerHelperThread>();
 		try {

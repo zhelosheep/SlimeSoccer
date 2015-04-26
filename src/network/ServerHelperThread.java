@@ -7,8 +7,6 @@ import java.net.Socket;
 import java.util.HashSet;
 import java.util.Set;
 
-import model.Game;
-
 public class ServerHelperThread extends Thread {
 	Socket s;
 	PrintWriter pw;
@@ -119,7 +117,7 @@ public class ServerHelperThread extends Thread {
 								set.add(opponentThread);
 								set.add(this);
 								// this shouldn't be hardcoded, decode the string here!!
-								st.ongoingGames.put(new Game("desk", "SlimeBowAndArrow", "SlimeGeyser", "shawnren", "josemama", 100, 100, 1, "antigravity"), set);
+								st.ongoingGames.put(new GameThread("desk", "SlimeBowAndArrow", "SlimeGeyser", "shawnren", "josemama", 100, 100, 1, "antigravity"), set);
 								System.out.println("making game");
 							} else {
 								this.readyToPlay = true;
