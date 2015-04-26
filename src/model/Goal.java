@@ -66,9 +66,11 @@ public class Goal {
 			g.setColor(Color.BLACK);
 		}
 		if (x == Game.leftBoundary) {
-			g.drawRect(x, y, width, height);
+//			g.drawRect(x, y, width, height);
+			g.drawImage(Game.imgGoal, x, y, width, height, null);
 		} else if (x == Game.rightBoundary) {
-			g.drawRect(x - 50, y, width, height); //TODO CHANGE THIS WHEN YOU SWITCH TO AN IMAGE
+//			g.drawRect(x - 50, y, width, height); //TODO CHANGE THIS WHEN YOU SWITCH TO AN IMAGE
+			g.drawImage(Game.imgGoal, x, y, -width, height, null);
 		}
 	}
 }

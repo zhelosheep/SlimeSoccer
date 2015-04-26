@@ -8,8 +8,10 @@ public class SlimeFireball extends Slime {
 	}
 
 	public void useSpecialPower() {
-		Game.ball.velocityX *= 1.2;
-		Game.ball.velocityY *= 1.2;
+//		if (Math.sqrt(Math.pow(Game.ball.velocityX,2) + Math.pow(Game.ball.velocityY,2)) < 20) { // limits speed of ball
+			Game.ball.velocityX *= 1.2;
+			Game.ball.velocityY *= 1.2;
+//		}
 	}
 
 }

@@ -8,6 +8,13 @@ public class SlimeFisher extends Slime {
 	}
 
 	public void useSpecialPower() {
-		
+		slimeImage = Game.imgFisherSpecial;
+	}
+	public void retractSpecialPower() {
+		if (player == 1) {
+			slimeImage = Game.imgSlime1;
+		} else if (player == 2) {
+			slimeImage = Game.imgSlime2;
+		}
 	}
 }
