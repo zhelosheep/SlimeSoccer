@@ -5,10 +5,12 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
-
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -23,9 +25,6 @@ import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.DefaultCaret;
-
-import chat.ChatClient;
-import chat.ChatServer;
 
 public class MainMenuUser extends JFrame{
 	private static final long serialVersionUID = 1L;
@@ -129,7 +128,12 @@ public class MainMenuUser extends JFrame{
 	}
 	
 	private void addListeners() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				quit();
+			}
+		});
 		logoutButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				(new LoginPage()).setVisible(true);
@@ -195,7 +199,23 @@ public class MainMenuUser extends JFrame{
 		return username;
 	}
 	
-	public static void main(String[] args) {
-		(new MainMenuUser("faketechguy")).setVisible(true);
+	void quit() {
+		try {
+			if (sReader != null) {
+				sReader.close();
+				sReader = null;
+			}
+			if (sWriter != null) {
+				sWriter.close();
+				sWriter = null;
+			}
+			if (s != null) {
+				s.close();
+				s = null;
+			}
+		} catch (IOException ioe) {
+			System.out.println("IOException in MainMenuGuest.quit(): " + ioe.getMessage());
+		}
+		System.exit(0);
 	}
 }

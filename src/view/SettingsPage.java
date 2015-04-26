@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -70,7 +72,13 @@ public class SettingsPage extends JFrame{
 	}
 	
 	private void addListeners() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				prevScreen.setVisible(true);
+				setVisible(false);
+			}
+		});
 		saveButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				prevScreen.setVisible(true);
@@ -87,9 +95,5 @@ public class SettingsPage extends JFrame{
 	
 	void setPrevScreen(JFrame prevScreen) {
 		this.prevScreen = prevScreen;
-	}
-	
-	public static void main(String[] args) {
-		(new SettingsPage()).setVisible(true);
 	}
 }

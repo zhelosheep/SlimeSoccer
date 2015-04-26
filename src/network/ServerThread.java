@@ -32,7 +32,6 @@ public class ServerThread extends Thread{
 				sht.pw = new PrintWriter(sht.s.getOutputStream());
 				shtVector.addElement(sht);
 				sht.start();
-				System.out.println("accepted " + shtVector.size());
 			} catch (IOException ioe) {
 				System.out.println("IOException in AcceptThread: " + ioe.getMessage());
 			}

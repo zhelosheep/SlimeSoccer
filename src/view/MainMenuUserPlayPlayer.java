@@ -5,7 +5,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -126,7 +127,12 @@ public class MainMenuUserPlayPlayer extends JFrame{
 	}
 	
 	private void addListeners() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				quit();
+			}
+		});
 		logoutButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				(new LoginPage()).setVisible(true);
@@ -150,7 +156,7 @@ public class MainMenuUserPlayPlayer extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				prevScreen.sWriter.println("C" + prevScreen.getUsername() + ": " + chatField.getText());
 				prevScreen.sWriter.flush();
-				chatArea.setText(chatArea.getText() + "\n" + prevScreen.getUsername() + ": " + chatField.getText());
+				prevScreen.chatArea.setText(prevScreen.chatArea.getText() + "\n" + prevScreen.getUsername() + ": " + chatField.getText());
 				chatField.setText("");
 			}
 		});
@@ -159,7 +165,8 @@ public class MainMenuUserPlayPlayer extends JFrame{
 	String getUsername() {
 		return prevScreen.getUsername();
 	}
-	public static void main(String[] args) {
-		(new MainMenuUserPlayPlayer(new MainMenuUser("tommytro"))).setVisible(true);
+	
+	void quit() {
+		prevScreen.quit();
 	}
 }
