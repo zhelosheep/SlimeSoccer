@@ -38,7 +38,9 @@ public class LoginPage extends JFrame{
 	public static final controller.SqlInstance sqli= new controller.SqlInstance();
 	
 	//achievements
+	//this array of Achievement objects
 	public static final Achievement[] ach;
+	//imageicons for each of the 8 achievements
 	private static final ImageIcon chrisronaldo, loser, nolife, noob, packingpounds, socbutterfly, unathathlete, victorious;
 	
 	static {
