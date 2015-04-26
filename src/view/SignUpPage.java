@@ -24,11 +24,21 @@ public class SignUpPage extends JFrame{
 	private JButton submitButton, backButton;
 	private JTextField fNameField, lNameField, usernameField, descField;
 	private JPasswordField passwordField;
+	private JButton[] avatarButtons;
 	private int avatar = -1;
 	private String fn, ln, u, pw, desc;
 
-	public static JButton[] avatarButtons;
-
+	public static final ImageIcon[] avatarImages;
+	
+	// import icons
+	static {
+		avatarImages = new ImageIcon[8];
+		
+		for (int i = 0; i < avatarImages.length; i++) {
+			avatarImages[i] = new ImageIcon("resources/SoccerBall.png");
+		}
+	}
+	
 	public SignUpPage() {
 		setSize(800, 600);
 		setLocation(300,100);
@@ -47,7 +57,7 @@ public class SignUpPage extends JFrame{
 		passwordField = new JPasswordField(15);
 		descField = new JTextField(15);
 		avatarButtons = new JButton[10];
-		for (int i = 0; i < 10; i++) avatarButtons[i] = new JButton(new ImageIcon("resources/SoccerBall.png"));
+		for (int i = 0; i < 10; i++) avatarButtons[i] = new JButton(avatarImages[i]);
 	}
 	
 	private void addComponents() {
