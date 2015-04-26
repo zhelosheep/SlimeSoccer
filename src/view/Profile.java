@@ -8,6 +8,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public abstract class Profile extends JFrame{
@@ -44,12 +45,15 @@ public abstract class Profile extends JFrame{
 		int loss = LoginPage.sqli.getLosses(u);
 		ArrayList<model.Achievement> ach = LoginPage.sqli.getAchievements(u);
 		
+		JPanel northPanel = new JPanel();
+		JPanel searchBar = new JPanel();
+		
+		
 		JLabel slimeSoccerLabel = new JLabel("Slime Soccer");
 		slimeSoccerLabel.setFont(new Font("Arial", Font.BOLD, 20));
 		slimeSoccerLabel.setBorder(BorderFactory.createEmptyBorder(5, 15, 5, 5));
 		backButton.setFont(new Font("Arial", Font.BOLD, 16));
 		backButton.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 15));
-		
 		
 	}
 	
