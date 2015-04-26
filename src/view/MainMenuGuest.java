@@ -170,6 +170,8 @@ public class MainMenuGuest extends JFrame{
 	
 	void quit() {
 		try {
+			sWriter.println("Z");
+			sWriter.flush();
 			if (s != null) {
 				s.shutdownInput();
 				s.shutdownOutput();

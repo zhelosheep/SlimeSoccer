@@ -29,7 +29,7 @@ public class MainMenuUserPlayPlayer extends JFrame{
 	private ImageIcon avatar;
 	private MainMenuUser prevScreen;
 	private static JLabel playPlayerLabel;
-	private MainMenuUserWaiting mainMenuUserWaiting;
+	public MainMenuUserWaiting mainMenuUserWaiting;
 
 	public MainMenuUserPlayPlayer(MainMenuUser prevScreen) {
 		setSize(800, 600);
@@ -166,12 +166,16 @@ public class MainMenuUserPlayPlayer extends JFrame{
 		});
 		searchButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				prevScreen.sWriter.println("Q" + usernameField.getText());
+				prevScreen.sWriter.flush();
 				mainMenuUserWaiting.setVisible(true);
 				setVisible(false);
 			}
 		});
 		randomButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				prevScreen.sWriter.println("P");
+				prevScreen.sWriter.flush();
 				mainMenuUserWaiting.setVisible(true);
 				setVisible(false);
 			}

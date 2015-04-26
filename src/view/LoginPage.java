@@ -7,7 +7,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.File;
@@ -158,14 +157,16 @@ public class LoginPage extends JFrame{
 						mmu.s = new Socket(hostField.getText(), 6789);
 						mmu.sReader = new BufferedReader(new InputStreamReader(mmu.s.getInputStream()));
 						mmu.sWriter = new PrintWriter(mmu.s.getOutputStream());
+						mmu.sWriter.println(usernameField.getText());
+						mmu.sWriter.flush();
 						(new ClientThread(mmu, false)).start();
+						mmu.setVisible(true);
+						dispose();
 					} catch (UnknownHostException uhe) {
 						System.out.println("UnknownHostException: " + uhe.getMessage());
 					} catch (IOException ioe) {
 						System.out.println("IOException in login listener: " + ioe.getMessage());
 					}
-					mmu.setVisible(true);
-					dispose();
 				} else {
 					JOptionPane.showMessageDialog(LoginPage.this, "Invalid username/password", "Invalid Login", JOptionPane.ERROR_MESSAGE);
 				}
@@ -199,25 +200,13 @@ public class LoginPage extends JFrame{
 			}
 		});
 		
-		signup.addKeyListener(new KeyListener(){
+		signup.addKeyListener(new KeyAdapter(){
 			public void keyPressed(KeyEvent e)
 			{
 				if ((e.getKeyCode()==KeyEvent.VK_ENTER) && (signup.isFocusPainted()))
 				{
 					signup.doClick();
 				}
-			}
-
-			@Override
-			public void keyReleased(KeyEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void keyTyped(KeyEvent e) {
-				// TODO Auto-generated method stub
-				
 			}
 		});
 		
@@ -228,36 +217,26 @@ public class LoginPage extends JFrame{
 					mmg.s = new Socket(host, 6789);
 					mmg.sReader = new BufferedReader(new InputStreamReader(mmg.s.getInputStream()));
 					mmg.sWriter = new PrintWriter(mmg.s.getOutputStream());
+					mmg.sWriter.println("Guest");
+					mmg.sWriter.flush();
 					(new ClientThread(mmg, true)).start();
+					mmg.setVisible(true);
+					dispose();
 				} catch (UnknownHostException uhe) {
 					System.out.println("UnknownHostException: " + uhe.getMessage());
 				} catch (IOException ioe) {
 					System.out.println("IOException in login listener: " + ioe.getMessage());
 				}
-				mmg.setVisible(true);
-				dispose();
 			}
 		});
 		
-		guest.addKeyListener(new KeyListener() {
+		guest.addKeyListener(new KeyAdapter() {
 			public void keyPressed(KeyEvent e)
 			{
 				if ((e.getKeyCode()==KeyEvent.VK_ENTER) && (guest.isFocusPainted()))
 				{
 					guest.doClick();
 				}
-			}
-
-			@Override
-			public void keyReleased(KeyEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void keyTyped(KeyEvent e) {
-				// TODO Auto-generated method stub
-				
 			}
 		});
 

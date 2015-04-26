@@ -12,7 +12,7 @@ public class ServerHelperThread extends Thread {
 	BufferedReader br;
 	private int i;
 	private ServerThread st;
-	String username, otherUsername;
+	String username;
 	
 	ServerHelperThread(int i, ServerThread st) {
 		this.i = i;
@@ -20,6 +20,11 @@ public class ServerHelperThread extends Thread {
 	}
 	
 	public void run() {
+		try {
+			username = br.readLine();
+		} catch (IOException ioe) {
+			System.out.println("IOException in ServerHelperThread.run(): " + ioe.getMessage());
+		}
 		while (st.b) {
 			try {
 				String str = br.readLine();
@@ -43,10 +48,15 @@ public class ServerHelperThread extends Thread {
 					I - ball xcoord
 					J - ball ycoord
 					
-					P - play!
-					Q - also play!
-					R - remove from Vector
+					M - get random game (spectate)
+					N - find specific game (spectate)
+					
+					P - add to random (play)
+					Q - add to waiting (play)
+					R - remove from random and waiting
 					S - spectate!
+
+					Z - remove all
 					*/
 					
 					// TO DO: Parser in the clientthread!
@@ -78,7 +88,56 @@ public class ServerHelperThread extends Thread {
 					else if (str.charAt(0) == 'J') //ball ycoord
 					{
 						//push the string to a ball handler which will parse into integer
-					} else if (str.charAt(0) == 'R')
+					} 
+
+					else if (str.charAt(0) == 'P')
+					{
+						System.out.println("hereP");
+						synchronized (st.randomPlayers) {
+							System.out.println(username);
+							if (st.randomPlayers.isEmpty()) st.randomPlayers.add(this);
+							else {
+								System.out.println("pls");
+								st.randomPlayers.peek().pw.println("Y1" + this.username);
+								st.randomPlayers.peek().pw.flush();
+								this.pw.println("Y2" + st.randomPlayers.peek().username);
+								this.pw.flush();
+								st.randomPlayers.remove();
+							}
+						}
+					}
+
+					else if (str.charAt(0) == 'Q')
+					{
+						synchronized (st.waitingPlayers) {
+							boolean found = false;
+							for (ServerHelperThread temp : st.waitingPlayers) {
+								if (temp.username.equals(str.substring(1))) {
+									found = true;
+									temp.pw.println("Y1" + this.username);
+									temp.pw.flush();
+									this.pw.println("Y2" + temp.username);
+									this.pw.flush();
+									st.waitingPlayers.remove(temp);
+								}
+							}
+							if (!found) {
+								st.waitingPlayers.add(this);
+							}
+						}
+					}
+
+					else if (str.charAt(0) == 'R')
+					{
+						synchronized (st.randomPlayers) {
+							if (st.randomPlayers.contains(this)) st.randomPlayers.remove(this);
+						}
+						synchronized (st.waitingPlayers) {
+							if (st.waitingPlayers.contains(this)) st.waitingPlayers.remove(this);
+						}
+					}
+					
+					else if (str.charAt(0) == 'Z')
 					{
 						st.shtVector.removeElementAt(i);
 						synchronized (st.ongoingGames) {
@@ -94,9 +153,10 @@ public class ServerHelperThread extends Thread {
 						}
 						break;
 					}
-				}
+				} else break;
 			} catch (IOException ioe) {
 				System.out.println("IOException in ServerHelperThread.run(): " + ioe.getMessage());
+				break;
 			} 
 		}
 		try {
