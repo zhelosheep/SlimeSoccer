@@ -1,11 +1,14 @@
 package model;
 
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+
+import controller.Controller;
 
 public class Ball {
 	public int x, y;
@@ -42,7 +45,28 @@ public class Ball {
 	}
 	
 	public void update() {
-		// gravity
+		/***** temporary ******/
+		int velo = 2;
+        // Calculating velocity for moving up 
+        if(Controller.keyboardKeyState(KeyEvent.VK_I)) {
+    		velocityY -= velo;
+        }
+        // Calculating velocity for moving down
+        if(Controller.keyboardKeyState(KeyEvent.VK_K)) {
+    		velocityY += velo;
+        }
+        // Calculating velocity for moving or stopping to the left
+        if(Controller.keyboardKeyState(KeyEvent.VK_J)) {
+    		velocityX -= velo;
+        }
+        // Calculating velocity for moving or stopping to the right
+        if(Controller.keyboardKeyState(KeyEvent.VK_L)) {
+    		velocityX += velo;
+        }
+		/***** temporary ******/
+
+        
+        // gravity
 		if (!game.specialMode.equals("antigravity")) {
 			velocityY += decceleration;
 		}

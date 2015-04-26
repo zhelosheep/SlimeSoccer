@@ -3,6 +3,7 @@ package model;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+
 import javax.imageio.ImageIO;
 
 public class Game {
@@ -20,6 +21,7 @@ public class Game {
 	public Goal goal1, goal2;
 	public int groundLevel = 400, topLevel = 0; // y value of where ground level and top of screen are in game
 	public int leftBoundary = 0, rightBoundary = 600; 
+	public ArtificialIntelligence ai;
 	
 	// game stats
 	public String background;
@@ -185,6 +187,7 @@ public class Game {
 			slime2 = new SlimeSuper(rightBoundary - 50, groundLevel, 2, imgSlime2, this);
 		}
 		ball = new Ball((leftBoundary + rightBoundary)/2, groundLevel - 12 - 100, this);
+		ai = new ArtificialIntelligence(this, slime1, slime2);
 		goal1 = new Goal(leftBoundary, this);
 		goal2 = new Goal(rightBoundary, this);
 	}
@@ -194,6 +197,34 @@ public class Game {
 		slime1.update();
 		slime2.update();
 		ball.update();
+		
+		ai.update();
+//		new Thread() {
+//			public void run() {
+//				ai.moveRight();
+//				try {
+//					Thread.sleep(1000);
+//				} catch (InterruptedException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//				ai.moveUp();
+//				try {
+//					Thread.sleep(1000);
+//				} catch (InterruptedException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//				ai.moveLeft();
+//				try {
+//					Thread.sleep(1000);
+//				} catch (InterruptedException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//				ai.moveDown();
+//			}
+//		}.start();
 		
 		// check for ball collision with slimes
 		Double [] slime1CollideNewVelocities = slime1.detectCollision(ball);
