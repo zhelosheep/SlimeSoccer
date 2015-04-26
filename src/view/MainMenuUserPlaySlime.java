@@ -22,20 +22,20 @@ import javax.swing.JSlider;
 public class MainMenuUserPlaySlime extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private JButton continueButton, backButton;
-	private String p1Username, p2Username;
+	public String p1Username, p2Username;
 	private String[] slimeNames, slimeAbilities;	//for label purposes
 	private JButton[] slimeButtons;
+	public JLabel p1UsernameLabel, p2UsernameLabel;
 	private JLabel p1SlimeNameLabel, p2SlimeNameLabel, p1SlimeImageLabel, p2SlimeImageLabel, p1SlimeAbilityLabel, p2SlimeAbilityLabel;
 	private JComboBox<String> specialModeCombo, backgroundCombo;
 	private JSlider regenRateSlider, totalManaSlider; 
-	private boolean isPlayer1 = true, isPvCGame = true;
+	public boolean isPlayer1 = true, isPvCGame = true;
 	private JFrame prevScreen;
 
-	public MainMenuUserPlaySlime(JFrame prevScreen, boolean isPlayer1, boolean isPvCGame) {
+	public MainMenuUserPlaySlime(JFrame prevScreen, boolean isPvCGame) {
 		setSize(800, 600);
 		setLocation(300,100);
 		this.prevScreen = prevScreen;
-		this.isPlayer1 = isPlayer1;
 		this.isPvCGame = isPvCGame;
 		instantiateVariables();
 		addComponents();
@@ -62,7 +62,8 @@ public class MainMenuUserPlaySlime extends JFrame{
 		p2SlimeNameLabel = new JLabel("<html><div style=\"text-align: center;\">Bow And Arrow Slime");
 		p1SlimeAbilityLabel = new JLabel("<html><div style=\"text-align: center;\">Explode");
 		p2SlimeAbilityLabel = new JLabel("<html><div style=\"text-align: center;\">Shoot Arrows");
-		
+		p1UsernameLabel = new JLabel();
+		p2UsernameLabel= new JLabel();		
 		//Instantiate slimeButtons JButton array to hold image icons of each slime
 		slimeButtons = new JButton[10];
 		slimeButtons[0] = new JButton(new ImageIcon("resources/game/slimes/BombSlime.png"));
@@ -135,7 +136,6 @@ public class MainMenuUserPlaySlime extends JFrame{
 		JPanel c2 = new JPanel();
 		JPanel c3 = new JPanel();
 		JPanel c4 = new JPanel();
-		JLabel p1UsernameLabel = new JLabel("<html><div style=\"text-align: center;\">" + p1Username);
 		c1.add(p1UsernameLabel);
 		c2.add(p1SlimeNameLabel);
 		c3.add(p1SlimeImageLabel);
@@ -150,7 +150,6 @@ public class MainMenuUserPlaySlime extends JFrame{
 		JPanel c6 = new JPanel();
 		JPanel c7 = new JPanel();
 		JPanel c8 = new JPanel();
-		JLabel p2UsernameLabel = new JLabel("<html><div style=\"text-align: center;\">" + p2Username);
 		c5.add(p2UsernameLabel);
 		c6.add(p2SlimeNameLabel);
 		c7.add(p2SlimeImageLabel);

@@ -33,12 +33,12 @@ public class MainMenuUser extends JFrame{
 	private ImageIcon avatar;
 	private JButton sendButton, playCompButton, playPlayerButton, spectateButton, logoutButton, settingsButton, avatarButton;
 	private static ImageIcon PvPIcon, PvCIcon, SpectateIcon;
-	private String username;
+	public static String username;
 	public JTextArea chatArea;
 	private JTextField chatField;
 	private SettingsPage settingsPage;
-	private MainMenuUserPlayPlayer mainMenuUserPlayPlayer;
-	private MainMenuUserSpectate mainMenuUserSpectate;
+	public MainMenuUserPlayPlayer mainMenuUserPlayPlayer;
+	public MainMenuUserSpectate mainMenuUserSpectate;
 	private MainMenuUserPlaySlime mainMenuUserPlaySlime;
 	Socket s;
 	public BufferedReader sReader;
@@ -70,7 +70,7 @@ public class MainMenuUser extends JFrame{
 		settingsPage = new SettingsPage();
 		mainMenuUserPlayPlayer = new MainMenuUserPlayPlayer(this);
 		mainMenuUserSpectate = new MainMenuUserSpectate(this);
-		mainMenuUserPlaySlime = new MainMenuUserPlaySlime(this, true, true);
+		mainMenuUserPlaySlime = new MainMenuUserPlaySlime(this, true);
 	}
 	
 	private void addComponents() {
@@ -222,12 +222,14 @@ public class MainMenuUser extends JFrame{
 		return settingsPage;
 	}
 	
-	String getUsername() {
+	public String getUsername() {
 		return username;
 	}
 	
 	void quit() {
 		try {
+			sWriter.println("Z");
+			sWriter.flush();
 			if (s != null) {
 				s.shutdownInput();
 				s.shutdownOutput();

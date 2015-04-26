@@ -19,6 +19,7 @@ public class MainMenuUserWaiting extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private JButton cancelButton;
 	private MainMenuUserPlayPlayer prevScreen;
+	public MainMenuUserPlaySlime mainMenuUserPlaySlime;
 
 	public MainMenuUserWaiting(MainMenuUserPlayPlayer prevScreen) {
 		setSize(800, 600);
@@ -32,6 +33,7 @@ public class MainMenuUserWaiting extends JFrame{
 	
 	private void instantiateVariables() {
 		cancelButton = new JButton("Cancel");
+		mainMenuUserPlaySlime = new MainMenuUserPlaySlime(prevScreen, false);
 	}
 	
 	private void addComponents() {

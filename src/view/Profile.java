@@ -27,7 +27,7 @@ public class Profile extends JFrame{
 	private JFrame prevScreen;
 	
 	private JTextField searchField;
-	private JButton searchButton, backButton;
+	private JButton searchButton, backButton, addFriend;
 	
 	Profile (String username, JFrame prev) {
 		u = username;
@@ -45,7 +45,12 @@ public class Profile extends JFrame{
 		searchField = new JTextField(45);
 		searchButton = new JButton("Search");
 		backButton = new JButton("Back");
+		addFriend = new JButton("Add Friend");
 		
+		if (MainMenuUser.username.equals(u)) {
+			addFriend.setEnabled(false);
+			addFriend.setVisible(false);
+		}
 	}
 	
 	private void addComponents() {
@@ -63,6 +68,7 @@ public class Profile extends JFrame{
 		username.setAlignmentX(Component.CENTER_ALIGNMENT);
 		avatar.setAlignmentX(Component.CENTER_ALIGNMENT);
 		desc.setAlignmentX(Component.LEFT_ALIGNMENT);
+		addFriend.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
 		JPanel northPanel = new JPanel();
 		JPanel header = new JPanel();
@@ -105,9 +111,11 @@ public class Profile extends JFrame{
 		searchBar.add(searchField);
 		searchBar.add(searchButton);
 		left.setBorder(BorderFactory.createEmptyBorder(80,  50,  0,  0));
+		left.setAlignmentX(Component.CENTER_ALIGNMENT);
 		left.add(name);
 		left.add(username);
 		left.add(avatar);
+		left.add(addFriend);
 		left.add(Box.createGlue());
 		otherSide.add(desc);
 		
@@ -254,6 +262,12 @@ public class Profile extends JFrame{
 					Profile pro = new Profile(u, Profile.this);
 					pro.setVisible(true);
 				}
+			}
+		});
+		
+		addFriend.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				LoginPage.sqli.setFriends(MainMenuUser.username, u);
 			}
 		});
 	}

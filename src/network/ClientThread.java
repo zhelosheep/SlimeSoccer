@@ -34,6 +34,23 @@ public class ClientThread extends Thread {
 					if (str == null) break;
 					if (str.charAt(0) == 'C') { // chat
 						mmu.chatArea.setText(mmu.chatArea.getText() + "\n" + str.substring(1));
+					} else if (str.charAt(0) == 'Y') {
+						if (str.charAt(1) == '1') {
+							mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.isPlayer1 = true;
+							mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.p1Username = mmu.getUsername();
+							mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.p1UsernameLabel.setText(mmu.getUsername());
+							mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.p2Username = str.substring(2);
+							mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.p2UsernameLabel.setText("<html><div style=\"text-align: center;\">" + str.substring(2));
+						}
+						else {
+							mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.isPlayer1 = false;
+							mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.p2Username = mmu.getUsername();
+							mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.p2UsernameLabel.setText(mmu.getUsername());
+							mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.p1Username = str.substring(2);
+							mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.p1UsernameLabel.setText("<html><div style=\"text-align: center;\">" + str.substring(2));
+						}
+						mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.setVisible(true);
+						mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.setVisible(false);
 					}
 				}
 			} catch (IOException ioe) {
