@@ -70,6 +70,8 @@ public class Slime {
 			// Calculating velocity for moving up or down
 			if(Controller.keyboardKeyState(upKey) && y == game.groundLevel) {
 	            velocityY -= jumpAcceleration;
+	            if (player == 1) { game.slimeHasMoved_1 = true; } 
+	            else if (player == 2) { game.slimeHasMoved_2 = true; }
 	        } else {
 	        	if (y >= game.groundLevel) {
 	        		velocityY = 0;
@@ -81,6 +83,8 @@ public class Slime {
 	        // Calculating velocity for moving or stopping to the left
 	        if(Controller.keyboardKeyState(leftKey)) {
 	        	facingLeft = true;
+	            if (player == 1) { game.slimeHasMoved_1 = true; } 
+	            else if (player == 2) { game.slimeHasMoved_2 = true; }
 	        	if (velocityX >= -maxSpeed) {
 	                velocityX -= acceleration;
 	        	}
@@ -91,6 +95,8 @@ public class Slime {
 	        // Calculating velocity for moving or stopping to the right
 	        if(Controller.keyboardKeyState(rightKey)) {
 	        	facingLeft = false;
+	            if (player == 1) { game.slimeHasMoved_1 = true; } 
+	            else if (player == 2) { game.slimeHasMoved_2 = true; }
 	        	if (velocityX <= maxSpeed) {
 	        		velocityX += acceleration;
 	        	}
@@ -103,12 +109,16 @@ public class Slime {
 		else {
 	        // Calculating velocity for moving up 
 	        if(Controller.keyboardKeyState(upKey)) {
+	            if (player == 1) { game.slimeHasMoved_1 = true; } 
+	            else if (player == 2) { game.slimeHasMoved_2 = true; }
 	        	if (velocityY >= -maxSpeed) {
 	        		velocityY -= acceleration;
 	        	}
 	        }
 	        // Calculating velocity for moving down
 	        if(Controller.keyboardKeyState(downKey)) {
+	            if (player == 1) { game.slimeHasMoved_1 = true; } 
+	            else if (player == 2) { game.slimeHasMoved_2 = true; }
 	        	if (velocityY <= maxSpeed) {
 	        		velocityY += acceleration;
 	        	}
@@ -116,6 +126,8 @@ public class Slime {
 	        // Calculating velocity for moving or stopping to the left
 	        if(Controller.keyboardKeyState(leftKey)) {
 	        	facingLeft = true;
+	            if (player == 1) { game.slimeHasMoved_1 = true; } 
+	            else if (player == 2) { game.slimeHasMoved_2 = true; }
 	        	if (velocityX >= -maxSpeed) {
 	                velocityX -= acceleration;
 	        	}
@@ -123,6 +135,8 @@ public class Slime {
 	        // Calculating velocity for moving or stopping to the right
 	        if(Controller.keyboardKeyState(rightKey)) {
 	        	facingLeft = false;
+	            if (player == 1) { game.slimeHasMoved_1 = true; } 
+	            else if (player == 2) { game.slimeHasMoved_2 = true; }
 	        	if (velocityX <= maxSpeed) {
 	        		velocityX += acceleration;
 	        	}

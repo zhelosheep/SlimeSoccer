@@ -43,9 +43,9 @@ public class LoginPage extends JFrame{
 	
 	//achievements
 	//this array of Achievement objects
-	public static final Achievement chris_a, loser_a, nolife_a, noob_a, pack_a, soc_a, unath_a, vict_a, wrongw_a;
-	//imageicons for each of the 9 achievements
-	private static final ImageIcon chrisronaldo, loser, nolife, noob, packingpounds, socbutterfly, unathathlete, victorious, wrongway;
+	public static final Achievement chris_a, loser_a, nolife_a, noob_a, pack_a, soc_a, unath_a, vict_a;
+	//imageicons for each of the 8 achievements
+	private static final ImageIcon chrisronaldo, loser, nolife, noob, packingpounds, socbutterfly, unathathlete, victorious;
 	
 	static {
 		chrisronaldo = new ImageIcon("./resources/achievements/ChrisRonaldo.png");
@@ -56,7 +56,6 @@ public class LoginPage extends JFrame{
 		socbutterfly = new ImageIcon("./resources/achievements/SocButterfly.png");
 		unathathlete = new ImageIcon("./resources/achievements/UnathAthlete.png");
 		victorious = new ImageIcon("./resources/achievements/Victorious.png");
-		wrongway = new ImageIcon("./resources/achievements/WrongWay.png");
 		
 		chris_a = new Achievement("Cristiano Ronaldo", "Have a 2:1 win lose ratio or greater", chrisronaldo);
 		loser_a = new Achievement("Loser", "Lose 5 games in a row", loser);
@@ -66,7 +65,6 @@ public class LoginPage extends JFrame{
 		soc_a = new Achievement("Social Butterfly", "Have over 25 friends", socbutterfly);
 		unath_a = new Achievement("Unathletic Athlete", "Have a 1:10 win lose ratio or less", unathathlete);
 		vict_a = new Achievement("Victorious", "Win 10 games", victorious);
-		wrongw_a = new Achievement("Wrong Way Buddy!", "Score on yourself", wrongway);
 	}
 	
 	public LoginPage() {
