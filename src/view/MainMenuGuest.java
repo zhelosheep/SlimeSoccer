@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
@@ -142,6 +144,38 @@ public class MainMenuGuest extends JFrame{
 				chatField.setText("");
 			}
 		});
+		
+		chatField.addKeyListener(new KeyListener() {
+			public void KeyPressed(KeyEvent e)
+			{
+				if (e.getKeyCode()==KeyEvent.VK_ENTER)
+				{
+					sWriter.println("CGuest: " + chatField.getText());
+					sWriter.flush();
+					chatArea.setText(chatArea.getText() + "\nGuest: " + chatField.getText());
+					chatField.setText("");
+				}
+			}
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
 	}
 	
 	void quit() {
