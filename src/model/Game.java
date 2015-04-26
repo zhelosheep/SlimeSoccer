@@ -5,10 +5,8 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.swing.JOptionPane;
 
 import view.LoginPage;
-import view.Profile;
 
 public class Game {
 	// image resources
@@ -253,7 +251,6 @@ public class Game {
 				gameOver = true;
 				playerThatWon = 1;
 				saveStats(playerThatWon);
-				checkAchievements();
 			}
 		}
 		else if (playerThatScored == 2) {
@@ -263,7 +260,6 @@ public class Game {
 				gameOver = true;
 				playerThatWon = 2;
 				saveStats(playerThatWon);
-				checkAchievements();
 			}
 		}
 		if (playerThatScored == 1 || playerThatScored == 2) { // then reset ball position, slime positions, etc
@@ -291,64 +287,4 @@ public class Game {
 			LoginPage.sqli.updateStats(player2_username, true);
 		}
 	}
-	
-	public void checkAchievements() {
-		// N00b – Play first game
-		if (LoginPage.sqli.getGames(player1_username) == 1 && LoginPage.sqli.checkAchievement(player1_username, LoginPage.noob_a.getName())) {
-			LoginPage.sqli.setAchievement(player1_username, LoginPage.noob_a);
-		}
-		if (LoginPage.sqli.getGames(player2_username) == 1 && LoginPage.sqli.checkAchievement(player2_username, LoginPage.noob_a.getName())) {
-			LoginPage.sqli.setAchievement(player2_username, LoginPage.noob_a);
-		}
-		
-		// No Life Award – Play 1000 games
-		if (LoginPage.sqli.getGames(player1_username) == 1000 && LoginPage.sqli.checkAchievement(player1_username, LoginPage.nolife_a.getName())) {
-			LoginPage.sqli.setAchievement(player1_username, LoginPage.nolife_a);
-		}
-		if (LoginPage.sqli.getGames(player2_username) == 1000 && LoginPage.sqli.checkAchievement(player2_username, LoginPage.nolife_a.getName())) {
-			LoginPage.sqli.setAchievement(player2_username, LoginPage.nolife_a);
-		}
-		
-		// Victorious – Win 10 games
-		if (LoginPage.sqli.getWins(player1_username) == 10 && LoginPage.sqli.checkAchievement(player1_username, LoginPage.vict_a.getName())) {
-			LoginPage.sqli.setAchievement(player1_username, LoginPage.vict_a);
-		}
-		if (LoginPage.sqli.getWins(player2_username) == 10 && LoginPage.sqli.checkAchievement(player2_username, LoginPage.vict_a.getName())) {
-			LoginPage.sqli.setAchievement(player2_username, LoginPage.vict_a);
-		}
-		
-		// Loser – Lose 5 games in a row
-		if (LoginPage.sqli.getGamesLostInARow(player1_username) == 5 && LoginPage.sqli.checkAchievement(player1_username, LoginPage.loser_a.getName())) {
-			LoginPage.sqli.setAchievement(player1_username, LoginPage.loser_a);
-		}
-		if (LoginPage.sqli.getGamesLostInARow(player2_username) == 5 && LoginPage.sqli.checkAchievement(player2_username, LoginPage.loser_a.getName())) {
-			LoginPage.sqli.setAchievement(player2_username, LoginPage.loser_a);
-		}
-		
-		// Cristiano Ronaldo – Have a 2:1 win lose ratio or greater
-		if (LoginPage.sqli.getRatio(player1_username) >= 2 && LoginPage.sqli.checkAchievement(player1_username, LoginPage.chris_a.getName())) {
-			LoginPage.sqli.setAchievement(player1_username, LoginPage.chris_a);
-		}
-		if (LoginPage.sqli.getRatio(player2_username) >= 2 && LoginPage.sqli.checkAchievement(player2_username, LoginPage.chris_a.getName())) {
-			LoginPage.sqli.setAchievement(player2_username, LoginPage.chris_a);
-		}
-		
-		// Unathletic Athlete – Have a 1:10 win/loss ratio or less
-		if (LoginPage.sqli.getRatio(player1_username) <= 1/10 && LoginPage.sqli.getGames(player1_username) >= 10 && LoginPage.sqli.checkAchievement(player1_username, LoginPage.unath_a.getName())) {
-			LoginPage.sqli.setAchievement(player1_username, LoginPage.unath_a);
-		}
-		if (LoginPage.sqli.getRatio(player2_username) > 2 && LoginPage.sqli.getGames(player2_username) >= 10 && LoginPage.sqli.checkAchievement(player2_username, LoginPage.unath_a.getName())) {
-			LoginPage.sqli.setAchievement(player2_username, LoginPage.unath_a);
-		}
-		
-		// Packing on the Pounds – Don’t move your slime at all during a game
-		if (!slimeHasMoved_1 && LoginPage.sqli.checkAchievement(player1_username, LoginPage.pack_a.getName())) {
-			LoginPage.sqli.setAchievement(player1_username, LoginPage.pack_a);
-		}
-		if (!slimeHasMoved_2 && LoginPage.sqli.checkAchievement(player2_username, LoginPage.pack_a.getName())) {
-			LoginPage.sqli.setAchievement(player2_username, LoginPage.pack_a);
-		}
-		
-	}
-	
 }
