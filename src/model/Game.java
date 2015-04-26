@@ -49,7 +49,26 @@ public class Game {
 			variables.slime1 = new SlimeSuperSize(variables.leftBoundary + 50, variables.groundLevel, 1, variables.imgSlime1, variables);
 		} else if (player1_slimeType.equals("SlimeSuper")) {
 			variables.slime1 = new SlimeSuper(variables.leftBoundary + 50, variables.groundLevel, 1, variables.imgSlime1, variables);
+		} else if (player1_slimeType.equals("Slime3D")) {
+			variables.slime1 = new Slime(variables.leftBoundary + 50, variables.groundLevel, 1, variables.imgSlime1, variables);
+		} else if (player1_slimeType.equals("SlimeButterfly")) {
+			variables.slime1 = new Slime(variables.leftBoundary + 50, variables.groundLevel, 1, variables.imgSlime1, variables);
+		} else if (player1_slimeType.equals("SlimeRonaldo")) {
+			variables.slime1 = new Slime(variables.leftBoundary + 50, variables.groundLevel, 1, variables.imgSlime1, variables);
+		} else if (player1_slimeType.equals("SlimeCrossEyed")) {
+			variables.slime1 = new Slime(variables.leftBoundary + 50, variables.groundLevel, 1, variables.imgSlime1, variables);
+		} else if (player1_slimeType.equals("SlimeCrown")) {
+			variables.slime1 = new Slime(variables.leftBoundary + 50, variables.groundLevel, 1, variables.imgSlime1, variables);
+		} else if (player1_slimeType.equals("SlimeDunce")) {
+			variables.slime1 = new Slime(variables.leftBoundary + 50, variables.groundLevel, 1, variables.imgSlime1, variables);
+		} else if (player1_slimeType.equals("LSlime")) {
+			variables.slime1 = new Slime(variables.leftBoundary + 50, variables.groundLevel, 1, variables.imgSlime1, variables);
+		} else if (player1_slimeType.equals("SlimePotato")) {
+			variables.slime1 = new Slime(variables.leftBoundary + 50, variables.groundLevel, 1, variables.imgSlime1, variables);
+		} else if (player1_slimeType.equals("SlimeSweater")) {
+			variables.slime1 = new Slime(variables.leftBoundary + 50, variables.groundLevel, 1, variables.imgSlime1, variables);
 		}
+		
 		if (player2_slimeType.equals("SlimeBomb")) {
 			variables.slime2 = new SlimeBomb(variables.rightBoundary - 50, variables.groundLevel, 2, variables.imgSlime2, variables);
 		} else if (player2_slimeType.equals("SlimeBowAndArrow")) {
@@ -70,7 +89,27 @@ public class Game {
 			variables.slime2 = new SlimeSuperSize(variables.rightBoundary - 50, variables.groundLevel, 2, variables.imgSlime2, variables);
 		} else if (player2_slimeType.equals("SlimeSuper")) {
 			variables.slime2 = new SlimeSuper(variables.rightBoundary - 50, variables.groundLevel, 2, variables.imgSlime2, variables);
+		} else if (player2_slimeType.equals("Slime3D")) {
+			variables.slime2 = new Slime(variables.rightBoundary - 50, variables.groundLevel, 2, variables.imgSlime2, variables);
+		} else if (player2_slimeType.equals("SlimeButterfly")) {
+			variables.slime2 = new Slime(variables.rightBoundary - 50, variables.groundLevel, 2, variables.imgSlime2, variables);
+		} else if (player2_slimeType.equals("SlimeRonaldo")) {
+			variables.slime2 = new Slime(variables.rightBoundary - 50, variables.groundLevel, 2, variables.imgSlime2, variables);
+		} else if (player2_slimeType.equals("SlimeCrossEyed")) {
+			variables.slime2 = new Slime(variables.rightBoundary - 50, variables.groundLevel, 2, variables.imgSlime2, variables);
+		} else if (player2_slimeType.equals("SlimeCrown")) {
+			variables.slime2 = new Slime(variables.rightBoundary - 50, variables.groundLevel, 2, variables.imgSlime2, variables);
+		} else if (player2_slimeType.equals("SlimeDunce")) {
+			variables.slime2 = new Slime(variables.rightBoundary - 50, variables.groundLevel, 2, variables.imgSlime2, variables);
+		} else if (player2_slimeType.equals("LSlime")) {
+			variables.slime2 = new Slime(variables.rightBoundary - 50, variables.groundLevel, 2, variables.imgSlime2, variables);
+		} else if (player2_slimeType.equals("SlimePotato")) {
+			variables.slime2 = new Slime(variables.rightBoundary - 50, variables.groundLevel, 2, variables.imgSlime2, variables);
+		} else if (player2_slimeType.equals("SlimeSweater")) {
+			variables.slime2 = new Slime(variables.rightBoundary - 50, variables.groundLevel, 2, variables.imgSlime2, variables);
 		}
+		
+		
 		variables.ball = new Ball((variables.leftBoundary + variables.rightBoundary)/2, variables.groundLevel - 12 - 100, variables);
 		variables.goal1 = new Goal(variables.leftBoundary, variables);
 		variables.goal2 = new Goal(variables.rightBoundary, variables);
