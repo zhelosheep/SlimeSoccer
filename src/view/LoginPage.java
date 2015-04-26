@@ -5,6 +5,8 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.File;
@@ -13,6 +15,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
+
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -24,6 +27,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+
 import model.Achievement;
 import network.ClientThread;
 
@@ -166,12 +170,80 @@ public class LoginPage extends JFrame{
 				}
 			}
 		});
+		
+		login.addKeyListener(new KeyListener() {
+			public void keyPressed(KeyEvent e)
+			{
+				if ((e.getKeyCode()==KeyEvent.VK_ENTER) && (login.isFocusPainted()))
+				{
+					login.doClick();
+				}
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+		passwordField.addKeyListener(new KeyListener() {
+			public void keyPressed(KeyEvent e)
+			{
+				if (e.getKeyCode()==KeyEvent.VK_ENTER)
+				{
+					login.doClick();
+				}
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+				
 		signup.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				(new SignUpPage()).setVisible(true);
 				dispose();
-			}			
+			}
 		});
+		
+		signup.addKeyListener(new KeyListener(){
+			public void keyPressed(KeyEvent e)
+			{
+				if ((e.getKeyCode()==KeyEvent.VK_ENTER) && (signup.isFocusPainted()))
+				{
+					signup.doClick();
+				}
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
 		guest.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainMenuGuest mmg = new MainMenuGuest();
@@ -189,6 +261,29 @@ public class LoginPage extends JFrame{
 				dispose();
 			}
 		});
+		
+		guest.addKeyListener(new KeyListener() {
+			public void keyPressed(KeyEvent e)
+			{
+				if ((e.getKeyCode()==KeyEvent.VK_ENTER) && (guest.isFocusPainted()))
+				{
+					guest.doClick();
+				}
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+
 		
 		hostField.getDocument().addDocumentListener(new checkFields());
 		usernameField.getDocument().addDocumentListener(new checkFields());

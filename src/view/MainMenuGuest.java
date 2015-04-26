@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
@@ -134,8 +136,27 @@ public class MainMenuGuest extends JFrame{
 				dispose();
 			}
 		});
+		
 		sendButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				sWriter.println("CGuest: " + chatField.getText());
+				sWriter.flush();
+				chatArea.setText(chatArea.getText() + "\nGuest: " + chatField.getText());
+				chatField.setText("");
+			}
+			
+			public void KeyPressed(KeyEvent e)
+			{
+				sWriter.println("CGuest: " + chatField.getText());
+				sWriter.flush();
+				chatArea.setText(chatArea.getText() + "\nGuest: " + chatField.getText());
+				chatField.setText("");
+			}
+		});
+		
+		chatField.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e)
+			{
 				sWriter.println("CGuest: " + chatField.getText());
 				sWriter.flush();
 				chatArea.setText(chatArea.getText() + "\nGuest: " + chatField.getText());

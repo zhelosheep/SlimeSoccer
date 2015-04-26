@@ -75,4 +75,8 @@ public class MainMenuUserWaiting extends JFrame{
 	void quit() {
 		prevScreen.quit();
 	}
+	
+	String getUsername() {
+		return prevScreen.getUsername();
+	}
 }

@@ -5,12 +5,15 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
+
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -195,6 +198,24 @@ public class MainMenuUser extends JFrame{
 				chatArea.setText(chatArea.getText() + "\n" + username + ": " + chatField.getText());
 				chatField.setText("");
 			}
+			
+			public void KeyPressed(KeyEvent e)
+			{
+				sWriter.println("C" + username + ": " + chatField.getText());
+				sWriter.flush();
+				chatArea.setText(chatArea.getText() + "\n" + username + ": " + chatField.getText());
+				chatField.setText("");
+			}
+		});
+		
+		chatField.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e)
+			{
+				sWriter.println("C" + username + ": " + chatField.getText());
+				sWriter.flush();
+				chatArea.setText(chatArea.getText() + "\n" + username + ": " + chatField.getText());
+				chatField.setText("");
+			}
 		});
 	}
 	
@@ -208,15 +229,11 @@ public class MainMenuUser extends JFrame{
 	
 	void quit() {
 		try {
-			if (sReader != null) {
-				sReader.close();
-				sReader = null;
-			}
-			if (sWriter != null) {
-				sWriter.close();
-				sWriter = null;
-			}
+			System.out.println("here");
 			if (s != null) {
+				s.shutdownInput();
+				s.shutdownOutput();
+				System.out.println("here");
 				s.close();
 				s = null;
 			}
