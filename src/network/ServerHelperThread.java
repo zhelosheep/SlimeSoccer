@@ -124,12 +124,16 @@ public class ServerHelperThread extends Thread {
 								for (int i = 0; i < tokens.length; i++)
 								{
 									System.out.println(tokens[i]);
-									//tokens[0] = special mode
-									//tokens[1] = background
-									//tokens[2] = regenRate
-									//tokens[3] = totalMana
+									//tokens[0] = p1SlimeType
+									//tokens[1] = p2SlimeType
+									//tokens[2] = p1Username
+									//tokens[3] = p2Username
+									//tokens[4] = special mode
+									//tokens[5] = backgroundCombo
+									//tokens[6] = regenRate
+									//tokens[7] = totalMana
 								}
-								st.ongoingGames.put(new GameThread(tokens[1], "SlimeBowAndArrow", "SlimeGeyser", "shawnren", "josemama", Integer.valueOf(tokens[3]), Integer.valueOf(tokens[3]), Integer.valueOf(tokens[2]), tokens[0]), set);
+								st.ongoingGames.put(new GameThread(tokens[5], tokens[0], tokens[1], tokens[2], tokens[3], Integer.valueOf(tokens[7]), Integer.valueOf(tokens[7]), Integer.valueOf(tokens[6]), tokens[4]), set);
 								System.out.println("making game");
 							} else {
 								this.readyToPlay = true;
