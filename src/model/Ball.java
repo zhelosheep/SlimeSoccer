@@ -21,7 +21,7 @@ public class Ball {
 	final private int decceleration = 1; 
 	final private double bounceMultiplier = 0.8;
 
-	Ball(int x, int y, Variables variables) {
+	public Ball(int x, int y, Variables variables) {
 		this.x = x;
 		this.y = y;
 		this.variables = variables;

@@ -7,7 +7,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.PrintWriter;
-
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -22,6 +21,7 @@ import javax.swing.JTextField;
 import javax.swing.text.DefaultCaret;
 
 import model.Ball;
+import model.Variables;
 import controller.Controller;
 
 public class GameScreen extends JFrame{
@@ -36,6 +36,7 @@ public class GameScreen extends JFrame{
 	PrintWriter sWriter;
 	public static Canvas primary;
 	public static Controller controller;
+	public Variables variables;
 	
 	public GameScreen(String username)
 	{
@@ -174,7 +175,7 @@ public class GameScreen extends JFrame{
 		}
 		
 		// Packing on the Pounds – Don’t move your slime at all during a game
-		if (!model.slimeHasMoved_1 && !LoginPage.sqli.checkAchievement(username, LoginPage.pack_a.getName())) {
+		if (!variables.slimeHasMoved_1 && !LoginPage.sqli.checkAchievement(username, LoginPage.pack_a.getName())) {
 			LoginPage.sqli.setAchievement(username, LoginPage.pack_a);
 		}
 
@@ -183,7 +184,7 @@ public class GameScreen extends JFrame{
 	public static void main (String [] args)
 	{
 		GameScreen gamescreen = new GameScreen("techguychen");
-		gamescreen.primary.background = "outerspace";
-		gamescreen.primary.ball = new Ball();
+		gamescreen.variables.background = "outerspace";
+		gamescreen.variables.ball = new Ball((gamescreen.variables.leftBoundary + gamescreen.variables.rightBoundary)/2, gamescreen.variables.groundLevel - 12 - 100, gamescreen.variables);
 	}
 }
