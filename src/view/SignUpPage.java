@@ -25,10 +25,9 @@ public class SignUpPage extends JFrame{
 	private JTextField fNameField, lNameField, usernameField, descField;
 	private JPasswordField passwordField;
 	private int avatar = -1;
-	
 	private String fn, ln, u, pw, desc;
-	
-	public JButton[] avatarButtons;
+
+	public static JButton[] avatarButtons;
 
 	public SignUpPage() {
 		setSize(800, 600);

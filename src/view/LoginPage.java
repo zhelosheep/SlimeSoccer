@@ -18,8 +18,10 @@ import java.net.UnknownHostException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -33,8 +35,7 @@ public class LoginPage extends JFrame{
 	private JTextField usernameField, hostField;
 	private JPasswordField passwordField;
 	private JButton login, signup, guest;
-	
-	private String u, pw;
+	private String u, pw, host;
 	
 	//starts up static mysql instance
 	public static final controller.SqlInstance sqli= new controller.SqlInstance();
@@ -60,10 +61,12 @@ public class LoginPage extends JFrame{
 		login.setAlignmentX(Component.CENTER_ALIGNMENT);
 		signup.setAlignmentX(Component.CENTER_ALIGNMENT);
 		guest.setAlignmentX(Component.CENTER_ALIGNMENT);
+		
+		login.setEnabled(false);
 	}
 	
 	private void addComponents() {
-		JLabel welcome = new JLabel("Slime Soccer!");
+		//JLabel welcome = new JLabel("Slime Soccer!");
 		JLabel host = new JLabel("   Host: ");
 		JLabel username = new JLabel("Username: ");
 		JLabel password = new JLabel("Password: ");
@@ -71,8 +74,8 @@ public class LoginPage extends JFrame{
 		JPanel usernameLine = new JPanel();
 		JPanel passwordLine = new JPanel();
 
-		welcome.setFont(new Font("Arial", Font.BOLD, 20));
-		welcome.setAlignmentX(Component.CENTER_ALIGNMENT);
+		//welcome.setFont(new Font("Arial", Font.BOLD, 20));
+		//welcome.setAlignmentX(Component.CENTER_ALIGNMENT);
 		hostLine.setAlignmentX((Component.CENTER_ALIGNMENT));
 		usernameLine.setAlignmentX(Component.CENTER_ALIGNMENT);
 		passwordLine.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -121,19 +124,23 @@ public class LoginPage extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		login.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainMenuUser mmu = new MainMenuUser(usernameField.getText());
-				try {
-					mmu.s = new Socket(hostField.getText(), 6789);
-					mmu.sReader = new BufferedReader(new InputStreamReader(mmu.s.getInputStream()));
-					mmu.sWriter = new PrintWriter(mmu.s.getOutputStream());
-					(new ClientThread(mmu, false)).start();
-				} catch (UnknownHostException uhe) {
-					System.out.println("UnknownHostException: " + uhe.getMessage());
-				} catch (IOException ioe) {
-					System.out.println("IOException in login listener: " + ioe.getMessage());
+				if (sqli.validateLogin(u, pw)) {
+					MainMenuUser mmu = new MainMenuUser(usernameField.getText());
+					try {
+						mmu.s = new Socket(hostField.getText(), 6789);
+						mmu.sReader = new BufferedReader(new InputStreamReader(mmu.s.getInputStream()));
+						mmu.sWriter = new PrintWriter(mmu.s.getOutputStream());
+						(new ClientThread(mmu, false)).start();
+					} catch (UnknownHostException uhe) {
+						System.out.println("UnknownHostException: " + uhe.getMessage());
+					} catch (IOException ioe) {
+						System.out.println("IOException in login listener: " + ioe.getMessage());
+					}
+					mmu.setVisible(true);
+					dispose();
+				} else {
+					JOptionPane.showMessageDialog(LoginPage.this, "Invalid username/password", "Invalid Login", JOptionPane.ERROR_MESSAGE);
 				}
-				mmu.setVisible(true);
-				dispose();
 			}
 		});
 		signup.addActionListener(new ActionListener() {
@@ -146,7 +153,7 @@ public class LoginPage extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				MainMenuGuest mmg = new MainMenuGuest();
 				try {
-					mmg.s = new Socket(hostField.getText(), 6789);
+					mmg.s = new Socket(host, 6789);
 					mmg.sReader = new BufferedReader(new InputStreamReader(mmg.s.getInputStream()));
 					mmg.sWriter = new PrintWriter(mmg.s.getOutputStream());
 					(new ClientThread(mmg, true)).start();
@@ -159,14 +166,28 @@ public class LoginPage extends JFrame{
 				dispose();
 			}
 		});
+		
+		hostField.getDocument().addDocumentListener(new checkFields());
+		usernameField.getDocument().addDocumentListener(new checkFields());
+		passwordField.getDocument().addDocumentListener(new checkFields());
 	}
 	
 	private void changed() {
 		u = usernameField.getText();
 		pw = String.valueOf(passwordField.getPassword());
+		host = hostField.getText();
 		
-		if (u.equals("") || pw.equals("")) login.setEnabled(false);
-		else login.setEnabled(true);
+		if (host.equals("")) {
+			login.setEnabled(false);
+			guest.setEnabled(false);
+		}
+		else if (u.equals("") || pw.equals("")) {
+			login.setEnabled(false);
+		}
+		else {
+			login.setEnabled(true);
+			guest.setEnabled(true);
+		}
 	}
 	
 	private class checkFields implements DocumentListener {

@@ -21,11 +21,6 @@ public class Game {
 	
 	// game stats
 	public static String background;
-<<<<<<< HEAD
-	public static BufferedImage imgBackground;
-	//	public static int round, timer;
-=======
->>>>>>> 0f35ae46d2956cdc0cc48bc7bd865eeb34f24d6a
 	public static String player1_slimeType, player2_slimeType;
 	public static String player1_username, player2_username;
 	public static double player1_manaCurrent, player2_manaCurrent; // live data
