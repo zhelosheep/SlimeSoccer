@@ -67,7 +67,7 @@ public class MainMenuUser extends JFrame{
 		chatArea = new JTextArea();
 		chatField = new JTextField(10);
 		logoutButton = new JButton("Logout");
-		settingsButton = new JButton(new ImageIcon(new ImageIcon("resources/SoccerBall.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)));
+		settingsButton = new JButton(new ImageIcon(new ImageIcon("resources/OptionsButton.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)));
 		settingsPage = new SettingsPage();
 		mainMenuUserPlayPlayer = new MainMenuUserPlayPlayer(this);
 		mainMenuUserSpectate = new MainMenuUserSpectate(this);

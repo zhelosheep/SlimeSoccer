@@ -42,7 +42,7 @@ public class MainMenuUserPlayPlayer extends JFrame{
 	}
 	
 	private void instantiateVariables() {
-		avatar = new ImageIcon(new ImageIcon("resources/SoccerBall.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH));
+		avatar = SignUpPage.avatarImages[LoginPage.sqli.getImage(getUsername())];
 		searchButton = new JButton("Search");
 		randomButton = new JButton("?? Random ??");
 		sendButton = new JButton("Send");
@@ -51,7 +51,7 @@ public class MainMenuUserPlayPlayer extends JFrame{
 		backButton = new JButton("Back");
 		logoutButton = new JButton("Log Out");
 		usernameField = new JTextField(6);
-		settingsButton = new JButton(new ImageIcon(new ImageIcon("resources/SoccerBall.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)));
+		settingsButton = new JButton(new ImageIcon(new ImageIcon("resources/OptionsButton.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)));
 		playPlayerLabel = new JLabel(new ImageIcon("resources/PvP.png"));
 		mainMenuUserWaiting = new MainMenuUserWaiting(this);
 	}
@@ -62,14 +62,14 @@ public class MainMenuUserPlayPlayer extends JFrame{
 		JLabel slimeSoccerLabel = new JLabel("Slime Soccer");
 		slimeSoccerLabel.setFont(new Font("Arial", Font.BOLD, 20));
 		slimeSoccerLabel.setBorder(BorderFactory.createEmptyBorder(5, 15, 5, 5));
-		JLabel avatarLabel = new JLabel(avatar);
-		avatarLabel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+		JButton avatarButton = new JButton(avatar);
+		avatarButton.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		settingsButton.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		logoutButton.setFont(new Font("Arial", Font.BOLD, 16));
 		logoutButton.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 15));
 		northPanel.add(slimeSoccerLabel);
 		northPanel.add(Box.createGlue());
-		northPanel.add(avatarLabel);
+		northPanel.add(avatarButton);
 		northPanel.add(settingsButton);
 		northPanel.add(logoutButton);
 		add(northPanel, BorderLayout.NORTH);
