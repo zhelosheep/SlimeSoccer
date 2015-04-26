@@ -23,8 +23,9 @@ public class MainMenuUserPlaySlime extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private JButton continueButton, backButton;
 	public String p1Username, p2Username;
-	private String[] slimeNames, slimeAbilities;	//for label purposes
+	private String[] slimeNames, slimeAbilities, specialSlimeNames, specialSlimeDescriptions;	//for label purposes
 	private JButton[] slimeButtons;
+	private JButton[] specialSlimes;
 	public JLabel p1UsernameLabel, p2UsernameLabel;
 	private JLabel p1SlimeNameLabel, p2SlimeNameLabel, p1SlimeImageLabel, p2SlimeImageLabel, p1SlimeAbilityLabel, p2SlimeAbilityLabel;
 	private JComboBox<String> specialModeCombo, backgroundCombo;
@@ -103,8 +104,51 @@ public class MainMenuUserPlaySlime extends JFrame{
 		slimeAbilities[8] = "<html><div style=\"text-align: center;\">Super-Size Me";
 		slimeAbilities[9] = "<html><div style=\"text-align: center;\">Superslime, away!";
 		
+		// ~ *** ~~ SPECIAL SLIMES ~~~ *** ~
+		// list of achievements: chris_a, loser_a, nolife_a, noob_a, pack_a, soc_a, unath_a, vict_a, wrongw_a
+		// images
+		specialSlimes = new JButton[9];
+		specialSlimes[0] = new JButton(new ImageIcon("resources/game/specialslimes/3DSlime.png"));
+		specialSlimes[1] = new JButton(new ImageIcon("resources/game/specialslimes/Butterfly.png"));
+		specialSlimes[2] = new JButton(new ImageIcon("resources/game/specialslimes/CristianoRonaldoSlime.png"));
+		specialSlimes[3] = new JButton(new ImageIcon("resources/game/specialslimes/CrossEyed.png"));
+		specialSlimes[4] = new JButton(new ImageIcon("resources/game/specialslimes/Crown.png"));
+		specialSlimes[5] = new JButton(new ImageIcon("resources/game/specialslimes/Dunce.png"));
+		specialSlimes[6] = new JButton(new ImageIcon("resources/game/specialslimes/LSlime.png"));
+		specialSlimes[7] = new JButton(new ImageIcon("resources/game/specialslimes/Potato.png"));
+		specialSlimes[8] = new JButton(new ImageIcon("resources/game/specialslimes/SweaterSlime.png"));
+		
+		for (int i = 0; i < specialSlimes.length; i++) {
+			specialSlimes[i].setEnabled(false);
+		}
+		
+		// names
+		specialSlimeNames = new String[9];
+		specialSlimeNames[0] = "<html><div style=\"text-align: center;\">3D Slime";
+		specialSlimeNames[1] = "<html><div style=\"text-align: center;\">Butterfly Slime";
+		specialSlimeNames[2] = "<html><div style=\"text-align: center;\">Cristiano Ronaldo Slime";
+		specialSlimeNames[3] = "<html><div style=\"text-align: center;\">Cross Eyed Slime";
+		specialSlimeNames[4] = "<html><div style=\"text-align: center;\">Crown Slime";
+		specialSlimeNames[5] = "<html><div style=\"text-align: center;\">Dunce Slime'";
+		specialSlimeNames[6] = "<html><div style=\"text-align: center;\">LSlime";
+		specialSlimeNames[7] = "<html><div style=\"text-align: center;\">Potato Slime";
+		specialSlimeNames[8] = "<html><div style=\"text-align: center;\">Sweater Slime";
+		
+		// descriptions
+		specialSlimeDescriptions = new String[9];
+		specialSlimeDescriptions[0] = "<html><div style=\"text-align: center;\">Don’t move your slime at all during a game";
+		specialSlimeDescriptions[1] = "<html><div style=\"text-align: center;\">Have over 25 friends";
+		specialSlimeDescriptions[2] = "<html><div style=\"text-align: center;\">Have a 2:1 win lose ratio or greater";
+		specialSlimeDescriptions[3] = "<html><div style=\"text-align: center;\">Score on yourself";
+		specialSlimeDescriptions[4] = "<html><div style=\"text-align: center;\">Win 10 games";
+		specialSlimeDescriptions[5] = "<html><div style=\"text-align: center;\">Play first game'";
+		specialSlimeDescriptions[6] = "<html><div style=\"text-align: center;\">Lose 5 games in a row";
+		specialSlimeDescriptions[7] = "<html><div style=\"text-align: center;\">Play 1000 games";
+		specialSlimeDescriptions[8] = "<html><div style=\"text-align: center;\">Have a 1:10 win/loss ratio or less";
+		
 		p1SlimeImageLabel = new JLabel(slimeButtons[0].getIcon());
 		p2SlimeImageLabel = new JLabel(slimeButtons[1].getIcon());
+		
 		String[] specialModeOptions = { "Anti-Gravity", "Giant Ball", "Multiple Balls", "Mini Slime" };
 		String[] backgroundOptions = { "Desk", "Soccer Field", "Outer Space", "Laptop Screen" };
 		specialModeCombo = new JComboBox<String>(specialModeOptions);
@@ -163,6 +207,7 @@ public class MainMenuUserPlaySlime extends JFrame{
 		JPanel jp4 = new JPanel();
 		jp4.setLayout(new GridLayout(2, 5));
 		for (int i = 0; i < 10; i++) jp4.add(slimeButtons[i]);
+		for (int i = 0; i < 9; i++) jp4.add(specialSlimes[i]);
 		jp4.setBorder(BorderFactory.createEmptyBorder(0, 100, 0, 100));
 		centerPanel.add(jp1);
 		centerPanel.add(jp4);		
@@ -207,6 +252,7 @@ public class MainMenuUserPlaySlime extends JFrame{
 				quit();
 			}
 		});
+		
 		class SlimeButtonListener implements ActionListener {
 			int index = -1;
 			
@@ -224,13 +270,36 @@ public class MainMenuUserPlaySlime extends JFrame{
 					p2SlimeImageLabel.setIcon(slimeButtons[index].getIcon());
 					p2SlimeNameLabel.setText(slimeNames[index]);
 					p2SlimeAbilityLabel.setText(slimeAbilities[index]);
-					
 				}
+			}	
+		}
+		
+		class SpecialSlimeListener implements ActionListener {
+			int index = -1;
+			
+			SpecialSlimeListener(int index) {
+				this.index = index;
 			}
 			
+			public void actionPerformed(ActionEvent e) {
+				if (isPlayer1) {
+					p1SlimeImageLabel.setIcon(specialSlimes[index].getIcon());
+					p1SlimeNameLabel.setText(specialSlimeNames[index]);
+					p1SlimeAbilityLabel.setText(specialSlimeDescriptions[index]);
+				} else {
+					p2SlimeImageLabel.setIcon(specialSlimes[index].getIcon());
+					p2SlimeNameLabel.setText(specialSlimeNames[index]);
+					p2SlimeAbilityLabel.setText(specialSlimeDescriptions[index]);
+				}
+			}
 		}
+		
 		for (int i = 0; i < 10; i++) {
 			slimeButtons[i].addActionListener(new SlimeButtonListener(i));
+		}
+		
+		for (int i = 0; i < 9; i++) {
+			specialSlimes[i].addActionListener(new SpecialSlimeListener(i));
 		}
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
