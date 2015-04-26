@@ -162,8 +162,9 @@ public class Profile extends JFrame{
 		
 		for (int i = 0; i < friends.size(); i++) {
 			JPanel group = new JPanel();
-			
 			group.setLayout(new BoxLayout(group, BoxLayout.Y_AXIS));
+			group.setBorder(BorderFactory.createEmptyBorder(0,  5,  0,  5));
+			group.setAlignmentX(Component.CENTER_ALIGNMENT);
 			
 			JLabel friendAvatar = new JLabel(SignUpPage.avatarImages[LoginPage.sqli.getImage(friends.get(i))]);
 			friendAvatar.addMouseListener(new MouseAdapter() {
@@ -181,6 +182,7 @@ public class Profile extends JFrame{
 				}
 			}.init(i));
 			
+			friendAvatar.setAlignmentX(Component.CENTER_ALIGNMENT);
 			group.add(friendAvatar);
 			
 			JLabel temp = new JLabel(friends.get(i));
@@ -196,9 +198,10 @@ public class Profile extends JFrame{
 		for (int i = 0; i< ach.size(); i++) {
 			JPanel group = new JPanel();
 			group.setLayout(new BoxLayout(group, BoxLayout.Y_AXIS));
+			group.setBorder(BorderFactory.createEmptyBorder(0,  5,  0,  5));
+			group.setAlignmentX(Component.CENTER_ALIGNMENT);
 			
 			JLabel icon = new JLabel(ach.get(i).getIcon());
-			
 			icon.addMouseListener(new MouseAdapter() {
 				int i;
 				
@@ -212,6 +215,7 @@ public class Profile extends JFrame{
 				}
 			}.init(i));
 			
+			icon.setAlignmentX(Component.CENTER_ALIGNMENT);
 			group.add(icon);
 			
 			JLabel temp = new JLabel(ach.get(i).getName());
