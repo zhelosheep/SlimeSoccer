@@ -14,13 +14,15 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JSlider;
 
 public class SettingsPage extends JFrame{
 	private static final long serialVersionUID = 1L;
-	private JButton cancelButton, saveButton;
+	private JButton cancelButton, saveButton, changePassword;
 	private JSlider sfxSlider, musicSlider; 
 	private JFrame prevScreen = null;
+	private JPasswordField jpf;
 
 	public SettingsPage() {
 		setSize(800, 600);
@@ -34,8 +36,10 @@ public class SettingsPage extends JFrame{
 	private void instantiateVariables() {
 		cancelButton = new JButton("Cancel");
 		saveButton = new JButton("Save");
+		changePassword = new JButton("changePassword");
 		sfxSlider = new JSlider(JSlider.HORIZONTAL);
 		musicSlider = new JSlider(JSlider.HORIZONTAL);
+		jpf = new JPasswordField(20);
 	}
 	
 	private void addComponents() {
@@ -63,9 +67,13 @@ public class SettingsPage extends JFrame{
 		JPanel jp4 = new JPanel();
 		jp4.add(saveButton);
 		jp4.add(cancelButton);
+		JPanel jp5 = new JPanel();
+		jp5.add(jpf);
+		jp5.add(changePassword);
 		centerPanel.add(jp1);
 		centerPanel.add(jp2);
 		centerPanel.add(jp3);
+		centerPanel.add(jp5);
 		centerPanel.add(jp4);
 		centerPanel.add(Box.createGlue());
 		add(centerPanel, BorderLayout.CENTER);
@@ -89,6 +97,13 @@ public class SettingsPage extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				prevScreen.setVisible(true);
 				setVisible(false);
+			}
+		});
+		
+		changePassword.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				LoginPage.sqli.changePassword(MainMenuUser.username, String.copyValueOf(jpf.getPassword()));
+				jpf.setText("");
 			}
 		});
 	}

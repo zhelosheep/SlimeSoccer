@@ -138,6 +138,7 @@ public class Game {
 				saveStats(variables.playerThatWon);
 			}
 		}
+		
 		else if (playerThatScored == 2) {
 			variables.player2_score++;
 			variables.player2scored = true;
@@ -147,6 +148,7 @@ public class Game {
 				saveStats(variables.playerThatWon);
 			}
 		}
+		
 		if (playerThatScored == 1 || playerThatScored == 2) { // then reset ball position, slime positions, etc
 			variables.ball.x = (variables.leftBoundary + variables.rightBoundary)/2;
 			variables.ball.y = variables.groundLevel - 12 - 20;

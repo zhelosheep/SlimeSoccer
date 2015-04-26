@@ -296,24 +296,13 @@ public class SqlInstance {
 		
 		try {
 			int userID = u_rs.getInt("userID");
-			ps = c.prepareStatement("UPDATE account_data SET password = '?' WHERE userID = ?");
+			ps = c.prepareStatement("UPDATE account_data SET password = ? WHERE userID = ?");
 			ps.setString(1, pw);
 			ps.setInt(2, userID);
 			ps.executeUpdate();
 			
 		} catch (SQLException sqle) {
 			System.out.println("SQLException in SqlInstance.changePassword: " + sqle.getMessage());
-		}
-	}
-	
-	public void updateDate(String u) {
-		ResultSet u_rs = getUser(u);
-		try {
-			Date p_date = u_rs.getDate("player_days");
-			Date c_date = Calendar.getInstance().getTime();
-			//this'll work later yall
-		} catch (SQLException sqle) {
-			System.out.println("SQLException in SqlInstance.updateDate: " + sqle.getMessage());
 		}
 	}
 	
