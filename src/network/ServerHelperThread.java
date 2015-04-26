@@ -107,6 +107,7 @@ public class ServerHelperThread extends Thread {
 
 					else if (str.charAt(0) == 'O')
 					{
+						System.out.println("in O");
 						synchronized (st) {
 							if (opponentThread.readyToPlay) {
 								opponentThread.readyToPlay = false;
@@ -115,7 +116,7 @@ public class ServerHelperThread extends Thread {
 								set.add(this);
 								// this shouldn't be hardcoded, decode the string here!!
 								st.ongoingGames.put(new Game("desk", "SlimeBowAndArrow", "SlimeGeyser", "shawnren", "josemama", 100, 100, 1, "antigravity"), set);
-								
+								System.out.println("making game");
 							} else {
 								this.readyToPlay = true;
 							}

@@ -59,7 +59,7 @@ public class GameScreen extends JFrame{
 		slimeSoccerLabel.setBorder(BorderFactory.createEmptyBorder(5, 15, 5, 5));
 		
 		// set up model
-		model = new Game("outerspace", "SlimeFireball", "SlimeSuperSize", "shawnren", "josemama", 100, 100, 1, null);
+		model = new Game("outerspace", "SlimeFireball", "SlimeSuperSize", "shawnren", "josemama", 100, 100, 1, "antigravity");
 		// set up controller
 		controller = new Controller();
 
@@ -90,8 +90,7 @@ public class GameScreen extends JFrame{
 		
 		JPanel leftPanel = new JPanel();
 		leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
-		leftPanel.setPreferredSize(new Dimension(300, 200));
-		leftPanel.setBorder(BorderFactory.createEmptyBorder(0, 30, 15, 0));
+		leftPanel.setPreferredSize(new Dimension(600, 200));
 		leftPanel.add(primary);
 		
 		
@@ -113,11 +112,8 @@ public class GameScreen extends JFrame{
 		rightPanel.add(jsp);
 		rightPanel.add(jp5);
 		rightPanel.setPreferredSize(new Dimension(180, 420));
-		rightPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 15));
 		
-		centerPanel.add(Box.createGlue());
 		centerPanel.add(leftPanel);
-		centerPanel.add(Box.createGlue());
 		centerPanel.add(rightPanel);
 		add(centerPanel, BorderLayout.CENTER);
 	}

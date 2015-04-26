@@ -244,8 +244,10 @@ public class MainMenuUserPlaySlime extends JFrame{
 				if (!isPvCGame) {
 					if (isPlayer1) {
 						((MainMenuUserPlayPlayer) prevScreen).prevScreen.sWriter.println("O1"); // append game settings!						
+						((MainMenuUserPlayPlayer) prevScreen).prevScreen.sWriter.flush();						
 					} else {
 						((MainMenuUserPlayPlayer) prevScreen).prevScreen.sWriter.println("O2");												
+						((MainMenuUserPlayPlayer) prevScreen).prevScreen.sWriter.flush();
 					}
 				}
 			}
