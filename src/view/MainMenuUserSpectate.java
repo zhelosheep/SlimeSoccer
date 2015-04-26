@@ -53,6 +53,7 @@ public class MainMenuUserSpectate extends JFrame{
 		gameIDField = new JTextField(6);
 		logoutButton = new JButton("Log Out");
 		settingsButton = new JButton(new ImageIcon(new ImageIcon("resources/SoccerBall.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)));
+		spectateScreen = new SpectateScreen(false, this);
 	}
 	
 	private void addComponents() {
@@ -160,6 +161,18 @@ public class MainMenuUserSpectate extends JFrame{
 				prevScreen.sWriter.flush();
 				prevScreen.chatArea.setText(prevScreen.chatArea.getText() + "\n" + prevScreen.getUsername() + ": " + chatField.getText());
 				chatField.setText("");
+			}
+		});
+		searchButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				spectateScreen.setVisible(true);
+				setVisible(false);
+			}
+		});
+		randomButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				spectateScreen.setVisible(true);
+				setVisible(false);
 			}
 		});
 	}
