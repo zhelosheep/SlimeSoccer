@@ -7,6 +7,10 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public class Variables {
+	// try 
+	private static boolean[] p1_keyboardState = new boolean[535];
+	private static boolean[] p2_keyboardState = new boolean[535];
+	
 	// image resources
 	public BufferedImage imgBall;
 	public BufferedImage imgBackground;

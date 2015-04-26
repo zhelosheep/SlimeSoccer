@@ -32,6 +32,7 @@ public class Frame extends JFrame {
 	public static void main (String [] args) {
 		Frame guiFrame = new Frame();
 		view.variables = gt.game.variables;
+		view.addKeyListener(controller);
 		guiFrame.setVisible(true);
 		gt.start();
 		view.start();

@@ -183,6 +183,7 @@ public class GameScreen extends JFrame{
 	{
 		GameScreen gamescreen = new GameScreen("techguychen");
 		primary.variables = gt.game.variables;
+		primary.addKeyListener(controller);
 		gamescreen.setVisible(true);
 		gt.start();
 		primary.start();
