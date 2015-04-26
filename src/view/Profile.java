@@ -2,6 +2,7 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,14 +19,17 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 
 public class Profile extends JFrame{
 	private String u;
 	private JFrame prevScreen;
 	
+	private JScrollPane achieveScroll, friendScroll;
 	private JTextField searchField;
 	private JButton searchButton, backButton, addFriend;
 	
@@ -81,9 +85,11 @@ public class Profile extends JFrame{
 		JPanel right = new JPanel();
 		JPanel achievementPanel = new JPanel();
 		JPanel friendsPanel = new JPanel();
+		JScrollPane achieveScroll = new JScrollPane(achievementPanel, ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		JScrollPane friendScroll = new JScrollPane(friendsPanel, ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		
 		northPanel.setLayout(new BoxLayout(northPanel, BoxLayout.Y_AXIS));
-		header.setLayout(new BoxLayout(header, BoxLayout.X_AXIS));
+		header.setLayoust(new BoxLayout(header, BoxLayout.X_AXIS));
 		centerPanel.setLayout(new BorderLayout());
 		left.setLayout(new BoxLayout(left, BoxLayout.Y_AXIS));
 		otherSide.setLayout(new BoxLayout(otherSide, BoxLayout.Y_AXIS));
@@ -91,6 +97,9 @@ public class Profile extends JFrame{
 		right.setLayout(new BoxLayout(right, BoxLayout.Y_AXIS));
 		achievementPanel.setLayout(new BoxLayout(achievementPanel, BoxLayout.X_AXIS));
 		friendsPanel.setLayout(new BoxLayout(friendsPanel, BoxLayout.X_AXIS));
+		
+		achievementPanel.setPreferredSize(new Dimension(200, 80));
+		friendsPanel.setPreferredSize(new Dimension(200, 80));
 		
 		otherSide.setBorder(BorderFactory.createEmptyBorder(30, 0, 0, 0));
 		middle.setBorder(BorderFactory.createEmptyBorder(50, 0, 0, 20));
@@ -153,6 +162,7 @@ public class Profile extends JFrame{
 		
 		for (int i = 0; i < friends.size(); i++) {
 			JPanel group = new JPanel();
+			
 			group.setLayout(new BoxLayout(group, BoxLayout.Y_AXIS));
 			
 			JLabel friendAvatar = new JLabel(SignUpPage.avatarImages[LoginPage.sqli.getImage(friends.get(i))]);
@@ -181,7 +191,7 @@ public class Profile extends JFrame{
 			friendsPanel.add(group);
 		}
 		
-		right.add(friendsPanel);
+		right.add(friendScroll);
 		
 		for (int i = 0; i< ach.size(); i++) {
 			JPanel group = new JPanel();
@@ -210,7 +220,7 @@ public class Profile extends JFrame{
 			group.add(temp);
 			achievementPanel.add(group);
 		}
-		middle.add(achievementPanel);
+		middle.add(achieveScroll);
 		
 		northPanel.add(header);
 		northPanel.add(searchBar);
