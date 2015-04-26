@@ -146,6 +146,14 @@ public class MainMenuGuest extends JFrame{
 				chatArea.setText(chatArea.getText() + "\nGuest: " + chatField.getText());
 				chatField.setText("");
 			}
+			
+			public void KeyPressed(KeyEvent e)
+			{
+				sWriter.println("CGuest: " + chatField.getText());
+				sWriter.flush();
+				chatArea.setText(chatArea.getText() + "\nGuest: " + chatField.getText());
+				chatField.setText("");
+			}
 		});
 		searchButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -159,15 +167,6 @@ public class MainMenuGuest extends JFrame{
 				setVisible(false);
 			}
 		});		
-		chatField.addKeyListener(new KeyListener() {
-			public void KeyPressed(KeyEvent e)
-			{
-				sWriter.println("CGuest: " + chatField.getText());
-				sWriter.flush();
-				chatArea.setText(chatArea.getText() + "\nGuest: " + chatField.getText());
-				chatField.setText("");
-			}
-		});
 		
 		chatField.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e)
