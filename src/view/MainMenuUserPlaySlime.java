@@ -90,15 +90,15 @@ public class MainMenuUserPlaySlime extends JFrame{
 		//Instantiate slimeAbilities
 		slimeAbilities = new String[10];
 		slimeAbilities[0] = "<html><div style=\"text-align: center;\">Explode";
-		slimeAbilities[1] = "<html><div style=\"text-align: center;\">Shoot Arrows";
+		slimeAbilities[1] = "<html><div style=\"text-align: center;\">Katniss?";
 		slimeAbilities[2] = "<html><div style=\"text-align: center;\">Multiple Slimes";
 		slimeAbilities[3] = "<html><div style=\"text-align: center;\">Wormhole";
-		slimeAbilities[4] = "<html><div style=\"text-align: center;\">Ball on Fire";
-		slimeAbilities[5] = "<html><div style=\"text-align: center;\">Gone Fishing";
+		slimeAbilities[4] = "<html><div style=\"text-align: center;\">This Ball is on Fiyah";
+		slimeAbilities[5] = "<html><div style=\"text-align: center;\">Gone Fishin'";
 		slimeAbilities[6] = "<html><div style=\"text-align: center;\">Water Geyser";
-		slimeAbilities[7] = "<html><div style=\"text-align: center;\">Super Attractive";
+		slimeAbilities[7] = "<html><div style=\"text-align: center;\">Super Attractive ;)";
 		slimeAbilities[8] = "<html><div style=\"text-align: center;\">Super-Size Me";
-		slimeAbilities[9] = "<html><div style=\"text-align: center;\">Fly";
+		slimeAbilities[9] = "<html><div style=\"text-align: center;\">Superslime, away!";
 		
 		p1SlimeImageLabel = new JLabel(slimeButtons[0].getIcon());
 		p2SlimeImageLabel = new JLabel(slimeButtons[1].getIcon());

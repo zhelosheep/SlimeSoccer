@@ -121,6 +121,12 @@ public class SpectateScreen extends JFrame {
 				quit();
 			}
 		});
+		backButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				prevScreen.setVisible(true);
+				setVisible(false);
+			}
+		});
 	}
 	
 	void quit() {
