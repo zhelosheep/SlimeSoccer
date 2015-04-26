@@ -36,6 +36,7 @@ public class MainMenuGuest extends JFrame{
 	public BufferedReader sReader;
 	public PrintWriter sWriter;
 	private static JLabel spectateLabel;
+	private SpectateScreen spectateScreen;
 	
 	public MainMenuGuest() {
 		setSize(800, 600);
@@ -55,6 +56,7 @@ public class MainMenuGuest extends JFrame{
 		chatField = new JTextField(10);
 		backButton = new JButton("Back");
 		gameIDField = new JTextField(6);
+		spectateScreen = new SpectateScreen(true, this);
 	}
 	
 	private void addComponents() {
@@ -153,6 +155,18 @@ public class MainMenuGuest extends JFrame{
 				chatField.setText("");
 			}
 		});
+		searchButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				spectateScreen.setVisible(true);
+				setVisible(false);
+			}
+		});
+		randomButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				spectateScreen.setVisible(true);
+				setVisible(false);
+			}
+		});		
 		
 		chatField.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e)
