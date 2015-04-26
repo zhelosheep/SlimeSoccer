@@ -138,9 +138,10 @@ public class SignUpPage extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				//register(String fn, String ln, String u, String pw, int img, String desc)
 				LoginPage.sqli.register(fn, ln, u, pw, avatar, desc);
-
-				(new MainMenuUser(usernameField.getText())).setVisible(true);
-				dispose();
+				if (LoginPage.sqli.findUser(u)) {
+					(new MainMenuUser(usernameField.getText())).setVisible(true);
+					dispose();
+				}
 			}
 		});
 		
