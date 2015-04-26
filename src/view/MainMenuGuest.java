@@ -136,6 +136,7 @@ public class MainMenuGuest extends JFrame{
 				dispose();
 			}
 		});
+		
 		sendButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				sWriter.println("CGuest: " + chatField.getText());
@@ -143,39 +144,25 @@ public class MainMenuGuest extends JFrame{
 				chatArea.setText(chatArea.getText() + "\nGuest: " + chatField.getText());
 				chatField.setText("");
 			}
-		});
-		
-		chatField.addKeyListener(new KeyListener() {
+			
 			public void KeyPressed(KeyEvent e)
 			{
-				if (e.getKeyCode()==KeyEvent.VK_ENTER)
-				{
-					sWriter.println("CGuest: " + chatField.getText());
-					sWriter.flush();
-					chatArea.setText(chatArea.getText() + "\nGuest: " + chatField.getText());
-					chatField.setText("");
-				}
-			}
-
-			@Override
-			public void keyPressed(KeyEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void keyReleased(KeyEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void keyTyped(KeyEvent e) {
-				// TODO Auto-generated method stub
-				
+				sWriter.println("CGuest: " + chatField.getText());
+				sWriter.flush();
+				chatArea.setText(chatArea.getText() + "\nGuest: " + chatField.getText());
+				chatField.setText("");
 			}
 		});
 		
+		chatField.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e)
+			{
+				sWriter.println("CGuest: " + chatField.getText());
+				sWriter.flush();
+				chatArea.setText(chatArea.getText() + "\nGuest: " + chatField.getText());
+				chatField.setText("");
+			}
+		});
 	}
 	
 	void quit() {
