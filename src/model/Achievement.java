@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import javax.swing.ImageIcon;
 
-//all achievement names: chris_a, loser_a, nolife_a, noob_a, pack_a, soc_a, unath_a, vict_a
+// all achievement names: chris_a, loser_a, nolife_a, noob_a, pack_a, soc_a, unath_a, vict_a, wrongw_a
 
 public class Achievement implements Serializable{
 	private static final long serialVersionUID = 1L;
