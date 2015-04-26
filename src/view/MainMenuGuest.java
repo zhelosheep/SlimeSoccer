@@ -181,15 +181,9 @@ public class MainMenuGuest extends JFrame{
 	
 	void quit() {
 		try {
-			if (sReader != null) {
-				sReader.close();
-				sReader = null;
-			}
-			if (sWriter != null) {
-				sWriter.close();
-				sWriter = null;
-			}
 			if (s != null) {
+				s.shutdownInput();
+				s.shutdownOutput();
 				s.close();
 				s = null;
 			}

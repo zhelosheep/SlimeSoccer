@@ -229,11 +229,9 @@ public class MainMenuUser extends JFrame{
 	
 	void quit() {
 		try {
-			System.out.println("here");
 			if (s != null) {
 				s.shutdownInput();
 				s.shutdownOutput();
-				System.out.println("here");
 				s.close();
 				s = null;
 			}
