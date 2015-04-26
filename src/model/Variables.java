@@ -34,6 +34,8 @@ public class Variables {
 	public String specialMode;
 	public boolean gameOver;
 	public int playerThatWon;
+	public boolean slimeHasMoved_1 = false;
+	public boolean slimeHasMoved_2 = false;
 	
 	public Variables() {
 		try {

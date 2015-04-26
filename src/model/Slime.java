@@ -51,7 +51,7 @@ public class Slime {
 			facingLeft = true;
 		}
 		this.slimeImage = slimeImage;
-		if (variables.specialMode.equals("minislime")) {
+		if (variables.specialMode.equals("Mini Slime")) {
 			this.width = 30;
 			this.height = 30;
 			this.radius = 15;
@@ -63,11 +63,13 @@ public class Slime {
 
 	public void update() {
 		// normal instances
-		if (!variables.specialMode.equals("antigravity")) {
+		if (!variables.specialMode.equals("Anti-Gravity")) {
 
 			// Calculating velocity for moving up or down
 			if(Controller.keyboardKeyState(upKey) && y == variables.groundLevel) {
 	            velocityY -= jumpAcceleration;
+	            if (player == 1) { variables.slimeHasMoved_1 = true; } 
+	            else if (player == 2) { variables.slimeHasMoved_2 = true; }
 	        } else {
 	        	if (y >= variables.groundLevel) {
 	        		velocityY = 0;
@@ -79,6 +81,8 @@ public class Slime {
 	        // Calculating velocity for moving or stopping to the left
 	        if(Controller.keyboardKeyState(leftKey)) {
 	        	facingLeft = true;
+	            if (player == 1) { variables.slimeHasMoved_1 = true; } 
+	            else if (player == 2) { variables.slimeHasMoved_2 = true; }
 	        	if (velocityX >= -maxSpeed) {
 	                velocityX -= acceleration;
 	        	}
@@ -89,6 +93,8 @@ public class Slime {
 	        // Calculating velocity for moving or stopping to the right
 	        if(Controller.keyboardKeyState(rightKey)) {
 	        	facingLeft = false;
+	            if (player == 1) { variables.slimeHasMoved_1 = true; } 
+	            else if (player == 2) { variables.slimeHasMoved_2 = true; }
 	        	if (velocityX <= maxSpeed) {
 	        		velocityX += acceleration;
 	        	}
@@ -101,12 +107,16 @@ public class Slime {
 		else {
 	        // Calculating velocity for moving up 
 	        if(Controller.keyboardKeyState(upKey)) {
+	            if (player == 1) { variables.slimeHasMoved_1 = true; } 
+	            else if (player == 2) { variables.slimeHasMoved_2 = true; }
 	        	if (velocityY >= -maxSpeed) {
 	        		velocityY -= acceleration;
 	        	}
 	        }
 	        // Calculating velocity for moving down
 	        if(Controller.keyboardKeyState(downKey)) {
+	            if (player == 1) { variables.slimeHasMoved_1 = true; } 
+	            else if (player == 2) { variables.slimeHasMoved_2 = true; }
 	        	if (velocityY <= maxSpeed) {
 	        		velocityY += acceleration;
 	        	}
@@ -114,6 +124,8 @@ public class Slime {
 	        // Calculating velocity for moving or stopping to the left
 	        if(Controller.keyboardKeyState(leftKey)) {
 	        	facingLeft = true;
+	            if (player == 1) { variables.slimeHasMoved_1 = true; } 
+	            else if (player == 2) { variables.slimeHasMoved_2 = true; }
 	        	if (velocityX >= -maxSpeed) {
 	                velocityX -= acceleration;
 	        	}
@@ -121,6 +133,8 @@ public class Slime {
 	        // Calculating velocity for moving or stopping to the right
 	        if(Controller.keyboardKeyState(rightKey)) {
 	        	facingLeft = false;
+	            if (player == 1) { variables.slimeHasMoved_1 = true; } 
+	            else if (player == 2) { variables.slimeHasMoved_2 = true; }
 	        	if (velocityX <= maxSpeed) {
 	        		velocityX += acceleration;
 	        	}
