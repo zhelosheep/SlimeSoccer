@@ -144,8 +144,6 @@ public class Game {
 		variables.slime2.update();
 		variables.ball.update();
 		
-		ai.update();
-		
 		// check for ball collision with slimes
 		Double [] slime1CollideNewVelocities = variables.slime1.detectCollision(variables.ball);
 		Double [] slime2CollideNewVelocities = variables.slime2.detectCollision(variables.ball);
