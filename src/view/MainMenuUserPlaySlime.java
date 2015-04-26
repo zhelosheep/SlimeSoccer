@@ -24,6 +24,7 @@ public class MainMenuUserPlaySlime extends JFrame{
 	private JButton continueButton, backButton;
 	public String p1Username, p2Username, p1SlimeType, p2SlimeType;
 	private String[] slimeNames, slimeAbilities, specialSlimeNames, specialSlimeDescriptions;	//for label purposes
+	private String[] slimeTypes; //for passing to game instantiation
 	private JButton[] slimeButtons;
 	private JButton[] specialSlimes;
 	public JLabel p1UsernameLabel, p2UsernameLabel;
@@ -133,6 +134,28 @@ public class MainMenuUserPlaySlime extends JFrame{
 		specialSlimeNames[6] = "<html><div style=\"text-align: center;\">LSlime";
 		specialSlimeNames[7] = "<html><div style=\"text-align: center;\">Potato Slime";
 		specialSlimeNames[8] = "<html><div style=\"text-align: center;\">Sweater Slime";
+		
+		// slimeTypes for passing to SHT and using in game instantiation
+		slimeTypes = new String[19];
+		slimeTypes[0] = "SlimeBomb";
+		slimeTypes[1] = "SlimeBowAndArrow";
+		slimeTypes[2] = "SlimeClone";
+		slimeTypes[3] = "SlimeCosmic";
+		slimeTypes[4] = "SlimeFireBall";
+		slimeTypes[5] = "SlimeFisher";
+		slimeTypes[6] = "SlimeGeyser";
+		slimeTypes[7] = "SlimeMagnet";
+		slimeTypes[8] = "SlimeSuperSize";
+		slimeTypes[9] = "SlimeSuper";
+		slimeTypes[10] = "Slime3D";
+		slimeTypes[11] = "SlimeButterfly";
+		slimeTypes[12] = "SlimeRonaldo";
+		slimeTypes[13] = "SlimeCrossEyed";
+		slimeTypes[14] = "SlimeCrown";
+		slimeTypes[15] = "SlimeDunce";
+		slimeTypes[16] = "LSlime";
+		slimeTypes[17] = "SlimePotato";
+		slimeTypes[18] = "SlimeSweater";
 		
 		// descriptions
 		specialSlimeDescriptions = new String[9];
@@ -265,11 +288,12 @@ public class MainMenuUserPlaySlime extends JFrame{
 					p1SlimeImageLabel.setIcon(slimeButtons[index].getIcon());
 					p1SlimeNameLabel.setText(slimeNames[index]);
 					p1SlimeAbilityLabel.setText(slimeAbilities[index]);
-					
+					p1SlimeType = slimeTypes[index];
 				} else {
 					p2SlimeImageLabel.setIcon(slimeButtons[index].getIcon());
 					p2SlimeNameLabel.setText(slimeNames[index]);
 					p2SlimeAbilityLabel.setText(slimeAbilities[index]);
+					p2SlimeType = slimeTypes[index];
 				}
 			}	
 		}
@@ -286,10 +310,12 @@ public class MainMenuUserPlaySlime extends JFrame{
 					p1SlimeImageLabel.setIcon(specialSlimes[index].getIcon());
 					p1SlimeNameLabel.setText(specialSlimeNames[index]);
 					p1SlimeAbilityLabel.setText(specialSlimeDescriptions[index]);
+					p1SlimeType = slimeTypes[10 + index];
 				} else {
 					p2SlimeImageLabel.setIcon(specialSlimes[index].getIcon());
 					p2SlimeNameLabel.setText(specialSlimeNames[index]);
 					p2SlimeAbilityLabel.setText(specialSlimeDescriptions[index]);
+					p2SlimeType = slimeTypes[10 + index];
 				}
 			}
 		}
