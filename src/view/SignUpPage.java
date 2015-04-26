@@ -129,6 +129,7 @@ public class SignUpPage extends JFrame{
 				
 				public void actionPerformed(ActionEvent e) {
 					avatar = i;
+					changed();
 				}
 			}.init(i));
 		}

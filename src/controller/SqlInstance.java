@@ -42,7 +42,7 @@ public class SqlInstance {
 	public boolean findUser(String u) {
 		try {
 			Statement st = c.createStatement();
-			ResultSet rs = st.executeQuery("SELECT * FROM account_data WHERE username = " + u);
+			ResultSet rs = st.executeQuery("SELECT * FROM account_data WHERE username = '" + u + "'");
 			
 			if (rs.next()) return true;
 		} catch (SQLException sqle) {
@@ -57,10 +57,11 @@ public class SqlInstance {
 		
 		try {
 			Statement st = c.createStatement();
-			ResultSet rs_temp = st.executeQuery("SELECT * FROM account_data WHERE username = " + u);
+			ResultSet rs_temp = st.executeQuery("SELECT * FROM account_data WHERE username = '" + u + "'");
 			
 			if (rs_temp.next()) {
-				if (rs_temp.getString("password") == pw) {
+				String pass = rs_temp.getString("password");
+				if (pass.equals(pw)) {
 					return true;
 				}
 			}
@@ -87,9 +88,6 @@ public class SqlInstance {
 		}
 	}
 	
-	public static void main (String [] args) {
-		SqlInstance si = new SqlInstance();
-	}
 }
 	
 /*		try {
