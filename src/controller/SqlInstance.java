@@ -71,8 +71,6 @@ public class SqlInstance {
 		
 		if (rs == null) return false;
 		
-		System.out.println(rs == null);
-		
 		try {
 			if (rs.getString("password").equals(pw)) {
 				return true;
@@ -196,7 +194,7 @@ public class SqlInstance {
 		ResultSet u_rs = getUser(u);
 		String name = "";
 		try {
-			name = u_rs.getString("player_firstName") + u_rs.getString("player_lastName");
+			name = u_rs.getString("player_firstName") + " " + u_rs.getString("player_lastName");
 		} catch (SQLException sqle) {
 			System.out.println("SQLException in SqlInstance.getName: " + sqle.getMessage());
 		} 
