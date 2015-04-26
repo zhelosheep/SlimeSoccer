@@ -11,6 +11,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
+
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -18,6 +19,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -31,7 +33,7 @@ public class MainMenuUser extends JFrame{
 	private ImageIcon avatar;
 	private JButton sendButton, playCompButton, playPlayerButton, spectateButton, logoutButton, settingsButton, avatarButton;
 	private static ImageIcon PvPIcon, PvCIcon, SpectateIcon;
-	private String username;
+	public static String username;
 	public JTextArea chatArea;
 	private JTextField chatField;
 	private SettingsPage settingsPage;
@@ -204,6 +206,14 @@ public class MainMenuUser extends JFrame{
 				sWriter.flush();
 				chatArea.setText(chatArea.getText() + "\n" + username + ": " + chatField.getText());
 				chatField.setText("");
+			}
+		});
+		
+		avatarButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				Profile pro = new Profile(username, MainMenuUser.this);
+				pro.setVisible(true);
 			}
 		});
 	}

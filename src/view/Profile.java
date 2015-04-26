@@ -1,7 +1,12 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
@@ -11,15 +16,18 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JSeparator;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 public class Profile extends JFrame{
 	private String u;
 	private JFrame prevScreen;
 	
 	private JTextField searchField;
-	private JButton searchButton, backButton;
+	private JButton searchButton, backButton, addFriend;
 	
 	Profile (String username, JFrame prev) {
 		u = username;
@@ -37,16 +45,30 @@ public class Profile extends JFrame{
 		searchField = new JTextField(45);
 		searchButton = new JButton("Search");
 		backButton = new JButton("Back");
+		addFriend = new JButton("Add Friend");
 		
+		if (MainMenuUser.username.equals(u)) {
+			addFriend.setEnabled(false);
+			addFriend.setVisible(false);
+		}
 	}
 	
 	private void addComponents() {
 		JLabel name = new JLabel(LoginPage.sqli.getName(u));
-		ImageIcon avatar = SignUpPage.avatarImages[LoginPage.sqli.getImage(u)];
-		JLabel desc = new JLabel(LoginPage.sqli.getDesc(u));
+		JLabel username = new JLabel(u);
+		JLabel avatar = new JLabel(SignUpPage.avatarImages[LoginPage.sqli.getImage(u)]);
+		JLabel desc = new JLabel("Description: " + LoginPage.sqli.getDesc(u));
+		int games = LoginPage.sqli.getGames(u);
 		int wins = LoginPage.sqli.getWins(u);
 		int loss = LoginPage.sqli.getLosses(u);
 		ArrayList<model.Achievement> ach = LoginPage.sqli.getAchievements(u);
+		ArrayList<String> friends = LoginPage.sqli.getFriends(u);
+		
+		name.setAlignmentX(Component.CENTER_ALIGNMENT);
+		username.setAlignmentX(Component.CENTER_ALIGNMENT);
+		avatar.setAlignmentX(Component.CENTER_ALIGNMENT);
+		desc.setAlignmentX(Component.LEFT_ALIGNMENT);
+		addFriend.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
 		JPanel northPanel = new JPanel();
 		JPanel header = new JPanel();
@@ -57,13 +79,23 @@ public class Profile extends JFrame{
 		JPanel bottomRight = new JPanel();
 		JPanel middle = new JPanel();
 		JPanel right = new JPanel();
+		JPanel achievementPanel = new JPanel();
+		JPanel friendsPanel = new JPanel();
 		
 		northPanel.setLayout(new BoxLayout(northPanel, BoxLayout.Y_AXIS));
 		header.setLayout(new BoxLayout(header, BoxLayout.X_AXIS));
+		centerPanel.setLayout(new BorderLayout());
 		left.setLayout(new BoxLayout(left, BoxLayout.Y_AXIS));
 		otherSide.setLayout(new BoxLayout(otherSide, BoxLayout.Y_AXIS));
 		middle.setLayout(new BoxLayout(middle, BoxLayout.Y_AXIS));
 		right.setLayout(new BoxLayout(right, BoxLayout.Y_AXIS));
+		achievementPanel.setLayout(new BoxLayout(achievementPanel, BoxLayout.X_AXIS));
+		friendsPanel.setLayout(new BoxLayout(friendsPanel, BoxLayout.X_AXIS));
+		
+		otherSide.setBorder(BorderFactory.createEmptyBorder(30, 0, 0, 0));
+		middle.setBorder(BorderFactory.createEmptyBorder(50, 0, 0, 20));
+		right.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+		
 		
 		JLabel slimeSoccerLabel = new JLabel("Slime Soccer");
 		slimeSoccerLabel.setFont(new Font("Arial", Font.BOLD, 20));
@@ -78,18 +110,118 @@ public class Profile extends JFrame{
 		searchBar.add(new JLabel("Search for a user :"));
 		searchBar.add(searchField);
 		searchBar.add(searchButton);
+		left.setBorder(BorderFactory.createEmptyBorder(80,  50,  0,  0));
+		left.setAlignmentX(Component.CENTER_ALIGNMENT);
 		left.add(name);
-		left.add(new JLabel(u));
-		left.add(new JLabel(avatar));
+		left.add(username);
+		left.add(avatar);
+		left.add(addFriend);
+		left.add(Box.createGlue());
 		otherSide.add(desc);
+		
+		JLabel stats = new JLabel("Statistics");
+		JLabel wl = new JLabel("Win/Loss Ratio: " + wins + ":" + loss);
+		JLabel gp = new JLabel("Games played: " + games);
+		JLabel w = new JLabel("Wins: " + wins);
+		JLabel l = new JLabel("Losses: " + loss);
+		JLabel ac = new JLabel("Achievements");
+		
+		stats.setAlignmentX(Component.CENTER_ALIGNMENT);
+		wl.setAlignmentX(Component.CENTER_ALIGNMENT);
+		gp.setAlignmentX(Component.CENTER_ALIGNMENT);
+		w.setAlignmentX(Component.CENTER_ALIGNMENT);
+		l.setAlignmentX(Component.CENTER_ALIGNMENT);
+		ac.setAlignmentX(Component.CENTER_ALIGNMENT);
+		
+		middle.setAlignmentX(Component.CENTER_ALIGNMENT);
+		middle.add(stats);
+		middle.add(new JSeparator(SwingConstants.HORIZONTAL));
+		middle.add(wl);
+		middle.add(gp);
+		middle.add(w);
+		middle.add(l);
+		middle.add(new JLabel(" "));
+		middle.add(ac);
+		middle.add(new JSeparator(SwingConstants.HORIZONTAL));
+		
+		JLabel f = new JLabel("Friends");
+		f.setAlignmentX(Component.CENTER_ALIGNMENT);
+		
+		right.setAlignmentX(Component.CENTER_ALIGNMENT);
+		right.add(f);
+		right.add(new JSeparator(SwingConstants.HORIZONTAL));
+		
+		for (int i = 0; i < friends.size(); i++) {
+			JPanel group = new JPanel();
+			group.setLayout(new BoxLayout(group, BoxLayout.Y_AXIS));
+			
+			JLabel friendAvatar = new JLabel(SignUpPage.avatarImages[LoginPage.sqli.getImage(friends.get(i))]);
+			friendAvatar.addMouseListener(new MouseAdapter() {
+				int i;
+				
+				public void mouseClicked(MouseEvent me) {
+					System.out.println("hi");
+					setVisible(false);
+					Profile pro = new Profile(friends.get(i), Profile.this);
+					pro.setVisible(true);
+				}
+				
+				public MouseAdapter init (int i) {
+					this.i = i;
+					return this;
+				}
+			}.init(i));
+			
+			group.add(friendAvatar);
+			
+			JLabel temp = new JLabel(friends.get(i));
+			temp.setAlignmentX(Component.CENTER_ALIGNMENT);
+			
+			group.add(temp);
+			
+			friendsPanel.add(group);
+		}
+		
+		right.add(friendsPanel);
+		
+		for (int i = 0; i< ach.size(); i++) {
+			JPanel group = new JPanel();
+			group.setLayout(new BoxLayout(group, BoxLayout.Y_AXIS));
+			
+			JLabel icon = new JLabel(ach.get(i).getIcon());
+			
+			icon.addMouseListener(new MouseAdapter() {
+				int i;
+				
+				public void mouseClicked(MouseEvent me) {
+					JOptionPane.showMessageDialog(Profile.this, ach.get(i).getDescription(), ach.get(i).getName(), JOptionPane.INFORMATION_MESSAGE);
+				}
+				
+				public MouseAdapter init(int i) {
+					this.i = i;
+					return this;
+				}
+			}.init(i));
+			
+			group.add(icon);
+			
+			JLabel temp = new JLabel(ach.get(i).getName());
+			temp.setAlignmentX(Component.CENTER_ALIGNMENT);
+			
+			group.add(temp);
+			achievementPanel.add(group);
+		}
+		middle.add(achievementPanel);
 		
 		northPanel.add(header);
 		northPanel.add(searchBar);
 		bottomRight.add(middle);
+		bottomRight.add(new JSeparator(SwingConstants.VERTICAL));
 		bottomRight.add(right);
 		otherSide.add(bottomRight);
-		centerPanel.add(left);
-		centerPanel.add(otherSide);
+		centerPanel.add(left, BorderLayout.WEST);
+		centerPanel.add(new JSeparator(SwingConstants.VERTICAL));
+		centerPanel.add(otherSide, BorderLayout.CENTER);
 		
 		add(northPanel, BorderLayout.NORTH);
 		add(centerPanel, BorderLayout.CENTER);
@@ -97,11 +229,51 @@ public class Profile extends JFrame{
 	}
 	
 	private void addListeners() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+		backButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				prevScreen.setVisible(true);
+				dispose();
+			}
+		});
+		
+		searchButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String u = searchField.getText();
+				if (!LoginPage.sqli.findUser(u)) {
+					JOptionPane.showMessageDialog(Profile.this, "Could not find user", "Error404", JOptionPane.ERROR_MESSAGE);
+				} else {
+					setVisible(false);
+					Profile pro = new Profile(u, Profile.this);
+					pro.setVisible(true);
+				}
+			}
+		});
+		
+		searchField.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String u = searchField.getText();
+				if (!LoginPage.sqli.findUser(u)) {
+					JOptionPane.showMessageDialog(Profile.this, "Could not find user", "Error404", JOptionPane.ERROR_MESSAGE);
+				} else {
+					setVisible(false);
+					Profile pro = new Profile(u, Profile.this);
+					pro.setVisible(true);
+				}
+			}
+		});
+		
+		addFriend.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				LoginPage.sqli.setFriends(MainMenuUser.username, u);
+			}
+		});
 	}
 	
-	public static void main (String [] args) {
+/*	public static void main (String [] args) {
 		Profile p = new Profile("zhelo", null);
 		p.setVisible(true);
-	}
+	}*/
 }
