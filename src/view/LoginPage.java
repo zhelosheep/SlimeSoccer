@@ -5,6 +5,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
@@ -171,7 +172,7 @@ public class LoginPage extends JFrame{
 			}
 		});
 		
-		login.addKeyListener(new KeyListener() {
+		login.addKeyListener(new KeyAdapter() {
 			public void keyPressed(KeyEvent e)
 			{
 				if ((e.getKeyCode()==KeyEvent.VK_ENTER) && (login.isFocusPainted()))
@@ -179,39 +180,15 @@ public class LoginPage extends JFrame{
 					login.doClick();
 				}
 			}
-
-			@Override
-			public void keyReleased(KeyEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void keyTyped(KeyEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
 		});
 		
-		passwordField.addKeyListener(new KeyListener() {
+		passwordField.addKeyListener(new KeyAdapter() {
 			public void keyPressed(KeyEvent e)
 			{
 				if (e.getKeyCode()==KeyEvent.VK_ENTER)
 				{
 					login.doClick();
 				}
-			}
-
-			@Override
-			public void keyReleased(KeyEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void keyTyped(KeyEvent e) {
-				// TODO Auto-generated method stub
-				
 			}
 		});
 				
