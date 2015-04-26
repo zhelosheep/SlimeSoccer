@@ -39,32 +39,35 @@ public class SqlInstance {
 		}
 	}
 	
-	public boolean findUser(String u) {
+	private ResultSet getUser(String u) {
 		try {
 			Statement st = c.createStatement();
 			ResultSet rs = st.executeQuery("SELECT * FROM account_data WHERE username = '" + u + "'");
 			
-			if (rs.next()) return true;
+			if (rs.next()) return rs;
 		} catch (SQLException sqle) {}
 		
-		return false;
+		return null;
+	}
+	
+	public boolean findUser(String u) {
+		if (getUser(u) != null) return true;
+		else return false;
 	}
 	
 	public boolean validateLogin(String u, String pw) {
-		if (!findUser(u)) return false;
+		ResultSet rs = getUser(u);
+		
+		if (rs == null) return false;
+		
+		System.out.println(rs == null);
 		
 		try {
-			Statement st = c.createStatement();
-			ResultSet rs_temp = st.executeQuery("SELECT * FROM account_data WHERE username = '" + u + "'");
-			
-			if (rs_temp.next()) {
-				String pass = rs_temp.getString("password");
-				if (pass.equals(pw)) {
-					return true;
-				}
+			if (rs.getString("password").equals(pw)) {
+				return true;
 			}
-		} catch (SQLException e) {}
-		
+		} catch (SQLException sqle) {}
+			
 		return false;
 	}
 	
@@ -82,6 +85,10 @@ public class SqlInstance {
 		} catch (SQLException sqle) {
 			System.out.println("SQL Exception in SqlInstance.register: " + sqle.getMessage());
 		}
+	}
+	
+	public void getAchievement(String u) {
+		
 	}
 	
 }
