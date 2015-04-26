@@ -29,7 +29,7 @@ public class Ball {
 		bounceAccelerationX = null;
 		numTimesUpdateWasCalledSinceLastXDecceleration = 0;
 		ballImage = game.imgBall;
-		if (game.specialMode.equals("giantball")) {
+		if (game.specialMode.equals("Giant Ball")) {
 			try {
 				this.ballImage = ImageIO.read(new File("./resources/game/others/SoccerBallGiant.png"));
 			} catch (IOException e) {
@@ -43,7 +43,7 @@ public class Ball {
 	
 	public void update() {
 		// gravity
-		if (!game.specialMode.equals("antigravity")) {
+		if (!game.specialMode.equals("Anti-Gravity")) {
 			velocityY += decceleration;
 		}
 
