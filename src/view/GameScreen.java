@@ -76,6 +76,13 @@ public class GameScreen extends JFrame{
 		JPanel centerPanel = new JPanel();
 		centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.X_AXIS));
 		
+		JPanel leftPanel = new JPanel();
+		leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
+		leftPanel.setPreferredSize(new Dimension(300, 200));
+		leftPanel.setBorder(BorderFactory.createEmptyBorder(0, 30, 15, 0));
+		
+		
+		
 		JPanel rightPanel = new JPanel();
 		rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
 		JLabel chatLabel = new JLabel("Chat");
@@ -96,6 +103,9 @@ public class GameScreen extends JFrame{
 		rightPanel.setPreferredSize(new Dimension(180, 420));
 		rightPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 15));
 		
+		centerPanel.add(Box.createGlue());
+		centerPanel.add(leftPanel);
+		centerPanel.add(Box.createGlue());
 		centerPanel.add(rightPanel);
 		add(centerPanel, BorderLayout.CENTER);
 	}
