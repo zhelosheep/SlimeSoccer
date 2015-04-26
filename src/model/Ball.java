@@ -2,6 +2,10 @@ package model;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 public class Ball {
 	public int x, y;
@@ -12,7 +16,7 @@ public class Ball {
 	private Game game;
 	
 	// constants
-	public final int width = 24, height = 24, radius = 12;
+	public int width = 24, height = 24, radius = 12;
 	public final int mass = 1;
 	final private int decceleration = 1; 
 	final private double bounceMultiplier = 0.8;
@@ -25,6 +29,16 @@ public class Ball {
 		bounceAccelerationX = null;
 		numTimesUpdateWasCalledSinceLastXDecceleration = 0;
 		ballImage = game.imgBall;
+		if (game.specialMode.equals("giantball")) {
+			try {
+				this.ballImage = ImageIO.read(new File("./resources/game/others/SoccerBallGiant.png"));
+			} catch (IOException e) {
+				System.out.println("Image IOException in Ball constructor: " + e.getMessage());
+			}
+			this.width = 60;
+			this.height = 60;
+			this.radius = 30;
+		}
 	}
 	
 	public void update() {
@@ -108,7 +122,7 @@ public class Ball {
 	public void paint(Graphics g) {
 //		g.setColor(Color.GREEN);
 //		g.fillArc(getXforPaint(), getYforPaint(), this.width, this.height, 0, 360);
-		g.drawImage(ballImage, getXforPaint(), getYforPaint(), null);
+		g.drawImage(ballImage, getXforPaint(), getYforPaint(), width, height, null);
 	}
 
 	private int getXforPaint() {

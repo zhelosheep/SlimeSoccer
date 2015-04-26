@@ -312,10 +312,12 @@ public class MainMenuUserPlaySlime extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				if (!isPvCGame) {
 					if (isPlayer1) {
-						((MainMenuUserPlayPlayer) prevScreen).prevScreen.sWriter.println("O1"); // append game settings!						
+						((MainMenuUserPlayPlayer) prevScreen).prevScreen.sWriter.println("O1" + "$" + specialModeCombo.getSelectedItem().toString() + "$" + backgroundCombo.getSelectedItem().toString() + "$" + regenRateSlider.getValue() + "$" + totalManaSlider.getValue()); // append game settings!						
+						System.out.println("O1" + "$" + specialModeCombo.getSelectedItem().toString() + "$" + backgroundCombo.getSelectedItem().toString() + "$" + regenRateSlider.getValue() + "$" + totalManaSlider.getValue());
 						((MainMenuUserPlayPlayer) prevScreen).prevScreen.sWriter.flush();						
 					} else {
-						((MainMenuUserPlayPlayer) prevScreen).prevScreen.sWriter.println("O2");												
+						((MainMenuUserPlayPlayer) prevScreen).prevScreen.sWriter.println("O2" + "$" + specialModeCombo.getSelectedItem().toString() + "$" + backgroundCombo.getSelectedItem().toString() + "$" + regenRateSlider.getValue() + "$" + totalManaSlider.getValue()); // append game settings!						
+						System.out.println("O2" + "$" + specialModeCombo.getSelectedItem().toString() + "$" + backgroundCombo.getSelectedItem().toString() + "$" + regenRateSlider.getValue() + "$" + totalManaSlider.getValue());												
 						((MainMenuUserPlayPlayer) prevScreen).prevScreen.sWriter.flush();
 					}
 				}

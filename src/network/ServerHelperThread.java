@@ -43,6 +43,8 @@ public class ServerHelperThread extends Thread {
 					}
 					
 					/*Corresponding data transfers
+					C - chat
+					
 					E - player1 xcoord
 					F - player1 ycoord
 					G - player2 xcoord
@@ -106,6 +108,8 @@ public class ServerHelperThread extends Thread {
 					else if (str.charAt(0) == 'O')
 					{
 						System.out.println("in O");
+						System.out.println(str);
+						
 						synchronized (st) {
 							if (opponentThread.readyToPlay) {
 								opponentThread.readyToPlay = false;

@@ -53,15 +53,22 @@ public class Slime {
 			facingLeft = true;
 		}
 		this.slimeImage = slimeImage;
+		if (game.specialMode.equals("minislime")) {
+			this.width = 30;
+			this.height = 30;
+			this.radius = 15;
+		}
 	}
 	
 	public void useSpecialPower() {}; // is implemented in all slime subclasses
 	public void retractSpecialPower() {}; // is implemented in some slime subclasses
 
 	public void update() {
-        // Calculating velocity for moving up or down
+		// normal instances
 		if (!game.specialMode.equals("antigravity")) {
-	        if(Controller.keyboardKeyState(upKey) && y == game.groundLevel) {
+
+			// Calculating velocity for moving up or down
+			if(Controller.keyboardKeyState(upKey) && y == game.groundLevel) {
 	            velocityY -= jumpAcceleration;
 	        } else {
 	        	if (y >= game.groundLevel) {
@@ -70,47 +77,57 @@ public class Slime {
 	        		velocityY += decceleration;
 	        	}
 	        }
+	        
+	        // Calculating velocity for moving or stopping to the left
+	        if(Controller.keyboardKeyState(leftKey)) {
+	        	facingLeft = true;
+	        	if (velocityX >= -maxSpeed) {
+	                velocityX -= acceleration;
+	        	}
+	        } else if (velocityX < 0) {
+	            velocityX += decceleration;
+	        }
+	        
+	        // Calculating velocity for moving or stopping to the right
+	        if(Controller.keyboardKeyState(rightKey)) {
+	        	facingLeft = false;
+	        	if (velocityX <= maxSpeed) {
+	        		velocityX += acceleration;
+	        	}
+	        } else if (velocityX > 0) {
+	            velocityX -= decceleration;
+	        }
+	        
 		} 
 		// special case: only for antigravity mode
 		else {
-	        // Calculating velocity for moving up or down –– only for antigravity special mode
+	        // Calculating velocity for moving up 
 	        if(Controller.keyboardKeyState(upKey)) {
 	        	if (velocityY >= -maxSpeed) {
 	        		velocityY -= acceleration;
 	        	}
-	        } else if (velocityY < 0) {
-	            velocityY += decceleration;
 	        }
-
+	        // Calculating velocity for moving down
 	        if(Controller.keyboardKeyState(downKey)) {
 	        	if (velocityY <= maxSpeed) {
 	        		velocityY += acceleration;
 	        	}
-	        } else if (velocityY > 0) {
-	            velocityY -= decceleration;
 	        }
-
+	        // Calculating velocity for moving or stopping to the left
+	        if(Controller.keyboardKeyState(leftKey)) {
+	        	facingLeft = true;
+	        	if (velocityX >= -maxSpeed) {
+	                velocityX -= acceleration;
+	        	}
+	        }
+	        // Calculating velocity for moving or stopping to the right
+	        if(Controller.keyboardKeyState(rightKey)) {
+	        	facingLeft = false;
+	        	if (velocityX <= maxSpeed) {
+	        		velocityX += acceleration;
+	        	}
+	        }
 		}
-        
-        // Calculating velocity for moving or stopping to the left
-        if(Controller.keyboardKeyState(leftKey)) {
-        	facingLeft = true;
-        	if (velocityX >= -maxSpeed) {
-                velocityX -= acceleration;
-        	}
-        } else if (velocityX < 0) {
-            velocityX += decceleration;
-        }
-        
-        // Calculating velocity for moving or stopping to the right
-        if(Controller.keyboardKeyState(rightKey)) {
-        	facingLeft = false;
-        	if (velocityX <= maxSpeed) {
-        		velocityX += acceleration;
-        	}
-        } else if (velocityX > 0) {
-            velocityX -= decceleration;
-        }
         
 
         // User special power
