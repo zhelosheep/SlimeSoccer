@@ -110,6 +110,8 @@ public class ServerHelperThread extends Thread {
 					else if (str.charAt(0) == 'O')
 					{
 						System.out.println("in O");
+						System.out.println(str);
+						
 						synchronized (st) {
 							if (opponentThread.readyToPlay) {
 								opponentThread.readyToPlay = false;
