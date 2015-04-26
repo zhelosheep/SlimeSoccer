@@ -5,6 +5,8 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -200,7 +202,12 @@ public class MainMenuUserPlaySlime extends JFrame{
 	}
 	
 	private void addListeners() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				quit();
+			}
+		});
 		class SlimeButtonListener implements ActionListener {
 			int index = -1;
 			
@@ -237,7 +244,11 @@ public class MainMenuUserPlaySlime extends JFrame{
 		//addd action listener on continue button; this should bring us to a settingspage
 	}
 	
-	public static void main(String[] args) {
-		(new MainMenuUserPlaySlime(new MainMenuUserPlayPlayer(new MainMenuUser("faketechguy")), true, false)).setVisible(true);;
+	void quit() {
+		if (isPvCGame) {
+			((MainMenuUser) prevScreen).quit();
+		} else {
+			((MainMenuUserPlayPlayer) prevScreen).quit();
+		}
 	}
 }
