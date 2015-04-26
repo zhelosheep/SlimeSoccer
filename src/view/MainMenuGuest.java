@@ -167,6 +167,24 @@ public class MainMenuGuest extends JFrame{
 				chatArea.setText(chatArea.getText() + "\nGuest: " + chatField.getText());
 				chatField.setText("");
 			}
+
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
 		});
 		
 		chatField.addActionListener(new ActionListener() {
@@ -198,9 +216,5 @@ public class MainMenuGuest extends JFrame{
 			System.out.println("IOException in MainMenuGuest.quit(): " + ioe.getMessage());
 		}
 		System.exit(0);
-	}
-
-	public static void main(String[] args) {
-		(new MainMenuGuest()).setVisible(true);
 	}
 }
