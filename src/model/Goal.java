@@ -62,7 +62,7 @@ public class Goal {
 		}
 	}
 	public void paint(Graphics g) {
-		if (variables.background.equals("outerspace")) { 
+		if (variables.background.equals("Outer Space")) { 
 			g.setColor(Color.WHITE); }
 		else {
 			g.setColor(Color.BLACK);
