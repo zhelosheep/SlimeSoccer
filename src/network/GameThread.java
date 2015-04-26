@@ -3,7 +3,7 @@ package network;
 import model.Game;
 
 public class GameThread extends Thread {
-	private Game game;
+	public Game game;
 	
 	public GameThread(String background, String player1_slimeType, String player2_slimeType, String player1_username, String player2_username, int player1_manaMax, int player2_manaMax, int manaRegenerationRate, String specialMode) {
 		game = new Game(background, player1_slimeType, player2_slimeType, player1_username, player2_username, player1_manaMax, player2_manaMax, manaRegenerationRate, specialMode);

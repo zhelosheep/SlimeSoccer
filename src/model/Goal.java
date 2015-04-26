@@ -6,19 +6,19 @@ import java.awt.Graphics;
 public class Goal {
 	int x, y;
 	Boolean facingLeft = null;
-	private Game game;
+	private Variables variables;
 	
 	final int width = 50, height = 100;
-	public Goal(int boundary, Game game) {
-		this.game = game;
-		if (boundary == game.leftBoundary) {
+	public Goal(int boundary, Variables variables) {
+		this.variables = variables;
+		if (boundary == variables.leftBoundary) {
 			facingLeft = true;
 			x = boundary;
-		} else if (boundary == game.rightBoundary) {
+		} else if (boundary == variables.rightBoundary) {
 			facingLeft = false;
 			x = boundary; 
 		}
-		y = game.groundLevel - height;
+		y = variables.groundLevel - height;
 	}
 	
 	
@@ -62,17 +62,17 @@ public class Goal {
 		}
 	}
 	public void paint(Graphics g) {
-		if (game.background.equals("outerspace")) { 
+		if (variables.background.equals("outerspace")) { 
 			g.setColor(Color.WHITE); }
 		else {
 			g.setColor(Color.BLACK);
 		}
-		if (x == game.leftBoundary) {
+		if (x == variables.leftBoundary) {
 //			g.drawRect(x, y, width, height);
-			g.drawImage(game.imgGoal, x, y, width, height, null);
-		} else if (x == game.rightBoundary) {
+			g.drawImage(variables.imgGoal, x, y, width, height, null);
+		} else if (x == variables.rightBoundary) {
 //			g.drawRect(x - 50, y, width, height); //TODO CHANGE THIS WHEN YOU SWITCH TO AN IMAGE
-			g.drawImage(game.imgGoal, x, y, -width, height, null);
+			g.drawImage(variables.imgGoal, x, y, -width, height, null);
 		}
 	}
 }

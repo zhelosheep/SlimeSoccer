@@ -21,10 +21,11 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.text.DefaultCaret;
 
-import model.Game;
+import model.Ball;
 import controller.Controller;
 
 public class GameScreen extends JFrame{
+	private static final long serialVersionUID = 1L;
 	public JTextArea chatArea;
 	private JTextField chatField;
 	private JButton sendButton, logoutButton, settingsButton;
@@ -34,7 +35,6 @@ public class GameScreen extends JFrame{
 	public BufferedReader sReader;
 	PrintWriter sWriter;
 	public static Canvas primary;
-	public static Game model;
 	public static Controller controller;
 	
 	public GameScreen(String username)
@@ -60,12 +60,10 @@ public class GameScreen extends JFrame{
 		slimeSoccerLabel.setFont(new Font("Arial", Font.BOLD, 20));
 		slimeSoccerLabel.setBorder(BorderFactory.createEmptyBorder(5, 15, 5, 5));
 		
-		// set up model
-		model = new Game("outerspace", "SlimeFireball", "SlimeSuperSize", "shawnren", "josemama", 100, 100, 1, "");
 		// set up controller
 		controller = new Controller();
 
-		primary = new Canvas(model);
+		primary = new Canvas();
 	}
 	
 	private void addComponents()
@@ -147,5 +145,7 @@ public class GameScreen extends JFrame{
 	public static void main (String [] args)
 	{
 		GameScreen gamescreen = new GameScreen("techguychen");
+		gamescreen.primary.background = "outerspace";
+		gamescreen.primary.ball = new Ball();
 	}
 }

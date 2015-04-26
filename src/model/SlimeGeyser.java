@@ -8,13 +8,13 @@ public class SlimeGeyser extends Slime {
 	int geyserWidth = 16, geyserStrength = 2;
 	boolean geyserOn;
 	
-	public SlimeGeyser(int x, int y, int player, BufferedImage slimeImage, Game game) {
-		super(x, y, player, slimeImage, game);
+	public SlimeGeyser(int x, int y, int player, BufferedImage slimeImage, Variables variables) {
+		super(x, y, player, slimeImage, variables);
 	}
 
 	public void useSpecialPower() {
 		geyserOn = true;
-		game.ball.velocityY -= geyserStrength;
+		variables.ball.velocityY -= geyserStrength;
 	}
 	
 	public void retractSpecialPower() {
@@ -35,7 +35,7 @@ public class SlimeGeyser extends Slime {
 		// stuff added
 		if (geyserOn) {
 			g.setColor(Color.BLUE);
-			g.fillRect(game.ball.x - geyserWidth/2, game.ball.y + game.ball.radius, geyserWidth, game.groundLevel - game.ball.y - game.ball.radius);
+			g.fillRect(variables.ball.x - geyserWidth/2, variables.ball.y + variables.ball.radius, geyserWidth, variables.groundLevel - variables.ball.y - variables.ball.radius);
 		}
 	}
 

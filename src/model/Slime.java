@@ -4,9 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
-
 import controller.Controller;
-import view.Frame;
 
 public class Slime {
 	// numbers for painting slime in right position, direction, etc
@@ -15,7 +13,7 @@ public class Slime {
 	boolean facingLeft; // true if slime is facing left, right if slime is facing right
 	protected BufferedImage slimeImage;
 	public boolean specialPowerBeingUsed;
-	protected Game game;
+	protected Variables variables;
 
 	// constants
 	final int finalMaxSpeed = 6;
@@ -30,10 +28,10 @@ public class Slime {
 	final protected int manaUsageRate = 5; // determines how fast mana is consumed when slime uses special power
 	private int upKey, leftKey, rightKey, downKey, powerKey; // KeyEvent codes
 	
-	public Slime(int x, int y, int player, BufferedImage slimeImage, Game game) {
+	public Slime(int x, int y, int player, BufferedImage slimeImage, Variables variables) {
 		this.x = x;
 		this.y = y;
-		this.game = game;
+		this.variables = variables;
 		specialPowerBeingUsed = false;
 		this.slimeImage = slimeImage;
 		this.player = player;
@@ -53,7 +51,7 @@ public class Slime {
 			facingLeft = true;
 		}
 		this.slimeImage = slimeImage;
-		if (game.specialMode.equals("minislime")) {
+		if (variables.specialMode.equals("minislime")) {
 			this.width = 30;
 			this.height = 30;
 			this.radius = 15;
@@ -65,13 +63,13 @@ public class Slime {
 
 	public void update() {
 		// normal instances
-		if (!game.specialMode.equals("antigravity")) {
+		if (!variables.specialMode.equals("antigravity")) {
 
 			// Calculating velocity for moving up or down
-			if(Controller.keyboardKeyState(upKey) && y == game.groundLevel) {
+			if(Controller.keyboardKeyState(upKey) && y == variables.groundLevel) {
 	            velocityY -= jumpAcceleration;
 	        } else {
-	        	if (y >= game.groundLevel) {
+	        	if (y >= variables.groundLevel) {
 	        		velocityY = 0;
 	        	} else {
 	        		velocityY += decceleration;
@@ -133,17 +131,17 @@ public class Slime {
         // User special power
         if(Controller.keyboardKeyState(powerKey) && !specialPowerBeingUsed) {
         	if (this.player == 1) {
-        		if (game.player1_manaCurrent > 0) {
+        		if (variables.player1_manaCurrent > 0) {
                 	this.useSpecialPower();
-                	game.player1_manaCurrent -= manaUsageRate;
+                	variables.player1_manaCurrent -= manaUsageRate;
         		} else {
                 	retractSpecialPower();
         		}
         	}
         	else if (this.player == 2) {
-        		if (game.player2_manaCurrent > 0) {
+        		if (variables.player2_manaCurrent > 0) {
                 	this.useSpecialPower();
-                	game.player2_manaCurrent -= manaUsageRate;
+                	variables.player2_manaCurrent -= manaUsageRate;
         		} else {
                 	retractSpecialPower();
         		}
@@ -152,22 +150,22 @@ public class Slime {
         // call retractSpecialPower() and also regenerate mana
         if(!Controller.keyboardKeyState(powerKey)) {
         	retractSpecialPower();
-			if (game.player1_manaCurrent < game.player1_manaMax) {
-	        	game.player1_manaCurrent += game.manaRegenerationRate;
+			if (variables.player1_manaCurrent < variables.player1_manaMax) {
+	        	variables.player1_manaCurrent += variables.manaRegenerationRate;
 			}
-			if (game.player2_manaCurrent < game.player2_manaMax) {
-	        	game.player2_manaCurrent += game.manaRegenerationRate;
+			if (variables.player2_manaCurrent < variables.player2_manaMax) {
+	        	variables.player2_manaCurrent += variables.manaRegenerationRate;
 			}
         }
 
         
-        if (x - width/2 < game.leftBoundary) { // if slime is outside of left boundary, put slime back in boundary and stop movement
+        if (x - width/2 < variables.leftBoundary) { // if slime is outside of left boundary, put slime back in boundary and stop movement
         	velocityX = 0; 
-        	x = width/2 + game.leftBoundary;
+        	x = width/2 + variables.leftBoundary;
         }
-        if (x > game.rightBoundary - width/2) { // if slime is outside of right boundary, put slime back in boundary and stop movement
+        if (x > variables.rightBoundary - width/2) { // if slime is outside of right boundary, put slime back in boundary and stop movement
         	velocityX = 0;
-        	x = game.rightBoundary - width/2;
+        	x = variables.rightBoundary - width/2;
         }
         // Moves the slime
         x += velocityX;

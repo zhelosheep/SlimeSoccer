@@ -5,18 +5,18 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 public class SlimeBowAndArrow extends Slime {
-	BufferedImage arrow = game.imgSlimeBowAndArrowSpecial;
+	BufferedImage arrow = variables.imgSlimeBowAndArrowSpecial;
 	boolean arrowFacingLeft, arrowHasHitBall = false;
 	int arrowX, arrowY, arrowVelocityX, arrowVelocityY, arrowWidth = 30, arrowHeight = 7;
 	
-	public SlimeBowAndArrow(int x, int y, int player, BufferedImage slimeImage, Game game) {
-		super(x, y, player, slimeImage, game);
+	public SlimeBowAndArrow(int x, int y, int player, BufferedImage slimeImage, Variables variables) {
+		super(x, y, player, slimeImage, variables);
 	}
 
 	public void useSpecialPower() {
 		specialPowerBeingUsed = true;
 		// determine direction of arrow
-		if (x > game.ball.x) {
+		if (x > variables.ball.x) {
 			arrowFacingLeft = true;
 		} else {
 			arrowFacingLeft = false;
@@ -28,30 +28,30 @@ public class SlimeBowAndArrow extends Slime {
 				arrowX = x;
 				arrowY = y - radius;
 				while (!arrowHasHitBall) {
-					if (arrowX > game.ball.x) {
+					if (arrowX > variables.ball.x) {
 						arrowVelocityX = -10;
 						arrowX -= 10;
-					} else if (arrowX < game.ball.x){
+					} else if (arrowX < variables.ball.x){
 						arrowVelocityX = 10;
 						arrowX += 10;
 					}
-					if (arrowY > game.ball.y) {
+					if (arrowY > variables.ball.y) {
 						arrowVelocityY = -10;
 						arrowY -= 10;
-					} else if (arrowY < game.ball.y){
+					} else if (arrowY < variables.ball.y){
 						arrowVelocityY = 10;
 						arrowY += 10;
 					}
 					// arrow has hit ball
-					if ( (((arrowX > game.ball.x && arrowX + arrowVelocityX <= game.ball.x) || (arrowX < game.ball.x && arrowX + arrowVelocityX >= game.ball.x)) 
+					if ( (((arrowX > variables.ball.x && arrowX + arrowVelocityX <= variables.ball.x) || (arrowX < variables.ball.x && arrowX + arrowVelocityX >= variables.ball.x)) 
 							&& 
-						 ((arrowY > game.ball.y && arrowY + arrowVelocityY <= game.ball.y) || (arrowY < game.ball.y && arrowY + arrowVelocityY >= game.ball.y)))
+						 ((arrowY > variables.ball.y && arrowY + arrowVelocityY <= variables.ball.y) || (arrowY < variables.ball.y && arrowY + arrowVelocityY >= variables.ball.y)))
 						 	||
-						 (arrowX > game.ball.x - game.ball.radius && arrowX < game.ball.x + game.ball.radius && 
-						  arrowY < game.ball.y + game.ball.radius && arrowY > game.ball.y - game.ball.radius)) {
+						 (arrowX > variables.ball.x - variables.ball.radius && arrowX < variables.ball.x + variables.ball.radius && 
+						  arrowY < variables.ball.y + variables.ball.radius && arrowY > variables.ball.y - variables.ball.radius)) {
 						arrowHasHitBall = true;
-						game.ball.velocityX = arrowVelocityX;
-						game.ball.velocityY = arrowVelocityY;
+						variables.ball.velocityX = arrowVelocityX;
+						variables.ball.velocityY = arrowVelocityY;
 					}
 					try {
 						Thread.sleep(25);

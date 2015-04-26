@@ -13,7 +13,7 @@ public class Ball {
 	BufferedImage ballImage;
 	private Integer bounceAccelerationY, bounceAccelerationX;
 	private Integer numTimesUpdateWasCalledSinceLastXDecceleration;
-	private Game game;
+	private Variables variables;
 	
 	// constants
 	public int width = 24, height = 24, radius = 12;
@@ -21,15 +21,15 @@ public class Ball {
 	final private int decceleration = 1; 
 	final private double bounceMultiplier = 0.8;
 
-	Ball(int x, int y, Game game) {
+	Ball(int x, int y, Variables variables) {
 		this.x = x;
 		this.y = y;
-		this.game = game;
+		this.variables = variables;
 		bounceAccelerationY = null;
 		bounceAccelerationX = null;
 		numTimesUpdateWasCalledSinceLastXDecceleration = 0;
-		ballImage = game.imgBall;
-		if (game.specialMode.equals("giantball")) {
+		ballImage = variables.imgBall;
+		if (variables.specialMode.equals("giantball")) {
 			try {
 				this.ballImage = ImageIO.read(new File("./resources/game/others/SoccerBallGiant.png"));
 			} catch (IOException e) {
@@ -43,19 +43,19 @@ public class Ball {
 	
 	public void update() {
 		// gravity
-		if (!game.specialMode.equals("antigravity")) {
+		if (!variables.specialMode.equals("antigravity")) {
 			velocityY += decceleration;
 		}
 
 		// Keep ball within top boundary
 		int yTop = y - (height/2);
 		// 1) If ball is about to hit top of screen, make sure it doesn't go past it
-		if ( (yTop + velocityY <= game.topLevel) && bounceAccelerationY == null) {
+		if ( (yTop + velocityY <= variables.topLevel) && bounceAccelerationY == null) {
 			bounceAccelerationY = (int)((double)velocityY * bounceMultiplier);
-			velocityY = game.topLevel - yTop;
+			velocityY = variables.topLevel - yTop;
     	}
 		// 2) If ball just hit top, make it bounce
-		if (yTop <= game.topLevel && bounceAccelerationY != null) {
+		if (yTop <= variables.topLevel && bounceAccelerationY != null) {
 			velocityY = -bounceAccelerationY;
 			bounceAccelerationY = null;
 		}
@@ -63,36 +63,36 @@ public class Ball {
 		// Keep ball within bottom boundary
 		int yBottom = y + (height/2);
 		// 1) If ball is about to hit ground, make sure it doesn't go beneath ground level
-		if ( (yBottom + velocityY >= game.groundLevel) && bounceAccelerationY == null) {
+		if ( (yBottom + velocityY >= variables.groundLevel) && bounceAccelerationY == null) {
 			bounceAccelerationY = (int)((double)velocityY * bounceMultiplier);
-			velocityY = game.groundLevel - yBottom;
+			velocityY = variables.groundLevel - yBottom;
     	}
 		// 2) If ball just hit ground, make it bounce
-		if (yBottom >= game.groundLevel && bounceAccelerationY != null) {
+		if (yBottom >= variables.groundLevel && bounceAccelerationY != null) {
 			velocityY = -bounceAccelerationY;
 			bounceAccelerationY = null;
 		}
 
 		// Keep ball within left boundary
 		// 1) If ball is about to hit left boundary, make sure it doesn't go past it
-		if ( velocityX < 0 && (x - width/2 + velocityX <= game.leftBoundary) && bounceAccelerationX == null) {
+		if ( velocityX < 0 && (x - width/2 + velocityX <= variables.leftBoundary) && bounceAccelerationX == null) {
 			bounceAccelerationX = (int)((double)-velocityX * bounceMultiplier);
-			velocityX = game.leftBoundary - (x - width/2);
+			velocityX = variables.leftBoundary - (x - width/2);
     	}
 		// 2) If ball just hit ground, make it bounce
-		if (x - width/2 <= game.leftBoundary && bounceAccelerationX != null) {
+		if (x - width/2 <= variables.leftBoundary && bounceAccelerationX != null) {
 			velocityX = bounceAccelerationX;
 			bounceAccelerationX = null;
 		}
 
 		// Keep ball within right boundary
 		// 1) If ball is about to hit right boundary, make sure it doesn't go past it
-		if ( velocityX > 0 && (x + width/2 + velocityX >= game.rightBoundary) && bounceAccelerationX == null) {
+		if ( velocityX > 0 && (x + width/2 + velocityX >= variables.rightBoundary) && bounceAccelerationX == null) {
 			bounceAccelerationX = (int)((double)-velocityX * bounceMultiplier);
-			velocityX = (game.rightBoundary - x - width/2);
+			velocityX = (variables.rightBoundary - x - width/2);
     	}
 		// 2) If ball just hit ground, make it bounce
-		if (x + width/2 >= game.rightBoundary && bounceAccelerationX != null) {
+		if (x + width/2 >= variables.rightBoundary && bounceAccelerationX != null) {
 			velocityX = bounceAccelerationX;
 			bounceAccelerationX = null;
 		}

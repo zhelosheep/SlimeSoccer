@@ -5,12 +5,12 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 public class SlimeCosmic extends Slime {
-	BufferedImage blackhole = game.imgSlimeCosmicSpecial;
+	BufferedImage blackhole = variables.imgSlimeCosmicSpecial;
 	int blackholeX, blackholeY, blackholeRadius = 25, gravitationalPull = 1, lengthOfEffect = 3000; // lengthOfEffect is time in milliseconds that blackhole lasts
 	long timeCalled;
 	
-	public SlimeCosmic(int x, int y, int player, BufferedImage slimeImage, Game game) {
-		super(x, y, player, slimeImage, game);
+	public SlimeCosmic(int x, int y, int player, BufferedImage slimeImage, Variables variables) {
+		super(x, y, player, slimeImage, variables);
 	}
 
 	public void useSpecialPower() {
@@ -21,20 +21,20 @@ public class SlimeCosmic extends Slime {
 		new Thread() {
 			public void run() {
 				timeCalled = System.currentTimeMillis();
-				while (!game.player1scored && !game.player2scored) {
+				while (!variables.player1scored && !variables.player2scored) {
 					if (System.currentTimeMillis() - timeCalled > lengthOfEffect) {
 						break;
 					}
 					// pull ball towards black hole
-					if (game.ball.x > blackholeX) {
-						game.ball.velocityX -= gravitationalPull;
-					} else if (game.ball.x < blackholeX) {
-						game.ball.velocityX += gravitationalPull;
+					if (variables.ball.x > blackholeX) {
+						variables.ball.velocityX -= gravitationalPull;
+					} else if (variables.ball.x < blackholeX) {
+						variables.ball.velocityX += gravitationalPull;
 					}
-					if (game.ball.y > blackholeY) {
-						game.ball.velocityY -= gravitationalPull;
-					} else if (game.ball.y < blackholeY) {
-						game.ball.velocityY += gravitationalPull;
+					if (variables.ball.y > blackholeY) {
+						variables.ball.velocityY -= gravitationalPull;
+					} else if (variables.ball.y < blackholeY) {
+						variables.ball.velocityY += gravitationalPull;
 					}
 					try {
 						Thread.sleep(35);
