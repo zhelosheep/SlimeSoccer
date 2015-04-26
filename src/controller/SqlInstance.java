@@ -309,7 +309,7 @@ public class SqlInstance {
 			int userID = u_rs.getInt("userID");
 			ps = c.prepareStatement("INSERT INTO friends (userID, friendID, friendName) VALUE (?, ?, ?)");
 			ps.setInt(1, userID);
-			ps.setInt(2, userID);
+			ps.setInt(2, fuserID);
 			ps.setString(3,  fu);
 			ps.executeUpdate();
 			
