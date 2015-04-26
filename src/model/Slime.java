@@ -5,25 +5,30 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
+import controller.Controller;
 import view.Frame;
 
-public abstract class Slime {
+public class Slime {
 	// numbers for painting slime in right position, direction, etc
 	public int x, y; 
 	public double velocityX = 0, velocityY = 0; 
 	boolean facingLeft; // true if slime is facing left, right if slime is facing right
-	private BufferedImage slimeImage;
+	protected BufferedImage slimeImage;
 	public boolean specialPowerBeingUsed;
 	protected Game game;
 
 	// constants
-	final private int maxSpeed = 6;
-	final private int acceleration = 1, decceleration = 1, jumpAcceleration = 12; // acceleration — Note: these values are scalar, unlike velocity
-	protected int width = 54, height = 54, radius = 27;
+	final int finalMaxSpeed = 6;
+	protected int maxSpeed = finalMaxSpeed;
+	final int finalAcceleration = 1;
+	protected int acceleration = finalAcceleration;
+	final int decceleration = 1, jumpAcceleration = 12; 
+	final int finalWidth = 54, finalHeight = 54, finalRadius = 27;
+	protected int width = finalWidth, height = finalHeight, radius = finalRadius;
 	final public int mass = 1;
 	protected int player;
 	final protected int manaUsageRate = 5; // determines how fast mana is consumed when slime uses special power
-	private int upKey, leftKey, rightKey, powerKey; // KeyEvent codes
+	private int upKey, leftKey, rightKey, downKey, powerKey; // KeyEvent codes
 	
 	public Slime(int x, int y, int player, BufferedImage slimeImage, Game game) {
 		this.x = x;
@@ -34,12 +39,14 @@ public abstract class Slime {
 		this.player = player;
 		if (player == 1) {
 			upKey = KeyEvent.VK_W;
+			downKey = KeyEvent.VK_S;
 			leftKey = KeyEvent.VK_A;
 			rightKey = KeyEvent.VK_D;
 			powerKey = KeyEvent.VK_1;
 			facingLeft = false;
 		} else if (player == 2) {
 			upKey = KeyEvent.VK_UP;
+			downKey = KeyEvent.VK_DOWN;
 			leftKey = KeyEvent.VK_LEFT;
 			rightKey = KeyEvent.VK_RIGHT;
 			powerKey = KeyEvent.VK_SPACE;
@@ -48,22 +55,45 @@ public abstract class Slime {
 		this.slimeImage = slimeImage;
 	}
 	
-	public abstract void useSpecialPower();
+	public void useSpecialPower() {}; // is implemented in all slime subclasses
+	public void retractSpecialPower() {}; // is implemented in some slime subclasses
 
 	public void update() {
         // Calculating velocity for moving up or down
-        if(Frame.controller.keyboardKeyState(upKey) && y == game.groundLevel) {
-            velocityY -= jumpAcceleration;
-        } else {
-        	if (y >= game.groundLevel) {
-        		velocityY = 0;
-        	} else {
-        		velocityY += decceleration;
-        	}
-        }
+		if (!game.specialMode.equals("antigravity")) {
+	        if(Controller.keyboardKeyState(upKey) && y == game.groundLevel) {
+	            velocityY -= jumpAcceleration;
+	        } else {
+	        	if (y >= game.groundLevel) {
+	        		velocityY = 0;
+	        	} else {
+	        		velocityY += decceleration;
+	        	}
+	        }
+		} 
+		// special case: only for antigravity mode
+		else {
+	        // Calculating velocity for moving up or down –– only for antigravity special mode
+	        if(Controller.keyboardKeyState(upKey)) {
+	        	if (velocityY >= -maxSpeed) {
+	        		velocityY -= acceleration;
+	        	}
+	        } else if (velocityY < 0) {
+	            velocityY += decceleration;
+	        }
+
+	        if(Controller.keyboardKeyState(downKey)) {
+	        	if (velocityY <= maxSpeed) {
+	        		velocityY += acceleration;
+	        	}
+	        } else if (velocityY > 0) {
+	            velocityY -= decceleration;
+	        }
+
+		}
         
         // Calculating velocity for moving or stopping to the left
-        if(Frame.controller.keyboardKeyState(leftKey)) {
+        if(Controller.keyboardKeyState(leftKey)) {
         	facingLeft = true;
         	if (velocityX >= -maxSpeed) {
                 velocityX -= acceleration;
@@ -73,7 +103,7 @@ public abstract class Slime {
         }
         
         // Calculating velocity for moving or stopping to the right
-        if(Frame.controller.keyboardKeyState(rightKey)) {
+        if(Controller.keyboardKeyState(rightKey)) {
         	facingLeft = false;
         	if (velocityX <= maxSpeed) {
         		velocityX += acceleration;
@@ -82,24 +112,29 @@ public abstract class Slime {
             velocityX -= decceleration;
         }
         
+
         // User special power
-        if(Frame.controller.keyboardKeyState(powerKey) && !specialPowerBeingUsed) {
+        if(Controller.keyboardKeyState(powerKey) && !specialPowerBeingUsed) {
         	if (this.player == 1) {
         		if (game.player1_manaCurrent > 0) {
                 	this.useSpecialPower();
                 	game.player1_manaCurrent -= manaUsageRate;
+        		} else {
+                	retractSpecialPower();
         		}
         	}
         	else if (this.player == 2) {
         		if (game.player2_manaCurrent > 0) {
                 	this.useSpecialPower();
                 	game.player2_manaCurrent -= manaUsageRate;
+        		} else {
+                	retractSpecialPower();
         		}
         	}
-//        	System.out.println("SPECIAL POWER");
         }
-        // regenerate special power
-        if(!Frame.controller.keyboardKeyState(powerKey)) {
+        // call retractSpecialPower() and also regenerate mana
+        if(!Controller.keyboardKeyState(powerKey)) {
+        	retractSpecialPower();
 			if (game.player1_manaCurrent < game.player1_manaMax) {
 	        	game.player1_manaCurrent += game.manaRegenerationRate;
 			}
@@ -128,21 +163,21 @@ public abstract class Slime {
 		if (facingLeft) {
 			g.drawImage(this.slimeImage, getXforPaintImage() + this.width, getYforPaintImage(), -this.width, this.height, null);
 		} else {
-			g.drawImage(this.slimeImage, getXforPaintImage(), getYforPaintImage(), null);
+			g.drawImage(this.slimeImage, getXforPaintImage(), getYforPaintImage(), this.width, this.height, null);
 		}
 	}
 	
 	// below getXfor or getYfor functions return the origin position of slime semicircle (as opposed to top-left of slime)
-	private int getXforPaint() {
+	protected int getXforPaint() {
 		return (this.x - (width/2));
 	}
-	private int getYforPaint() {
+	protected int getYforPaint() {
 		return (this.y - (height/2));
 	}
-	private int getXforPaintImage() {
+	protected int getXforPaintImage() {
 		return (this.x - (width/2) + 1); // slightly adjusted values for returning x value of image because images aren't exactly 70x70
 	}
-	private int getYforPaintImage() {
+	protected int getYforPaintImage() {
 		return (this.y - ((3*height)/4) - 3); // slightly adjusted values for returning y value of image because images aren't exactly 70x70
 	}
 

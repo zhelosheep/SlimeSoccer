@@ -4,7 +4,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 public class Ball {
-	public int x, y, yBottom;
+	public int x, y;
 	public double velocityX = 0, velocityY = 0; 
 	BufferedImage ballImage;
 	private Integer bounceAccelerationY, bounceAccelerationX;
@@ -28,15 +28,30 @@ public class Ball {
 	}
 	
 	public void update() {
-		yBottom = y + (height/2);
-		
+		// gravity
+		if (!game.specialMode.equals("antigravity")) {
+			velocityY += decceleration;
+		}
+
+		// Keep ball within top boundary
+		int yTop = y - (height/2);
+		// 1) If ball is about to hit top of screen, make sure it doesn't go past it
+		if ( (yTop + velocityY <= game.topLevel) && bounceAccelerationY == null) {
+			bounceAccelerationY = (int)((double)velocityY * bounceMultiplier);
+			velocityY = game.topLevel - yTop;
+    	}
+		// 2) If ball just hit top, make it bounce
+		if (yTop <= game.topLevel && bounceAccelerationY != null) {
+			velocityY = -bounceAccelerationY;
+			bounceAccelerationY = null;
+		}
+
 		// Keep ball within bottom boundary
+		int yBottom = y + (height/2);
 		// 1) If ball is about to hit ground, make sure it doesn't go beneath ground level
 		if ( (yBottom + velocityY >= game.groundLevel) && bounceAccelerationY == null) {
 			bounceAccelerationY = (int)((double)velocityY * bounceMultiplier);
 			velocityY = game.groundLevel - yBottom;
-    	} else {
-    		velocityY += decceleration;
     	}
 		// 2) If ball just hit ground, make it bounce
 		if (yBottom >= game.groundLevel && bounceAccelerationY != null) {
@@ -68,6 +83,7 @@ public class Ball {
 			bounceAccelerationX = null;
 		}
 		
+		// Decelerate x movement of ball so it won't roll sideways forever
 		if (numTimesUpdateWasCalledSinceLastXDecceleration > 25) {
 			if (velocityX > 0) {
 				velocityX -= decceleration;

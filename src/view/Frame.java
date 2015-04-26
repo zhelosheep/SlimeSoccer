@@ -21,7 +21,7 @@ public class Frame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		// set up model
-		model = new Game("outerspace", "SlimeFireball", "SlimeSuperSize", "shawnren", "josemama", 100, 100, 1, null);
+		model = new Game("desk", "SlimeBowAndArrow", "SlimeGeyser", "shawnren", "josemama", 100, 100, 1, "antigravity");
 		// set up controller
 		controller = new Controller();
 		// set up view

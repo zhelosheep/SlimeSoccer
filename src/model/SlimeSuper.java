@@ -8,7 +8,13 @@ public class SlimeSuper extends Slime {
 	}
 
 	public void useSpecialPower() {
-		
+		acceleration = 3;
+		maxSpeed = 1000;
+	}
+	
+	public void retractSpecialPower() {
+		acceleration = finalAcceleration;
+		maxSpeed = finalMaxSpeed;
 	}
 
 }
