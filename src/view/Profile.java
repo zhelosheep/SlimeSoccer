@@ -160,7 +160,6 @@ public class Profile extends JFrame{
 				int i;
 				
 				public void mouseClicked(MouseEvent me) {
-					System.out.println("hi");
 					setVisible(false);
 					Profile pro = new Profile(friends.get(i), Profile.this);
 					pro.setVisible(true);
