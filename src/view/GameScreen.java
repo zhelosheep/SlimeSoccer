@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.PrintWriter;
+
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -14,11 +15,13 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.text.DefaultCaret;
+
 import model.Ball;
 import controller.Controller;
 
@@ -144,36 +147,43 @@ public class GameScreen extends JFrame{
 		// N00b – Play first game
 		if (LoginPage.sqli.getGames(username) == 1 && !LoginPage.sqli.checkAchievement(username, LoginPage.noob_a.getName())) {
 			LoginPage.sqli.setAchievement(username, LoginPage.noob_a);
+			JOptionPane.showMessageDialog(GameScreen.this, "You received the N00B achievement!", "Achievement Earned!", JOptionPane.INFORMATION_MESSAGE);
 		}
 		
 		// No Life Award – Play 1000 games
 		if (LoginPage.sqli.getGames(username) == 1000 && !LoginPage.sqli.checkAchievement(username, LoginPage.nolife_a.getName())) {
 			LoginPage.sqli.setAchievement(username, LoginPage.nolife_a);
+			JOptionPane.showMessageDialog(GameScreen.this, "You received the NO LIFE achievement!", "Achievement Earned!", JOptionPane.INFORMATION_MESSAGE);
 		}
 	
 		// Victorious – Win 10 games
 		if (LoginPage.sqli.getWins(username) == 10 && !LoginPage.sqli.checkAchievement(username, LoginPage.vict_a.getName())) {
 			LoginPage.sqli.setAchievement(username, LoginPage.vict_a);
+			JOptionPane.showMessageDialog(GameScreen.this, "You received the VICTORIOUS achievement!", "Achievement Earned!", JOptionPane.INFORMATION_MESSAGE);
 		}
 		
 		// Loser – Lose 5 games in a row
 		if (LoginPage.sqli.getGamesLostInARow(username) == 5 && !LoginPage.sqli.checkAchievement(username, LoginPage.loser_a.getName())) {
 			LoginPage.sqli.setAchievement(username, LoginPage.loser_a);
+			JOptionPane.showMessageDialog(GameScreen.this, "You received the LOSER achievement!", "Achievement Earned!", JOptionPane.INFORMATION_MESSAGE);
 		}
 		
 		// Cristiano Ronaldo – Have a 2:1 win lose ratio or greater
 		if (LoginPage.sqli.getRatio(username) >= 2 && !LoginPage.sqli.checkAchievement(username, LoginPage.chris_a.getName())) {
 			LoginPage.sqli.setAchievement(username, LoginPage.chris_a);
+			JOptionPane.showMessageDialog(GameScreen.this, "You received the CRISTIANO RONALDO achievement!", "Achievement Earned!", JOptionPane.INFORMATION_MESSAGE);
 		}
 
 		// Unathletic Athlete – Have a 1:10 win/loss ratio or less
 		if (LoginPage.sqli.getRatio(username) <= 1/10 && LoginPage.sqli.getGames(username) >= 10 && !LoginPage.sqli.checkAchievement(username, LoginPage.unath_a.getName())) {
 			LoginPage.sqli.setAchievement(username, LoginPage.unath_a);
+			JOptionPane.showMessageDialog(GameScreen.this, "You received the UNATHLETIC ATHLETE achievement!", "Achievement Earned!", JOptionPane.INFORMATION_MESSAGE);
 		}
 		
 		// Packing on the Pounds – Don’t move your slime at all during a game
 		if (!primary.variables.slimeHasMoved_1 && !LoginPage.sqli.checkAchievement(username, LoginPage.pack_a.getName())) {
 			LoginPage.sqli.setAchievement(username, LoginPage.pack_a);
+			JOptionPane.showMessageDialog(GameScreen.this, "You received the PACKING ON THE POUNDS achievement!", "Achievement Earned!", JOptionPane.INFORMATION_MESSAGE);
 		}
 
 	}
