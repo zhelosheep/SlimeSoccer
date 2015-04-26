@@ -254,7 +254,14 @@ public class Profile extends JFrame{
 		
 		searchField.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//JOSEPH FIX THIS
+				String u = searchField.getText();
+				if (!LoginPage.sqli.findUser(u)) {
+					JOptionPane.showMessageDialog(Profile.this, "Could not find user", "Error404", JOptionPane.ERROR_MESSAGE);
+				} else {
+					setVisible(false);
+					Profile pro = new Profile(u, Profile.this);
+					pro.setVisible(true);
+				}
 			}
 		});
 		
