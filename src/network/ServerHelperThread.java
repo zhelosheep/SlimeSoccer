@@ -69,6 +69,9 @@ public class ServerHelperThread extends Thread {
 					I - ball xcoord
 					J - ball ycoord
 					
+					K - player1 key
+					L - player2 key
+					
 					M - get random game (spectate)
 					N - find specific game (spectate)
 					O - play
@@ -112,6 +115,16 @@ public class ServerHelperThread extends Thread {
 					{
 						//push the string to a ball handler which will parse into integer
 					} 
+					
+					else if (str.charAt(0) == 'K') //player 1 key detection
+					{
+						
+					}
+					
+					else if (str.charAt(0) == 'L') //player 2 key detection
+					{
+						//
+					}
 
 					else if (str.charAt(0) == 'M')
 					{
@@ -152,9 +165,9 @@ public class ServerHelperThread extends Thread {
 								GameThread gt = new GameThread(tokens[5], tokens[0], tokens[1], tokens[2], tokens[3], Integer.valueOf(tokens[7]), Integer.valueOf(tokens[7]), Integer.valueOf(tokens[6]), tokens[4]);
 								st.ongoingGames.put(gt, set);
 								// made the game on the server, now set variables for the two clients
-								this.pw.println("G" + str.substring(2));
+								this.pw.println("G" + str);
 								this.pw.flush();
-								opponentThread.pw.println("G" + str.substring(2));
+								opponentThread.pw.println("G" + str);
 								opponentThread.pw.flush();
 							} else {
 								this.readyToPlay = true;
