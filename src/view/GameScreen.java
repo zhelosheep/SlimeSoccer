@@ -90,10 +90,9 @@ public class GameScreen extends JFrame{
 		
 		JPanel leftPanel = new JPanel();
 		leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
-		leftPanel.setPreferredSize(new Dimension(300, 200));
+		leftPanel.setPreferredSize(new Dimension(610, 450));
 		leftPanel.setBorder(BorderFactory.createEmptyBorder(0, 30, 15, 0));
 		leftPanel.add(primary);
-		
 		
 		JPanel rightPanel = new JPanel();
 		rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));

@@ -4,7 +4,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.HashSet;
 import java.util.Set;
+
+import model.Game;
 
 public class ServerHelperThread extends Thread {
 	Socket s;
@@ -13,6 +16,8 @@ public class ServerHelperThread extends Thread {
 	private int i;
 	private ServerThread st;
 	String username;
+	boolean readyToPlay = false;
+	ServerHelperThread opponentThread = null;
 	
 	ServerHelperThread(int i, ServerThread st) {
 		this.i = i;
@@ -50,7 +55,7 @@ public class ServerHelperThread extends Thread {
 					
 					M - get random game (spectate)
 					N - find specific game (spectate)
-					
+					O - play
 					P - add to random (play)
 					Q - add to waiting (play)
 					R - remove from random and waiting
@@ -100,16 +105,34 @@ public class ServerHelperThread extends Thread {
 
 					}
 
+					else if (str.charAt(0) == 'O')
+					{
+						synchronized (st) {
+							if (opponentThread.readyToPlay) {
+								opponentThread.readyToPlay = false;
+								HashSet<ServerHelperThread> set = new HashSet<ServerHelperThread>();
+								set.add(opponentThread);
+								set.add(this);
+								// this shouldn't be hardcoded, decode the string here!!
+								st.ongoingGames.put(new Game("desk", "SlimeBowAndArrow", "SlimeGeyser", "shawnren", "josemama", 100, 100, 1, "antigravity"), set);
+								
+							} else {
+								this.readyToPlay = true;
+							}
+						}
+					}
+
 					else if (str.charAt(0) == 'P')
 					{
 						synchronized (st.randomPlayers) {
-							System.out.println(username);
 							if (st.randomPlayers.isEmpty()) st.randomPlayers.add(this);
 							else {
 								st.randomPlayers.peek().pw.println("Y1" + this.username);
 								st.randomPlayers.peek().pw.flush();
+								st.randomPlayers.peek().opponentThread = this;
 								this.pw.println("Y2" + st.randomPlayers.peek().username);
 								this.pw.flush();
+								this.opponentThread = st.randomPlayers.peek();
 								st.randomPlayers.remove();
 							}
 						}
@@ -124,8 +147,10 @@ public class ServerHelperThread extends Thread {
 									found = true;
 									temp.pw.println("Y1" + this.username);
 									temp.pw.flush();
+									temp.opponentThread = this;
 									this.pw.println("Y2" + temp.username);
 									this.pw.flush();
+									this.opponentThread = temp;
 									st.waitingPlayers.remove(temp);
 								}
 							}
