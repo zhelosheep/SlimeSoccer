@@ -101,6 +101,8 @@ public class SqlInstance {
 	}
 	
 	public void setAchievement(String u, model.Achievement ach) {
+		if (checkAchievement(u, ach.getName())) return;
+		
 		ResultSet u_rs = getUser(u);
 		
 		try {
