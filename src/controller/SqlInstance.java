@@ -45,9 +45,7 @@ public class SqlInstance {
 			ResultSet rs = st.executeQuery("SELECT * FROM account_data WHERE username = '" + u + "'");
 			
 			if (rs.next()) return true;
-		} catch (SQLException sqle) {
-			System.out.println("SQLException in SqlInstance.login: " + sqle.getMessage());
-		}
+		} catch (SQLException sqle) {}
 		
 		return false;
 	}
@@ -65,9 +63,7 @@ public class SqlInstance {
 					return true;
 				}
 			}
-		} catch (SQLException e) {
-			System.out.println("SQLException in SqlInstance.validateLogin: " + e.getMessage());
-		}
+		} catch (SQLException e) {}
 		
 		return false;
 	}
