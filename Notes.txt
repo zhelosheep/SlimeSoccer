@@ -4,7 +4,7 @@ G	player2 xcoord; string -> int
 H	player2 ycoord; string -> int
 
 I	ball xcoord; string -> int
-K	ball ycoord; string -> int
+J	ball ycoord; string -> int
 
 
 
