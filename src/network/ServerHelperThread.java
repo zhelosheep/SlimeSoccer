@@ -212,6 +212,7 @@ public class ServerHelperThread extends Thread {
 								String [] tokens = str.split(delims);
 								for (int j = 0; j < tokens.length; j++)
 								{
+									System.out.println("SHT: Printing tokens");
 									System.out.println(tokens[j]);
 									//tokens[0] = p1SlimeType
 									//tokens[1] = p2SlimeType

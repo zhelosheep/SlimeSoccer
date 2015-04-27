@@ -346,10 +346,10 @@ public class MainMenuUserPlaySlime extends JFrame{
 				}
 				if (!isPvCGame) {
 					if (isPlayer1) {
-						((MainMenuUserPlayPlayer) prevScreen).prevScreen.sWriter.println("I" + p1SlimeType); // append game settings!						
+						((MainMenuUserPlayPlayer) prevScreen).prevScreen.sWriter.println("IA" + p1SlimeType); // append game settings!						
 						((MainMenuUserPlayPlayer) prevScreen).prevScreen.sWriter.flush();						
 					} else {
-						((MainMenuUserPlayPlayer) prevScreen).prevScreen.sWriter.println("I" + p2SlimeType); // append game settings!						
+						((MainMenuUserPlayPlayer) prevScreen).prevScreen.sWriter.println("IB" + p2SlimeType); // append game settings!						
 						((MainMenuUserPlayPlayer) prevScreen).prevScreen.sWriter.flush();
 					}
 				}
