@@ -42,7 +42,7 @@ public class MainMenuUserSpectate extends JFrame{
 	}
 	
 	private void instantiateVariables() {
-		spectateLabel = new JLabel(new ImageIcon("resources/Spectate.png"));
+		spectateLabel = new JLabel(new ImageIcon((getClass().getClassLoader().getResource("Spectate.png"))));
 		avatar = SignUpPage.avatarImages[LoginPage.sqli.getImage(prevScreen.getUsername())];
 		avatarButton = new JButton(avatar);
 		searchButton = new JButton("Search");
@@ -53,7 +53,7 @@ public class MainMenuUserSpectate extends JFrame{
 		backButton = new JButton("Back");
 		gameIDField = new JTextField(6);
 		logoutButton = new JButton("Log Out");
-		settingsButton = new JButton(new ImageIcon(new ImageIcon("resources/OptionsButton.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)));
+		settingsButton = new JButton(new ImageIcon(new ImageIcon((getClass().getClassLoader().getResource("OptionsButton.png"))).getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)));
 		spectateScreen = new SpectateScreen(false, this);
 	}
 	

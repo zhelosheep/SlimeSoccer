@@ -7,7 +7,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -55,8 +57,12 @@ public class MainMenuUserPlayPlayer extends JFrame{
 		backButton = new JButton("Back");
 		logoutButton = new JButton("Log Out");
 		usernameField = new JTextField(6);
-		settingsButton = new JButton(new ImageIcon(new ImageIcon("resources/OptionsButton.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)));
-		playPlayerLabel = new JLabel(new ImageIcon("resources/PvP.png"));
+		try {
+			settingsButton = new JButton(new ImageIcon(new ImageIcon((ImageIO.read((getClass().getClassLoader().getResource("OptionsButton.png"))))).getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)));
+		} catch (IOException e) {
+			System.out.println("IOException in MainMenuUserPlayPlayer.instantiateVariables: " + e.getMessage());
+		}
+		playPlayerLabel = new JLabel(new ImageIcon((getClass().getClassLoader().getResource("PvP.png"))));
 		mainMenuUserWaiting = new MainMenuUserWaiting(this);
 	}
 	

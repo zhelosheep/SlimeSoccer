@@ -11,6 +11,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
+
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -53,9 +55,14 @@ public class MainMenuUser extends JFrame{
 	}
 	
 	private void instantiateVariables() {
-		PvPIcon = new ImageIcon(new ImageIcon("resources/PvP.png").getImage().getScaledInstance(340, 120, java.awt.Image.SCALE_SMOOTH));
-		PvCIcon = new ImageIcon(new ImageIcon("resources/PvC.png").getImage().getScaledInstance(340, 120, java.awt.Image.SCALE_SMOOTH));
-		SpectateIcon = new ImageIcon(new ImageIcon("resources/Spectate.png").getImage().getScaledInstance(340, 120, java.awt.Image.SCALE_SMOOTH));
+		try {
+			PvPIcon = new ImageIcon(new ImageIcon((ImageIO.read((getClass().getClassLoader().getResource("PvP.png"))))).getImage().getScaledInstance(340, 120, java.awt.Image.SCALE_SMOOTH));
+			PvCIcon = new ImageIcon(new ImageIcon((ImageIO.read((getClass().getClassLoader().getResource("PvC.png"))))).getImage().getScaledInstance(340, 120, java.awt.Image.SCALE_SMOOTH));
+			SpectateIcon = new ImageIcon(new ImageIcon((ImageIO.read((getClass().getClassLoader().getResource("Spectate.png"))))).getImage().getScaledInstance(340, 120, java.awt.Image.SCALE_SMOOTH));
+			settingsButton = new JButton(new ImageIcon(new ImageIcon((ImageIO.read((getClass().getClassLoader().getResource("OptionsButton.png"))))).getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)));
+		} catch (IOException ioe) {
+			System.out.println("IOException in MainMenuUser.instantiateVariables (read images): " + ioe.getMessage());
+		}
 		avatar = SignUpPage.avatarImages[LoginPage.sqli.getImage(username)];
 		playCompButton = new JButton(PvCIcon);
 		playPlayerButton = new JButton(PvPIcon);
@@ -64,7 +71,6 @@ public class MainMenuUser extends JFrame{
 		chatArea = new JTextArea();
 		chatField = new JTextField(10);
 		logoutButton = new JButton("Logout");
-		settingsButton = new JButton(new ImageIcon(new ImageIcon("resources/OptionsButton.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)));
 		settingsPage = new SettingsPage();
 		mainMenuUserPlayPlayer = new MainMenuUserPlayPlayer(this);
 		mainMenuUserSpectate = new MainMenuUserSpectate(this);

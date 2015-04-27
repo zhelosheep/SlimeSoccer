@@ -26,3 +26,7 @@ Notes:
 Gotta update so that physics will be updating independent of each user - the server instance will be calculating
 
 Each client will simply receive the six data coordinate points and then draw the objects on their frame clients/spectate client
+
+Slime class moves based on boolean array
+	-Instead of an array of size 525 (?!), we use one of size 5
+	-It's only turned on or off based on the five keys (left, right, up, down, space)
