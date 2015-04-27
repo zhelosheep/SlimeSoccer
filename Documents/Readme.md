@@ -5,6 +5,7 @@ Login Screen
       - Can create a new user with a new icon and profile
       - Can login using user to play games.
       - User can also spectate
+      - Can not log in the same person at the same time
    Guest
       - Can enter as Guest
       - Guest can spectate games
@@ -12,12 +13,14 @@ Login Screen
 Spectate Screen
       - Lobby chat for Spectate Screen works
       - Can find a random game to spectate
+      - Games are unable to be properly spectated as the networking does not work
 
 Game Screen
       - Score and win conditions work
       - Slimes, Goals, and Ball all have working collision
       - Different backgrounds with different collision
       - Mana Bar and Names are visible
+      - Games can not be played (can only be run in a separate file)
 
 Slimes
       - All slimes have special powers

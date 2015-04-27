@@ -370,10 +370,30 @@ public class SqlInstance {
 		}
 	}
 	
-	public static void main (String [] args) {
-		SqlInstance s = new SqlInstance();
-		//s.setFriends("zhelo", "tashleyy");
-		//s.setAchievement("zhelo", LoginPage.loser_a);
-		//s.updateStats("zhelo", true);
+	public boolean checkLoggedIn (String u) {
+		ResultSet u_rs = getUser(u);
+		boolean log = false;
+		
+		try {
+			log = u_rs.getBoolean("player_loggedOn");
+		} catch (SQLException sqle) {
+			System.out.println("SQLException in SqlInstance.checkLoggedIn: " + sqle.getMessage());
+		}
+		return log;
+	}
+	
+	public void toggleLog (String u) {
+		ResultSet u_rs = getUser(u);
+		
+		try {
+			boolean log = u_rs.getBoolean("player_loggedOn");
+			ps = c.prepareStatement("UPDATE account_data SET player_loggedOn = ? WHERE username = ?");
+			ps.setBoolean(1, !log);
+			ps.setString(2,  u);
+			ps.executeUpdate();
+			
+		} catch (SQLException sqle) {
+			System.out.println("SQLException in SqlInstance.logout: " + sqle.getMessage());
+		}
 	}
 }
