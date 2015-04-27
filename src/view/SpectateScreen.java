@@ -46,8 +46,6 @@ public class SpectateScreen extends JFrame {
 	private JTextField gameIDField, chatField;
 	public JTextArea chatArea;
 	public Canvas primary;
-	public BufferedReader sReader;
-	public PrintWriter sWriter;
 	
 	SpectateScreen(boolean isGuest, JFrame prevScreen) {
 		setSize(800, 600);
