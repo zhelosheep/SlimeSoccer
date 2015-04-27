@@ -310,6 +310,7 @@ public class GameScreen extends JFrame{
 				}
 				chatArea.setText(chatArea.getText() + "\n" + username + ": " + chatField.getText());
 				chatField.setText("");
+				primary.requestFocusInWindow();
 			}
 		});
 		
@@ -322,6 +323,7 @@ public class GameScreen extends JFrame{
 				}
 				chatArea.setText(chatArea.getText() + "\n" + username + ": " + chatField.getText());
 				chatField.setText("");
+				primary.requestFocusInWindow();
 			}
 		});
 		
@@ -329,6 +331,7 @@ public class GameScreen extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				prevScreen.prevScreen.setVisible(true);
+				LoginPage.sqli.toggleLog(MainMenuUser.username);
 			}
 		});
 	}
