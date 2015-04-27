@@ -21,11 +21,12 @@ public class GameThread extends Thread {
             
             // do something
 //            if (isPvCGame) {
-                game.update();
+            game.update();
 //            } else {
 //            	
 //            }
-            
+             
+//            System.out.println("slime1: " + game.variables.slime1.x + " " + game.variables.slime1.y + " slime2: " + game.variables.slime2.x + " " + game.variables.slime2.y);
             String output = "M " + game.variables.ball.x + " " + game.variables.ball.y + " " + game.variables.ball.width + " " + game.variables.ball.height + " " +
             				game.variables.slime1.x + " " + game.variables.slime1.y + " " + game.variables.slime1.width + " " + game.variables.slime1.height + " " +
             				game.variables.slime2.x + " " + game.variables.slime2.y + " " + game.variables.slime2.width + " " + game.variables.slime2.height + " " +

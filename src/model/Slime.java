@@ -270,6 +270,7 @@ public class Slime {
         // Moves the slime
         x += velocityX;
         y += velocityY;
+//        System.out.println("moving slime" + player + " to " + x + "   " + y);
 	}
 	
 	// update x y width height facingleft
@@ -281,6 +282,7 @@ public class Slime {
 		} else {
 			g.drawImage(this.slimeImage, getXforPaintImage(), getYforPaintImage(), this.width, this.height, null);
 		}
+//		System.out.println("painting slime" + player + " at " + getXforPaintImage() + this.width + "   " + getYforPaintImage());
 	}
 	
 	// below getXfor or getYfor functions return the origin position of slime semicircle (as opposed to top-left of slime)

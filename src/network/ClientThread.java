@@ -12,7 +12,7 @@ public class ClientThread extends Thread {
 	private MainMenuGuest mmg = null;
 	private MainMenuUser mmu = null;
 	private boolean isGuest = false;
-
+	
 	public ClientThread(JFrame mm, boolean isGuest) {
 		this.isGuest = isGuest;
 		if (isGuest) mmg = (MainMenuGuest) mm;
@@ -84,10 +84,6 @@ public class ClientThread extends Thread {
 					} else if (str.charAt(0) == 'G') {
 						String delims = "[$]";
 						String [] tokens = str.substring(1).split(delims);
-						for (int i = 0; i < tokens.length; i++)
-						{
-							System.out.println("In ClientThread: Read a G label string");
-							System.out.println(tokens[i]);
 							//tokens[0] = p1SlimeType
 							//tokens[1] = p2SlimeType
 							//tokens[2] = p1Username
@@ -96,26 +92,19 @@ public class ClientThread extends Thread {
 							//tokens[5] = backgroundCombo
 							//tokens[6] = regenRate
 							//tokens[7] = totalMana
-						}
 						mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.gameScreen.setVariables(tokens[5], tokens[0], tokens[1], tokens[2], tokens[3], Integer.valueOf(tokens[7]), Integer.valueOf(tokens[7]), Integer.valueOf(tokens[6]), tokens[4]);
 						mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.gameScreen.setVisible(true);
 						mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.setVisible(false);
 					} else if (str.charAt(0) == 'I') {
-						System.out.println("String before concat is " + str + "!");
 						str = str.substring(2);
-						System.out.println("I detected?");
-						System.out.println(str);
 						
 						int index = convertNametoIndex(str);
 						
 						if (mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.isPlayer1 == false)
 						{
-							System.out.println("Entering if PP is 1");
-							System.out.println(index);
 							//if slime is normal 9
 							if (index < 10)
 							{
-								System.out.println("Slime is normal; slime is player2");
 								mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.p1SlimeImageLabel.setIcon(mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.slimeButtons[index].getIcon());
 								mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.p1SlimeNameLabel.setText(mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.slimeNames[index]);
 								mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.p1SlimeAbilityLabel.setText(mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.slimeAbilities[index]);
@@ -125,7 +114,6 @@ public class ClientThread extends Thread {
 							//if slime is special
 							if (index >= 10)			
 							{
-								System.out.println("Slime is special; slime is player2");
 								mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.p1SlimeImageLabel.setIcon(mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.specialSlimes[index-10].getIcon());
 								mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.p1SlimeNameLabel.setText(mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.specialSlimeNames[index-10]);
 								mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.p1SlimeAbilityLabel.setText(mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.specialSlimeDescriptions[index-10]);
@@ -135,13 +123,9 @@ public class ClientThread extends Thread {
 						
 						else if (mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.isPlayer1 == true)
 						{
-							System.out.println("Entering if PP is not 1");
-							System.out.println(index);
-							
 							//if slime is normal 9
 							if (index < 10)
 							{
-								System.out.println("Slime is normal; slime is player1");
 								mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.p2SlimeImageLabel.setIcon(mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.slimeButtons[index].getIcon());
 								mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.p2SlimeNameLabel.setText(mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.slimeNames[index]);
 								mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.p2SlimeAbilityLabel.setText(mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.slimeAbilities[index]);
@@ -151,7 +135,6 @@ public class ClientThread extends Thread {
 							//if slime is special
 							if (index >= 10)			
 							{
-								System.out.println("Slime is special; slime is player1");
 								mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.p2SlimeImageLabel.setIcon(mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.specialSlimes[index-10].getIcon());
 								mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.p2SlimeNameLabel.setText(mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.specialSlimeNames[index-10]);
 								mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.p2SlimeAbilityLabel.setText(mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.specialSlimeDescriptions[index-10]);
@@ -186,6 +169,7 @@ public class ClientThread extends Thread {
 						ptr.playerThatWon = Integer.parseInt(splited[18]);
 						ptr.player1_score = Integer.parseInt(splited[19]);
 						ptr.player2_score = Integer.parseInt(splited[20]);
+//			            System.out.println("slime1: " + ptr.slime1.x + " " + ptr.slime1.y + " slime2: " + ptr.slime2.x + " " + ptr.slime2.y);
 					}
 				}
 			} catch (IOException ioe) {
@@ -206,7 +190,6 @@ public class ClientThread extends Thread {
 	
 	public int convertNametoIndex(String name)
 	{
-		System.out.println("The string to convert is " + name + "!");
 		if (name.equals("SlimeBomb"))
 		{
 			return 0;
