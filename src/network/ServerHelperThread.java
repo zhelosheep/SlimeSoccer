@@ -98,7 +98,6 @@ public class ServerHelperThread extends Thread {
 					
 					else if (str.charAt(0) == 'K') //player 1 key detection
 					{
-						System.out.println("in K");
 						str = str.substring(1);	//lop off the K
 						synchronized (st.ongoingGames) {
 							for (GameThread gt : st.ongoingGames.keySet()) {
@@ -107,48 +106,48 @@ public class ServerHelperThread extends Thread {
 									{
 										gt.game.variables.p1_keyboardState[0] = true;
 									}
-									
+
 									else if (str.equals("down"))
 									{
 										gt.game.variables.p1_keyboardState[1] = true;
 									}
-									
+
 									else if (str.equals("left"))
 									{
 										gt.game.variables.p1_keyboardState[2] = true;
 									}
-									
+
 									else if (str.equals("right"))
 									{
 										gt.game.variables.p1_keyboardState[3] = true;
 									}
-									
+
 									else if (str.equals("space"))
 									{
 										gt.game.variables.p1_keyboardState[4] = true;
 									}
-									
+
 									//when key is released
 									if (str.equals("upno"))
 									{
 										gt.game.variables.p1_keyboardState[0] = false;
 									}
-									
+
 									else if (str.equals("downno"))
 									{
 										gt.game.variables.p1_keyboardState[1] = false;
 									}
-									
+
 									else if (str.equals("leftno"))
 									{
 										gt.game.variables.p1_keyboardState[2] = false;
 									}
-									
+
 									else if (str.equals("rightno"))
 									{
 										gt.game.variables.p1_keyboardState[3] = false;
-								}
-									
+									}
+
 									else if (str.equals("spaceno"))
 									{
 										gt.game.variables.p1_keyboardState[4] = false;
@@ -162,6 +161,62 @@ public class ServerHelperThread extends Thread {
 					{
 						System.out.println("in L");
 						str = str.substring(1); //lop off the L
+						synchronized (st.ongoingGames) {
+							for (GameThread gt : st.ongoingGames.keySet()) {
+								if (st.ongoingGames.get(gt).contains(this)) {
+									if (str.equals("up"))
+									{
+										gt.game.variables.p2_keyboardState[0] = true;
+									}
+
+									else if (str.equals("down"))
+									{
+										gt.game.variables.p2_keyboardState[1] = true;
+									}
+
+									else if (str.equals("left"))
+									{
+										gt.game.variables.p2_keyboardState[2] = true;
+									}
+
+									else if (str.equals("right"))
+									{
+										gt.game.variables.p2_keyboardState[3] = true;
+									}
+
+									else if (str.equals("space"))
+									{
+										gt.game.variables.p2_keyboardState[4] = true;
+									}
+
+									//when key is released
+									if (str.equals("upno"))
+									{
+										gt.game.variables.p2_keyboardState[0] = false;
+									}
+
+									else if (str.equals("downno"))
+									{
+										gt.game.variables.p2_keyboardState[1] = false;
+									}
+
+									else if (str.equals("leftno"))
+									{
+										gt.game.variables.p2_keyboardState[2] = false;
+									}
+
+									else if (str.equals("rightno"))
+									{
+										gt.game.variables.p2_keyboardState[3] = false;
+									}
+
+									else if (str.equals("spaceno"))
+									{
+										gt.game.variables.p2_keyboardState[4] = false;
+									}
+								}
+							}
+						}
 					}
 
 					else if (str.charAt(0) == 'M')

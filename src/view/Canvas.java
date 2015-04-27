@@ -9,7 +9,7 @@ import model.Variables;
 public class Canvas extends JPanel implements Runnable {
 	private static final long serialVersionUID = 1L;
 	Thread gameLoop;
-	int numTimesLeftToPrintScore, numTimesToPrintScore = 30;
+	int p1numTimesLeftToPrintScore, p2numTimesLeftToPrintScore, numTimesToPrintScore = 30;
 	public Variables variables;
 
 	public Canvas() {
@@ -18,7 +18,8 @@ public class Canvas extends JPanel implements Runnable {
 		requestFocusInWindow();
         setDoubleBuffered(true);
         
-        numTimesLeftToPrintScore = -1;
+        p1numTimesLeftToPrintScore = -1;
+        p2numTimesLeftToPrintScore = -1;
         
         gameLoop = new Thread(this);
         variables = new Variables();
@@ -60,30 +61,36 @@ public class Canvas extends JPanel implements Runnable {
 		
 		// if a player scores, let them know
 		if (variables.player1scored) { // update
+			p1numTimesLeftToPrintScore = numTimesToPrintScore;
+		}
+		if (p1numTimesLeftToPrintScore > 0) {
 			g.setFont(new Font("Helvetica", Font.PLAIN, 30));
 			if (variables.background.equals("Outer Space")) { g.setColor(Color.WHITE); }
 			g.drawString("Player 1 scored!", 200, 300 - 100);
-			if (numTimesLeftToPrintScore == -1) { // first loop in which Game.player1scored is true
-				numTimesLeftToPrintScore = numTimesToPrintScore;
-			} else if (numTimesLeftToPrintScore == 0) { // last loop in which Game.player1scored will be true and last time drawString will be called
-				variables.player1scored = false;
-				numTimesLeftToPrintScore--;
-			} else if (numTimesLeftToPrintScore <= numTimesToPrintScore && numTimesLeftToPrintScore > 0) {
-				numTimesLeftToPrintScore--;
-			}
+//			if (numTimesLeftToPrintScore == -1) { // first loop in which Game.player1scored is true
+//				numTimesLeftToPrintScore = numTimesToPrintScore;
+//			} else if (numTimesLeftToPrintScore == 0) { // last loop in which Game.player1scored will be true and last time drawString will be called
+//				variables.player1scored = false;
+				p1numTimesLeftToPrintScore--;
+//			} else if (numTimesLeftToPrintScore <= numTimesToPrintScore && numTimesLeftToPrintScore > 0) {
+//				numTimesLeftToPrintScore--;
+//			}
 		}
 		if (variables.player2scored) { // update
+			p2numTimesLeftToPrintScore = numTimesToPrintScore;
+		}
+		if (p2numTimesLeftToPrintScore > 0) {
 			g.setFont(new Font("Helvetica", Font.PLAIN, 30));
 			if (variables.background.equals("Outer Space")) { g.setColor(Color.WHITE); }
 			g.drawString("Player 2 scored!", 200, 300 - 100);
-			if (numTimesLeftToPrintScore == -1) { // first loop in which Game.player1scored is true
-				numTimesLeftToPrintScore = numTimesToPrintScore;
-			} else if (numTimesLeftToPrintScore == 0) { // last loop in which Game.player1scored will be true and last time drawString will be called
-				variables.player2scored = false;
-				numTimesLeftToPrintScore--;
-			} else if (numTimesLeftToPrintScore <= numTimesToPrintScore && numTimesLeftToPrintScore > 0) {
-				numTimesLeftToPrintScore--;
-			}
+//			if (p2numTimesLeftToPrintScore == -1) { // first loop in which Game.player1scored is true
+//				p2numTimesLeftToPrintScore = numTimesToPrintScore;
+//			} else if (numTimesLeftToPrintScore == 0) { // last loop in which Game.player1scored will be true and last time drawString will be called
+//				variables.player2scored = false;
+				p2numTimesLeftToPrintScore--;
+//			} else if (numTimesLeftToPrintScore <= numTimesToPrintScore && numTimesLeftToPrintScore > 0) {
+//				numTimesLeftToPrintScore--;
+//			}
 		}
 		
 		// draw game objects

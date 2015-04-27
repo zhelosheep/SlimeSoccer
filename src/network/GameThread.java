@@ -38,6 +38,9 @@ public class GameThread extends Thread {
             	thread.pw.println(output);
             }
             
+            game.variables.player1scored = false;
+            game.variables.player2scored = false;
+            
             // determine how long to wait until loop starts again
             timeTaken = System.nanoTime() - beginTime;
             timeLeft = ( (1000000000L/25) - timeTaken) / 1000000L; // in milliseconds
