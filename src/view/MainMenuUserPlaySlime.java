@@ -198,6 +198,9 @@ public class MainMenuUserPlaySlime extends JFrame{
 		p1SlimeImageLabel = new JLabel(slimeButtons[0].getIcon());
 		p2SlimeImageLabel = new JLabel(slimeButtons[1].getIcon());
 		
+		p1SlimeType = slimeTypes[0];
+		p2SlimeType = slimeTypes[1];
+		
 		String[] specialModeOptions = { "None", "Anti-Gravity", "Giant Ball", "Mini Slime" };
 		String[] backgroundOptions = { "Desk", "Soccer Field", "Outer Space", "Laptop Screen" };
 		specialModeCombo = new JComboBox<String>(specialModeOptions);

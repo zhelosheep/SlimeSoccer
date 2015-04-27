@@ -3,7 +3,9 @@ package view;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+
 import javax.swing.JPanel;
+
 import model.Variables;
 
 public class Canvas extends JPanel implements Runnable {
@@ -116,6 +118,8 @@ public class Canvas extends JPanel implements Runnable {
 			g.setColor(Color.WHITE);
 			g.setFont(new Font("Arial", Font.PLAIN, 20));
 			g.drawString("Score: " + variables.player1_score + "-" + variables.player2_score, 250, 250); // update
+			
+			checkAchievements();
 		}
 	}
 	
@@ -140,6 +144,44 @@ public class Canvas extends JPanel implements Runnable {
                  Thread.sleep(timeLeft);
             } catch (InterruptedException ex) {}
         }
+	}
+	
+	private void checkAchievements() {
+		// N00b – Play first game
+		if (LoginPage.sqli.getGames(MainMenuUser.username) == 1 && !LoginPage.sqli.checkAchievement(MainMenuUser.username, LoginPage.noob_a.getName())) {
+			LoginPage.sqli.setAchievement(MainMenuUser.username, LoginPage.noob_a);
+		}
+		
+		// No Life Award – Play 1000 games
+		if (LoginPage.sqli.getGames(MainMenuUser.username) == 1000 && !LoginPage.sqli.checkAchievement(MainMenuUser.username, LoginPage.nolife_a.getName())) {
+			LoginPage.sqli.setAchievement(MainMenuUser.username, LoginPage.nolife_a);
+		}
+	
+		// Victorious – Win 10 games
+		if (LoginPage.sqli.getWins(MainMenuUser.username) == 10 && !LoginPage.sqli.checkAchievement(MainMenuUser.username, LoginPage.vict_a.getName())) {
+			LoginPage.sqli.setAchievement(MainMenuUser.username, LoginPage.vict_a);
+		}
+		
+		// Loser – Lose 5 games in a row
+		if (LoginPage.sqli.getGamesLostInARow(MainMenuUser.username) == 5 && !LoginPage.sqli.checkAchievement(MainMenuUser.username, LoginPage.loser_a.getName())) {
+			LoginPage.sqli.setAchievement(MainMenuUser.username, LoginPage.loser_a);
+		}
+		
+		// Cristiano Ronaldo – Have a 2:1 win lose ratio or greater
+		if (LoginPage.sqli.getRatio(MainMenuUser.username) >= 2 && !LoginPage.sqli.checkAchievement(MainMenuUser.username, LoginPage.chris_a.getName())) {
+			LoginPage.sqli.setAchievement(MainMenuUser.username, LoginPage.chris_a);
+		}
+
+		// Unathletic Athlete – Have a 1:10 win/loss ratio or less
+		if (LoginPage.sqli.getRatio(MainMenuUser.username) <= 1/10 && LoginPage.sqli.getGames(MainMenuUser.username) >= 10 && !LoginPage.sqli.checkAchievement(MainMenuUser.username, LoginPage.unath_a.getName())) {
+			LoginPage.sqli.setAchievement(MainMenuUser.username, LoginPage.unath_a);
+		}
+		
+		// Packing on the Pounds – Don’t move your slime at all during a game
+		if (!variables.slimeHasMoved_1 && !LoginPage.sqli.checkAchievement(MainMenuUser.username, LoginPage.pack_a.getName())) {
+			LoginPage.sqli.setAchievement(MainMenuUser.username, LoginPage.pack_a);
+		}
+
 	}
 	
 }
