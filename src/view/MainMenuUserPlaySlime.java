@@ -172,12 +172,11 @@ public class MainMenuUserPlaySlime extends JFrame{
 		slimeTypes[10] = "Slime3D";
 		slimeTypes[11] = "SlimeButterfly";
 		slimeTypes[12] = "SlimeRonaldo";
-		slimeTypes[13] = "SlimeCrossEyed";
-		slimeTypes[14] = "SlimeCrown";
-		slimeTypes[15] = "SlimeDunce";
-		slimeTypes[16] = "LSlime";
-		slimeTypes[17] = "SlimePotato";
-		slimeTypes[18] = "SlimeSweater";
+		slimeTypes[14] = "SlimeSweater";
+		slimeTypes[15] = "SlimeCrown";
+		slimeTypes[16] = "SlimeDunce";
+		slimeTypes[17] = "LSlime";
+		slimeTypes[18] = "SlimePotato";
 		
 		// descriptions
 		specialSlimeDescriptions = new String[8];
