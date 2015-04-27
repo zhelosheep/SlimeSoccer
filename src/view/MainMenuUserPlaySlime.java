@@ -338,12 +338,23 @@ public class MainMenuUserPlaySlime extends JFrame{
 					p1SlimeNameLabel.setText(specialSlimeNames[index]);
 					p1SlimeAbilityLabel.setText(specialSlimeDescriptions[index]);
 					p1SlimeType = slimeTypes[10 + index];
+					
 				} else {
 					p2SlimeImageLabel.setIcon(specialSlimes[index].getIcon());
 					p2SlimeNameLabel.setText(specialSlimeNames[index]);
 					p2SlimeAbilityLabel.setText(specialSlimeDescriptions[index]);
 					p2SlimeType = slimeTypes[10 + index];
 				}
+				if (!isPvCGame) {
+					if (isPlayer1) {
+						((MainMenuUserPlayPlayer) prevScreen).prevScreen.sWriter.println("I" + p1SlimeType); // append game settings!						
+						((MainMenuUserPlayPlayer) prevScreen).prevScreen.sWriter.flush();						
+					} else {
+						((MainMenuUserPlayPlayer) prevScreen).prevScreen.sWriter.println("I" + p2SlimeType); // append game settings!						
+						((MainMenuUserPlayPlayer) prevScreen).prevScreen.sWriter.flush();
+					}
+				}
+
 			}
 		}
 		
@@ -384,6 +395,12 @@ public class MainMenuUserPlaySlime extends JFrame{
 			((MainMenuUser) prevScreen).quit();
 		} else {
 			((MainMenuUserPlayPlayer) prevScreen).quit();
+		}
+	}
+	
+	void setSlime() {
+		if (isPlayer1) {
+			
 		}
 	}
 }
