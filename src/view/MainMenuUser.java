@@ -124,7 +124,9 @@ public class MainMenuUser extends JFrame{
 		chatArea.setEditable(false);
 		((DefaultCaret)chatArea.getCaret()).setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
 		JScrollPane jsp = new JScrollPane(chatArea);
-		jsp.setPreferredSize(new Dimension(40, 420));
+		jsp.setMinimumSize(new Dimension(200, 350));
+		jsp.setPreferredSize(new Dimension(200, 350));
+		jsp.setMaximumSize(new Dimension(200, 350));
 		JPanel jp5 = new JPanel();
 		jp5.add(chatField);
 		jp5.add(sendButton);
@@ -133,7 +135,9 @@ public class MainMenuUser extends JFrame{
 		rightPanel.add(jp6);
 		rightPanel.add(jsp);
 		rightPanel.add(jp5);
-		rightPanel.setPreferredSize(new Dimension(180, 420));
+		rightPanel.setMinimumSize(new Dimension(300, 420));
+		rightPanel.setPreferredSize(new Dimension(300, 420));
+		rightPanel.setMaximumSize(new Dimension(300, 420));
 		rightPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 15));
 		centerPanel.add(Box.createGlue());
 		centerPanel.add(leftPanel);

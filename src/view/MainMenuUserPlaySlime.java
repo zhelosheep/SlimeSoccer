@@ -26,7 +26,7 @@ import network.GameThread;
 public class MainMenuUserPlaySlime extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private JButton continueButton, backButton;
-	public String p1Username, p2Username, p1SlimeType, p2SlimeType;
+	public String p1Username, p2Username, p1SlimeType, p2SlimeType, p1UsernameNoHTML, p2UsernameNoHTML;
 	public String[] slimeNames, slimeAbilities, specialSlimeNames, specialSlimeDescriptions;	//for label purposes
 	public String[] slimeTypes; //for passing to game instantiation
 	public JButton[] slimeButtons;
@@ -58,9 +58,11 @@ public class MainMenuUserPlaySlime extends JFrame{
 			if (isPlayer1) {
 				p1Username = "<html><div style=\"text-align: center;\">" + ((MainMenuUserPlayPlayer)prevScreen).getUsername();			
 				p2Username = "<html><div style=\"text-align: center;\">derpyderp";
+				p1UsernameNoHTML = ((MainMenuUserPlayPlayer)prevScreen).getUsername();
 			} else {
 				p1Username = "<html><div style=\"text-align: center;\">derpyderp";
-				p2Username = "<html><div style=\"text-align: center;\">" + ((MainMenuUserPlayPlayer)prevScreen).getUsername();						
+				p2Username = "<html><div style=\"text-align: center;\">" + ((MainMenuUserPlayPlayer)prevScreen).getUsername();
+				p2UsernameNoHTML = ((MainMenuUserPlayPlayer)prevScreen).getUsername();
 			}			
 		}
 		continueButton = new JButton("Continue");
@@ -167,7 +169,7 @@ public class MainMenuUserPlaySlime extends JFrame{
 		slimeTypes[1] = "SlimeBowAndArrow";
 		slimeTypes[2] = "SlimeClone";
 		slimeTypes[3] = "SlimeCosmic";
-		slimeTypes[4] = "SlimeFireBall";
+		slimeTypes[4] = "SlimeFireball";
 		slimeTypes[5] = "SlimeFisher";
 		slimeTypes[6] = "SlimeGeyser";
 		slimeTypes[7] = "SlimeMagnet";
@@ -204,9 +206,9 @@ public class MainMenuUserPlaySlime extends JFrame{
 		totalManaSlider = new JSlider(JSlider.HORIZONTAL);
 		
 		if (isPlayer1) {
-			gameScreen = new GameScreen(p1Username, this, isPvCGame);			
+			gameScreen = new GameScreen(p1UsernameNoHTML, this, isPvCGame);			
 		} else {
-			gameScreen = new GameScreen(p2Username, this, isPvCGame);
+			gameScreen = new GameScreen(p2UsernameNoHTML, this, isPvCGame);
 		}
 	}
 	
@@ -331,7 +333,7 @@ public class MainMenuUserPlaySlime extends JFrame{
 						((MainMenuUserPlayPlayer) prevScreen).prevScreen.sWriter.println("IA" + p1SlimeType); // append game settings!						
 						((MainMenuUserPlayPlayer) prevScreen).prevScreen.sWriter.flush();						
 					} else {
-						((MainMenuUserPlayPlayer) prevScreen).prevScreen.sWriter.println("IB1" + p2SlimeType); // append game settings!						
+						((MainMenuUserPlayPlayer) prevScreen).prevScreen.sWriter.println("IB" + p2SlimeType); // append game settings!						
 						((MainMenuUserPlayPlayer) prevScreen).prevScreen.sWriter.flush();
 					}
 				}

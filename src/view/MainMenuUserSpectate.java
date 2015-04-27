@@ -27,9 +27,9 @@ public class MainMenuUserSpectate extends JFrame{
 	JTextArea chatArea;
 	private JTextField chatField, gameIDField;
 	private ImageIcon avatar;
-	private MainMenuUser prevScreen;
+	MainMenuUser prevScreen;
 	private static JLabel spectateLabel;
-	private SpectateScreen spectateScreen;
+	public SpectateScreen spectateScreen;
 
 	public MainMenuUserSpectate(MainMenuUser prevScreen) {
 		setSize(800, 600);
@@ -83,7 +83,7 @@ public class MainMenuUserSpectate extends JFrame{
 		jp1.add(helloLabel);
 		JPanel jp2 = new JPanel();
 		jp2.add(spectateLabel);
-		jp2.setBorder(BorderFactory.createEmptyBorder(30, 0, 0, 0));
+		jp2.setBorder(BorderFactory.createEmptyBorder(5, 0, 0, 0));
 		JPanel jp3 = new JPanel();
 		JLabel searchLabel = new JLabel("Search by ID: ");
 		jp3.add(searchLabel);
@@ -103,7 +103,7 @@ public class MainMenuUserSpectate extends JFrame{
 		leftPanel.add(orPanel);
 		leftPanel.add(jp4);
 		leftPanel.add(jp5);
-		leftPanel.setBorder(BorderFactory.createEmptyBorder(0, 100, 0, 0));
+		leftPanel.setBorder(BorderFactory.createEmptyBorder(0, 50, 0, 0));
 		JPanel rightPanel = new JPanel();
 		rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
 		JLabel chatLabel = new JLabel("Chat");
@@ -112,7 +112,9 @@ public class MainMenuUserSpectate extends JFrame{
 		chatArea.setEditable(false);
 		((DefaultCaret)chatArea.getCaret()).setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
 		JScrollPane jsp = new JScrollPane(chatArea);
-		jsp.setPreferredSize(new Dimension(40, 420));
+		jsp.setMinimumSize(new Dimension(200, 350));
+		jsp.setPreferredSize(new Dimension(200, 350));
+		jsp.setMaximumSize(new Dimension(200, 350));
 		JPanel jp6 = new JPanel();
 		jp6.add(chatField);
 		jp6.add(sendButton);
@@ -121,8 +123,10 @@ public class MainMenuUserSpectate extends JFrame{
 		rightPanel.add(jp7);
 		rightPanel.add(jsp);
 		rightPanel.add(jp6);
-		rightPanel.setPreferredSize(new Dimension(150, 400));
-		rightPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 15));
+		rightPanel.setMinimumSize(new Dimension(300, 420));
+		rightPanel.setPreferredSize(new Dimension(300, 420));
+		rightPanel.setMaximumSize(new Dimension(300, 420));
+		rightPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 30));
 		centerPanel.add(leftPanel);
 		centerPanel.add(Box.createGlue());
 		centerPanel.add(rightPanel);
@@ -176,12 +180,16 @@ public class MainMenuUserSpectate extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				spectateScreen.setVisible(true);
 				setVisible(false);
+				prevScreen.sWriter.println("N");
+				prevScreen.sWriter.flush();
 			}
 		});
 		randomButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				spectateScreen.setVisible(true);
 				setVisible(false);
+				prevScreen.sWriter.println("M");
+				prevScreen.sWriter.flush();
 			}
 		});
 		
