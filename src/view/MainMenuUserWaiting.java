@@ -18,7 +18,7 @@ import javax.swing.JPanel;
 public class MainMenuUserWaiting extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private JButton cancelButton;
-	private MainMenuUserPlayPlayer prevScreen;
+	public MainMenuUserPlayPlayer prevScreen;
 	public MainMenuUserPlaySlime mainMenuUserPlaySlime;
 
 	public MainMenuUserWaiting(MainMenuUserPlayPlayer prevScreen) {

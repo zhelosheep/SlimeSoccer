@@ -32,7 +32,7 @@ public class MainMenuUserPlaySlime extends JFrame{
 	private JComboBox<String> specialModeCombo, backgroundCombo;
 	private JSlider regenRateSlider, totalManaSlider; 
 	public boolean isPlayer1 = true, isPvCGame = true;
-	private JFrame prevScreen;
+	public JFrame prevScreen;
 	public GameScreen gameScreen;
 
 	public MainMenuUserPlaySlime(JFrame prevScreen, boolean isPvCGame) {
@@ -200,9 +200,9 @@ public class MainMenuUserPlaySlime extends JFrame{
 		totalManaSlider = new JSlider(JSlider.HORIZONTAL);
 		
 		if (isPlayer1) {
-			gameScreen = new GameScreen(p1Username);			
+			gameScreen = new GameScreen(p1Username, this, isPvCGame);			
 		} else {
-			gameScreen = new GameScreen(p2Username);
+			gameScreen = new GameScreen(p2Username, this, isPvCGame);
 		}
 	}
 	

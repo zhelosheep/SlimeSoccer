@@ -42,7 +42,7 @@ public class MainMenuUser extends JFrame{
 	private MainMenuUserPlaySlime mainMenuUserPlaySlime;
 	Socket s;
 	public BufferedReader sReader;
-	PrintWriter sWriter;
+	public PrintWriter sWriter;
 	
 	public MainMenuUser(String username) {
 		setSize(800, 600);
