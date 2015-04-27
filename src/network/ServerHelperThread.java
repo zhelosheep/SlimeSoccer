@@ -61,13 +61,13 @@ public class ServerHelperThread extends Thread {
 					C - chat
 					D - lobbychat
 					
-					E - player1 xcoord
-					F - player1 ycoord
-					G - player2 xcoord
-					H - player2 ycoord
+					E - process key pressed (send x1, x2, y1, y2, ballx, bally)
+					F - 
+					G - 
+					H - 
 					
-					I - ball xcoord
-					J - ball ycoord
+					I - transmit slime selection
+					J -
 					
 					K - player1 key
 					L - player2 key
@@ -86,32 +86,33 @@ public class ServerHelperThread extends Thread {
 					*/
 					
 					// TO DO: Parser in the clientthread!
-					else if (str.charAt(0) == 'E')	//player1 xcoord
+					else if (str.charAt(0) == 'E')	
 					{
 						//push the string to a player1 handler which will parse into integer
 					}
 					
-					else if (str.charAt(0) == 'F') //player1 ycoord
+					else if (str.charAt(0) == 'F') 
 					{
 						//push the string to a player1 handler which will parse into integer
 					}
 					
-					else if (str.charAt(0) == 'G') //player2 xcoord
+					else if (str.charAt(0) == 'G') 
 					{
 						//push the string to a player2 handler which will parse into integer
 					}
 					
-					else if (str.charAt(0) == 'H') //player2 ycoord
+					else if (str.charAt(0) == 'H') 
 					{
 						//push the string to a player2 handler which will parse into integer
 					}
 					
-					else if (str.charAt(0) == 'I') //ball xcoord
+					else if (str.charAt(0) == 'I') 
 					{
-						//push the string to a ball handler which will parse into integer
+						this.opponentThread.pw.println(str);
+						this.opponentThread.pw.flush();
 					}
 					
-					else if (str.charAt(0) == 'J') //ball ycoord
+					else if (str.charAt(0) == 'J') 
 					{
 						//push the string to a ball handler which will parse into integer
 					} 

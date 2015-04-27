@@ -67,7 +67,10 @@ public class ClientThread extends Thread {
 							//tokens[7] = totalMana
 						}
 						mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.gameScreen.setVariables(tokens[5], tokens[0], tokens[1], tokens[2], tokens[3], Integer.valueOf(tokens[7]), Integer.valueOf(tokens[7]), Integer.valueOf(tokens[6]), tokens[4]);
-						mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.gameScreen.setVisible(true);					}
+						mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.gameScreen.setVisible(true);
+					} else if (str.charAt(0) == 'I') {
+						mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.setSlime(Integer.parseInt(str.substring(1)));
+					}
 				}
 			} catch (IOException ioe) {
 				System.out.println("IOException in ClientThread.run(): " + ioe.getMessage());
