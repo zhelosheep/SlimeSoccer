@@ -5,8 +5,10 @@ import model.Game;
 public class GameThread extends Thread {
 	public Game game;
 	private ServerThread st;
+	boolean isPvCGame;
 	
-	public GameThread(String background, String player1_slimeType, String player2_slimeType, String player1_username, String player2_username, int player1_manaMax, int player2_manaMax, int manaRegenerationRate, String specialMode, ServerThread st) {
+	public GameThread(String background, String player1_slimeType, String player2_slimeType, String player1_username, String player2_username, int player1_manaMax, int player2_manaMax, int manaRegenerationRate, String specialMode, ServerThread st, boolean isPvCGame) {
+	
 		game = new Game(background, player1_slimeType, player2_slimeType, player1_username, player2_username, player1_manaMax, player2_manaMax, manaRegenerationRate, specialMode);
 		this.st = st;
 	}
@@ -19,7 +21,11 @@ public class GameThread extends Thread {
             beginTime = System.nanoTime();
             
             // do something
-            game.update();
+            if (isPvCGame) {
+                game.update();
+            } else {
+            	
+            }
             
             // repaint screen
             // tell the canvases to paint themselves
