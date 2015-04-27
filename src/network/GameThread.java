@@ -1,7 +1,5 @@
 package network;
 
-//import org.json.JSONObject;
-
 import model.Game;
 
 public class GameThread extends Thread {
