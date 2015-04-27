@@ -169,7 +169,7 @@ public class MainMenuUserPlaySlime extends JFrame{
 		slimeTypes[1] = "SlimeBowAndArrow";
 		slimeTypes[2] = "SlimeClone";
 		slimeTypes[3] = "SlimeCosmic";
-		slimeTypes[4] = "SlimeFireBall";
+		slimeTypes[4] = "SlimeFireball";
 		slimeTypes[5] = "SlimeFisher";
 		slimeTypes[6] = "SlimeGeyser";
 		slimeTypes[7] = "SlimeMagnet";
