@@ -63,7 +63,9 @@ public class MainMenuUser extends JFrame{
 		} catch (IOException ioe) {
 			System.out.println("IOException in MainMenuUser.instantiateVariables (read images): " + ioe.getMessage());
 		}
-		avatar = SignUpPage.avatarImages[LoginPage.sqli.getImage(username)];
+		
+		//System.out.println(LoginPage.sqli.getImage(username));
+		avatar = LoginPage.avatarImages[LoginPage.sqli.getImage(username)];
 		playCompButton = new JButton(PvCIcon);
 		playPlayerButton = new JButton(PvPIcon);
 		spectateButton = new JButton(SpectateIcon);

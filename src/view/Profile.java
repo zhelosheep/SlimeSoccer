@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -58,7 +59,7 @@ public class Profile extends JFrame{
 	private void addComponents() {
 		JLabel name = new JLabel(LoginPage.sqli.getName(u));
 		JLabel username = new JLabel(u);
-		JLabel avatar = new JLabel(SignUpPage.avatarImages[LoginPage.sqli.getImage(u)]);
+		JLabel avatar = new JLabel(LoginPage.avatarImages[LoginPage.sqli.getImage(u)]);
 		JLabel desc = new JLabel("Description: " + LoginPage.sqli.getDesc(u));
 		int games = LoginPage.sqli.getGames(u);
 		int wins = LoginPage.sqli.getWins(u);
@@ -166,7 +167,7 @@ public class Profile extends JFrame{
 			group.setBorder(BorderFactory.createEmptyBorder(0,  5,  0,  5));
 			group.setAlignmentX(Component.CENTER_ALIGNMENT);
 			
-			JLabel friendAvatar = new JLabel(SignUpPage.avatarImages[LoginPage.sqli.getImage(friends.get(i))]);
+			JLabel friendAvatar = new JLabel(LoginPage.avatarImages[LoginPage.sqli.getImage(friends.get(i))]);
 			friendAvatar.addMouseListener(new MouseAdapter() {
 				int i;
 				

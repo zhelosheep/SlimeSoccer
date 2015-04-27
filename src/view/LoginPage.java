@@ -41,6 +41,7 @@ public class LoginPage extends JFrame{
 	
 	//starts up static mysql instance
 	public static final controller.SqlInstance sqli= new controller.SqlInstance();
+	public static ImageIcon[] avatarImages;
 	
 	//achievements
 	//this array of Achievement objects
@@ -73,6 +74,12 @@ public class LoginPage extends JFrame{
 		login.setEnabled(false);
 		
 		// images
+		avatarImages = new ImageIcon[8];
+		
+		for (int i = 0; i < avatarImages.length; i++) {
+			avatarImages[i] = new ImageIcon((getClass().getClassLoader().getResource("avatars/" + i + ".png")));
+		}
+		
 		try {
 			chrisronaldo = new ImageIcon(ImageIO.read((getClass().getClassLoader().getResource("achievements/ChrisRonaldo.png"))));
 			loser = new ImageIcon(ImageIO.read((getClass().getClassLoader().getResource("achievements/Loser.png"))));

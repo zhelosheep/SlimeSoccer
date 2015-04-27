@@ -28,8 +28,6 @@ public class SignUpPage extends JFrame{
 	private JButton[] avatarButtons;
 	private int avatar = -1;
 	private String fn, ln, u, pw, desc;
-
-	public static ImageIcon[] avatarImages;
 	
 	public SignUpPage() {
 		setSize(800, 600);
@@ -49,15 +47,9 @@ public class SignUpPage extends JFrame{
 		passwordField = new JPasswordField(15);
 		descField = new JTextField(15);
 		
-		// image icons
-		avatarImages = new ImageIcon[8];
+		avatarButtons = new JButton[LoginPage.avatarImages.length];
+		for (int i = 0; i < LoginPage.avatarImages.length; i++) avatarButtons[i] = new JButton(LoginPage.avatarImages[i]);
 		
-		for (int i = 0; i < avatarImages.length; i++) {
-			avatarImages[i] = new ImageIcon((getClass().getClassLoader().getResource("avatars/" + i + ".png")));
-		}
-		
-		avatarButtons = new JButton[avatarImages.length];
-		for (int i = 0; i < avatarImages.length; i++) avatarButtons[i] = new JButton(avatarImages[i]);
 	}
 	
 	private void addComponents() {
@@ -95,7 +87,7 @@ public class SignUpPage extends JFrame{
 		jp6.setLayout(new BoxLayout(jp6, BoxLayout.Y_AXIS));
 		JPanel avatarPanel = new JPanel();
 		avatarPanel.setLayout(new GridLayout(2, 5));
-		for (int i = 0; i < avatarImages.length; i++) avatarPanel.add(avatarButtons[i]);
+		for (int i = 0; i < LoginPage.avatarImages.length; i++) avatarPanel.add(avatarButtons[i]);
 		avatarPanel.setBorder(BorderFactory.createEmptyBorder(0, 230, 0, 230));
 		JPanel c1 = new JPanel();
 		c1.add(new JLabel("<html><div style=\"text-align: center;\">Choose an avatar: "));
