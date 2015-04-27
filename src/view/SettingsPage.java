@@ -2,6 +2,7 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -21,9 +22,11 @@ import javax.swing.JSlider;
 public class SettingsPage extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private JButton cancelButton, saveButton, changePassword;
-	private JSlider sfxSlider, musicSlider; 
 	private JFrame prevScreen = null;
 	private JPasswordField jpf, currentPassword;
+	private JButton[] avatarButtons;
+	
+	int avatar = -1;
 
 	public SettingsPage() {
 		setSize(800, 600);
@@ -36,12 +39,13 @@ public class SettingsPage extends JFrame{
 	
 	private void instantiateVariables() {
 		cancelButton = new JButton("Cancel");
-		saveButton = new JButton("Save");
+		saveButton = new JButton("Change Avatar");
 		changePassword = new JButton("Change Password");
-		sfxSlider = new JSlider(JSlider.HORIZONTAL);
-		musicSlider = new JSlider(JSlider.HORIZONTAL);
 		jpf = new JPasswordField(20);
 		currentPassword = new JPasswordField(20);
+		
+		avatarButtons = new JButton[LoginPage.avatarImages.length];
+		for (int i = 0; i < LoginPage.avatarImages.length; i++) avatarButtons[i] = new JButton(LoginPage.avatarImages[i]);
 	}
 	
 	private void addComponents() {
@@ -58,14 +62,9 @@ public class SettingsPage extends JFrame{
 		JPanel jp1 = new JPanel();
 		JLabel settingsLabel = new JLabel("<html><div style=\"text-align: center;\">Settings");
 		jp1.add(settingsLabel);
-		JPanel jp2 = new JPanel();
-		JLabel sfxLabel = new JLabel("Sound Effects: ");
-		jp2.add(sfxLabel);
-		jp2.add(sfxSlider);
-		JPanel jp3 = new JPanel();
-		JLabel musicLabel = new JLabel("Music: ");
-		jp3.add(musicLabel);
-		jp3.add(musicSlider);
+		JPanel avatarPanel = new JPanel();
+		avatarPanel.setLayout(new GridLayout(2, 5));
+		for (int i = 0; i < LoginPage.avatarImages.length; i++) avatarPanel.add(avatarButtons[i]);
 		JPanel jp4 = new JPanel();
 		jp4.add(saveButton);
 		jp4.add(cancelButton);
@@ -77,8 +76,7 @@ public class SettingsPage extends JFrame{
 		jp6.add(new JLabel("Current Password: "));
 		jp6.add(currentPassword);
 		centerPanel.add(jp1);
-		centerPanel.add(jp2);
-		centerPanel.add(jp3);
+		centerPanel.add(avatarPanel);
 		centerPanel.add(jp6);
 		centerPanel.add(jp5);
 		centerPanel.add(jp4);
@@ -97,8 +95,15 @@ public class SettingsPage extends JFrame{
 		
 		saveButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				prevScreen.setVisible(true);
-				setVisible(false);
+				JOptionPane.showMessageDialog(SettingsPage.this, "You will be logged out", "Warning", JOptionPane.INFORMATION_MESSAGE);
+				if (avatar != -1) {
+					LoginPage.sqli.changeAvatar(MainMenuUser.username, avatar);
+					MainMenuUser.avatar = LoginPage.avatarImages[LoginPage.sqli.getImage(MainMenuUser.username)];
+					dispose();
+					new LoginPage().setVisible(true);
+				}
+				else JOptionPane.showMessageDialog(SettingsPage.this, "Select picture to change avatar", "Change Avatar", JOptionPane.ERROR_MESSAGE);
+				avatar = -1;
 			}
 		});
 		
@@ -120,6 +125,21 @@ public class SettingsPage extends JFrame{
 				jpf.setText("");
 			}
 		});
+		
+		for (int i = 0; i < avatarButtons.length; i++) {
+			avatarButtons[i].addActionListener(new ActionListener() {
+				int i;
+				
+				public ActionListener init(int i) {
+					this.i = i;
+					return this;
+				}
+				
+				public void actionPerformed(ActionEvent e) {
+					avatar = i;
+				}
+			}.init(i));
+		}
 	}
 	
 	void setPrevScreen(JFrame prevScreen) {

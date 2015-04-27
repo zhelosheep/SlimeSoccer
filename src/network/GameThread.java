@@ -20,9 +20,13 @@ public class GameThread extends Thread {
             beginTime = System.nanoTime();
             
             // do something
-            game.update();
-            System.out.println("in game thread");
-            String output = "M" + game.variables.ball.x + " " + game.variables.ball.y + " " + game.variables.ball.width + " " + game.variables.ball.height + " " +
+//            if (isPvCGame) {
+                game.update();
+//            } else {
+//            	
+//            }
+            
+            String output = "M " + game.variables.ball.x + " " + game.variables.ball.y + " " + game.variables.ball.width + " " + game.variables.ball.height + " " +
             				game.variables.slime1.x + " " + game.variables.slime1.y + " " + game.variables.slime1.width + " " + game.variables.slime1.height + " " +
             				game.variables.slime2.x + " " + game.variables.slime2.y + " " + game.variables.slime2.width + " " + game.variables.slime2.height + " " +
             				game.variables.player1_manaCurrent + " " + game.variables.player2_manaCurrent + " " + game.variables.player1scored + " " + game.variables.player2scored + " " + 
