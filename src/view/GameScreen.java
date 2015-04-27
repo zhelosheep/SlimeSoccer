@@ -50,6 +50,7 @@ public class GameScreen extends JFrame{
 	PrintWriter sWriter;
 	public Canvas primary;
 	public Controller controller;
+	GameThread gt; // delete later
 	
 	public GameScreen(String username)
 	{
@@ -73,6 +74,7 @@ public class GameScreen extends JFrame{
 		slimeSoccerLabel.setFont(new Font("Arial", Font.BOLD, 20));
 		slimeSoccerLabel.setBorder(BorderFactory.createEmptyBorder(5, 15, 5, 5));
 		
+		gt = new GameThread("Outer Space", "SlimeBowAndArrow", "SlimeSuperSize", "shawnren", "josemama", 100, 100, 1, "");
 		// set up controller
 		controller = new Controller();
 
@@ -300,8 +302,15 @@ public class GameScreen extends JFrame{
 		primary.variables.ball = new Ball((primary.variables.leftBoundary + primary.variables.rightBoundary)/2, primary.variables.groundLevel - 12 - 100, primary.variables);
 		primary.variables.goal1 = new Goal(primary.variables.leftBoundary, primary.variables);
 		primary.variables.goal2 = new Goal(primary.variables.rightBoundary, primary.variables);
-		System.out.println("stuff aint null anm");
 		primary.begin();
-		System.out.println("i began");
+	}
+	
+	public static void main(String[] args) {
+		GameScreen gamescreen = new GameScreen("techguyderp");
+		gamescreen.primary.variables = gamescreen.gt.game.variables;
+		gamescreen.primary.addKeyListener(gamescreen.controller);
+		gamescreen.setVisible(true);
+		gamescreen.gt.start();
+		gamescreen.primary.begin();
 	}
 }
