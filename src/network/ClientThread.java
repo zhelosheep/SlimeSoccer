@@ -74,11 +74,36 @@ public class ClientThread extends Thread {
 						str = str.substring(2);
 						System.out.println("I detected?");
 						System.out.println(str);
+						
 						int index = convertNametoIndex(str);
 						
-						if (mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.isPlayer1 == true)
+						if (mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.isPlayer1 == false)
 						{
 							System.out.println("Entering if PP is 1");
+							System.out.println(index);
+							//if slime is normal 9
+							if (index < 10)
+							{
+								mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.p1SlimeImageLabel.setIcon(mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.slimeButtons[index].getIcon());
+								System.out.println("Slime is normal; slime is player1");
+								mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.p1SlimeNameLabel.setText(mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.slimeNames[index]);
+								mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.p1SlimeAbilityLabel.setText(mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.slimeAbilities[index]);
+								mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.p1SlimeType = str;
+							}
+							
+							//if slime is special
+							if (index >= 10)			
+							{
+								mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.p1SlimeImageLabel.setIcon(mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.specialSlimes[index-10].getIcon());
+								mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.p1SlimeNameLabel.setText(mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.specialSlimeNames[index-10]);
+								mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.p1SlimeAbilityLabel.setText(mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.specialSlimeDescriptions[index-10]);
+								mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.p1SlimeType = str;
+							}
+						}
+						
+						else if (mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.isPlayer1 == true)
+						{
+							System.out.println("Entering if PP is not 1");
 							
 							//if slime is normal 9
 							if (index < 10)
@@ -98,29 +123,6 @@ public class ClientThread extends Thread {
 								mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.p2SlimeType = str;
 							}
 						}
-						
-						else if (mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.isPlayer1 == false)
-						{
-							System.out.println("Entering if PP is not 1");
-							
-							//if slime is normal 9
-							if (index < 10)
-							{
-								mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.p1SlimeImageLabel.setIcon(mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.slimeButtons[index].getIcon());
-								mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.p1SlimeNameLabel.setText(mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.slimeNames[index]);
-								mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.p1SlimeAbilityLabel.setText(mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.slimeAbilities[index]);
-								mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.p1SlimeType = str;
-							}
-							
-							//if slime is special
-							if (index >= 10)			
-							{
-								mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.p1SlimeImageLabel.setIcon(mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.specialSlimes[index-10].getIcon());
-								mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.p1SlimeNameLabel.setText(mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.specialSlimeNames[index-10]);
-								mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.p1SlimeAbilityLabel.setText(mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.specialSlimeDescriptions[index-10]);
-								mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.p1SlimeType = str;
-							}
-						}
 					}
 				}
 			} catch (IOException ioe) {
@@ -131,96 +133,97 @@ public class ClientThread extends Thread {
 	
 	public int convertNametoIndex(String name)
 	{
-		if (name == "SlimeBomb")
+		System.out.println("The string to convert is " + name + "!");
+		if (name.equals("SlimeBomb"))
 		{
 			return 0;
 		}
 		
-		else if (name == "SlimeBowAndArrow")
+		else if (name.equals("SlimeBowAndArrow"))
 		{
 			return 1;
 		}
 		
-		else if (name == "SlimeClone")
+		else if (name.equals("SlimeClone"))
 		{
 			return 2;
 		}
 		
-		else if (name == "SlimeCosmic")
+		else if (name.equals("SlimeCosmic"))
 		{
 			return 3;
 		}
 		
-		else if (name == "SlimeFireBall")
+		else if (name.equals("SlimeFireBall"))
 		{
 			return 4;
 		}
 		
-		else if (name == "SlimeFisher")
+		else if (name.equals("SlimeFisher"))
 		{
 			return 5;
 		}
 		
-		else if (name == "SlimeGeyser")
+		else if (name.equals("SlimeGeyser"))
 		{
 			return 6;
 		}
 		
-		else if (name == "SlimeMagnet")
+		else if (name.equals("SlimeMagnet"))
 		{
 			return 7;
 		}
 		
-		else if (name == "SlimeSuperSize")
+		else if (name.equals("SlimeSuperSize"))
 		{
 			return 8;
 		}
 		
-		else if (name == "SlimeSuper")
+		else if (name.equals("SlimeSuper"))
 		{
 			return 9;
 		}
 		
-		else if (name == "Slime3D")
+		else if (name.equals("Slime3D"))
 		{
 			return 10;
 		}
 		
-		else if (name == "SlimeButterfly")
+		else if (name.equals("SlimeButterfly"))
 		{
 			return 11;
 		}
 		
-		else if (name == "SlimeRonaldo")
+		else if (name.equals("SlimeRonaldo"))
 		{
 			return 12;
 		}
 		
-		else if (name == "SlimeSweater")
+		else if (name.equals("SlimeSweater"))
 		{
 			return 13;
 		}
 		
-		else if (name == "SlimeCrown")
+		else if (name.equals("SlimeCrown"))
 		{
 			return 14;
 		}
 		
-		else if (name == "SlimeDunce")
+		else if (name.equals("SlimeDunce"))
 		{
 			return 15;
 		}
 		
-		else if (name == "LSlime")
+		else if (name.equals("LSlime"))
 		{
 			return 16;
 		}
 		
-		else if (name == "SlimePotato")
+		else if (name.equals("SlimePotato"))
 		{
 			return 17;
 		}
 		
-		return 0;
+		return 20;
 	}
 }
