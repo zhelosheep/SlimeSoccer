@@ -23,12 +23,12 @@ public class MainMenuUserPlaySlime extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private JButton continueButton, backButton;
 	public String p1Username, p2Username, p1SlimeType, p2SlimeType;
-	private String[] slimeNames, slimeAbilities, specialSlimeNames, specialSlimeDescriptions;	//for label purposes
-	private String[] slimeTypes; //for passing to game instantiation
-	private JButton[] slimeButtons;
-	private JButton[] specialSlimes;
+	public String[] slimeNames, slimeAbilities, specialSlimeNames, specialSlimeDescriptions;	//for label purposes
+	public String[] slimeTypes; //for passing to game instantiation
+	public JButton[] slimeButtons;
+	public JButton[] specialSlimes;
 	public JLabel p1UsernameLabel, p2UsernameLabel;
-	private JLabel p1SlimeNameLabel, p2SlimeNameLabel, p1SlimeImageLabel, p2SlimeImageLabel, p1SlimeAbilityLabel, p2SlimeAbilityLabel;
+	public JLabel p1SlimeNameLabel, p2SlimeNameLabel, p1SlimeImageLabel, p2SlimeImageLabel, p1SlimeAbilityLabel, p2SlimeAbilityLabel;
 	private JComboBox<String> specialModeCombo, backgroundCombo;
 	private JSlider regenRateSlider, totalManaSlider; 
 	public boolean isPlayer1 = true, isPvCGame = true;
@@ -158,7 +158,7 @@ public class MainMenuUserPlaySlime extends JFrame{
 		specialSlimeNames[7] = "<html><div style=\"text-align: center;\">Potato Slime";
 		
 		// slimeTypes for passing to SHT and using in game instantiation
-		slimeTypes = new String[19];
+		slimeTypes = new String[18];
 		slimeTypes[0] = "SlimeBomb";
 		slimeTypes[1] = "SlimeBowAndArrow";
 		slimeTypes[2] = "SlimeClone";
@@ -172,11 +172,11 @@ public class MainMenuUserPlaySlime extends JFrame{
 		slimeTypes[10] = "Slime3D";
 		slimeTypes[11] = "SlimeButterfly";
 		slimeTypes[12] = "SlimeRonaldo";
-		slimeTypes[14] = "SlimeSweater";
-		slimeTypes[15] = "SlimeCrown";
-		slimeTypes[16] = "SlimeDunce";
-		slimeTypes[17] = "LSlime";
-		slimeTypes[18] = "SlimePotato";
+		slimeTypes[13] = "SlimeSweater";
+		slimeTypes[14] = "SlimeCrown";
+		slimeTypes[15] = "SlimeDunce";
+		slimeTypes[16] = "LSlime";
+		slimeTypes[17] = "SlimePotato";
 		
 		// descriptions
 		specialSlimeDescriptions = new String[8];
@@ -321,6 +321,16 @@ public class MainMenuUserPlaySlime extends JFrame{
 					p2SlimeAbilityLabel.setText(slimeAbilities[index]);
 					p2SlimeType = slimeTypes[index];
 				}
+				
+				if (!isPvCGame) {	
+					if (isPlayer1) {
+						((MainMenuUserPlayPlayer) prevScreen).prevScreen.sWriter.println("IA" + p1SlimeType); // append game settings!						
+						((MainMenuUserPlayPlayer) prevScreen).prevScreen.sWriter.flush();						
+					} else {
+						((MainMenuUserPlayPlayer) prevScreen).prevScreen.sWriter.println("IB1" + p2SlimeType); // append game settings!						
+						((MainMenuUserPlayPlayer) prevScreen).prevScreen.sWriter.flush();
+					}
+				}
 			}	
 		}
 		
@@ -345,6 +355,8 @@ public class MainMenuUserPlaySlime extends JFrame{
 					p2SlimeType = slimeTypes[10 + index];
 				}
 				if (!isPvCGame) {
+					
+					System.out.println("Sending I string");
 					if (isPlayer1) {
 						((MainMenuUserPlayPlayer) prevScreen).prevScreen.sWriter.println("IA" + p1SlimeType); // append game settings!						
 						((MainMenuUserPlayPlayer) prevScreen).prevScreen.sWriter.flush();						
