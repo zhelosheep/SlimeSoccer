@@ -30,10 +30,10 @@ import javax.swing.text.DefaultCaret;
 
 public class MainMenuUser extends JFrame{
 	private static final long serialVersionUID = 1L;
-	private ImageIcon avatar;
 	private JButton sendButton, playCompButton, playPlayerButton, spectateButton, logoutButton, settingsButton, avatarButton;
 	private static ImageIcon PvPIcon, PvCIcon, SpectateIcon;
 	public static String username;
+	public static ImageIcon avatar;
 	public JTextArea chatArea;
 	private JTextField chatField;
 	private SettingsPage settingsPage;
@@ -43,6 +43,7 @@ public class MainMenuUser extends JFrame{
 	Socket s;
 	public BufferedReader sReader;
 	public PrintWriter sWriter;
+	//public int avatarNum = LoginPage.sqli.getImage(username);
 	
 	public MainMenuUser(String username) {
 		setSize(800, 600);
