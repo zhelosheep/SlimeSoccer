@@ -122,58 +122,57 @@ public class ServerHelperThread extends Thread {
 						System.out.println("in K");
 						str = str.substring(1);	//lop off the K
 						synchronized (st.ongoingGames) {
-							for (Set<ServerHelperThread> set : st.ongoingGames.values()) {
-								if (set.contains(this)) {
-									//key is pressed
+							for (GameThread gt : st.ongoingGames.keySet()) {
+								if (st.ongoingGames.get(gt).contains(this)) {
 									if (str.equals("up"))
 									{
-										
+										gt.game.variables.p1_keyboardState[0] = true;
 									}
 									
 									else if (str.equals("down"))
 									{
-										//send boolean to variables
+										gt.game.variables.p1_keyboardState[1] = true;
 									}
 									
 									else if (str.equals("left"))
 									{
-										//send boolean to variables
+										gt.game.variables.p1_keyboardState[2] = true;
 									}
 									
 									else if (str.equals("right"))
 									{
-										//send boolean to variables
+										gt.game.variables.p1_keyboardState[3] = true;
 									}
 									
 									else if (str.equals("space"))
 									{
-										//send boolean to variables
+										gt.game.variables.p1_keyboardState[4] = true;
 									}
 									
 									//when key is released
 									if (str.equals("upno"))
 									{
-										//send boolean to variables
+										gt.game.variables.p1_keyboardState[0] = false;
 									}
 									
 									else if (str.equals("downno"))
 									{
-										//send boolean to variables
+										gt.game.variables.p1_keyboardState[1] = false;
 									}
 									
 									else if (str.equals("leftno"))
 									{
-										//send boolean to variables
+										gt.game.variables.p1_keyboardState[2] = false;
 									}
 									
 									else if (str.equals("rightno"))
 									{
-										//send boolean to variables
-									}
+										gt.game.variables.p1_keyboardState[3] = false;
+								}
 									
 									else if (str.equals("spaceno"))
 									{
-										//send boolean to variables
+										gt.game.variables.p1_keyboardState[4] = false;
 									}
 								}
 							}
@@ -212,6 +211,7 @@ public class ServerHelperThread extends Thread {
 								String [] tokens = str.split(delims);
 								for (int j = 0; j < tokens.length; j++)
 								{
+									System.out.println("SHT: Printing tokens");
 									System.out.println(tokens[j]);
 									//tokens[0] = p1SlimeType
 									//tokens[1] = p2SlimeType
@@ -229,6 +229,7 @@ public class ServerHelperThread extends Thread {
 								this.pw.flush();
 								opponentThread.pw.println("G" + str);
 								opponentThread.pw.flush();
+								gt.start();
 							} else {
 								this.readyToPlay = true;
 							}

@@ -26,7 +26,6 @@ public class Canvas extends JPanel implements Runnable {
 	
 	public void begin() {
 		gameLoop.start();
-		System.out.println("begun");
 	}
 	
 	public void paintComponent(Graphics g) {
@@ -87,15 +86,6 @@ public class Canvas extends JPanel implements Runnable {
 			}
 		}
 		
-		System.out.println("in paint componenet");
-		System.out.println(variables.slime1 + " " + variables.slime2);
-		if(variables.ball == null)
-			System.out.println("ball is null");
-		if(variables.goal1 == null)
-			System.out.println("goal1 is null");
-		if(variables.goal2 == null)
-			System.out.println("goal2 is null");
-		
 		// draw game objects
 //		System.out.println("in paint component");
 		if (variables.slime1 != null) variables.slime1.paint(g); // update
@@ -108,7 +98,6 @@ public class Canvas extends JPanel implements Runnable {
 //		System.out.println("goal1 is null");
 		if (variables.goal2 != null) variables.goal2.paint(g); // update
 //		System.out.println("goal2 is null");
-		System.out.println("painted?");
 		
 		// if game over, let user know
 		if (variables.gameOver) {  // update
