@@ -176,7 +176,7 @@ public class LoginPage extends JFrame{
 						System.out.println("IOException in login listener: " + ioe.getMessage());
 					}
 				} else {
-					JOptionPane.showMessageDialog(LoginPage.this, "Invalid username/password", "Invalid Login", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(LoginPage.this, "Unable to login", "Invalid Login", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
