@@ -3,7 +3,8 @@ Things that need to be fixed:
 1) Spectate game frame [Joseph is wokring on]
 2) Spectate frame - chat is not sending if you're a spectator
 3) up key is working evne if you're focused in chat GameScreen
-4)
+4) Player vs Computer game [Shawn]
+5) Pass data necessary for slime special powers from GameThread [Shawn]
 
 Best two out of three games
 Whoever reaches a score of two first.
