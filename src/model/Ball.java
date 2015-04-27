@@ -46,23 +46,23 @@ public class Ball {
 	
 	public void update() {
 		/***** temporary ******/
-		int velo = 2;
-        // Calculating velocity for moving up 
-        if(Controller.keyboardKeyState(KeyEvent.VK_I)) {
-    		velocityY -= velo;
-        }
-        // Calculating velocity for moving down
-        if(Controller.keyboardKeyState(KeyEvent.VK_K)) {
-    		velocityY += velo;
-        }
-        // Calculating velocity for moving or stopping to the left
-        if(Controller.keyboardKeyState(KeyEvent.VK_J)) {
-    		velocityX -= velo;
-        }
-        // Calculating velocity for moving or stopping to the right
-        if(Controller.keyboardKeyState(KeyEvent.VK_L)) {
-    		velocityX += velo;
-        }
+//		int velo = 2;
+//        // Calculating velocity for moving up 
+//        if(Controller.keyboardKeyState(KeyEvent.VK_I)) {
+//    		velocityY -= velo;
+//        }
+//        // Calculating velocity for moving down
+//        if(Controller.keyboardKeyState(KeyEvent.VK_K)) {
+//    		velocityY += velo;
+//        }
+//        // Calculating velocity for moving or stopping to the left
+//        if(Controller.keyboardKeyState(KeyEvent.VK_J)) {
+//    		velocityX -= velo;
+//        }
+//        // Calculating velocity for moving or stopping to the right
+//        if(Controller.keyboardKeyState(KeyEvent.VK_L)) {
+//    		velocityX += velo;
+//        }
 		/***** temporary ******/
 
 		// gravity
