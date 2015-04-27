@@ -146,6 +146,7 @@ public class MainMenuGuest extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				sWriter.println("CGuest: " + chatField.getText());
 				sWriter.flush();
+				//System.out.println(chatArea.getText());
 				chatArea.setText(chatArea.getText() + "\nGuest: " + chatField.getText());
 				chatField.setText("");
 			}

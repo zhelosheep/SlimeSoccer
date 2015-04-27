@@ -79,7 +79,6 @@ public class LoginPage extends JFrame{
 		for (int i = 0; i < avatarImages.length; i++) {
 			avatarImages[i] = new ImageIcon((getClass().getClassLoader().getResource("avatars/" + i + ".png")));
 		}
-		
 		try {
 			chrisronaldo = new ImageIcon(ImageIO.read((getClass().getClassLoader().getResource("achievements/ChrisRonaldo.png"))));
 			loser = new ImageIcon(ImageIO.read((getClass().getClassLoader().getResource("achievements/Loser.png"))));
