@@ -34,6 +34,9 @@ public class ClientThread extends Thread {
 					if (str == null) break;
 					if (str.charAt(0) == 'C') { // chat
 						mmu.chatArea.setText(mmu.chatArea.getText() + "\n" + str.substring(1));
+					} else if (str.charAt(0) == 'D') { 
+						mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.gameScreen.chatArea.append("\n" + str.substring(1));
+						mmu.mainMenuUserSpectate.spectateScreen.chatArea.append("\n" + str.substring(1));
 					} else if (str.charAt(0) == 'Y') {
 						if (str.charAt(1) == '1') {
 							mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.isPlayer1 = true;

@@ -28,7 +28,7 @@ public class SpectateScreen extends JFrame {
 	private boolean isGuest;
 	private JButton backButton, switchButton, randomButton, sendButton;
 	private JTextField gameIDField, chatField;
-	private JTextArea chatArea;
+	public JTextArea chatArea;
 	public BufferedReader sReader;
 	public PrintWriter sWriter;
 	
