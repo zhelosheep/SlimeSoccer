@@ -9,7 +9,6 @@ import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.LinkedList;
 import java.util.Vector;
-import java.util.concurrent.atomic.AtomicLong;
 
 
 public class ServerThread extends Thread{
@@ -20,7 +19,7 @@ public class ServerThread extends Thread{
 	HashSet<ServerHelperThread> waitingPlayers;
 	boolean b = true;
 	
-	public static AtomicLong idCounter = new AtomicLong(); // for generating unique game ids
+	public static Integer idCounter = 1; // for generating unique game ids
 
 	ServerThread(int port) {
 		ongoingGames = new Hashtable<GameThread, HashSet<ServerHelperThread>>();

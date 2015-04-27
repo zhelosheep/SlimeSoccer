@@ -20,7 +20,10 @@ public class ClientThread extends Thread {
 	}
 	
 	public void run() {
+        long beginTime, timeTaken, timeLeft;
+        
 		while (true) {
+            beginTime = System.nanoTime();
 			try {
 				String str;
 				if (isGuest) { // this one uses mmg
@@ -158,9 +161,9 @@ public class ClientThread extends Thread {
 					} else if (str.charAt(0) == 'M') {
 						String[] splited = str.split("\\s+");
 						
-						for (int i = 0; i < splited.length; i++) {
-							System.out.println(i + " " + splited[i]);
-						}
+//						for (int i = 0; i < splited.length; i++) {
+//							System.out.println(i + " " + splited[i]);
+//						}
 						
 						Variables ptr = mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.gameScreen.primary.variables;
 						ptr.ball.x = Integer.parseInt(splited[1]);
@@ -175,8 +178,8 @@ public class ClientThread extends Thread {
 						ptr.slime2.y = Integer.parseInt(splited[10]);
 						ptr.slime2.width = Integer.parseInt(splited[11]);
 						ptr.slime2.height = Integer.parseInt(splited[12]);
-						ptr.player1_manaCurrent = Integer.parseInt(splited[13]);
-						ptr.player2_manaCurrent = Integer.parseInt(splited[14]);
+						ptr.player1_manaCurrent = Double.parseDouble(splited[13]);
+						ptr.player2_manaCurrent = Double.parseDouble(splited[14]);
 						ptr.player1scored = Boolean.parseBoolean(splited[15]);
 						ptr.player2scored = Boolean.parseBoolean(splited[16]);
 						ptr.gameOver = Boolean.parseBoolean(splited[17]);
@@ -188,6 +191,16 @@ public class ClientThread extends Thread {
 			} catch (IOException ioe) {
 				System.out.println("IOException in ClientThread.run(): " + ioe.getMessage());
 			}
+			
+            // determine how long to wait until loop starts again
+            timeTaken = System.nanoTime() - beginTime;
+            timeLeft = ( (1000000000L/25) - timeTaken) / 1000000L; // in milliseconds
+            // if the time is less than 10 milliseconds, then sleep this thread for 10 milliseconds so another thread can do work
+            if (timeLeft < 10) 
+                timeLeft = 10; // set a minimum
+            try {
+                 Thread.sleep(timeLeft);
+            } catch (InterruptedException ex) {}
 		}
 	}
 	
