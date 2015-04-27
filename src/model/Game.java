@@ -11,27 +11,9 @@ public class Game {
 	public Variables variables;
 	
 	// game objects
-	public Slime slime1, slime2;
-	public Ball ball;
-	public Goal goal1, goal2;
-	public int groundLevel = 400, topLevel = 0; // y value of where ground level and top of screen are in game
-	public int leftBoundary = 0, rightBoundary = 600; 
 //	public ArtificialIntelligence ai;
 	
 	// game stats
-	public String background;
-	public String player1_slimeType, player2_slimeType;
-	public String player1_username, player2_username;
-	public double player1_manaCurrent, player2_manaCurrent; // live data
-	public int player1_manaMax, player2_manaMax;
-	public Integer player1_score, player2_score; // live data
-	public boolean player1scored, player2scored;
-	public int manaRegenerationRate;
-	public String specialMode;
-	public boolean gameOver;
-	public int playerThatWon;
-	public boolean slimeHasMoved_1 = false;
-	public boolean slimeHasMoved_2 = false;
 	
 	public Game(String background, String player1_slimeType, String player2_slimeType, String player1_username, String player2_username, int player1_manaMax, int player2_manaMax, int manaRegenerationRate, String specialMode) {
 		variables = new Variables();
