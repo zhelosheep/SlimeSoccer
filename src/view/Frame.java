@@ -24,7 +24,7 @@ public class Frame extends JFrame {
 //		model = new Game("outerspace", "SlimeBowAndArrow", "SlimeBowAndArrow", "shawnren", "josemama", 100, 100, 1, "");
 		gt = new GameThread("Outer Space", "Slime3D", "SlimeSweater", "shawnren", "josemama", 100, 100, 1, "");
 		// set up controller
-		controller = new Controller();
+//		controller = new Controller(new GameScreen("derp", new MainMenuUserPlaySlime()));
 		// set up view
 		view = new Canvas();
 		add(view, BorderLayout.CENTER);

@@ -127,7 +127,7 @@ public class ServerHelperThread extends Thread {
 									//key is pressed
 									if (str.equals("up"))
 									{
-										//send boolean to variables
+										
 									}
 									
 									else if (str.equals("down"))
