@@ -27,7 +27,7 @@ public class MainMenuUserSpectate extends JFrame{
 	JTextArea chatArea;
 	private JTextField chatField, gameIDField;
 	private ImageIcon avatar;
-	private MainMenuUser prevScreen;
+	MainMenuUser prevScreen;
 	private static JLabel spectateLabel;
 	private SpectateScreen spectateScreen;
 

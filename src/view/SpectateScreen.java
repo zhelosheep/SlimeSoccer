@@ -7,6 +7,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.BufferedReader;
+import java.io.PrintWriter;
+
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -26,6 +29,8 @@ public class SpectateScreen extends JFrame {
 	private JButton backButton, switchButton, randomButton, sendButton;
 	private JTextField gameIDField, chatField;
 	private JTextArea chatArea;
+	public BufferedReader sReader;
+	public PrintWriter sWriter;
 	
 	SpectateScreen(boolean isGuest, JFrame prevScreen) {
 		setSize(800, 600);
@@ -128,9 +133,15 @@ public class SpectateScreen extends JFrame {
 		
 		sendButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				((MainMenuUser) prevScreen).sWriter.println("C" + ((MainMenuUser) prevScreen).username + ": " + chatField.getText());
-				((MainMenuUser) prevScreen).sWriter.flush();
-				chatArea.setText(chatArea.getText() + "\n" + ((MainMenuUser) prevScreen).username + ": " + chatField.getText());
+				if(isGuest){
+					((MainMenuGuest) prevScreen).sWriter.println("D" + "Guest: " + chatField.getText());
+					((MainMenuGuest) prevScreen).sWriter.flush();
+					chatArea.setText(chatArea.getText() + "\n" + "Guest: " + chatField.getText());
+				} else{
+					((MainMenuUserSpectate) prevScreen).prevScreen.sWriter.println("D" + ((MainMenuUserSpectate) prevScreen).prevScreen.username + ": " + chatField.getText());
+					((MainMenuUserSpectate) prevScreen).prevScreen.sWriter.flush();
+					chatArea.setText(chatArea.getText() + "\n" + ((MainMenuUserSpectate) prevScreen).prevScreen.username + ": " + chatField.getText());
+				}
 				chatField.setText("");
 			}
 		});
@@ -138,9 +149,15 @@ public class SpectateScreen extends JFrame {
 		chatField.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e)
 			{
-				((MainMenuUser) prevScreen).sWriter.println("C" + ((MainMenuUser) prevScreen).username + ": " + chatField.getText());
-				((MainMenuUser) prevScreen).sWriter.flush();
-				chatArea.setText(chatArea.getText() + "\n" + ((MainMenuUser) prevScreen).username + ": " + chatField.getText());
+				if(isGuest){
+					((MainMenuGuest) prevScreen).sWriter.println("D" + "Guest: " + chatField.getText());
+					((MainMenuGuest) prevScreen).sWriter.flush();
+					chatArea.setText(chatArea.getText() + "\n" + "Guest: " + chatField.getText());
+				} else{
+					((MainMenuUserSpectate) prevScreen).prevScreen.sWriter.println("D" + ((MainMenuUserSpectate) prevScreen).prevScreen.username + ": " + chatField.getText());
+					((MainMenuUserSpectate) prevScreen).prevScreen.sWriter.flush();
+					chatArea.setText(chatArea.getText() + "\n" + ((MainMenuUserSpectate) prevScreen).prevScreen.username + ": " + chatField.getText());
+				}
 				chatField.setText("");
 			}
 		});
