@@ -4,9 +4,11 @@ import model.Game;
 
 public class GameThread extends Thread {
 	public Game game;
+	private ServerThread st;
 	
-	public GameThread(String background, String player1_slimeType, String player2_slimeType, String player1_username, String player2_username, int player1_manaMax, int player2_manaMax, int manaRegenerationRate, String specialMode) {
+	public GameThread(String background, String player1_slimeType, String player2_slimeType, String player1_username, String player2_username, int player1_manaMax, int player2_manaMax, int manaRegenerationRate, String specialMode, ServerThread st) {
 		game = new Game(background, player1_slimeType, player2_slimeType, player1_username, player2_username, player1_manaMax, player2_manaMax, manaRegenerationRate, specialMode);
+		this.st = st;
 	}
 	
 	public void run() {
@@ -21,6 +23,9 @@ public class GameThread extends Thread {
             
             // repaint screen
             // tell the canvases to paint themselves
+            for (ServerHelperThread thread : st.ongoingGames.get(this)) {
+            	thread.pw.println("M");
+            }
             
             // determine how long to wait until loop starts again
             timeTaken = System.nanoTime() - beginTime;

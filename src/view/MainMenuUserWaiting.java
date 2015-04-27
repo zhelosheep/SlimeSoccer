@@ -70,6 +70,8 @@ public class MainMenuUserWaiting extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				prevScreen.setVisible(true);
+				prevScreen.prevScreen.sWriter.println("R");
+				prevScreen.prevScreen.sWriter.flush();
 			}
 		});
 	}
