@@ -90,12 +90,6 @@ public class ServerHelperThread extends Thread {
 						this.opponentThread.pw.println(str);
 						this.opponentThread.pw.flush();
 					}
-					
-					else if (str.charAt(0) == 'J') 
-					{
-						//push the string to a ball handler which will parse into integer
-					} 
-					
 					else if (str.charAt(0) == 'K') //player 1 key detection
 					{
 						System.out.println("in K");
