@@ -40,7 +40,7 @@ public class Variables {
 	public int playerThatWon = -1; // live data
 	public boolean slimeHasMoved_1 = false; // live data
 	public boolean slimeHasMoved_2 = false; // live data
-	public String gameID = "";
+//	public String gameID = "";
 	
 	public Variables() {
 		try {
@@ -60,7 +60,7 @@ public class Variables {
 		} catch (IOException ioe) {
 			System.out.println("IOException in Variables(): " + ioe.getMessage());
 		}
-//		gameID = String.valueOf(ServerThread.idCounter.getAndIncrement());
+//		this.gameID = ServerThread.getGameID().toString();
 
 	}
 	

@@ -8,6 +8,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
@@ -243,7 +245,13 @@ public class Profile extends JFrame{
 	}
 	
 	private void addListeners() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				prevScreen.setVisible(true);
+				dispose();
+			}
+		});
 		
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
