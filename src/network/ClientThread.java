@@ -34,6 +34,11 @@ public class ClientThread extends Thread {
 						mmg.chatArea.setText(mmg.chatArea.getText() + "\n" + str.substring(1));
 					} else if (str.charAt(0) == 'M') {
 						String[] splited = str.split("\\s+");
+						
+						for (int i = 0; i < splited.length; i++) {
+							System.out.println(i + " " + splited[i]);
+						}
+						
 						Variables ptr = mmg.spectateScreen.primary.variables;
 						ptr.ball.x = Integer.parseInt(splited[1]);
 						ptr.ball.y = Integer.parseInt(splited[2]);
