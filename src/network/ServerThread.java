@@ -20,7 +20,7 @@ public class ServerThread extends Thread{
 	HashSet<ServerHelperThread> waitingPlayers;
 	boolean b = true;
 	
-	public static Integer gameID = 1, gameIDTimesRequested = 0; // unique game id
+//	public static Integer gameID = 1, gameIDTimesRequested = 0; // unique game id
 
 	ServerThread(int port) {
 		ongoingGames = new Hashtable<GameThread, HashSet<ServerHelperThread>>();
@@ -34,17 +34,17 @@ public class ServerThread extends Thread{
 		shtVector = new Vector<ServerHelperThread>();
 	}
 	
-	public int getGameID() {
-		if (gameIDTimesRequested == 2) { // if gameID has been requested twice already, reset gameIDTimesRequested and increment gameID
-			gameIDTimesRequested = 1;
-			gameID++;
-		} else if (gameIDTimesRequested == 0) {
-			gameIDTimesRequested++;
-		} else if (gameIDTimesRequested == 1) {
-			gameIDTimesRequested++;
-		}
-		return gameID;
-	}
+//	public static Integer getGameID() {
+//		if (gameIDTimesRequested == 2) { // if gameID has been requested twice already, reset gameIDTimesRequested and increment gameID
+//			gameIDTimesRequested = 1;
+//			gameID++;
+//		} else if (gameIDTimesRequested == 0) {
+//			gameIDTimesRequested++;
+//		} else if (gameIDTimesRequested == 1) {
+//			gameIDTimesRequested++;
+//		}
+//		return gameID;
+//	}
 	
 	public void run() {
 		while (true) {

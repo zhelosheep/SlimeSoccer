@@ -77,10 +77,10 @@ public class GameScreen extends JFrame{
 
 		primary = new Canvas();
 
-		uniqueIDLabel = new JLabel("Game ID: " + primary.variables.gameID);
-//		uniqueIDLabel = new JLabel();
-		uniqueIDLabel.setFont(new Font("Arial", Font.BOLD, 20));
-		uniqueIDLabel.setBorder(BorderFactory.createEmptyBorder(5, 15, 5, 5));
+//		uniqueIDLabel = new JLabel("Game ID: " + primary.variables.gameID);
+////		uniqueIDLabel = new JLabel();
+//		uniqueIDLabel.setFont(new Font("Arial", Font.BOLD, 20));
+//		uniqueIDLabel.setBorder(BorderFactory.createEmptyBorder(5, 15, 5, 5));
 	}
 	
 	private void addComponents()
