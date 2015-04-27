@@ -11,6 +11,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
+
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -45,7 +47,11 @@ public class MainMenuGuest extends JFrame{
 	}
 	
 	private void instantiateVariables() {
-		spectateLabel = new JLabel(new ImageIcon("resources/Spectate.png"));
+		try {
+			spectateLabel = new JLabel(new ImageIcon(ImageIO.read((getClass().getClassLoader().getResource("Spectate.png")))));
+		} catch (IOException e) {
+			System.out.println("IOException in MainMenuGuest.instantiateVariables (read image: " + e.getMessage());
+		}
 		searchButton = new JButton("Search");
 		randomButton = new JButton("?? Random ??");
 		sendButton = new JButton("Send");

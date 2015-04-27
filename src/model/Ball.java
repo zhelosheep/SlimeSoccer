@@ -34,7 +34,7 @@ public class Ball {
 		ballImage = variables.imgBall;
 		if (variables.specialMode.equals("Giant Ball")) {
 			try {
-				this.ballImage = ImageIO.read(new File("./resources/game/others/SoccerBallGiant.png"));
+				this.ballImage = ImageIO.read((getClass().getClassLoader().getResource("game/others/SoccerBallGiant.png")));
 			} catch (IOException e) {
 				System.out.println("Image IOException in Ball constructor: " + e.getMessage());
 			}

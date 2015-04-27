@@ -69,16 +69,16 @@ public class MainMenuUserPlaySlime extends JFrame{
 		p2UsernameLabel= new JLabel();		
 		//Instantiate slimeButtons JButton array to hold image icons of each slime
 		slimeButtons = new JButton[10];
-		slimeButtons[0] = new JButton(new ImageIcon("resources/game/slimes/BombSlime.png"));
-		slimeButtons[1] = new JButton(new ImageIcon("resources/game/slimes/BowAndArrowSlime.png"));
-		slimeButtons[2] = new JButton(new ImageIcon("resources/game/slimes/CloneSlime.png"));
-		slimeButtons[3] = new JButton(new ImageIcon("resources/game/slimes/CosmicSlime.png"));
-		slimeButtons[4] = new JButton(new ImageIcon("resources/game/slimes/FireballSlime.png"));
-		slimeButtons[5] = new JButton(new ImageIcon("resources/game/slimes/FisherSlime.png"));
-		slimeButtons[6] = new JButton(new ImageIcon("resources/game/slimes/GeyserSlime.png"));
-		slimeButtons[7] = new JButton(new ImageIcon("resources/game/slimes/MagnetSlime.png"));
-		slimeButtons[8] = new JButton(new ImageIcon("resources/game/slimes/SuperSizeSlime.png"));
-		slimeButtons[9] = new JButton(new ImageIcon("resources/game/slimes/SuperSlime.png"));
+		slimeButtons[0] = new JButton(new ImageIcon((getClass().getClassLoader().getResource("game/slimes/BombSlime.png"))));
+		slimeButtons[1] = new JButton(new ImageIcon((getClass().getClassLoader().getResource("game/slimes/BowAndArrowSlime.png"))));
+		slimeButtons[2] = new JButton(new ImageIcon((getClass().getClassLoader().getResource("game/slimes/CloneSlime.png"))));
+		slimeButtons[3] = new JButton(new ImageIcon((getClass().getClassLoader().getResource("game/slimes/CosmicSlime.png"))));
+		slimeButtons[4] = new JButton(new ImageIcon((getClass().getClassLoader().getResource("game/slimes/FireballSlime.png"))));
+		slimeButtons[5] = new JButton(new ImageIcon((getClass().getClassLoader().getResource("game/slimes/FisherSlime.png"))));
+		slimeButtons[6] = new JButton(new ImageIcon((getClass().getClassLoader().getResource("game/slimes/GeyserSlime.png"))));
+		slimeButtons[7] = new JButton(new ImageIcon((getClass().getClassLoader().getResource("game/slimes/MagnetSlime.png"))));
+		slimeButtons[8] = new JButton(new ImageIcon((getClass().getClassLoader().getResource("game/slimes/SuperSizeSlime.png"))));
+		slimeButtons[9] = new JButton(new ImageIcon((getClass().getClassLoader().getResource("game/slimes/SuperSlime.png"))));
 		
 		//Instantiate slimeNames
 		slimeNames = new String[10];
@@ -110,14 +110,14 @@ public class MainMenuUserPlaySlime extends JFrame{
 		// list of achievements: chris_a, loser_a, nolife_a, noob_a, pack_a, soc_a, unath_a, vict_a, wrongw_a
 		// images
 		specialSlimes = new JButton[8];
-		specialSlimes[0] = new JButton(new ImageIcon("resources/game/specialslimes/3DSlime.png"));
-		specialSlimes[1] = new JButton(new ImageIcon("resources/game/specialslimes/Butterfly.png"));
-		specialSlimes[2] = new JButton(new ImageIcon("resources/game/specialslimes/CristianoRonaldoSlime.png"));
-		specialSlimes[3] = new JButton(new ImageIcon("resources/game/specialslimes/SweaterSlime.png"));
-		specialSlimes[4] = new JButton(new ImageIcon("resources/game/specialslimes/Crown.png"));
-		specialSlimes[5] = new JButton(new ImageIcon("resources/game/specialslimes/Dunce.png"));
-		specialSlimes[6] = new JButton(new ImageIcon("resources/game/specialslimes/LSlime.png"));
-		specialSlimes[7] = new JButton(new ImageIcon("resources/game/specialslimes/Potato.png"));
+		specialSlimes[0] = new JButton(new ImageIcon((getClass().getClassLoader().getResource("game/specialslimes/3DSlime.png"))));
+		specialSlimes[1] = new JButton(new ImageIcon((getClass().getClassLoader().getResource("game/specialslimes/Butterfly.png"))));
+		specialSlimes[2] = new JButton(new ImageIcon((getClass().getClassLoader().getResource("game/specialslimes/CristianoRonaldoSlime.png"))));
+		specialSlimes[3] = new JButton(new ImageIcon((getClass().getClassLoader().getResource("game/specialslimes/SweaterSlime.png"))));
+		specialSlimes[4] = new JButton(new ImageIcon((getClass().getClassLoader().getResource("game/specialslimes/Crown.png"))));
+		specialSlimes[5] = new JButton(new ImageIcon((getClass().getClassLoader().getResource("game/specialslimes/Dunce.png"))));
+		specialSlimes[6] = new JButton(new ImageIcon((getClass().getClassLoader().getResource("game/specialslimes/LSlime.png"))));
+		specialSlimes[7] = new JButton(new ImageIcon((getClass().getClassLoader().getResource("game/specialslimes/Potato.png"))));
 		
 		
 		// check unlock of special achievement slimes

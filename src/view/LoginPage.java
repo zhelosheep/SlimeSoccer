@@ -3,6 +3,7 @@ package view;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -43,29 +44,9 @@ public class LoginPage extends JFrame{
 	
 	//achievements
 	//this array of Achievement objects
-	public static final Achievement chris_a, loser_a, nolife_a, noob_a, pack_a, soc_a, unath_a, vict_a;
+	public static  Achievement chris_a, loser_a, nolife_a, noob_a, pack_a, soc_a, unath_a, vict_a;
 	//imageicons for each of the 8 achievements
-	private static final ImageIcon chrisronaldo, loser, nolife, noob, packingpounds, socbutterfly, unathathlete, victorious;
-	
-	static {
-		chrisronaldo = new ImageIcon("./resources/achievements/ChrisRonaldo.png");
-		loser = new ImageIcon("./resources/achievements/Loser.png");
-		nolife = new ImageIcon("./resources/achievements/NoLife.png");
-		noob = new ImageIcon("./resources/achievements/Noob.png");
-		packingpounds = new ImageIcon("./resources/achievements/PackingPounds.png");
-		socbutterfly = new ImageIcon("./resources/achievements/SocButterfly.png");
-		unathathlete = new ImageIcon("./resources/achievements/UnathAthlete.png");
-		victorious = new ImageIcon("./resources/achievements/Victorious.png");
-		
-		chris_a = new Achievement("Cristiano Ronaldo", "Have a 2:1 win lose ratio or greater", chrisronaldo);
-		loser_a = new Achievement("Loser", "Lose 5 games in a row", loser);
-		nolife_a = new Achievement("No Life", "Play 1,000 games", nolife);
-		noob_a = new Achievement("Noob", "Play first game", noob);
-		pack_a = new Achievement("Packing on the Pounds", "Don't move your slime at all during a game", packingpounds);
-		soc_a = new Achievement("Social Butterfly", "Have over 25 friends", socbutterfly);
-		unath_a = new Achievement("Unathletic Athlete", "Have a 1:10 win lose ratio or less", unathathlete);
-		vict_a = new Achievement("Victorious", "Win 10 games", victorious);
-	}
+	private static ImageIcon chrisronaldo, loser, nolife, noob, packingpounds, socbutterfly, unathathlete, victorious;
 	
 	public LoginPage() {
 		setSize(800, 600);
@@ -90,6 +71,30 @@ public class LoginPage extends JFrame{
 		guest.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
 		login.setEnabled(false);
+		
+		// images
+		try {
+			chrisronaldo = new ImageIcon(ImageIO.read((getClass().getClassLoader().getResource("achievements/ChrisRonaldo.png"))));
+			loser = new ImageIcon(ImageIO.read((getClass().getClassLoader().getResource("achievements/Loser.png"))));
+			nolife = new ImageIcon(ImageIO.read((getClass().getClassLoader().getResource("achievements/NoLife.png"))));
+			noob = new ImageIcon(ImageIO.read((getClass().getClassLoader().getResource("achievements/Noob.png"))));
+			packingpounds = new ImageIcon(ImageIO.read((getClass().getClassLoader().getResource("achievements/PackingPounds.png"))));
+			socbutterfly = new ImageIcon(ImageIO.read((getClass().getClassLoader().getResource("achievements/SocButterfly.png"))));
+			unathathlete = new ImageIcon(ImageIO.read((getClass().getClassLoader().getResource("achievements/UnathAthlete.png"))));
+			victorious = new ImageIcon(ImageIO.read((getClass().getClassLoader().getResource("achievements/Victorious.png"))));
+		} catch (IOException ioe) {
+			System.out.println("IOException in LoginPage.instantiateVariables (read images): " + ioe.getMessage());
+		}
+		
+		// achievments
+		chris_a = new Achievement("Cristiano Ronaldo", "Have a 2:1 win lose ratio or greater", chrisronaldo);
+		loser_a = new Achievement("Loser", "Lose 5 games in a row", loser);
+		nolife_a = new Achievement("No Life", "Play 1,000 games", nolife);
+		noob_a = new Achievement("Noob", "Play first game", noob);
+		pack_a = new Achievement("Packing on the Pounds", "Don't move your slime at all during a game", packingpounds);
+		soc_a = new Achievement("Social Butterfly", "Have over 25 friends", socbutterfly);
+		unath_a = new Achievement("Unathletic Athlete", "Have a 1:10 win lose ratio or less", unathathlete);
+		vict_a = new Achievement("Victorious", "Win 10 games", victorious);
 	}
 	
 	private void addComponents() {
@@ -119,7 +124,7 @@ public class LoginPage extends JFrame{
 		
 		BufferedImage backgroundImage = null;
 		try {
-			backgroundImage = ImageIO.read(new File("./resources/SlimeSoccerLogin.png"));
+			backgroundImage = ImageIO.read((getClass().getClassLoader().getResource("SlimeSoccerLogin.png")));
 		} catch (IOException e) {
 			System.out.println("IOException in addComponents (trying to load image): " + e.getMessage());
 		}

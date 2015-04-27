@@ -44,6 +44,14 @@ public class Variables {
 	
 	public Variables() {
 		try {
+<<<<<<< HEAD
+			imgBall = ImageIO.read((getClass().getClassLoader().getResource("game/others/SoccerBall.png")));
+			imgGoal = ImageIO.read((getClass().getClassLoader().getResource("game/others/Goal.png")));
+			imgGameoverPlayer1 = ImageIO.read((getClass().getClassLoader().getResource("game/others/gameover1.png")));
+			imgGameoverPlayer2 = ImageIO.read((getClass().getClassLoader().getResource("game/others/gameover2.png")));
+		} catch (IOException ioe) {
+			System.out.println("IOException in Variables constructor (read images): " + ioe.getMessage());
+=======
 			//default
 			imgBackground = ImageIO.read(new File("./resources/game/backgrounds/soccerfield.png"));
 			imgSlime1 = ImageIO.read(new File("./resources/game/slimes/BombSlime.png"));
@@ -58,6 +66,7 @@ public class Variables {
 			imgSlimeCosmicSpecial = ImageIO.read(new File("./resources/game/slimes/SlimeSpecialEffects/Cosmic.png"));
 			imgFisherSpecial = ImageIO.read(new File("./resources/game/slimes/SlimeSpecialEffects/Fisher.png"));		} catch (IOException ioe) {
 			System.out.println("IOException in Variables(): " + ioe.getMessage());
+>>>>>>> af252dc1d6d34dc267c04a0a2001ae7460420162
 		}
 		gameID = String.valueOf(ServerThread.idCounter.getAndIncrement());
 
@@ -67,18 +76,18 @@ public class Variables {
 		this.background = background;
 		try {
 			if (background.equals("Soccer Field")) {
-				imgBackground = ImageIO.read(new File("./resources/game/backgrounds/soccerfield.png"));
+				imgBackground = ImageIO.read((getClass().getClassLoader().getResource("game/backgrounds/soccerfield.png")));
 			} else if (background.equals("Desk")) {
-				imgBackground = ImageIO.read(new File("./resources/game/backgrounds/desk.jpg"));
+				imgBackground = ImageIO.read((getClass().getClassLoader().getResource("game/backgrounds/desk.jpg")));
 				groundLevel = 238;
 			} else if (background.equals("Laptop Screen")) {
-				imgBackground = ImageIO.read(new File("./resources/game/backgrounds/laptop.png"));
+				imgBackground = ImageIO.read((getClass().getClassLoader().getResource("game/backgrounds/laptop.png")));
 				topLevel = 90;
 				groundLevel = 352;
 				leftBoundary = 88;
 				rightBoundary = 511;
 			} else if (background.equals("Outer Space")) {
-				imgBackground = ImageIO.read(new File("./resources/game/backgrounds/outerspace.jpg"));
+				imgBackground = ImageIO.read((getClass().getClassLoader().getResource("game/backgrounds/outerspace.jpg")));
 			}			
 		} catch (IOException ioe) {
 			System.out.println("IOException in Variables.setBackground(): " + ioe.getMessage());
@@ -90,81 +99,129 @@ public class Variables {
 			if (slimeNum == 1) {
 				player1_slimeType = slimeType;
 				if (player1_slimeType.equals("SlimeBomb")) {
+<<<<<<< HEAD
+					imgSlime1 = ImageIO.read((getClass().getClassLoader().getResource("game/slimes/BombSlime.png")));
+					imgSlimeBombSpecial = ImageIO.read((getClass().getClassLoader().getResource("game/slimes/SlimeSpecialEffects/Bomb.png")));
+				} else if (player1_slimeType.equals("SlimeBowAndArrow")) {
+					imgSlime1 = ImageIO.read((getClass().getClassLoader().getResource("game/slimes/BowAndArrowSlime.png")));
+					imgSlimeBowAndArrowSpecial = ImageIO.read((getClass().getClassLoader().getResource("game/slimes/SlimeSpecialEffects/BowAndArrow.png")));
+=======
 					imgSlime1 = ImageIO.read(new File("./resources/game/slimes/BombSlime.png"));
 				} else if (player1_slimeType.equals("SlimeBowAndArrow")) {
 					imgSlime1 = ImageIO.read(new File("./resources/game/slimes/BowAndArrowSlime.png"));
+>>>>>>> af252dc1d6d34dc267c04a0a2001ae7460420162
 				} else if (player1_slimeType.equals("SlimeClone")) {
-					imgSlime1 = ImageIO.read(new File("./resources/game/slimes/CloneSlime.png"));
+					imgSlime1 = ImageIO.read((getClass().getClassLoader().getResource("game/slimes/CloneSlime.png")));
 				} else if (player1_slimeType.equals("SlimeCosmic")) {
+<<<<<<< HEAD
+					imgSlime1 = ImageIO.read((getClass().getClassLoader().getResource("game/slimes/CosmicSlime.png")));
+					imgSlimeCosmicSpecial = ImageIO.read((getClass().getClassLoader().getResource("game/slimes/SlimeSpecialEffects/Cosmic.png")));
+=======
 					imgSlime1 = ImageIO.read(new File("./resources/game/slimes/CosmicSlime.png"));
+>>>>>>> af252dc1d6d34dc267c04a0a2001ae7460420162
 				} else if (player1_slimeType.equals("SlimeFireball")) {
-					imgSlime1 = ImageIO.read(new File("./resources/game/slimes/FireballSlime.png"));
+					imgSlime1 = ImageIO.read((getClass().getClassLoader().getResource("game/slimes/FireballSlime.png")));
 				} else if (player1_slimeType.equals("SlimeFisher")) {
+<<<<<<< HEAD
+					imgSlime1 = ImageIO.read((getClass().getClassLoader().getResource("game/slimes/FisherSlime.png")));
+					imgFisherSpecial = ImageIO.read((getClass().getClassLoader().getResource("game/slimes/SlimeSpecialEffects/Fisher.png")));
+=======
 					imgSlime1 = ImageIO.read(new File("./resources/game/slimes/FisherSlime.png"));
+>>>>>>> af252dc1d6d34dc267c04a0a2001ae7460420162
 				} else if (player1_slimeType.equals("SlimeGeyser")) {
-					imgSlime1 = ImageIO.read(new File("./resources/game/slimes/GeyserSlime.png"));
+					imgSlime1 = ImageIO.read((getClass().getClassLoader().getResource("game/slimes/GeyserSlime.png")));
 				} else if (player1_slimeType.equals("SlimeMagnet")) {
-					imgSlime1 = ImageIO.read(new File("./resources/game/slimes/MagnetSlime.png"));
+					imgSlime1 = ImageIO.read((getClass().getClassLoader().getResource("game/slimes/MagnetSlime.png")));
 				} else if (player1_slimeType.equals("SlimeSuperSize")) {
-					imgSlime1 = ImageIO.read(new File("./resources/game/slimes/SuperSizeSlime.png"));
+					imgSlime1 = ImageIO.read((getClass().getClassLoader().getResource("game/slimes/SuperSizeSlime.png")));
 				} else if (player1_slimeType.equals("SlimeSuper")) {
-					imgSlime1 = ImageIO.read(new File("./resources/game/slimes/SuperSlime.png"));
+					imgSlime1 = ImageIO.read((getClass().getClassLoader().getResource("game/slimes/SuperSlime.png")));
 				} else if (player1_slimeType.equals("Slime3D")) {
-					imgSlime1 = ImageIO.read(new File("./resources/game/specialslimes/3DSlime.png"));
+					imgSlime1 = ImageIO.read((getClass().getClassLoader().getResource("game/specialslimes/3DSlime.png")));
 				} else if (player1_slimeType.equals("SlimeButterfly")) {
-					imgSlime1 = ImageIO.read(new File("./resources/game/specialslimes/Butterfly.png"));
+					imgSlime1 = ImageIO.read((getClass().getClassLoader().getResource("game/specialslimes/Butterfly.png")));
 				} else if (player1_slimeType.equals("SlimeRonaldo")) {
+<<<<<<< HEAD
+					imgSlime1 = ImageIO.read((getClass().getClassLoader().getResource("game/specialslimes/CristianoRonaldoSlime.png")));
+				} else if (player1_slimeType.equals("SlimeCrossEyed")) {
+					imgSlime1 = ImageIO.read((getClass().getClassLoader().getResource("game/specialslimes/CrossEyed.png")));
+=======
 					imgSlime1 = ImageIO.read(new File("./resources/game/specialslimes/CristianoRonaldoSlime.png"));
+>>>>>>> af252dc1d6d34dc267c04a0a2001ae7460420162
 				} else if (player1_slimeType.equals("SlimeCrown")) {
-					imgSlime1 = ImageIO.read(new File("./resources/game/specialslimes/Crown.png"));
+					imgSlime1 = ImageIO.read((getClass().getClassLoader().getResource("game/specialslimes/Crown.png")));
 				} else if (player1_slimeType.equals("SlimeDunce")) {
-					imgSlime1 = ImageIO.read(new File("./resources/game/specialslimes/Dunce.png"));
+					imgSlime1 = ImageIO.read((getClass().getClassLoader().getResource("game/specialslimes/Dunce.png")));
 				} else if (player1_slimeType.equals("LSlime")) {
-					imgSlime1 = ImageIO.read(new File("./resources/game/specialslimes/LSlime.png"));
+					imgSlime1 = ImageIO.read((getClass().getClassLoader().getResource("game/specialslimes/LSlime.png")));
 				} else if (player1_slimeType.equals("SlimePotato")) {
-					imgSlime1 = ImageIO.read(new File("./resources/game/specialslimes/Potato.png"));
+					imgSlime1 = ImageIO.read((getClass().getClassLoader().getResource("game/specialslimes/Potato.png")));
 				} else if (player1_slimeType.equals("SlimeSweater")) {
-					imgSlime1 = ImageIO.read(new File("./resources/game/specialslimes/SweaterSlime.png"));
+					imgSlime1 = ImageIO.read((getClass().getClassLoader().getResource("game/specialslimes/SweaterSlime.png")));
 				}	
 				
 			} else if (slimeNum == 2) {
 				player2_slimeType = slimeType;
 				if (player2_slimeType.equals("SlimeBomb")) {
+<<<<<<< HEAD
+					imgSlime2 = ImageIO.read((getClass().getClassLoader().getResource("game/slimes/BombSlime.png")));
+					imgSlimeBombSpecial = ImageIO.read((getClass().getClassLoader().getResource("game/slimes/SlimeSpecialEffects/Bomb.png")));
+				} else if (player2_slimeType.equals("SlimeBowAndArrow")) {
+					imgSlime2 = ImageIO.read((getClass().getClassLoader().getResource("game/slimes/BowAndArrowSlime.png")));
+					imgSlimeBowAndArrowSpecial = ImageIO.read((getClass().getClassLoader().getResource("game/slimes/SlimeSpecialEffects/BowAndArrow.png")));
+=======
 					imgSlime2 = ImageIO.read(new File("./resources/game/slimes/BombSlime.png"));
 				} else if (player2_slimeType.equals("SlimeBowAndArrow")) {
 					imgSlime2 = ImageIO.read(new File("./resources/game/slimes/BowAndArrowSlime.png"));
+>>>>>>> af252dc1d6d34dc267c04a0a2001ae7460420162
 				} else if (player2_slimeType.equals("SlimeClone")) {
-					imgSlime2 = ImageIO.read(new File("./resources/game/slimes/CloneSlime.png"));
+					imgSlime2 = ImageIO.read((getClass().getClassLoader().getResource("game/slimes/CloneSlime.png")));
 				} else if (player2_slimeType.equals("SlimeCosmic")) {
+<<<<<<< HEAD
+					imgSlime2 = ImageIO.read((getClass().getClassLoader().getResource("game/slimes/CosmicSlime.png")));
+					imgSlimeCosmicSpecial = ImageIO.read((getClass().getClassLoader().getResource("game/slimes/SlimeSpecialEffects/Cosmic.png")));
+=======
 					imgSlime2 = ImageIO.read(new File("./resources/game/slimes/CosmicSlime.png"));
+>>>>>>> af252dc1d6d34dc267c04a0a2001ae7460420162
 				} else if (player2_slimeType.equals("SlimeFireball")) {
-					imgSlime2 = ImageIO.read(new File("./resources/game/slimes/FireballSlime.png"));
+					imgSlime2 = ImageIO.read((getClass().getClassLoader().getResource("game/slimes/FireballSlime.png")));
 				} else if (player2_slimeType.equals("SlimeFisher")) {
+<<<<<<< HEAD
+					imgSlime2 = ImageIO.read((getClass().getClassLoader().getResource("game/slimes/FisherSlime.png")));
+					imgFisherSpecial = ImageIO.read((getClass().getClassLoader().getResource("game/slimes/SlimeSpecialEffects/Fisher.png")));
+=======
 					imgSlime2 = ImageIO.read(new File("./resources/game/slimes/FisherSlime.png"));
+>>>>>>> af252dc1d6d34dc267c04a0a2001ae7460420162
 				} else if (player2_slimeType.equals("SlimeGeyser")) {
-					imgSlime2 = ImageIO.read(new File("./resources/game/slimes/GeyserSlime.png"));
+					imgSlime2 = ImageIO.read((getClass().getClassLoader().getResource("game/slimes/GeyserSlime.png")));
 				} else if (player2_slimeType.equals("SlimeMagnet")) {
-					imgSlime2 = ImageIO.read(new File("./resources/game/slimes/MagnetSlime.png"));
+					imgSlime2 = ImageIO.read((getClass().getClassLoader().getResource("game/slimes/MagnetSlime.png")));
 				} else if (player2_slimeType.equals("SlimeSuperSize")) {
-					imgSlime2 = ImageIO.read(new File("./resources/game/slimes/SuperSizeSlime.png"));
+					imgSlime2 = ImageIO.read((getClass().getClassLoader().getResource("game/slimes/SuperSizeSlime.png")));
 				} else if (player2_slimeType.equals("SlimeSuper")) {
-					imgSlime2 = ImageIO.read(new File("./resources/game/slimes/SuperSlime.png"));
+					imgSlime2 = ImageIO.read((getClass().getClassLoader().getResource("game/slimes/SuperSlime.png")));
 				} else if (player2_slimeType.equals("Slime3D")) {
-					imgSlime2 = ImageIO.read(new File("./resources/game/specialslimes/3DSlime.png"));
+					imgSlime2 = ImageIO.read((getClass().getClassLoader().getResource("game/specialslimes/3DSlime.png")));
 				} else if (player2_slimeType.equals("SlimeButterfly")) {
-					imgSlime2 = ImageIO.read(new File("./resources/game/specialslimes/Butterfly.png"));
+					imgSlime2 = ImageIO.read((getClass().getClassLoader().getResource("game/specialslimes/Butterfly.png")));
 				} else if (player2_slimeType.equals("SlimeRonaldo")) {
+<<<<<<< HEAD
+					imgSlime2 = ImageIO.read((getClass().getClassLoader().getResource("game/specialslimes/CristianoRonaldoSlime.png")));
+				} else if (player2_slimeType.equals("SlimeCrossEyed")) {
+					imgSlime2 = ImageIO.read((getClass().getClassLoader().getResource("game/specialslimes/CrossEyed.png")));
+=======
 					imgSlime2 = ImageIO.read(new File("./resources/game/specialslimes/CristianoRonaldoSlime.png"));
+>>>>>>> af252dc1d6d34dc267c04a0a2001ae7460420162
 				} else if (player2_slimeType.equals("SlimeCrown")) {
-					imgSlime2 = ImageIO.read(new File("./resources/game/specialslimes/Crown.png"));
+					imgSlime2 = ImageIO.read((getClass().getClassLoader().getResource("game/specialslimes/Crown.png")));
 				} else if (player2_slimeType.equals("SlimeDunce")) {
-					imgSlime2 = ImageIO.read(new File("./resources/game/specialslimes/Dunce.png"));
+					imgSlime2 = ImageIO.read((getClass().getClassLoader().getResource("game/specialslimes/Dunce.png")));
 				} else if (player2_slimeType.equals("LSlime")) {
-					imgSlime2 = ImageIO.read(new File("./resources/game/specialslimes/LSlime.png"));
+					imgSlime2 = ImageIO.read((getClass().getClassLoader().getResource("game/specialslimes/LSlime.png")));
 				} else if (player2_slimeType.equals("SlimePotato")) {
-					imgSlime2 = ImageIO.read(new File("./resources/game/specialslimes/Potato.png"));
+					imgSlime2 = ImageIO.read((getClass().getClassLoader().getResource("game/specialslimes/Potato.png")));
 				} else if (player2_slimeType.equals("SlimeSweater")) {
-					imgSlime2 = ImageIO.read(new File("./resources/game/specialslimes/SweaterSlime.png"));
+					imgSlime2 = ImageIO.read((getClass().getClassLoader().getResource("game/specialslimes/SweaterSlime.png")));
 				}
 			}
 		} catch (IOException ioe) {
