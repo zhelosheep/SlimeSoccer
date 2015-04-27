@@ -19,6 +19,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 
+import controller.Controller;
+import model.Game;
+import network.GameThread;
+
 public class MainMenuUserPlaySlime extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private JButton continueButton, backButton;
@@ -395,10 +399,23 @@ public class MainMenuUserPlaySlime extends JFrame{
 						//System.out.println("O2" + "$" + specialModeCombo.getSelectedItem().toString() + "$" + backgroundCombo.getSelectedItem().toString() + "$" + regenRateSlider.getValue() + "$" + totalManaSlider.getValue());												
 						((MainMenuUserPlayPlayer) prevScreen).prevScreen.sWriter.flush();
 					}
+				} 
+				// Player vs Computer Game
+				else {
+					//****** COME BACK TO THIS LATER!!!!!!! ******//
+
+					/*
+					gameScreen.setVariables(backgroundCombo.getSelectedItem().toString(), p1SlimeType, p2SlimeType, p1Username, p2Username, totalManaSlider.getValue(), totalManaSlider.getValue(), regenRateSlider.getValue(), specialModeCombo.getSelectedItem().toString());
+					Controller controller = new Controller(gameScreen);
+					gameScreen.primary.addKeyListener(controller);
+					Game game = new Game(backgroundCombo.getSelectedItem().toString(), p1SlimeType, p2SlimeType, p1Username, p2Username, totalManaSlider.getValue(), totalManaSlider.getValue(), regenRateSlider.getValue(), specialModeCombo.getSelectedItem().toString()); 
+				 	*/
+					
+					//****** COME BACK TO THIS LATER!!!!!!! ******//
 				}
 			}
 		});
-		//addd action listener on continue button; this should bring us to a settingspage
+		//add action listener on continue button; this should bring us to a settingspage
 	}
 	
 	void quit() {
