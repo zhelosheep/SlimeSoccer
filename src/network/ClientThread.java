@@ -162,7 +162,7 @@ public class ClientThread extends Thread {
 			return 3;
 		}
 		
-		else if (name.equals("SlimeFireBall"))
+		else if (name.equals("SlimeFireball"))
 		{
 			return 4;
 		}
