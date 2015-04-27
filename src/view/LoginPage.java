@@ -158,7 +158,7 @@ public class LoginPage extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		login.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (sqli.validateLogin(u, pw) && !sqli.checkLoggedIn(u)) {
+				if (sqli.validateLogin(u, pw) /*&& !sqli.checkLoggedIn(u)*/) {
 					MainMenuUser mmu = new MainMenuUser(u);
 					sqli.toggleLog(u);
 					try {
