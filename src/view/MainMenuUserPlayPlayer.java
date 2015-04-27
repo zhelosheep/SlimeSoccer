@@ -143,12 +143,14 @@ public class MainMenuUserPlayPlayer extends JFrame{
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
+				LoginPage.sqli.toggleLog(MainMenuUser.username);
 				quit();
 			}
 		});
 		logoutButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				(new LoginPage()).setVisible(true);
+				LoginPage.sqli.toggleLog(MainMenuUser.username);
 				dispose();
 			}
 		});

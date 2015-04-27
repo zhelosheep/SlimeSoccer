@@ -158,8 +158,9 @@ public class LoginPage extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		login.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (sqli.validateLogin(u, pw)) {
-					MainMenuUser mmu = new MainMenuUser(usernameField.getText());
+				if (sqli.validateLogin(u, pw) && !sqli.checkLoggedIn(u)) {
+					MainMenuUser mmu = new MainMenuUser(u);
+					sqli.toggleLog(u);
 					try {
 						mmu.s = new Socket(hostField.getText(), 6789);
 						mmu.sReader = new BufferedReader(new InputStreamReader(mmu.s.getInputStream()));
