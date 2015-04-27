@@ -20,8 +20,8 @@ public class Variables {
 	public BufferedImage imgGameoverPlayer1, imgGameoverPlayer2;
 	
 	// game objects
-	public Slime slime1 = null, slime2 = null;
-	public Ball ball = null;
+	public Slime slime1 = null, slime2 = null; // live data
+	public Ball ball = null; // live data
 	public Goal goal1 = null, goal2 = null;
 	public int groundLevel = 400, topLevel = 0; // y value of where ground level and top of screen are in game
 	public int leftBoundary = 0, rightBoundary = 600; 
@@ -33,13 +33,13 @@ public class Variables {
 	public double player1_manaCurrent = 0, player2_manaCurrent = 0; // live data
 	public int player1_manaMax = 0, player2_manaMax = 0;
 	public Integer player1_score = 0, player2_score = 0; // live data
-	public boolean player1scored = false, player2scored = false;
+	public boolean player1scored = false, player2scored = false; // live data
 	public int manaRegenerationRate = 0;
 	public String specialMode = "";
-	public boolean gameOver = false;
-	public int playerThatWon = -1;
-	public boolean slimeHasMoved_1 = false;
-	public boolean slimeHasMoved_2 = false;
+	public boolean gameOver = false; // live data
+	public int playerThatWon = -1; // live data
+	public boolean slimeHasMoved_1 = false; // live data
+	public boolean slimeHasMoved_2 = false; // live data
 	public String gameID = "";
 	
 	public Variables() {
