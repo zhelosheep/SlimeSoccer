@@ -5,18 +5,24 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+
+import javax.swing.AbstractAction;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.KeyStroke;
 import javax.swing.text.DefaultCaret;
+
 import model.Ball;
 import model.Goal;
 import model.Slime;
@@ -138,9 +144,53 @@ public class GameScreen extends JFrame{
 	
 	private void addListeners()
 	{
-		//If a player clicks the quit/back button, and confirms the other player auto wins
-		
-		sendButton.addActionListener(new ActionListener() {
+		ActionListener upAction = new ActionListener()
+	    {   
+	        public void actionPerformed(ActionEvent ae)
+	        {
+				((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "up");
+				((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();				
+	        }
+	    };
+		ActionListener downAction = new ActionListener()
+	    {   
+	        public void actionPerformed(ActionEvent ae)
+	        {
+				((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "down");
+				((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();				
+	        }
+	    };
+		ActionListener leftAction = new ActionListener()
+	    {   
+	        public void actionPerformed(ActionEvent ae)
+	        {
+				((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "left");
+				((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();				
+	        }
+	    };
+		ActionListener rightAction = new ActionListener()
+	    {   
+	        public void actionPerformed(ActionEvent ae)
+	        {
+				((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "right");
+				((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();				
+	        }
+	    };
+		ActionListener spaceAction = new ActionListener()
+	    {   
+	        public void actionPerformed(ActionEvent ae)
+	        {
+	        	System.out.println("space smth");
+	        }
+	    };
+	    
+	    primary.registerKeyboardAction(upAction, "UP", KeyStroke.getKeyStroke("UP"), JComponent.WHEN_IN_FOCUSED_WINDOW);
+	    primary.registerKeyboardAction(downAction, "DOWN", KeyStroke.getKeyStroke("DOWN"), JComponent.WHEN_IN_FOCUSED_WINDOW);
+	    primary.registerKeyboardAction(leftAction, "LEFT", KeyStroke.getKeyStroke("LEFT"), JComponent.WHEN_IN_FOCUSED_WINDOW);
+	    primary.registerKeyboardAction(rightAction, "RIGHT", KeyStroke.getKeyStroke("RIGHT"), JComponent.WHEN_IN_FOCUSED_WINDOW);
+	    primary.registerKeyboardAction(spaceAction, "SPACE", KeyStroke.getKeyStroke("SPACE"), JComponent.WHEN_IN_FOCUSED_WINDOW);
+	    
+	    sendButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (!isPvCGame) {
 					((MainMenuUserWaiting) prevScreen.prevScreen).prevScreen.prevScreen.sWriter.println("D" + username + ": " + chatField.getText());

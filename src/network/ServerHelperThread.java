@@ -31,6 +31,7 @@ public class ServerHelperThread extends Thread {
 		while (st.b) {
 			try {
 				String str = br.readLine();
+				System.out.println(str);
 				if (str != null) {
 					// again, str.charAt(0) is an identifier that tells us what to do with the string
 					if (str.charAt(0) == 'C') { // chat

@@ -66,7 +66,7 @@ public class Slime {
 		if (!variables.specialMode.equals("Anti-Gravity")) {
 
 			// Calculating velocity for moving up or down
-			if(Controller.keyboardKeyState(upKey) && y == variables.groundLevel) {
+			if(variables.p1_keyboardState[0] && y == variables.groundLevel) {
 	            velocityY -= jumpAcceleration;
 	            if (player == 1) { variables.slimeHasMoved_1 = true; } 
 	            else if (player == 2) { variables.slimeHasMoved_2 = true; }
@@ -79,7 +79,7 @@ public class Slime {
 	        }
 	        
 	        // Calculating velocity for moving or stopping to the left
-	        if(Controller.keyboardKeyState(leftKey)) {
+	        if(variables.p1_keyboardState[2]) {
 	        	facingLeft = true;
 	            if (player == 1) { variables.slimeHasMoved_1 = true; } 
 	            else if (player == 2) { variables.slimeHasMoved_2 = true; }
@@ -91,7 +91,7 @@ public class Slime {
 	        }
 	        
 	        // Calculating velocity for moving or stopping to the right
-	        if(Controller.keyboardKeyState(rightKey)) {
+	        if(variables.p1_keyboardState[3]) {
 	        	facingLeft = false;
 	            if (player == 1) { variables.slimeHasMoved_1 = true; } 
 	            else if (player == 2) { variables.slimeHasMoved_2 = true; }

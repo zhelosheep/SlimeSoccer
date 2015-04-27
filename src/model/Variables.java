@@ -8,8 +8,8 @@ import network.ServerThread;
 
 public class Variables {
 	// try 
-	public boolean[] p1_keyboardState = new boolean[5];
-	public boolean[] p2_keyboardState = new boolean[5];
+	public boolean[] p1_keyboardState = new boolean[535];
+	public boolean[] p2_keyboardState = new boolean[535];
 	
 	// image resources
 	public BufferedImage imgBall;
@@ -60,7 +60,7 @@ public class Variables {
 		} catch (IOException ioe) {
 			System.out.println("IOException in Variables(): " + ioe.getMessage());
 		}
-		gameID = String.valueOf(ServerThread.idCounter.getAndIncrement());
+//		gameID = String.valueOf(ServerThread.idCounter.getAndIncrement());
 
 	}
 	
