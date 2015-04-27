@@ -163,45 +163,6 @@ public class GameScreen extends JFrame{
 				chatField.setText("");
 			}
 		});
-		
-		this.addKeyListener(new KeyListener(){
-			public void keyPressed(KeyEvent e)
-			{
-				char k = e.getKeyChar();
-				System.out.println(k);
-				if (e.getKeyCode() == KeyEvent.VK_UP)
-				{
-					System.out.println("K" + "up");
-				}
-				
-				else if (e.getKeyCode() == KeyEvent.VK_DOWN)
-				{
-					System.out.println("K" + "down");
-				}
-				
-				else if (e.getKeyCode() == KeyEvent.VK_LEFT)
-				{
-					System.out.println("K" + "left");
-				}
-				
-				else if (e.getKeyCode() == KeyEvent.VK_RIGHT)
-				{
-					System.out.println("K" + "right");
-				}
-			}
-
-			@Override
-			public void keyReleased(KeyEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void keyTyped(KeyEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-		});
 	}
 	
 	public void checkAchievements() {
