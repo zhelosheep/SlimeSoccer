@@ -65,112 +65,198 @@ public class Slime {
 		// normal instances
 		if (!variables.specialMode.equals("Anti-Gravity")) {
 
-			// Calculating velocity for moving up or down
-			if(variables.p1_keyboardState[0] && y == variables.groundLevel) {
-	            velocityY -= jumpAcceleration;
-	            if (player == 1) { variables.slimeHasMoved_1 = true; } 
-	            else if (player == 2) { variables.slimeHasMoved_2 = true; }
-	        } else {
-	        	if (y >= variables.groundLevel) {
-	        		velocityY = 0;
-	        	} else {
-	        		velocityY += decceleration;
-	        	}
-	        }
-	        
-	        // Calculating velocity for moving or stopping to the left
-	        if(variables.p1_keyboardState[2]) {
-	        	facingLeft = true;
-	            if (player == 1) { variables.slimeHasMoved_1 = true; } 
-	            else if (player == 2) { variables.slimeHasMoved_2 = true; }
-	        	if (velocityX >= -maxSpeed) {
-	                velocityX -= acceleration;
-	        	}
-	        } else if (velocityX < 0) {
-	            velocityX += decceleration;
-	        }
-	        
-	        // Calculating velocity for moving or stopping to the right
-	        if(variables.p1_keyboardState[3]) {
-	        	facingLeft = false;
-	            if (player == 1) { variables.slimeHasMoved_1 = true; } 
-	            else if (player == 2) { variables.slimeHasMoved_2 = true; }
-	        	if (velocityX <= maxSpeed) {
-	        		velocityX += acceleration;
-	        	}
-	        } else if (velocityX > 0) {
-	            velocityX -= decceleration;
-	        }
+			if (player == 1) {
+				// Calculating velocity for moving up or down
+				if(variables.p1_keyboardState[0] && y == variables.groundLevel) {
+		            velocityY -= jumpAcceleration;
+		            variables.slimeHasMoved_1 = true; 
+		        } else {
+		        	if (y >= variables.groundLevel) {
+		        		velocityY = 0;
+		        	} else {
+		        		velocityY += decceleration;
+		        	}
+		        }
+		        
+		        // Calculating velocity for moving or stopping to the left
+		        if(variables.p1_keyboardState[2]) {
+		        	facingLeft = true;
+		            variables.slimeHasMoved_1 = true; 
+		        	if (velocityX >= -maxSpeed) {
+		                velocityX -= acceleration;
+		        	}
+		        } else if (velocityX < 0) {
+		            velocityX += decceleration;
+		        }
+		        
+		        // Calculating velocity for moving or stopping to the right
+		        if(variables.p1_keyboardState[3]) {
+		        	facingLeft = false;
+		            variables.slimeHasMoved_1 = true; 
+		        	if (velocityX <= maxSpeed) {
+		        		velocityX += acceleration;
+		        	}
+		        } else if (velocityX > 0) {
+		            velocityX -= decceleration;
+		        }				
+			} else {
+				// Calculating velocity for moving up or down
+				if(variables.p2_keyboardState[0] && y == variables.groundLevel) {
+		            velocityY -= jumpAcceleration;
+		            variables.slimeHasMoved_2 = true; 
+		        } else {
+		        	if (y >= variables.groundLevel) {
+		        		velocityY = 0;
+		        	} else {
+		        		velocityY += decceleration;
+		        	}
+		        }
+		        
+		        // Calculating velocity for moving or stopping to the left
+		        if(variables.p2_keyboardState[2]) {
+		        	facingLeft = true;
+		            variables.slimeHasMoved_2 = true; 
+		        	if (velocityX >= -maxSpeed) {
+		                velocityX -= acceleration;
+		        	}
+		        } else if (velocityX < 0) {
+		            velocityX += decceleration;
+		        }
+		        
+		        // Calculating velocity for moving or stopping to the right
+		        if(variables.p2_keyboardState[3]) {
+		        	facingLeft = false;
+		            variables.slimeHasMoved_2 = true; 
+		        	if (velocityX <= maxSpeed) {
+		        		velocityX += acceleration;
+		        	}
+		        } else if (velocityX > 0) {
+		            velocityX -= decceleration;
+		        }
+			}
 	        
 		} 
 		// special case: only for antigravity mode
 		else {
-	        // Calculating velocity for moving up 
-	        if(Controller.keyboardKeyState(upKey)) {
-	            if (player == 1) { variables.slimeHasMoved_1 = true; } 
-	            else if (player == 2) { variables.slimeHasMoved_2 = true; }
-	        	if (velocityY >= -maxSpeed) {
-	        		velocityY -= acceleration;
-	        	}
-	        }
-	        // Calculating velocity for moving down
-	        if(Controller.keyboardKeyState(downKey)) {
-	            if (player == 1) { variables.slimeHasMoved_1 = true; } 
-	            else if (player == 2) { variables.slimeHasMoved_2 = true; }
-	        	if (velocityY <= maxSpeed) {
-	        		velocityY += acceleration;
-	        	}
-	        }
-	        // Calculating velocity for moving or stopping to the left
-	        if(Controller.keyboardKeyState(leftKey)) {
-	        	facingLeft = true;
-	            if (player == 1) { variables.slimeHasMoved_1 = true; } 
-	            else if (player == 2) { variables.slimeHasMoved_2 = true; }
-	        	if (velocityX >= -maxSpeed) {
-	                velocityX -= acceleration;
-	        	}
-	        }
-	        // Calculating velocity for moving or stopping to the right
-	        if(Controller.keyboardKeyState(rightKey)) {
-	        	facingLeft = false;
-	            if (player == 1) { variables.slimeHasMoved_1 = true; } 
-	            else if (player == 2) { variables.slimeHasMoved_2 = true; }
-	        	if (velocityX <= maxSpeed) {
-	        		velocityX += acceleration;
-	        	}
-	        }
+			if (player == 1) {
+		        // Calculating velocity for moving up 
+//		        if(Controller.keyboardKeyState(upKey)) {
+				if(variables.p1_keyboardState[0]) {
+					variables.slimeHasMoved_1 = true;
+					if (velocityY >= -maxSpeed) {
+		        		velocityY -= acceleration;
+		        	}
+		        }
+		        // Calculating velocity for moving down
+//		        if(Controller.keyboardKeyState(downKey)) {
+				if(variables.p1_keyboardState[1]) {
+					variables.slimeHasMoved_1 = true;
+					if (velocityY <= maxSpeed) {
+		        		velocityY += acceleration;
+		        	}
+		        }
+		        // Calculating velocity for moving or stopping to the left
+//		        if(Controller.keyboardKeyState(leftKey)) {
+				if(variables.p1_keyboardState[2]) {
+		        	facingLeft = true;
+		        	variables.slimeHasMoved_1 = true;
+		        	if (velocityX >= -maxSpeed) {
+		                velocityX -= acceleration;
+		        	}
+		        }
+		        // Calculating velocity for moving or stopping to the right
+//		        if(Controller.keyboardKeyState(rightKey)) {
+				if(variables.p1_keyboardState[3]) {
+		        	facingLeft = false;
+		        	variables.slimeHasMoved_1 = true;
+		        	if (velocityX <= maxSpeed) {
+		        		velocityX += acceleration;
+		        	}
+		        }				
+			} else {
+		        // Calculating velocity for moving up 
+//		        if(Controller.keyboardKeyState(upKey)) {
+				if(variables.p2_keyboardState[0]) {
+					variables.slimeHasMoved_2 = true;
+					if (velocityY >= -maxSpeed) {
+		        		velocityY -= acceleration;
+		        	}
+		        }
+		        // Calculating velocity for moving down
+//		        if(Controller.keyboardKeyState(downKey)) {
+				if(variables.p2_keyboardState[1]) {
+					variables.slimeHasMoved_2 = true;
+					if (velocityY <= maxSpeed) {
+		        		velocityY += acceleration;
+		        	}
+		        }
+		        // Calculating velocity for moving or stopping to the left
+//		        if(Controller.keyboardKeyState(leftKey)) {
+				if(variables.p2_keyboardState[2]) {
+		        	facingLeft = true;
+		        	variables.slimeHasMoved_2 = true;
+		        	if (velocityX >= -maxSpeed) {
+		                velocityX -= acceleration;
+		        	}
+		        }
+		        // Calculating velocity for moving or stopping to the right
+//		        if(Controller.keyboardKeyState(rightKey)) {
+				if(variables.p2_keyboardState[3]) {
+		        	facingLeft = false;
+		            variables.slimeHasMoved_2 = true;
+		        	if (velocityX <= maxSpeed) {
+		        		velocityX += acceleration;
+		        	}
+		        }
+				
+			}
 		}
         
 
         // User special power
-        if(Controller.keyboardKeyState(powerKey) && !specialPowerBeingUsed) {
-        	if (this.player == 1) {
-        		if (variables.player1_manaCurrent > 0) {
-                	this.useSpecialPower();
-                	variables.player1_manaCurrent -= manaUsageRate;
-        		} else {
-                	retractSpecialPower();
-        		}
-        	}
-        	else if (this.player == 2) {
-        		if (variables.player2_manaCurrent > 0) {
-                	this.useSpecialPower();
-                	variables.player2_manaCurrent -= manaUsageRate;
-        		} else {
-                	retractSpecialPower();
-        		}
-        	}
-        }
+//        if(Controller.keyboardKeyState(powerKey) && !specialPowerBeingUsed) {
+		if (player == 1) {
+			if(variables.p1_keyboardState[4] && !specialPowerBeingUsed) {
+				if (variables.player1_manaCurrent > 0) {
+					this.useSpecialPower();
+					variables.player1_manaCurrent -= manaUsageRate;
+				} else {
+					retractSpecialPower();
+				}
+	        }			
+		} else {
+			if(variables.p2_keyboardState[4] && !specialPowerBeingUsed) {
+				if (variables.player2_manaCurrent > 0) {
+					this.useSpecialPower();
+					variables.player2_manaCurrent -= manaUsageRate;
+				} else {
+					retractSpecialPower();
+				}
+	        }
+		}
         // call retractSpecialPower() and also regenerate mana
-        if(!Controller.keyboardKeyState(powerKey)) {
-        	retractSpecialPower();
-			if (variables.player1_manaCurrent < variables.player1_manaMax) {
-	        	variables.player1_manaCurrent += variables.manaRegenerationRate;
-			}
-			if (variables.player2_manaCurrent < variables.player2_manaMax) {
-	        	variables.player2_manaCurrent += variables.manaRegenerationRate;
-			}
-        }
+//        if(!Controller.keyboardKeyState(powerKey)) {
+		if (player == 1) {
+			if (!variables.p1_keyboardState[4]) {
+	        	retractSpecialPower();
+				if (variables.player1_manaCurrent < variables.player1_manaMax) {
+		        	variables.player1_manaCurrent += variables.manaRegenerationRate;
+				}
+				if (variables.player2_manaCurrent < variables.player2_manaMax) {
+		        	variables.player2_manaCurrent += variables.manaRegenerationRate;
+				}
+	        }			
+		} else {
+			if (!variables.p2_keyboardState[4]) {
+	        	retractSpecialPower();
+				if (variables.player1_manaCurrent < variables.player1_manaMax) {
+		        	variables.player1_manaCurrent += variables.manaRegenerationRate;
+				}
+				if (variables.player2_manaCurrent < variables.player2_manaMax) {
+		        	variables.player2_manaCurrent += variables.manaRegenerationRate;
+				}
+	        }
+		}
 
         
         if (x - width/2 < variables.leftBoundary) { // if slime is outside of left boundary, put slime back in boundary and stop movement

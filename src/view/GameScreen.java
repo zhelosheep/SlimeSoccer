@@ -148,80 +148,130 @@ public class GameScreen extends JFrame{
 	    {   
 	        public void actionPerformed(ActionEvent ae)
 	        {
-				((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "up");
-				((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();				
+	        	if (prevScreen.isPlayer1) {
+					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "up");
+					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();					        		
+	        	} else {
+					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("L" + "up");
+					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();					        		
+	        	}
 	        }
 	    };
 	    AbstractAction downAction = new AbstractAction()
 	    {   
 	        public void actionPerformed(ActionEvent ae)
 	        {
-				((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "down");
-				((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();				
+	        	if (prevScreen.isPlayer1) {
+					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "down");
+					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();					        		
+	        	} else {
+					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("L" + "down");
+					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();				
+	        	}
 	        }
 	    };
 	    AbstractAction leftAction = new AbstractAction()
 	    {   
 	        public void actionPerformed(ActionEvent ae)
 	        {
-				((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "left");
-				((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();				
+	        	if (prevScreen.isPlayer1) {
+					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "left");
+					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();				
+	        	} else {
+					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("L" + "left");
+					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();				
+	        	}
 	        }
 	    };
 	    AbstractAction rightAction = new AbstractAction()
 	    {   
 	        public void actionPerformed(ActionEvent ae)
 	        {
-				((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "right");
-				((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();				
+	        	if (prevScreen.isPlayer1) {
+					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "right");
+					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();					        		
+	        	} else {
+					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("L" + "right");
+					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();				
+	        	}
 	        }
 	    };
 	    AbstractAction spaceAction = new AbstractAction()
 	    {   
 	        public void actionPerformed(ActionEvent ae)
 	        {
-				((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "space");
-				((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();				
+	        	if (prevScreen.isPlayer1) {
+					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "space");
+					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();					        		
+	        	} else {
+					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("L" + "space");
+					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();				
+	        	}
 	        }
 	    };
 		AbstractAction rupAction = new AbstractAction()
 	    {   
 	        public void actionPerformed(ActionEvent ae)
 	        {
-				((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "upno");
-				((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();				
+	        	if (prevScreen.isPlayer1) {
+					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "upno");
+					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();					        		
+	        	} else {
+					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("L" + "upno");
+					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();				
+	        	}
 	        }
 	    };
 	    AbstractAction rdownAction = new AbstractAction()
 	    {   
 	        public void actionPerformed(ActionEvent ae)
 	        {
-				((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "downno");
-				((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();				
+	        	if (prevScreen.isPlayer1) {
+					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "downno");
+					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();					        		
+	        	} else {
+					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("L" + "downno");
+					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();				
+	        	}
 	        }
 	    };
 	    AbstractAction rleftAction = new AbstractAction()
 	    {   
 	        public void actionPerformed(ActionEvent ae)
 	        {
-				((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "leftno");
-				((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();				
+	        	if (prevScreen.isPlayer1) {
+					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "leftno");
+					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();					        		
+	        	} else {
+					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("L" + "leftno");
+					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();				
+	        	}
 	        }
 	    };
 	    AbstractAction rrightAction = new AbstractAction()
 	    {   
 	        public void actionPerformed(ActionEvent ae)
 	        {
-				((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "rightno");
-				((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();				
+	        	if (prevScreen.isPlayer1) {
+					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "rightno");
+					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();					        		
+	        	} else {
+					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("L" + "rightno");
+					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();				
+	        	}
 	        }
 	    };
 	    AbstractAction rspaceAction = new AbstractAction()
 	    {   
 	        public void actionPerformed(ActionEvent ae)
 	        {
-				((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "spaceno");
-				((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();				
+	        	if (prevScreen.isPlayer1) {
+					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "spaceno");
+					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();	        		
+	        	} else {
+					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("L" + "spaceno");
+					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();				
+	        	}
 	        }
 	    };
 	    
@@ -229,12 +279,12 @@ public class GameScreen extends JFrame{
 	    primary.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("DOWN"), "DOWN");
 	    primary.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("LEFT"), "LEFT");
 	    primary.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("RIGHT"), "RIGHT");
-	    primary.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("SPACE"), "SPACE");
+	    primary.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("P"), "SPACE");
 	    primary.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("released UP"), "rUP");
 	    primary.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("released DOWN"), "rDOWN");
 	    primary.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("released LEFT"), "rLEFT");
 	    primary.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("released RIGHT"), "rRIGHT");
-	    primary.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("released SPACE"), "rSPACE");
+	    primary.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("released P"), "rSPACE");
 	    primary.getActionMap().put("UP", upAction);
 	    primary.getActionMap().put("DOWN", downAction);
 	    primary.getActionMap().put("LEFT", leftAction);
@@ -255,8 +305,8 @@ public class GameScreen extends JFrame{
 	    sendButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (!isPvCGame) {
-					((MainMenuUserWaiting) prevScreen.prevScreen).prevScreen.prevScreen.sWriter.println("D" + username + ": " + chatField.getText());
-					((MainMenuUserWaiting) prevScreen.prevScreen).prevScreen.prevScreen.sWriter.flush();					
+					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("D" + username + ": " + chatField.getText());
+					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();					
 				}
 				chatArea.setText(chatArea.getText() + "\n" + username + ": " + chatField.getText());
 				chatField.setText("");
