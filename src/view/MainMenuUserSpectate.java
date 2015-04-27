@@ -163,6 +163,15 @@ public class MainMenuUserSpectate extends JFrame{
 				chatField.setText("");
 			}
 		});
+		chatField.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e)
+			{
+				prevScreen.sWriter.println("C" + prevScreen.getUsername() + ": " + chatField.getText());
+				prevScreen.sWriter.flush();
+				prevScreen.chatArea.setText(chatArea.getText() + "\n" + prevScreen.getUsername() + ": " + chatField.getText());
+				chatField.setText("");
+			}
+		});
 		searchButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				spectateScreen.setVisible(true);
