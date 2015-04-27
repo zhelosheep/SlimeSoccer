@@ -27,7 +27,7 @@ public class MainMenuUserSpectate extends JFrame{
 	JTextArea chatArea;
 	private JTextField chatField, gameIDField;
 	private ImageIcon avatar;
-	private MainMenuUser prevScreen;
+	MainMenuUser prevScreen;
 	private static JLabel spectateLabel;
 	private SpectateScreen spectateScreen;
 
@@ -180,12 +180,16 @@ public class MainMenuUserSpectate extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				spectateScreen.setVisible(true);
 				setVisible(false);
+				prevScreen.sWriter.println("N");
+				prevScreen.sWriter.flush();
 			}
 		});
 		randomButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				spectateScreen.setVisible(true);
 				setVisible(false);
+				prevScreen.sWriter.println("M");
+				prevScreen.sWriter.flush();
 			}
 		});
 		
