@@ -30,5 +30,3 @@ Each client will simply receive the six data coordinate points and then draw the
 Slime class moves based on boolean array
 	-Instead of an array of size 525 (?!), we use one of size 5
 	-It's only turned on or off based on the five keys (left, right, up, down, space)
-	
-	testing
