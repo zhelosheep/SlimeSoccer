@@ -8,8 +8,8 @@ import network.ServerThread;
 
 public class Variables {
 	// try 
-	public boolean[] p1_keyboardState = new boolean[5];
-	public boolean[] p2_keyboardState = new boolean[5];
+	public boolean[] p1_keyboardState = new boolean[535];
+	public boolean[] p2_keyboardState = new boolean[535];
 	
 	// image resources
 	public BufferedImage imgBall;
