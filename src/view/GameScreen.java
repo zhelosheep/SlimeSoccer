@@ -144,7 +144,7 @@ public class GameScreen extends JFrame{
 	
 	private void addListeners()
 	{
-		ActionListener upAction = new ActionListener()
+		AbstractAction upAction = new AbstractAction()
 	    {   
 	        public void actionPerformed(ActionEvent ae)
 	        {
@@ -152,7 +152,7 @@ public class GameScreen extends JFrame{
 				((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();				
 	        }
 	    };
-		ActionListener downAction = new ActionListener()
+	    AbstractAction downAction = new AbstractAction()
 	    {   
 	        public void actionPerformed(ActionEvent ae)
 	        {
@@ -160,7 +160,7 @@ public class GameScreen extends JFrame{
 				((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();				
 	        }
 	    };
-		ActionListener leftAction = new ActionListener()
+	    AbstractAction leftAction = new AbstractAction()
 	    {   
 	        public void actionPerformed(ActionEvent ae)
 	        {
@@ -168,7 +168,7 @@ public class GameScreen extends JFrame{
 				((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();				
 	        }
 	    };
-		ActionListener rightAction = new ActionListener()
+	    AbstractAction rightAction = new AbstractAction()
 	    {   
 	        public void actionPerformed(ActionEvent ae)
 	        {
@@ -176,19 +176,81 @@ public class GameScreen extends JFrame{
 				((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();				
 	        }
 	    };
-		ActionListener spaceAction = new ActionListener()
+	    AbstractAction spaceAction = new AbstractAction()
 	    {   
 	        public void actionPerformed(ActionEvent ae)
 	        {
-	        	System.out.println("space smth");
+				((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "space");
+				((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();				
+	        }
+	    };
+		AbstractAction rupAction = new AbstractAction()
+	    {   
+	        public void actionPerformed(ActionEvent ae)
+	        {
+				((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "upno");
+				((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();				
+	        }
+	    };
+	    AbstractAction rdownAction = new AbstractAction()
+	    {   
+	        public void actionPerformed(ActionEvent ae)
+	        {
+				((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "downno");
+				((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();				
+	        }
+	    };
+	    AbstractAction rleftAction = new AbstractAction()
+	    {   
+	        public void actionPerformed(ActionEvent ae)
+	        {
+				((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "leftno");
+				((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();				
+	        }
+	    };
+	    AbstractAction rrightAction = new AbstractAction()
+	    {   
+	        public void actionPerformed(ActionEvent ae)
+	        {
+				((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "rightno");
+				((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();				
+	        }
+	    };
+	    AbstractAction rspaceAction = new AbstractAction()
+	    {   
+	        public void actionPerformed(ActionEvent ae)
+	        {
+				((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "spaceno");
+				((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();				
 	        }
 	    };
 	    
-	    primary.registerKeyboardAction(upAction, "UP", KeyStroke.getKeyStroke("UP"), JComponent.WHEN_IN_FOCUSED_WINDOW);
-	    primary.registerKeyboardAction(downAction, "DOWN", KeyStroke.getKeyStroke("DOWN"), JComponent.WHEN_IN_FOCUSED_WINDOW);
-	    primary.registerKeyboardAction(leftAction, "LEFT", KeyStroke.getKeyStroke("LEFT"), JComponent.WHEN_IN_FOCUSED_WINDOW);
-	    primary.registerKeyboardAction(rightAction, "RIGHT", KeyStroke.getKeyStroke("RIGHT"), JComponent.WHEN_IN_FOCUSED_WINDOW);
-	    primary.registerKeyboardAction(spaceAction, "SPACE", KeyStroke.getKeyStroke("SPACE"), JComponent.WHEN_IN_FOCUSED_WINDOW);
+	    primary.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("UP"), "UP");
+	    primary.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("DOWN"), "DOWN");
+	    primary.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("LEFT"), "LEFT");
+	    primary.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("RIGHT"), "RIGHT");
+	    primary.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("SPACE"), "SPACE");
+	    primary.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("released UP"), "rUP");
+	    primary.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("released DOWN"), "rDOWN");
+	    primary.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("released LEFT"), "rLEFT");
+	    primary.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("released RIGHT"), "rRIGHT");
+	    primary.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("released SPACE"), "rSPACE");
+	    primary.getActionMap().put("UP", upAction);
+	    primary.getActionMap().put("DOWN", downAction);
+	    primary.getActionMap().put("LEFT", leftAction);
+	    primary.getActionMap().put("RIGHT", rightAction);
+	    primary.getActionMap().put("SPACE", spaceAction);
+	    primary.getActionMap().put("rUP", rupAction);
+	    primary.getActionMap().put("rDOWN", rdownAction);
+	    primary.getActionMap().put("rLEFT", rleftAction);
+	    primary.getActionMap().put("rRIGHT", rrightAction);
+	    primary.getActionMap().put("rSPACE", rspaceAction);
+	    
+//	    primary.registerKeyboardAction(upAction, "UP", KeyStroke.getKeyStroke("UP"), JComponent.WHEN_IN_FOCUSED_WINDOW);
+//	    primary.registerKeyboardAction(downAction, "DOWN", KeyStroke.getKeyStroke("DOWN"), JComponent.WHEN_IN_FOCUSED_WINDOW);
+//	    primary.registerKeyboardAction(leftAction, "LEFT", KeyStroke.getKeyStroke("LEFT"), JComponent.WHEN_IN_FOCUSED_WINDOW);
+//	    primary.registerKeyboardAction(rightAction, "RIGHT", KeyStroke.getKeyStroke("RIGHT"), JComponent.WHEN_IN_FOCUSED_WINDOW);
+//	    primary.registerKeyboardAction(spaceAction, "SPACE", KeyStroke.getKeyStroke("SPACE"), JComponent.WHEN_IN_FOCUSED_WINDOW);
 	    
 	    sendButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -210,6 +272,13 @@ public class GameScreen extends JFrame{
 				}
 				chatArea.setText(chatArea.getText() + "\n" + username + ": " + chatField.getText());
 				chatField.setText("");
+			}
+		});
+		
+		logoutButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				prevScreen.prevScreen.setVisible(true);
 			}
 		});
 	}
