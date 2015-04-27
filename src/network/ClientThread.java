@@ -71,6 +71,7 @@ public class ClientThread extends Thread {
 						mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.gameScreen.setVisible(true);
 						mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.setVisible(false);
 					} else if (str.charAt(0) == 'I') {
+						System.out.println("String before concat is " + str + "!");
 						str = str.substring(2);
 						System.out.println("I detected?");
 						System.out.println(str);

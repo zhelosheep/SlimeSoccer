@@ -331,7 +331,7 @@ public class MainMenuUserPlaySlime extends JFrame{
 						((MainMenuUserPlayPlayer) prevScreen).prevScreen.sWriter.println("IA" + p1SlimeType); // append game settings!						
 						((MainMenuUserPlayPlayer) prevScreen).prevScreen.sWriter.flush();						
 					} else {
-						((MainMenuUserPlayPlayer) prevScreen).prevScreen.sWriter.println("IB1" + p2SlimeType); // append game settings!						
+						((MainMenuUserPlayPlayer) prevScreen).prevScreen.sWriter.println("IB" + p2SlimeType); // append game settings!						
 						((MainMenuUserPlayPlayer) prevScreen).prevScreen.sWriter.flush();
 					}
 				}
