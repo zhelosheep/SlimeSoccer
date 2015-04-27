@@ -157,6 +157,11 @@ public class ClientThread extends Thread {
 						}
 					} else if (str.charAt(0) == 'M') {
 						String[] splited = str.split("\\s+");
+						
+						for (int i = 0; i < splited.length; i++) {
+							System.out.println(i + " " + splited[i]);
+						}
+						
 						Variables ptr = mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.gameScreen.primary.variables;
 						ptr.ball.x = Integer.parseInt(splited[1]);
 						ptr.ball.y = Integer.parseInt(splited[2]);
