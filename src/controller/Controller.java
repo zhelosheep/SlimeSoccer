@@ -2,13 +2,18 @@ package controller;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.io.PrintWriter;
+import view.GameScreen;
+import view.MainMenuUserWaiting;
 
 public class Controller implements KeyListener {
     // Keyboard states (true = pressed, false = not pressed)
     private static boolean[] keyboardState = new boolean[525];
-    PrintWriter sWriter;
-   
+    private GameScreen gs;
+    
+    public Controller(GameScreen gs) {
+    	this.gs = gs;
+    }
+    
     public static boolean keyboardKeyState(int key) {
         return keyboardState[key];
     }
@@ -22,35 +27,45 @@ public class Controller implements KeyListener {
 		char c = event.getKeyChar();
 		System.out.println(c);
 		
-//		if (event.getKeyCode() == KeyEvent.VK_UP)
-//		{
-//			sWriter.println("K" + "up");
-//			sWriter.flush();
-//		}
-//		
-//		else if (event.getKeyCode() == KeyEvent.VK_DOWN)
-//		{
-//			sWriter.println("K" + "down");
-//			sWriter.flush();
-//		}
-//		
-//		else if (event.getKeyCode() == KeyEvent.VK_LEFT)
-//		{
-//			sWriter.println("K" + "left");
-//			sWriter.flush();
-//		}
-//		
-//		else if (event.getKeyCode() == KeyEvent.VK_RIGHT)
-//		{
-//			sWriter.println("K" + "right");
-//			sWriter.flush();
-//		}
-//		
-//		else if (event.getKeyCode() == KeyEvent.VK_SPACE)
-//		{
-//			sWriter.println("K" + "space");
-//			sWriter.flush();
-//		}
+		if (event.getKeyCode() == KeyEvent.VK_UP)
+		{
+			if (gs.isPvCGame) {
+				((MainMenuUserWaiting) gs.prevScreen.prevScreen).prevScreen.prevScreen.sWriter.println("K" + "up");
+				((MainMenuUserWaiting) gs.prevScreen.prevScreen).prevScreen.prevScreen.sWriter.flush();				
+			}
+		}
+		
+		else if (event.getKeyCode() == KeyEvent.VK_DOWN)
+		{
+			if (gs.isPvCGame) {
+				((MainMenuUserWaiting) gs.prevScreen.prevScreen).prevScreen.prevScreen.sWriter.println("K" + "down");
+				((MainMenuUserWaiting) gs.prevScreen.prevScreen).prevScreen.prevScreen.sWriter.flush();				
+			}
+		}
+		
+		else if (event.getKeyCode() == KeyEvent.VK_LEFT)
+		{
+			if (gs.isPvCGame) {
+				((MainMenuUserWaiting) gs.prevScreen.prevScreen).prevScreen.prevScreen.sWriter.println("K" + "left");
+				((MainMenuUserWaiting) gs.prevScreen.prevScreen).prevScreen.prevScreen.sWriter.flush();				
+			}
+		}
+		
+		else if (event.getKeyCode() == KeyEvent.VK_RIGHT)
+		{
+			if (gs.isPvCGame) {
+				((MainMenuUserWaiting) gs.prevScreen.prevScreen).prevScreen.prevScreen.sWriter.println("K" + "right");
+				((MainMenuUserWaiting) gs.prevScreen.prevScreen).prevScreen.prevScreen.sWriter.flush();				
+			}
+		}
+		
+		else if (event.getKeyCode() == KeyEvent.VK_SPACE)
+		{
+			if (gs.isPvCGame) {
+				((MainMenuUserWaiting) gs.prevScreen.prevScreen).prevScreen.prevScreen.sWriter.println("K" + "space");
+				((MainMenuUserWaiting) gs.prevScreen.prevScreen).prevScreen.prevScreen.sWriter.flush();				
+			}
+		}
 		
         keyboardState[event.getKeyCode()] = true;
 	}

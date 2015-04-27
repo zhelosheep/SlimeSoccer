@@ -29,7 +29,7 @@ public class MainMenuUserPlayPlayer extends JFrame{
 	JTextArea chatArea;
 	private JTextField chatField, usernameField;
 	private ImageIcon avatar;
-	MainMenuUser prevScreen;
+	public MainMenuUser prevScreen;
 	private static JLabel playPlayerLabel;
 	public MainMenuUserWaiting mainMenuUserWaiting;
 

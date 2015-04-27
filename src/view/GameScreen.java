@@ -5,11 +5,6 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.io.BufferedReader;
-import java.io.PrintWriter;
-
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -22,7 +17,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.text.DefaultCaret;
-
 import model.Ball;
 import model.Goal;
 import model.Slime;
@@ -36,7 +30,6 @@ import model.SlimeGeyser;
 import model.SlimeMagnet;
 import model.SlimeSuper;
 import model.SlimeSuperSize;
-import model.Variables;
 import network.GameThread;
 import controller.Controller;
 
@@ -48,17 +41,19 @@ public class GameScreen extends JFrame{
 	private JLabel slimeSoccerLabel, uniqueIDLabel;
 	private ImageIcon avatar;
 	private String username;
-	public BufferedReader sReader;
-	PrintWriter sWriter;
 	public Canvas primary;
 	public Controller controller;
 	GameThread gt; // delete later
+	public MainMenuUserPlaySlime prevScreen;
+	public boolean isPvCGame;
 	
-	public GameScreen(String username)
+	public GameScreen(String username, MainMenuUserPlaySlime prevScreen, boolean isPvCGame)
 	{
 		setSize(800, 600);
 		setLocation(300, 100);
 		this.username = username;
+		this.prevScreen = prevScreen;
+		this.isPvCGame = isPvCGame;
 		instantiateVariables();
 		addComponents();
 		addListeners();
@@ -78,7 +73,7 @@ public class GameScreen extends JFrame{
 		
 		gt = new GameThread("Outer Space", "SlimeBowAndArrow", "SlimeSuperSize", "shawnren", "josemama", 100, 100, 1, "");
 		// set up controller
-		controller = new Controller();
+		controller = new Controller(this);
 
 		primary = new Canvas();
 
@@ -147,8 +142,10 @@ public class GameScreen extends JFrame{
 		
 		sendButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				sWriter.println("C" + username + ": " + chatField.getText());
-				sWriter.flush();
+				if (!isPvCGame) {
+					((MainMenuUserWaiting) prevScreen.prevScreen).prevScreen.prevScreen.sWriter.println("D" + username + ": " + chatField.getText());
+					((MainMenuUserWaiting) prevScreen.prevScreen).prevScreen.prevScreen.sWriter.flush();					
+				}
 				chatArea.setText(chatArea.getText() + "\n" + username + ": " + chatField.getText());
 				chatField.setText("");
 			}
@@ -157,8 +154,10 @@ public class GameScreen extends JFrame{
 		chatField.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e)
 			{
-				sWriter.println("C" + username + ": " + chatField.getText());
-				sWriter.flush();
+				if (!isPvCGame) {
+					((MainMenuUserWaiting) prevScreen.prevScreen).prevScreen.prevScreen.sWriter.println("D" + username + ": " + chatField.getText());
+					((MainMenuUserWaiting) prevScreen.prevScreen).prevScreen.prevScreen.sWriter.flush();					
+				}
 				chatArea.setText(chatArea.getText() + "\n" + username + ": " + chatField.getText());
 				chatField.setText("");
 			}
@@ -308,7 +307,7 @@ public class GameScreen extends JFrame{
 	}
 	
 	public static void main(String[] args) {
-		GameScreen gamescreen = new GameScreen("techguyderp");
+		GameScreen gamescreen = new GameScreen("techguyderp", new MainMenuUserPlaySlime(new MainMenuUserWaiting(new MainMenuUserPlayPlayer(new MainMenuUser("techguyderp"))), false), false);
 		gamescreen.primary.variables = gamescreen.gt.game.variables;
 		gamescreen.primary.addKeyListener(gamescreen.controller);
 		gamescreen.setVisible(true);
