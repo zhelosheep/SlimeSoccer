@@ -22,6 +22,20 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.text.DefaultCaret;
 
+import model.Ball;
+import model.Goal;
+import model.Slime;
+import model.SlimeBomb;
+import model.SlimeBowAndArrow;
+import model.SlimeClone;
+import model.SlimeCosmic;
+import model.SlimeFireball;
+import model.SlimeFisher;
+import model.SlimeGeyser;
+import model.SlimeMagnet;
+import model.SlimeSuper;
+import model.SlimeSuperSize;
+
 public class SpectateScreen extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JFrame prevScreen;
@@ -29,6 +43,7 @@ public class SpectateScreen extends JFrame {
 	private JButton backButton, switchButton, randomButton, sendButton;
 	private JTextField gameIDField, chatField;
 	public JTextArea chatArea;
+	public Canvas primary;
 	public BufferedReader sReader;
 	public PrintWriter sWriter;
 	
@@ -50,6 +65,7 @@ public class SpectateScreen extends JFrame {
 		gameIDField = new JTextField(10);
 		chatField = new JTextField(10);
 		chatArea = new JTextArea();
+		primary = new Canvas();
 	}
 	
 	private void addComponents() {
@@ -67,9 +83,13 @@ public class SpectateScreen extends JFrame {
 
 		JPanel centerPanel = new JPanel();
 		centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.X_AXIS));
+		
 		JPanel leftPanel = new JPanel();
-		leftPanel.setPreferredSize(new Dimension(300, 200));
+		leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
+		leftPanel.setPreferredSize(new Dimension(600, 450));
 		leftPanel.setBorder(BorderFactory.createEmptyBorder(0, 20, 15, 0));
+		leftPanel.add(primary);
+		
 		JPanel rightPanel = new JPanel();
 		rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
 		JPanel jp1 = new JPanel();
@@ -170,4 +190,113 @@ public class SpectateScreen extends JFrame {
 			((MainMenuUserSpectate) prevScreen).quit();
 		}
 	}	
+	
+	public void setVariables(String background, String player1_slimeType, String player2_slimeType, String player1_username, String player2_username, int player1_manaMax, int player2_manaMax, int manaRegenerationRate, String specialMode) {
+		primary.variables.setBackground(background);
+		primary.variables.setSlimeImage(1, player1_slimeType);
+		primary.variables.setSlimeImage(2, player2_slimeType);
+		primary.variables.player1_username = player1_username;
+		primary.variables.player2_username = player2_username;
+		primary.variables.player1_manaCurrent = player1_manaMax;
+		primary.variables.player2_manaCurrent = player2_manaMax;
+		primary.variables.player1_manaMax = player1_manaMax;
+		primary.variables.player2_manaMax = player2_manaMax;
+		primary.variables.player1_score = 0;
+		primary.variables.player2_score = 0;
+		primary.variables.manaRegenerationRate = manaRegenerationRate;
+		primary.variables.specialMode = specialMode;
+		primary.variables.player1scored = false;
+		primary.variables.player2scored = false;
+		
+		System.out.println(player1_slimeType + " " + player2_slimeType);
+
+		if (player1_slimeType.equals("SlimeBomb")) {
+			primary.variables.slime1 = new SlimeBomb(primary.variables.leftBoundary + 50, primary.variables.groundLevel, 1, primary.variables.imgSlime1, primary.variables);
+		} else if (player1_slimeType.equals("SlimeBowAndArrow")) {
+			primary.variables.slime1 = new SlimeBowAndArrow(primary.variables.leftBoundary + 50, primary.variables.groundLevel, 1, primary.variables.imgSlime1, primary.variables);
+		} else if (player1_slimeType.equals("SlimeClone")) {
+			primary.variables.slime1 = new SlimeClone(primary.variables.leftBoundary + 50, primary.variables.groundLevel, 1, primary.variables.imgSlime1, primary.variables);
+		} else if (player1_slimeType.equals("SlimeCosmic")) {
+			primary.variables.slime1 = new SlimeCosmic(primary.variables.leftBoundary + 50, primary.variables.groundLevel, 1, primary.variables.imgSlime1, primary.variables);
+		} else if (player1_slimeType.equals("SlimeFireball")) {
+			primary.variables.slime1 = new SlimeFireball(primary.variables.leftBoundary + 50, primary.variables.groundLevel, 1, primary.variables.imgSlime1, primary.variables);
+		} else if (player1_slimeType.equals("SlimeFisher")) {
+			primary.variables.slime1 = new SlimeFisher(primary.variables.leftBoundary + 50, primary.variables.groundLevel, 1, primary.variables.imgSlime1, primary.variables);
+		} else if (player1_slimeType.equals("SlimeGeyser")) {
+			primary.variables.slime1 = new SlimeGeyser(primary.variables.leftBoundary + 50, primary.variables.groundLevel, 1, primary.variables.imgSlime1, primary.variables);
+		} else if (player1_slimeType.equals("SlimeMagnet")) {
+			primary.variables.slime1 = new SlimeMagnet(primary.variables.leftBoundary + 50, primary.variables.groundLevel, 1, primary.variables.imgSlime1, primary.variables);
+		} else if (player1_slimeType.equals("SlimeSuperSize")) {
+			primary.variables.slime1 = new SlimeSuperSize(primary.variables.leftBoundary + 50, primary.variables.groundLevel, 1, primary.variables.imgSlime1, primary.variables);
+		} else if (player1_slimeType.equals("SlimeSuper")) {
+			primary.variables.slime1 = new SlimeSuper(primary.variables.leftBoundary + 50, primary.variables.groundLevel, 1, primary.variables.imgSlime1, primary.variables);
+		} else if (player1_slimeType.equals("Slime3D")) {
+			primary.variables.slime1 = new Slime(primary.variables.leftBoundary + 50, primary.variables.groundLevel, 1, primary.variables.imgSlime1, primary.variables);
+		} else if (player1_slimeType.equals("SlimeButterfly")) {
+			primary.variables.slime1 = new Slime(primary.variables.leftBoundary + 50, primary.variables.groundLevel, 1, primary.variables.imgSlime1, primary.variables);
+		} else if (player1_slimeType.equals("SlimeRonaldo")) {
+			primary.variables.slime1 = new Slime(primary.variables.leftBoundary + 50, primary.variables.groundLevel, 1, primary.variables.imgSlime1, primary.variables);
+		} else if (player1_slimeType.equals("SlimeCrossEyed")) {
+			primary.variables.slime1 = new Slime(primary.variables.leftBoundary + 50, primary.variables.groundLevel, 1, primary.variables.imgSlime1, primary.variables);
+		} else if (player1_slimeType.equals("SlimeCrown")) {
+			primary.variables.slime1 = new Slime(primary.variables.leftBoundary + 50, primary.variables.groundLevel, 1, primary.variables.imgSlime1, primary.variables);
+		} else if (player1_slimeType.equals("SlimeDunce")) {
+			primary.variables.slime1 = new Slime(primary.variables.leftBoundary + 50, primary.variables.groundLevel, 1, primary.variables.imgSlime1, primary.variables);
+		} else if (player1_slimeType.equals("LSlime")) {
+			primary.variables.slime1 = new Slime(primary.variables.leftBoundary + 50, primary.variables.groundLevel, 1, primary.variables.imgSlime1, primary.variables);
+		} else if (player1_slimeType.equals("SlimePotato")) {
+			primary.variables.slime1 = new Slime(primary.variables.leftBoundary + 50, primary.variables.groundLevel, 1, primary.variables.imgSlime1, primary.variables);
+		} else if (player1_slimeType.equals("SlimeSweater")) {
+			primary.variables.slime1 = new Slime(primary.variables.leftBoundary + 50, primary.variables.groundLevel, 1, primary.variables.imgSlime1, primary.variables);
+		}
+		
+		if (player2_slimeType.equals("SlimeBomb")) {
+			primary.variables.slime2 = new SlimeBomb(primary.variables.rightBoundary - 50, primary.variables.groundLevel, 2, primary.variables.imgSlime2, primary.variables);
+		} else if (player2_slimeType.equals("SlimeBowAndArrow")) {
+			primary.variables.slime2 = new SlimeBowAndArrow(primary.variables.rightBoundary - 50, primary.variables.groundLevel, 2, primary.variables.imgSlime2, primary.variables);
+		} else if (player2_slimeType.equals("SlimeClone")) {
+			primary.variables.slime2 = new SlimeClone(primary.variables.rightBoundary - 50, primary.variables.groundLevel, 2, primary.variables.imgSlime2, primary.variables);
+		} else if (player2_slimeType.equals("SlimeCosmic")) {
+			primary.variables.slime2 = new SlimeCosmic(primary.variables.rightBoundary - 50, primary.variables.groundLevel, 2, primary.variables.imgSlime2, primary.variables);
+		} else if (player2_slimeType.equals("SlimeFireball")) {
+			primary.variables.slime2 = new SlimeFireball(primary.variables.rightBoundary - 50, primary.variables.groundLevel, 2, primary.variables.imgSlime2, primary.variables);
+		} else if (player2_slimeType.equals("SlimeFisher")) {
+			primary.variables.slime2 = new SlimeFisher(primary.variables.rightBoundary - 50, primary.variables.groundLevel, 2, primary.variables.imgSlime2, primary.variables);
+		} else if (player2_slimeType.equals("SlimeGeyser")) {
+			primary.variables.slime2 = new SlimeGeyser(primary.variables.rightBoundary - 50, primary.variables.groundLevel, 2, primary.variables.imgSlime2, primary.variables);
+		} else if (player2_slimeType.equals("SlimeMagnet")) {
+			primary.variables.slime2 = new SlimeMagnet(primary.variables.rightBoundary - 50, primary.variables.groundLevel, 2, primary.variables.imgSlime2, primary.variables);
+		} else if (player2_slimeType.equals("SlimeSuperSize")) {
+			primary.variables.slime2 = new SlimeSuperSize(primary.variables.rightBoundary - 50, primary.variables.groundLevel, 2, primary.variables.imgSlime2, primary.variables);
+		} else if (player2_slimeType.equals("SlimeSuper")) {
+			primary.variables.slime2 = new SlimeSuper(primary.variables.rightBoundary - 50, primary.variables.groundLevel, 2, primary.variables.imgSlime2, primary.variables);
+		} else if (player2_slimeType.equals("Slime3D")) {
+			primary.variables.slime2 = new Slime(primary.variables.rightBoundary - 50, primary.variables.groundLevel, 2, primary.variables.imgSlime2, primary.variables);
+		} else if (player2_slimeType.equals("SlimeButterfly")) {
+			primary.variables.slime2 = new Slime(primary.variables.rightBoundary - 50, primary.variables.groundLevel, 2, primary.variables.imgSlime2, primary.variables);
+		} else if (player2_slimeType.equals("SlimeRonaldo")) {
+			primary.variables.slime2 = new Slime(primary.variables.rightBoundary - 50, primary.variables.groundLevel, 2, primary.variables.imgSlime2, primary.variables);
+		} else if (player2_slimeType.equals("SlimeCrossEyed")) {
+			primary.variables.slime2 = new Slime(primary.variables.rightBoundary - 50, primary.variables.groundLevel, 2, primary.variables.imgSlime2, primary.variables);
+		} else if (player2_slimeType.equals("SlimeCrown")) {
+			primary.variables.slime2 = new Slime(primary.variables.rightBoundary - 50, primary.variables.groundLevel, 2, primary.variables.imgSlime2, primary.variables);
+		} else if (player2_slimeType.equals("SlimeDunce")) {
+			primary.variables.slime2 = new Slime(primary.variables.rightBoundary - 50, primary.variables.groundLevel, 2, primary.variables.imgSlime2, primary.variables);
+		} else if (player2_slimeType.equals("LSlime")) {
+			primary.variables.slime2 = new Slime(primary.variables.rightBoundary - 50, primary.variables.groundLevel, 2, primary.variables.imgSlime2, primary.variables);
+		} else if (player2_slimeType.equals("SlimePotato")) {
+			primary.variables.slime2 = new Slime(primary.variables.rightBoundary - 50, primary.variables.groundLevel, 2, primary.variables.imgSlime2, primary.variables);
+		} else if (player2_slimeType.equals("SlimeSweater")) {
+			primary.variables.slime2 = new Slime(primary.variables.rightBoundary - 50, primary.variables.groundLevel, 2, primary.variables.imgSlime2, primary.variables);
+		}
+		primary.variables.ball = new Ball((primary.variables.leftBoundary + primary.variables.rightBoundary)/2, primary.variables.groundLevel - 12 - 100, primary.variables);
+		primary.variables.goal1 = new Goal(primary.variables.leftBoundary, primary.variables);
+		primary.variables.goal2 = new Goal(primary.variables.rightBoundary, primary.variables);
+		primary.begin();
+	}
+	
+//	static public void main(String [] args) {
+//		SpectateScreen s = new SpectateScreen(false, null);
+//		s.setVisible(true);
+//	}
 }
