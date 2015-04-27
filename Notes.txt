@@ -5,22 +5,6 @@ Things that need to be fixed:
 3) up key is working evne if you're focused in chat GameScreen
 4)
 
-
-
-
-
-
-E	player1 xcoord; string -> int
-F	player1 ycoord; string -> int
-G	player2 xcoord; string -> int
-H	player2 ycoord; string -> int
-
-I	ball xcoord; string -> int
-J	ball ycoord; string -> int
-
-
-
-
 Best two out of three games
 Whoever reaches a score of two first.
 
