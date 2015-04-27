@@ -10,7 +10,7 @@ public class Canvas extends JPanel implements Runnable {
 	private static final long serialVersionUID = 1L;
 	Thread gameLoop;
 	int numTimesLeftToPrintScore, numTimesToPrintScore = 30;
-	Variables variables;
+	public Variables variables;
 
 	public Canvas() {
 		// set up JPanel stuff

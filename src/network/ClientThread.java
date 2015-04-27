@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.swing.JFrame;
 
+import model.Variables;
 import view.MainMenuGuest;
 import view.MainMenuUser;
 
@@ -28,6 +29,29 @@ public class ClientThread extends Thread {
 					// str.charAt(0) is an identifier we add which tells us what to do with the string
 					if (str.charAt(0) == 'C') { // chat
 						mmg.chatArea.setText(mmg.chatArea.getText() + "\n" + str.substring(1));
+					} else if (str.charAt(0) == 'M') {
+						String[] splited = str.split("\\s+");
+						Variables ptr = mmg.spectateScreen.primary.variables;
+						ptr.ball.x = Integer.parseInt(splited[1]);
+						ptr.ball.y = Integer.parseInt(splited[2]);
+						ptr.ball.width = Integer.parseInt(splited[3]);
+						ptr.ball.height = Integer.parseInt(splited[4]);
+						ptr.slime1.x = Integer.parseInt(splited[5]);
+						ptr.slime1.y = Integer.parseInt(splited[6]);
+						ptr.slime1.width = Integer.parseInt(splited[7]);
+						ptr.slime1.height = Integer.parseInt(splited[8]);
+						ptr.slime2.x = Integer.parseInt(splited[9]);
+						ptr.slime2.y = Integer.parseInt(splited[10]);
+						ptr.slime2.width = Integer.parseInt(splited[11]);
+						ptr.slime2.height = Integer.parseInt(splited[12]);
+						ptr.player1_manaCurrent = Integer.parseInt(splited[13]);
+						ptr.player2_manaCurrent = Integer.parseInt(splited[14]);
+						ptr.player1scored = Boolean.parseBoolean(splited[15]);
+						ptr.player2scored = Boolean.parseBoolean(splited[16]);
+						ptr.gameOver = Boolean.parseBoolean(splited[17]);
+						ptr.playerThatWon = Integer.parseInt(splited[18]);
+						ptr.player1_score = Integer.parseInt(splited[19]);
+						ptr.player2_score = Integer.parseInt(splited[20]);
 					}
 				} else { // this one uses mmu
 					str = mmu.sReader.readLine();
@@ -123,6 +147,29 @@ public class ClientThread extends Thread {
 								mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.p2SlimeType = str;
 							}
 						}
+					} else if (str.charAt(0) == 'M') {
+						String[] splited = str.split("\\s+");
+						Variables ptr = mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.gameScreen.primary.variables;
+						ptr.ball.x = Integer.parseInt(splited[1]);
+						ptr.ball.y = Integer.parseInt(splited[2]);
+						ptr.ball.width = Integer.parseInt(splited[3]);
+						ptr.ball.height = Integer.parseInt(splited[4]);
+						ptr.slime1.x = Integer.parseInt(splited[5]);
+						ptr.slime1.y = Integer.parseInt(splited[6]);
+						ptr.slime1.width = Integer.parseInt(splited[7]);
+						ptr.slime1.height = Integer.parseInt(splited[8]);
+						ptr.slime2.x = Integer.parseInt(splited[9]);
+						ptr.slime2.y = Integer.parseInt(splited[10]);
+						ptr.slime2.width = Integer.parseInt(splited[11]);
+						ptr.slime2.height = Integer.parseInt(splited[12]);
+						ptr.player1_manaCurrent = Integer.parseInt(splited[13]);
+						ptr.player2_manaCurrent = Integer.parseInt(splited[14]);
+						ptr.player1scored = Boolean.parseBoolean(splited[15]);
+						ptr.player2scored = Boolean.parseBoolean(splited[16]);
+						ptr.gameOver = Boolean.parseBoolean(splited[17]);
+						ptr.playerThatWon = Integer.parseInt(splited[18]);
+						ptr.player1_score = Integer.parseInt(splited[19]);
+						ptr.player2_score = Integer.parseInt(splited[20]);
 					}
 				}
 			} catch (IOException ioe) {
