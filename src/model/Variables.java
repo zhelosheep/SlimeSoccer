@@ -60,7 +60,7 @@ public class Variables {
 		} catch (IOException ioe) {
 			System.out.println("IOException in Variables(): " + ioe.getMessage());
 		}
-		gameID = String.valueOf(ServerThread.idCounter.getAndIncrement());
+		this.gameID = ServerThread.gameID.toString();
 
 	}
 	

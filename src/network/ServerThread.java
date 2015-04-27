@@ -8,6 +8,7 @@ import java.net.ServerSocket;
 import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.LinkedList;
+import java.util.UUID;
 import java.util.Vector;
 
 
@@ -19,7 +20,7 @@ public class ServerThread extends Thread{
 	HashSet<ServerHelperThread> waitingPlayers;
 	boolean b = true;
 	
-	public static Integer idCounter = 1; // for generating unique game ids
+	public static Integer gameID = 1, gameIDTimesRequested = 0; // unique game id
 
 	ServerThread(int port) {
 		ongoingGames = new Hashtable<GameThread, HashSet<ServerHelperThread>>();
@@ -31,6 +32,18 @@ public class ServerThread extends Thread{
 			System.out.println("IOException in ServerThread();" + ioe.getMessage());
 		}
 		shtVector = new Vector<ServerHelperThread>();
+	}
+	
+	public int getGameID() {
+		if (gameIDTimesRequested == 2) { // if gameID has been requested twice already, reset gameIDTimesRequested and increment gameID
+			gameIDTimesRequested = 1;
+			gameID++;
+		} else if (gameIDTimesRequested == 0) {
+			gameIDTimesRequested++;
+		} else if (gameIDTimesRequested == 1) {
+			gameIDTimesRequested++;
+		}
+		return gameID;
 	}
 	
 	public void run() {
