@@ -46,7 +46,7 @@ public class MainMenuUserPlayPlayer extends JFrame{
 	}
 	
 	private void instantiateVariables() {
-		avatar = SignUpPage.avatarImages[LoginPage.sqli.getImage(getUsername())];
+		avatar = LoginPage.avatarImages[LoginPage.sqli.getImage(getUsername())];
 		avatarButton = new JButton(avatar);
 		searchButton = new JButton("Search");
 		searchButton.setEnabled(false);

@@ -43,7 +43,7 @@ public class MainMenuUserSpectate extends JFrame{
 	
 	private void instantiateVariables() {
 		spectateLabel = new JLabel(new ImageIcon((getClass().getClassLoader().getResource("Spectate.png"))));
-		avatar = SignUpPage.avatarImages[LoginPage.sqli.getImage(prevScreen.getUsername())];
+		avatar = LoginPage.avatarImages[LoginPage.sqli.getImage(prevScreen.getUsername())];
 		avatarButton = new JButton(avatar);
 		searchButton = new JButton("Search");
 		randomButton = new JButton("?? Random ??");
