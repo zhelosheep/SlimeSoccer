@@ -61,7 +61,7 @@ public class ServerHelperThread extends Thread {
 					C - chat
 					D - lobbychat
 					
-					E - process key pressed (send x1, x2, y1, y2, ballx, bally)
+					E - 
 					F - 
 					G - 
 					H - 
@@ -222,7 +222,7 @@ public class ServerHelperThread extends Thread {
 									//tokens[6] = regenRate
 									//tokens[7] = totalMana
 								}
-								GameThread gt = new GameThread(tokens[5], tokens[0], tokens[1], tokens[2], tokens[3], Integer.valueOf(tokens[7]), Integer.valueOf(tokens[7]), Integer.valueOf(tokens[6]), tokens[4]);
+								GameThread gt = new GameThread(tokens[5], tokens[0], tokens[1], tokens[2], tokens[3], Integer.valueOf(tokens[7]), Integer.valueOf(tokens[7]), Integer.valueOf(tokens[6]), tokens[4], st, false);
 								st.ongoingGames.put(gt, set);
 								// made the game on the server, now set variables for the two clients
 								this.pw.println("G" + str);

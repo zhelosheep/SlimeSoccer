@@ -71,31 +71,163 @@ public class ClientThread extends Thread {
 						mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.gameScreen.setVisible(true);
 						mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.setVisible(false);
 					} else if (str.charAt(0) == 'I') {
-						String delims = "[$]";
-						String [] tokens = str.substring(1).split(delims);
-						for (int i = 0; i < tokens.length; i++)
+						str = str.substring(2);
+						System.out.println("I detected?");
+						System.out.println(str);
+						
+						int index = convertNametoIndex(str);
+						
+						if (mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.isPlayer1 == false)
 						{
-							System.out.println("In ClientThread: Read an I-Label string");
-							System.out.println(tokens[i]);
+							System.out.println("Entering if PP is 1");
+							System.out.println(index);
+							//if slime is normal 9
+							if (index < 10)
+							{
+								System.out.println("Slime is normal; slime is player2");
+								mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.p1SlimeImageLabel.setIcon(mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.slimeButtons[index].getIcon());
+								mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.p1SlimeNameLabel.setText(mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.slimeNames[index]);
+								mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.p1SlimeAbilityLabel.setText(mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.slimeAbilities[index]);
+								mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.p1SlimeType = str;
+							}
+							
+							//if slime is special
+							if (index >= 10)			
+							{
+								System.out.println("Slime is special; slime is player2");
+								mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.p1SlimeImageLabel.setIcon(mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.specialSlimes[index-10].getIcon());
+								mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.p1SlimeNameLabel.setText(mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.specialSlimeNames[index-10]);
+								mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.p1SlimeAbilityLabel.setText(mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.specialSlimeDescriptions[index-10]);
+								mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.p1SlimeType = str;
+							}
 						}
 						
-						if (mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.isPlayer1 == true)
+						else if (mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.isPlayer1 == true)
 						{
-							mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.p2SlimeType = tokens[1];
+							System.out.println("Entering if PP is not 1");
+							System.out.println(index);
+							
+							//if slime is normal 9
+							if (index < 10)
+							{
+								System.out.println("Slime is normal; slime is player1");
+								mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.p2SlimeImageLabel.setIcon(mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.slimeButtons[index].getIcon());
+								mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.p2SlimeNameLabel.setText(mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.slimeNames[index]);
+								mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.p2SlimeAbilityLabel.setText(mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.slimeAbilities[index]);
+								mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.p2SlimeType = str;
+							}
+							
+							//if slime is special
+							if (index >= 10)			
+							{
+								System.out.println("Slime is special; slime is player1");
+								mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.p2SlimeImageLabel.setIcon(mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.specialSlimes[index-10].getIcon());
+								mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.p2SlimeNameLabel.setText(mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.specialSlimeNames[index-10]);
+								mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.p2SlimeAbilityLabel.setText(mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.specialSlimeDescriptions[index-10]);
+								mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.p2SlimeType = str;
+							}
 						}
-						
-						else if (mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.isPlayer1 == false)
-						{
-							mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.p1SlimeType = tokens[0];
-						}
-//						mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.setSlime(Integer.parseInt(str.substring(1)));
-//						mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.p1SlimeType = tokens[0];
-						
 					}
 				}
 			} catch (IOException ioe) {
 				System.out.println("IOException in ClientThread.run(): " + ioe.getMessage());
 			}
 		}
+	}
+	
+	public int convertNametoIndex(String name)
+	{
+		System.out.println("The string to convert is " + name + "!");
+		if (name.equals("SlimeBomb"))
+		{
+			return 0;
+		}
+		
+		else if (name.equals("SlimeBowAndArrow"))
+		{
+			return 1;
+		}
+		
+		else if (name.equals("SlimeClone"))
+		{
+			return 2;
+		}
+		
+		else if (name.equals("SlimeCosmic"))
+		{
+			return 3;
+		}
+		
+		else if (name.equals("SlimeFireBall"))
+		{
+			return 4;
+		}
+		
+		else if (name.equals("SlimeFisher"))
+		{
+			return 5;
+		}
+		
+		else if (name.equals("SlimeGeyser"))
+		{
+			return 6;
+		}
+		
+		else if (name.equals("SlimeMagnet"))
+		{
+			return 7;
+		}
+		
+		else if (name.equals("SlimeSuperSize"))
+		{
+			return 8;
+		}
+		
+		else if (name.equals("SlimeSuper"))
+		{
+			return 9;
+		}
+		
+		else if (name.equals("Slime3D"))
+		{
+			return 10;
+		}
+		
+		else if (name.equals("SlimeButterfly"))
+		{
+			return 11;
+		}
+		
+		else if (name.equals("SlimeRonaldo"))
+		{
+			return 12;
+		}
+		
+		else if (name.equals("SlimeSweater"))
+		{
+			return 13;
+		}
+		
+		else if (name.equals("SlimeCrown"))
+		{
+			return 14;
+		}
+		
+		else if (name.equals("SlimeDunce"))
+		{
+			return 15;
+		}
+		
+		else if (name.equals("LSlime"))
+		{
+			return 16;
+		}
+		
+		else if (name.equals("SlimePotato"))
+		{
+			return 17;
+		}
+		
+		return 20;
 	}
 }
