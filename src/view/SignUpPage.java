@@ -142,7 +142,7 @@ public class SignUpPage extends JFrame{
 				if (!LoginPage.sqli.findUser(u) && !(u.toLowerCase().equals("guest"))) {
 					LoginPage.sqli.register(fn, ln, u, pw, avatar, desc);
 					if (LoginPage.sqli.findUser(u)) {
-						(new MainMenuUser(usernameField.getText())).setVisible(true);
+						(new LoginPage()).setVisible(true);
 						dispose();
 					} else {
 						JOptionPane.showMessageDialog(SignUpPage.this, "Signup failed", "Registration Error", JOptionPane.ERROR_MESSAGE);
