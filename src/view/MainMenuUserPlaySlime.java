@@ -270,12 +270,12 @@ public class MainMenuUserPlaySlime extends JFrame{
 		JLabel gameBackLabel = new JLabel("Game Background");
 		JLabel manaRegenLabel = new JLabel("Mana Regeneration Rate (%)");
 		JLabel totalManaLabel = new JLabel("Total Mana (%)");
-		regenRateSlider.setMaximum(100);
-		regenRateSlider.setMinimum(0);
+		regenRateSlider.setMaximum(3);
+		regenRateSlider.setMinimum(1);
 		regenRateSlider.setPaintLabels(true);
 		regenRateSlider.setPaintTicks(true);
-		regenRateSlider.setMajorTickSpacing(50);
-		regenRateSlider.setValue(50);
+		regenRateSlider.setMajorTickSpacing(1);
+		regenRateSlider.setValue(2);
 		totalManaSlider.setMaximum(100);
 		totalManaSlider.setMinimum(0);
 		totalManaSlider.setPaintLabels(true);
