@@ -165,7 +165,6 @@ public class ClientThread extends Thread {
 //							System.out.println(i + " " + splited[i]);
 //						}
 						
-//						System.out.println(splited[13] + " and " + splited[14]);
 						
 						Variables ptr = mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.gameScreen.primary.variables;
 						ptr.ball.x = Integer.parseInt(splited[1]);

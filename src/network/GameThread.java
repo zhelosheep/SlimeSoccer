@@ -32,10 +32,12 @@ public class GameThread extends Thread {
             				game.variables.player1_manaCurrent + " " + game.variables.player2_manaCurrent + " " + game.variables.player1scored + " " + game.variables.player2scored + " " + 
             				game.variables.gameOver + " " + game.variables.playerThatWon + " " + game.variables.player1_score + " " + game.variables.player2_score;
             
+            
             // repaint screen
             // tell the canvases to paint themselves
             for (ServerHelperThread thread : st.ongoingGames.get(this)) {
-            	thread.pw.println(output);
+                thread.pw.println(output);
+                thread.pw.flush();
             }
             
             game.variables.player1scored = false;

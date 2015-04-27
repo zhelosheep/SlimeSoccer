@@ -240,20 +240,36 @@ public class Slime {
 			if (!variables.p1_keyboardState[4]) {
 	        	retractSpecialPower();
 				if (variables.player1_manaCurrent < variables.player1_manaMax) {
-		        	variables.player1_manaCurrent += variables.manaRegenerationRate;
+					if (variables.player1_manaCurrent + variables.manaRegenerationRate < variables.player1_manaMax) { 
+						variables.player1_manaCurrent = variables.player1_manaMax;
+					} else {
+			        	variables.player1_manaCurrent += variables.manaRegenerationRate;
+					}
 				}
 				if (variables.player2_manaCurrent < variables.player2_manaMax) {
-		        	variables.player2_manaCurrent += variables.manaRegenerationRate;
+					if (variables.player2_manaCurrent + variables.manaRegenerationRate < variables.player2_manaMax) { 
+						variables.player2_manaCurrent = variables.player2_manaMax;
+					} else {
+			        	variables.player2_manaCurrent += variables.manaRegenerationRate;
+					}
 				}
 	        }			
 		} else {
 			if (!variables.p2_keyboardState[4]) {
 	        	retractSpecialPower();
 				if (variables.player1_manaCurrent < variables.player1_manaMax) {
-		        	variables.player1_manaCurrent += variables.manaRegenerationRate;
+					if (variables.player1_manaCurrent + variables.manaRegenerationRate < variables.player1_manaMax) { 
+						variables.player1_manaCurrent = variables.player1_manaMax;
+					} else {
+			        	variables.player1_manaCurrent += variables.manaRegenerationRate;
+					}
 				}
 				if (variables.player2_manaCurrent < variables.player2_manaMax) {
-		        	variables.player2_manaCurrent += variables.manaRegenerationRate;
+					if (variables.player2_manaCurrent + variables.manaRegenerationRate < variables.player2_manaMax) { 
+						variables.player2_manaCurrent = variables.player2_manaMax;
+					} else {
+			        	variables.player2_manaCurrent += variables.manaRegenerationRate;
+					}
 				}
 	        }
 		}
