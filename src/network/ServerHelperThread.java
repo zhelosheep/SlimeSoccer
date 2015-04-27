@@ -41,17 +41,36 @@ public class ServerHelperThread extends Thread {
 							}
 						}
 					}
+					else if (str.charAt(0) == 'D' )
+					{
+						synchronized (st.ongoingGames) {
+							for (Set<ServerHelperThread> set : st.ongoingGames.values()) {
+								if (set.contains(this)) {
+									for (int j = 0; j < set.size(); j++) {
+										if (j != i) {
+											st.shtVector.elementAt(j).pw.println(str);
+											st.shtVector.elementAt(j).pw.flush();
+										}
+									}
+								}
+							}
+						}
+					}
 					
 					/*Corresponding data transfers
 					C - chat
+					D - lobbychat
 					
-					E - player1 xcoord
-					F - player1 ycoord
-					G - player2 xcoord
-					H - player2 ycoord
+					E - process key pressed (send x1, x2, y1, y2, ballx, bally)
+					F - 
+					G - 
+					H - 
 					
-					I - ball xcoord
-					J - ball ycoord
+					I - transmit slime selection
+					J -
+					
+					K - player1 key
+					L - player2 key
 					
 					M - get random game (spectate)
 					N - find specific game (spectate)
@@ -60,44 +79,59 @@ public class ServerHelperThread extends Thread {
 					Q - add to waiting (play)
 					R - remove from random and waiting
 					S - spectate!
-
+					T - finish playing game
+					U - leave spectating
+					
 					Z - remove all
 					*/
 					
 					// TO DO: Parser in the clientthread!
-					else if (str.charAt(0) == 'E')	//player1 xcoord
+					else if (str.charAt(0) == 'E')	
 					{
 						//push the string to a player1 handler which will parse into integer
 					}
 					
-					else if (str.charAt(0) == 'F') //player1 ycoord
+					else if (str.charAt(0) == 'F') 
 					{
 						//push the string to a player1 handler which will parse into integer
 					}
 					
-					else if (str.charAt(0) == 'G') //player2 xcoord
+					else if (str.charAt(0) == 'G') 
 					{
 						//push the string to a player2 handler which will parse into integer
 					}
 					
-					else if (str.charAt(0) == 'H') //player2 ycoord
+					else if (str.charAt(0) == 'H') 
 					{
 						//push the string to a player2 handler which will parse into integer
 					}
 					
-					else if (str.charAt(0) == 'I') //ball xcoord
+					else if (str.charAt(0) == 'I') 
 					{
-						//push the string to a ball handler which will parse into integer
+						this.opponentThread.pw.println(str);
+						this.opponentThread.pw.flush();
 					}
 					
-					else if (str.charAt(0) == 'J') //ball ycoord
+					else if (str.charAt(0) == 'J') 
 					{
 						//push the string to a ball handler which will parse into integer
 					} 
+					
+					else if (str.charAt(0) == 'K') //player 1 key detection
+					{
+						System.out.println("in K");
+						str = str.substring(1);	//lop off the K
+					}
+					
+					else if (str.charAt(0) == 'L') //player 2 key detection
+					{
+						System.out.println("in L");
+						str = str.substring(1); //lop off the L
+					}
 
 					else if (str.charAt(0) == 'M')
 					{
-
+						
 					}
 
 					else if (str.charAt(0) == 'N')
@@ -119,9 +153,9 @@ public class ServerHelperThread extends Thread {
 								str = str.substring(2);
 								String delims = "[$]";
 								String [] tokens = str.split(delims);
-								for (int i = 0; i < tokens.length; i++)
+								for (int j = 0; j < tokens.length; j++)
 								{
-									System.out.println(tokens[i]);
+									System.out.println(tokens[j]);
 									//tokens[0] = p1SlimeType
 									//tokens[1] = p2SlimeType
 									//tokens[2] = p1Username
@@ -134,6 +168,10 @@ public class ServerHelperThread extends Thread {
 								GameThread gt = new GameThread(tokens[5], tokens[0], tokens[1], tokens[2], tokens[3], Integer.valueOf(tokens[7]), Integer.valueOf(tokens[7]), Integer.valueOf(tokens[6]), tokens[4]);
 								st.ongoingGames.put(gt, set);
 								// made the game on the server, now set variables for the two clients
+								this.pw.println("G" + str);
+								this.pw.flush();
+								opponentThread.pw.println("G" + str);
+								opponentThread.pw.flush();
 							} else {
 								this.readyToPlay = true;
 							}
@@ -190,7 +228,10 @@ public class ServerHelperThread extends Thread {
 					
 					else if (str.charAt(0) == 'Z')
 					{
-						st.shtVector.removeElementAt(i);
+						synchronized (st.shtVector) {
+							if (st.shtVector.contains(this)) st.shtVector.remove(this);
+
+						}
 						synchronized (st.ongoingGames) {
 							for (Set<ServerHelperThread> set : st.ongoingGames.values()) {
 								if (set.contains(this)) set.remove(this);

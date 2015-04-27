@@ -35,6 +35,6 @@ public class Frame extends JFrame {
 		view.addKeyListener(controller);
 		guiFrame.setVisible(true);
 		gt.start();
-		view.start();
+		view.begin();
 	}
 }
