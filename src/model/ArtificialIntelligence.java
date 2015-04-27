@@ -15,7 +15,7 @@ public class ArtificialIntelligence {
 		this.game = game;
 		this.slimeAI = slimeAI;
 		this.slimeHuman = slimeHuman;
-		this.ball = game.ball;
+//		this.ball = game.ball;
 	}
 	
 	public void update() {
