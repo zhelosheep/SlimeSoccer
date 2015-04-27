@@ -56,6 +56,7 @@ public class ClientThread extends Thread {
 						String [] tokens = str.substring(1).split(delims);
 						for (int i = 0; i < tokens.length; i++)
 						{
+							System.out.println("In ClientThread: Read a G label string");
 							System.out.println(tokens[i]);
 							//tokens[0] = p1SlimeType
 							//tokens[1] = p2SlimeType
@@ -70,7 +71,26 @@ public class ClientThread extends Thread {
 						mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.gameScreen.setVisible(true);
 						mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.setVisible(false);
 					} else if (str.charAt(0) == 'I') {
+						String delims = "[$]";
+						String [] tokens = str.substring(1).split(delims);
+						for (int i = 0; i < tokens.length; i++)
+						{
+							System.out.println("In ClientThread: Read an I-Label string");
+							System.out.println(tokens[i]);
+						}
+						
+						if (mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.isPlayer1 == true)
+						{
+							mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.p2SlimeType = tokens[1];
+						}
+						
+						else if (mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.isPlayer1 == false)
+						{
+							mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.p1SlimeType = tokens[0];
+						}
 //						mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.setSlime(Integer.parseInt(str.substring(1)));
+//						mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.p1SlimeType = tokens[0];
+						
 					}
 				}
 			} catch (IOException ioe) {
