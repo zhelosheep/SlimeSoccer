@@ -87,18 +87,27 @@ public class Canvas extends JPanel implements Runnable {
 			}
 		}
 		
+		System.out.println("in paint componenet");
+		System.out.println(variables.slime1 + " " + variables.slime2);
+		if(variables.ball == null)
+			System.out.println("ball is null");
+		if(variables.goal1 == null)
+			System.out.println("goal1 is null");
+		if(variables.goal2 == null)
+			System.out.println("goal2 is null");
+		
 		// draw game objects
-		System.out.println("in paint component");
+//		System.out.println("in paint component");
 		if (variables.slime1 != null) variables.slime1.paint(g); // update
-		else System.out.println("slime1 is null");
+//		else System.out.println("slime1 is null");
 		if (variables.slime2 != null) variables.slime2.paint(g); // update
-		System.out.println("slime2 is null");
+//		System.out.println("slime2 is null");
 		if (variables.ball != null) variables.ball.paint(g); // update
-		System.out.println("ball is null");
+//		System.out.println("ball is null");
 		if (variables.goal1 != null) variables.goal1.paint(g); // update
-		System.out.println("goal1 is null");
+//		System.out.println("goal1 is null");
 		if (variables.goal2 != null) variables.goal2.paint(g); // update
-		System.out.println("goal2 is null");
+//		System.out.println("goal2 is null");
 		System.out.println("painted?");
 		
 		// if game over, let user know
@@ -123,7 +132,6 @@ public class Canvas extends JPanel implements Runnable {
             beginTime = System.nanoTime();
             
             // repaint screen
-            System.out.println("paintttt meeee");
             this.repaint();
             
             // determine how long to wait until loop starts again
