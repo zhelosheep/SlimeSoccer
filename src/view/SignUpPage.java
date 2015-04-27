@@ -29,16 +29,7 @@ public class SignUpPage extends JFrame{
 	private int avatar = -1;
 	private String fn, ln, u, pw, desc;
 
-	public static final ImageIcon[] avatarImages;
-	
-	// import icons
-	static {
-		avatarImages = new ImageIcon[8];
-		
-		for (int i = 0; i < avatarImages.length; i++) {
-			avatarImages[i] = new ImageIcon("resources/avatars/" + i + ".png");
-		}
-	}
+	public static ImageIcon[] avatarImages;
 	
 	public SignUpPage() {
 		setSize(800, 600);
@@ -57,6 +48,14 @@ public class SignUpPage extends JFrame{
 		usernameField = new JTextField(15);
 		passwordField = new JPasswordField(15);
 		descField = new JTextField(15);
+		
+		// image icons
+		avatarImages = new ImageIcon[8];
+		
+		for (int i = 0; i < avatarImages.length; i++) {
+			avatarImages[i] = new ImageIcon((getClass().getClassLoader().getResource("avatars/" + i + ".png")));
+		}
+		
 		avatarButtons = new JButton[avatarImages.length];
 		for (int i = 0; i < avatarImages.length; i++) avatarButtons[i] = new JButton(avatarImages[i]);
 	}
