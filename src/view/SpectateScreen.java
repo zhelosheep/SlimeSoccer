@@ -64,7 +64,7 @@ public class SpectateScreen extends JFrame {
 		centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.X_AXIS));
 		JPanel leftPanel = new JPanel();
 		leftPanel.setPreferredSize(new Dimension(300, 200));
-		leftPanel.setBorder(BorderFactory.createEmptyBorder(0, 30, 15, 0));
+		leftPanel.setBorder(BorderFactory.createEmptyBorder(0, 20, 15, 0));
 		JPanel rightPanel = new JPanel();
 		rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
 		JPanel jp1 = new JPanel();
@@ -128,20 +128,20 @@ public class SpectateScreen extends JFrame {
 		
 		sendButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//				sWriter.println("C" + username + ": " + chatField.getText());
-//				sWriter.flush();
-//				chatArea.setText(chatArea.getText() + "\n" + username + ": " + chatField.getText());
-//				chatField.setText("");
+				((MainMenuUser) prevScreen).sWriter.println("C" + ((MainMenuUser) prevScreen).username + ": " + chatField.getText());
+				((MainMenuUser) prevScreen).sWriter.flush();
+				chatArea.setText(chatArea.getText() + "\n" + ((MainMenuUser) prevScreen).username + ": " + chatField.getText());
+				chatField.setText("");
 			}
 		});
 		
 		chatField.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e)
 			{
-//				sWriter.println("C" + username + ": " + chatField.getText());
-//				sWriter.flush();
-//				chatArea.setText(chatArea.getText() + "\n" + username + ": " + chatField.getText());
-//				chatField.setText("");
+				((MainMenuUser) prevScreen).sWriter.println("C" + ((MainMenuUser) prevScreen).username + ": " + chatField.getText());
+				((MainMenuUser) prevScreen).sWriter.flush();
+				chatArea.setText(chatArea.getText() + "\n" + ((MainMenuUser) prevScreen).username + ": " + chatField.getText());
+				chatField.setText("");
 			}
 		});
 	}
