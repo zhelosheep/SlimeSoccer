@@ -30,8 +30,6 @@ public class SqlInstance {
 	private static final String user = "ttrojan";
 	private static final String password = "thinmints";
 	
-	
-	
 	public SqlInstance() {
 		c = null;
 		
@@ -355,6 +353,21 @@ public class SqlInstance {
 			System.out.println("SQLException in SqlInstance.findFriend: " + sqle.getMessage());
 		} 
 		return false;
+	}
+	
+	public void changeAvatar(String u, int ava) {
+		ResultSet u_rs = getUser(u);
+		
+		try {
+			int userID = u_rs.getInt("userID");
+			ps = c.prepareStatement("UPDATE account_data SET player_avatar = ? WHERE userID = ?");
+			ps.setInt(1, ava);
+			ps.setInt(2, userID);
+			ps.executeUpdate();
+			
+		} catch (SQLException sqle) {
+			System.out.println("SQLException in SqlInstance.changePassword: " + sqle.getMessage());
+		}
 	}
 	
 	public static void main (String [] args) {
