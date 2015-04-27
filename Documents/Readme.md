@@ -1,4 +1,10 @@
 Slime Soccer
+Team: Shawn Ren, Ashley Yu-chih, Ashley Tj.., Joseph Chen, Sheng Chen
+
+
+How to run: 
+1. start java application network.ServerThread
+2. start java application view.LoginPage
 
 Login Screen
    User
