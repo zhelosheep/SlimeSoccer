@@ -22,6 +22,8 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.text.DefaultCaret;
 
+import network.GameThread;
+import controller.Controller;
 import model.Ball;
 import model.Goal;
 import model.Slime;
