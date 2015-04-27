@@ -84,28 +84,7 @@ public class ServerHelperThread extends Thread {
 					
 					Z - remove all
 					*/
-					
-					// TO DO: Parser in the clientthread!
-					else if (str.charAt(0) == 'E')	
-					{
-						//push the string to a player1 handler which will parse into integer
-					}
-					
-					else if (str.charAt(0) == 'F') 
-					{
-						//push the string to a player1 handler which will parse into integer
-					}
-					
-					else if (str.charAt(0) == 'G') 
-					{
-						//push the string to a player2 handler which will parse into integer
-					}
-					
-					else if (str.charAt(0) == 'H') 
-					{
-						//push the string to a player2 handler which will parse into integer
-					}
-					
+										
 					else if (str.charAt(0) == 'I') 
 					{
 						this.opponentThread.pw.println(str);
