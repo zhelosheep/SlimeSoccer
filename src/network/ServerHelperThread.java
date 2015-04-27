@@ -119,12 +119,14 @@ public class ServerHelperThread extends Thread {
 					
 					else if (str.charAt(0) == 'K') //player 1 key detection
 					{
-						
+						System.out.println("in K");
+						str = str.substring(1);	//lop off the K
 					}
 					
 					else if (str.charAt(0) == 'L') //player 2 key detection
 					{
-						//
+						System.out.println("in L");
+						str = str.substring(1); //lop off the L
 					}
 
 					else if (str.charAt(0) == 'M')
