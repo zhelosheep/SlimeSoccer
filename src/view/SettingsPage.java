@@ -99,8 +99,9 @@ public class SettingsPage extends JFrame{
 				if (avatar != -1) {
 					LoginPage.sqli.changeAvatar(MainMenuUser.username, avatar);
 					MainMenuUser.avatar = LoginPage.avatarImages[LoginPage.sqli.getImage(MainMenuUser.username)];
-					dispose();
 					new LoginPage().setVisible(true);
+					LoginPage.sqli.toggleLog(MainMenuUser.username);
+					dispose();
 				}
 				else JOptionPane.showMessageDialog(SettingsPage.this, "Select picture to change avatar", "Change Avatar", JOptionPane.ERROR_MESSAGE);
 				avatar = -1;
