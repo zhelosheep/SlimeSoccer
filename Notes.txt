@@ -1,3 +1,15 @@
+Things that need to be fixed:
+
+1) Spectate game frame [Joseph is wokring on]
+2) Spectate frame - chat is not sending if you're a spectator
+3) up key is working evne if you're focused in chat GameScreen
+4)
+
+
+
+
+
+
 E	player1 xcoord; string -> int
 F	player1 ycoord; string -> int
 G	player2 xcoord; string -> int
