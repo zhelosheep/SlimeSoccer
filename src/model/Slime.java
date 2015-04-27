@@ -22,7 +22,7 @@ public class Slime {
 	protected int acceleration = finalAcceleration;
 	final int decceleration = 1, jumpAcceleration = 12; 
 	final int finalWidth = 54, finalHeight = 54, finalRadius = 27;
-	protected int width = finalWidth, height = finalHeight, radius = finalRadius;
+	public int width = finalWidth, height = finalHeight, radius = finalRadius;
 	final public int mass = 1;
 	protected int player;
 	final protected int manaUsageRate = 5; // determines how fast mana is consumed when slime uses special power

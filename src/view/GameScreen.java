@@ -155,8 +155,8 @@ public class GameScreen extends JFrame{
 			public void actionPerformed(ActionEvent e)
 			{
 				if (!isPvCGame) {
-					((MainMenuUserWaiting) prevScreen.prevScreen).prevScreen.prevScreen.sWriter.println("D" + username + ": " + chatField.getText());
-					((MainMenuUserWaiting) prevScreen.prevScreen).prevScreen.prevScreen.sWriter.flush();					
+					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("D" + username + ": " + chatField.getText());
+					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();					
 				}
 				chatArea.setText(chatArea.getText() + "\n" + username + ": " + chatField.getText());
 				chatField.setText("");

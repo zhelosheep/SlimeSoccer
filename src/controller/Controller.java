@@ -29,7 +29,8 @@ public class Controller implements KeyListener {
 		
 		if (event.getKeyCode() == KeyEvent.VK_UP)
 		{
-			if (gs.isPvCGame) {
+			System.out.println("UP REGISTERED");
+			if (!gs.isPvCGame) {
 				((MainMenuUserWaiting) gs.prevScreen.prevScreen).prevScreen.prevScreen.sWriter.println("K" + "up");
 				((MainMenuUserWaiting) gs.prevScreen.prevScreen).prevScreen.prevScreen.sWriter.flush();				
 			}
@@ -37,7 +38,8 @@ public class Controller implements KeyListener {
 		
 		else if (event.getKeyCode() == KeyEvent.VK_DOWN)
 		{
-			if (gs.isPvCGame) {
+			System.out.println("DOWN REGISTERED");
+			if (!gs.isPvCGame) {
 				((MainMenuUserWaiting) gs.prevScreen.prevScreen).prevScreen.prevScreen.sWriter.println("K" + "down");
 				((MainMenuUserWaiting) gs.prevScreen.prevScreen).prevScreen.prevScreen.sWriter.flush();				
 			}
@@ -45,7 +47,8 @@ public class Controller implements KeyListener {
 		
 		else if (event.getKeyCode() == KeyEvent.VK_LEFT)
 		{
-			if (gs.isPvCGame) {
+			System.out.println("LEFT REGISTERED");
+			if (!gs.isPvCGame) {
 				((MainMenuUserWaiting) gs.prevScreen.prevScreen).prevScreen.prevScreen.sWriter.println("K" + "left");
 				((MainMenuUserWaiting) gs.prevScreen.prevScreen).prevScreen.prevScreen.sWriter.flush();				
 			}
@@ -53,7 +56,8 @@ public class Controller implements KeyListener {
 		
 		else if (event.getKeyCode() == KeyEvent.VK_RIGHT)
 		{
-			if (gs.isPvCGame) {
+			System.out.println("RIGHT REGISTERED");
+			if (!gs.isPvCGame) {
 				((MainMenuUserWaiting) gs.prevScreen.prevScreen).prevScreen.prevScreen.sWriter.println("K" + "right");
 				((MainMenuUserWaiting) gs.prevScreen.prevScreen).prevScreen.prevScreen.sWriter.flush();				
 			}
@@ -61,7 +65,8 @@ public class Controller implements KeyListener {
 		
 		else if (event.getKeyCode() == KeyEvent.VK_SPACE)
 		{
-			if (gs.isPvCGame) {
+			System.out.println("SPACE REGISTERED");
+			if (!gs.isPvCGame) {
 				((MainMenuUserWaiting) gs.prevScreen.prevScreen).prevScreen.prevScreen.sWriter.println("K" + "space");
 				((MainMenuUserWaiting) gs.prevScreen.prevScreen).prevScreen.prevScreen.sWriter.flush();				
 			}
@@ -77,7 +82,7 @@ public class Controller implements KeyListener {
         
 		if (e.getKeyCode() == KeyEvent.VK_UP)
 		{
-			if (gs.isPvCGame) {
+			if (!gs.isPvCGame) {
 				((MainMenuUserWaiting) gs.prevScreen.prevScreen).prevScreen.prevScreen.sWriter.println("K" + "upno");
 				((MainMenuUserWaiting) gs.prevScreen.prevScreen).prevScreen.prevScreen.sWriter.flush();				
 			}
@@ -85,7 +90,7 @@ public class Controller implements KeyListener {
 		
 		else if (e.getKeyCode() == KeyEvent.VK_DOWN)
 		{
-			if (gs.isPvCGame) {
+			if (!gs.isPvCGame) {
 				((MainMenuUserWaiting) gs.prevScreen.prevScreen).prevScreen.prevScreen.sWriter.println("K" + "downno");
 				((MainMenuUserWaiting) gs.prevScreen.prevScreen).prevScreen.prevScreen.sWriter.flush();				
 			}
@@ -93,7 +98,7 @@ public class Controller implements KeyListener {
 		
 		else if (e.getKeyCode() == KeyEvent.VK_LEFT)
 		{
-			if (gs.isPvCGame) {
+			if (!gs.isPvCGame) {
 				((MainMenuUserWaiting) gs.prevScreen.prevScreen).prevScreen.prevScreen.sWriter.println("K" + "leftno");
 				((MainMenuUserWaiting) gs.prevScreen.prevScreen).prevScreen.prevScreen.sWriter.flush();				
 			}
@@ -101,7 +106,7 @@ public class Controller implements KeyListener {
 		
 		else if (e.getKeyCode() == KeyEvent.VK_RIGHT)
 		{
-			if (gs.isPvCGame) {
+			if (!gs.isPvCGame) {
 				((MainMenuUserWaiting) gs.prevScreen.prevScreen).prevScreen.prevScreen.sWriter.println("K" + "rightno");
 				((MainMenuUserWaiting) gs.prevScreen.prevScreen).prevScreen.prevScreen.sWriter.flush();				
 			}
@@ -109,7 +114,7 @@ public class Controller implements KeyListener {
 		
 		else if (e.getKeyCode() == KeyEvent.VK_SPACE)
 		{
-			if (gs.isPvCGame) {
+			if (!gs.isPvCGame) {
 				((MainMenuUserWaiting) gs.prevScreen.prevScreen).prevScreen.prevScreen.sWriter.println("K" + "spaceno");
 				((MainMenuUserWaiting) gs.prevScreen.prevScreen).prevScreen.prevScreen.sWriter.flush();				
 			}

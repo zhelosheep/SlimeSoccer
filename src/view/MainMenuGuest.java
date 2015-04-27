@@ -35,7 +35,7 @@ public class MainMenuGuest extends JFrame{
 	public BufferedReader sReader;
 	public PrintWriter sWriter;
 	private static JLabel spectateLabel;
-	private SpectateScreen spectateScreen;
+	public SpectateScreen spectateScreen;
 	
 	public MainMenuGuest() {
 		setSize(800, 600);
