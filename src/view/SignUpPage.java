@@ -139,8 +139,7 @@ public class SignUpPage extends JFrame{
 		submitButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//register(String fn, String ln, String u, String pw, int img, String desc)
-				
-				if (!LoginPage.sqli.findUser(u)) {
+				if (!LoginPage.sqli.findUser(u) && !(u.toLowerCase().equals("guest"))) {
 					LoginPage.sqli.register(fn, ln, u, pw, avatar, desc);
 					if (LoginPage.sqli.findUser(u)) {
 						(new MainMenuUser(usernameField.getText())).setVisible(true);
@@ -149,7 +148,7 @@ public class SignUpPage extends JFrame{
 						JOptionPane.showMessageDialog(SignUpPage.this, "Signup failed", "Registration Error", JOptionPane.ERROR_MESSAGE);
 					}
 				} else {
-					JOptionPane.showMessageDialog(SignUpPage.this, "User already Exists", "Invalid Signup", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(SignUpPage.this, "Username Not Available", "Invalid Signup", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
