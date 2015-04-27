@@ -71,7 +71,7 @@ public class GameScreen extends JFrame{
 		slimeSoccerLabel.setFont(new Font("Arial", Font.BOLD, 20));
 		slimeSoccerLabel.setBorder(BorderFactory.createEmptyBorder(5, 15, 5, 5));
 		
-		gt = new GameThread("Outer Space", "SlimeBowAndArrow", "SlimeSuperSize", "shawnren", "josemama", 100, 100, 1, "", this.isPvCGame);
+		gt = new GameThread("Outer Space", "SlimeBowAndArrow", "SlimeSuperSize", "shawnren", "josemama", 100, 100, 1, "", null, this.isPvCGame);
 		// set up controller
 		controller = new Controller(this);
 
@@ -307,11 +307,6 @@ public class GameScreen extends JFrame{
 	}
 	
 	public static void main(String[] args) {
-		GameScreen gamescreen = new GameScreen("techguyderp", new MainMenuUserPlaySlime(new MainMenuUserWaiting(new MainMenuUserPlayPlayer(new MainMenuUser("techguyderp"))), false), false);
-		gamescreen.primary.variables = gamescreen.gt.game.variables;
-		gamescreen.primary.addKeyListener(gamescreen.controller);
-		gamescreen.setVisible(true);
-		gamescreen.gt.start();
-		gamescreen.primary.begin();
+
 	}
 }
