@@ -121,6 +121,63 @@ public class ServerHelperThread extends Thread {
 					{
 						System.out.println("in K");
 						str = str.substring(1);	//lop off the K
+						synchronized (st.ongoingGames) {
+							for (Set<ServerHelperThread> set : st.ongoingGames.values()) {
+								if (set.contains(this)) {
+									//key is pressed
+									if (str.equals("up"))
+									{
+										//send boolean to variables
+									}
+									
+									else if (str.equals("down"))
+									{
+										//send boolean to variables
+									}
+									
+									else if (str.equals("left"))
+									{
+										//send boolean to variables
+									}
+									
+									else if (str.equals("right"))
+									{
+										//send boolean to variables
+									}
+									
+									else if (str.equals("space"))
+									{
+										//send boolean to variables
+									}
+									
+									//when key is released
+									if (str.equals("upno"))
+									{
+										//send boolean to variables
+									}
+									
+									else if (str.equals("downno"))
+									{
+										//send boolean to variables
+									}
+									
+									else if (str.equals("leftno"))
+									{
+										//send boolean to variables
+									}
+									
+									else if (str.equals("rightno"))
+									{
+										//send boolean to variables
+									}
+									
+									else if (str.equals("spaceno"))
+									{
+										//send boolean to variables
+									}
+								}
+							}
+						}
 					}
 					
 					else if (str.charAt(0) == 'L') //player 2 key detection

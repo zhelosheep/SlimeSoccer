@@ -66,12 +66,54 @@ public class Controller implements KeyListener {
 				((MainMenuUserWaiting) gs.prevScreen.prevScreen).prevScreen.prevScreen.sWriter.flush();				
 			}
 		}
+
+		
 		
         keyboardState[event.getKeyCode()] = true;
 	}
 
 	public void keyReleased(KeyEvent e) {
         keyboardState[e.getKeyCode()] = false;
+        
+		if (e.getKeyCode() == KeyEvent.VK_UP)
+		{
+			if (gs.isPvCGame) {
+				((MainMenuUserWaiting) gs.prevScreen.prevScreen).prevScreen.prevScreen.sWriter.println("K" + "upno");
+				((MainMenuUserWaiting) gs.prevScreen.prevScreen).prevScreen.prevScreen.sWriter.flush();				
+			}
+		}
+		
+		else if (e.getKeyCode() == KeyEvent.VK_DOWN)
+		{
+			if (gs.isPvCGame) {
+				((MainMenuUserWaiting) gs.prevScreen.prevScreen).prevScreen.prevScreen.sWriter.println("K" + "downno");
+				((MainMenuUserWaiting) gs.prevScreen.prevScreen).prevScreen.prevScreen.sWriter.flush();				
+			}
+		}
+		
+		else if (e.getKeyCode() == KeyEvent.VK_LEFT)
+		{
+			if (gs.isPvCGame) {
+				((MainMenuUserWaiting) gs.prevScreen.prevScreen).prevScreen.prevScreen.sWriter.println("K" + "leftno");
+				((MainMenuUserWaiting) gs.prevScreen.prevScreen).prevScreen.prevScreen.sWriter.flush();				
+			}
+		}
+		
+		else if (e.getKeyCode() == KeyEvent.VK_RIGHT)
+		{
+			if (gs.isPvCGame) {
+				((MainMenuUserWaiting) gs.prevScreen.prevScreen).prevScreen.prevScreen.sWriter.println("K" + "rightno");
+				((MainMenuUserWaiting) gs.prevScreen.prevScreen).prevScreen.prevScreen.sWriter.flush();				
+			}
+		}
+		
+		else if (e.getKeyCode() == KeyEvent.VK_SPACE)
+		{
+			if (gs.isPvCGame) {
+				((MainMenuUserWaiting) gs.prevScreen.prevScreen).prevScreen.prevScreen.sWriter.println("K" + "spaceno");
+				((MainMenuUserWaiting) gs.prevScreen.prevScreen).prevScreen.prevScreen.sWriter.flush();				
+			}
+		}
 	}
 
 	public void keyTyped(KeyEvent e) {
