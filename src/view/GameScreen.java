@@ -38,7 +38,7 @@ public class GameScreen extends JFrame{
 	public JTextArea chatArea;
 	private JTextField chatField;
 	private JButton sendButton, logoutButton, settingsButton;
-	private JLabel slimeSoccerLabel, uniqueIDLabel;
+	private JLabel slimeSoccerLabel;
 	private ImageIcon avatar;
 	private String username;
 	public Canvas primary;
@@ -96,7 +96,7 @@ public class GameScreen extends JFrame{
 		logoutButton.setFont(new Font("Arial", Font.BOLD, 16));
 		logoutButton.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 15));
 		northPanel.add(slimeSoccerLabel);
-		northPanel.add(uniqueIDLabel);
+//		northPanel.add(uniqueIDLabel);
 		northPanel.add(Box.createGlue());
 		northPanel.add(avatarLabel);
 		northPanel.add(settingsButton);
