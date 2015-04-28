@@ -234,6 +234,7 @@ public class ServerHelperThread extends Thread {
 										this.pw.println("Q" + thread.game.variables.stringify()); // send variables
 										this.pw.flush();
 									}
+									break;
 								}
 								else counter++;
 							}
@@ -252,6 +253,7 @@ public class ServerHelperThread extends Thread {
 										this.pw.println("P" + thread.game.variables.stringify()); // found gameID, send variables
 										this.pw.flush();
 										found = true;
+										break;
 									}
 								}
 								if (!found) {
@@ -262,15 +264,20 @@ public class ServerHelperThread extends Thread {
 						} else if (str.charAt(1) == 'G') {
 							Long search = Long.parseLong(str.substring(2));
 							synchronized (st.ongoingGames) {
+								boolean found = false;
 								for (GameThread thread : st.ongoingGames.keySet()) {
 									if (thread.gameID == search) {
 										st.ongoingGames.get(thread).add(this);
 										this.pw.println("Q" + thread.game.variables.stringify()); // found gameID, send variables
 										this.pw.flush();
+										found = true;
+										break;
 									}
 								}
-								this.pw.println("S"); // invalid gameID, send error message?
-								this.pw.flush();
+								if (!found) {
+									this.pw.println("S"); // invalid gameID, send error message?
+									this.pw.flush();									
+								}
 							}														
 						}
 					}
@@ -352,15 +359,10 @@ public class ServerHelperThread extends Thread {
 					
 					else if (str.charAt(0) == 'S')
 					{
-						System.out.println("in s");
 						synchronized (st.ongoingGames) {
 							for (Set<ServerHelperThread> set : st.ongoingGames.values()) {
 								if (set.contains(this)) {
-									System.out.println("remove");
 									set.remove(this);
-									if (set.contains(this)) {
-										System.out.println("SHOULD NOT BE HERE");
-									}
 								}
 							}
 						}
