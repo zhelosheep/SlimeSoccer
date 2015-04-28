@@ -31,7 +31,7 @@ public class Canvas extends JPanel implements Runnable {
 	}
 	
 	public void begin() {
-		gameLoop.start();
+		if (!gameLoop.isAlive()) gameLoop.start();
 	}
 	
 	public void paintComponent(Graphics g) {

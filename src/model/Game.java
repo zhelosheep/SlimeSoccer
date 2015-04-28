@@ -23,6 +23,15 @@ public class Game {
 		variables.setSlimeImage(2, player2_slimeType);
 		this.isPvCGame = isPvCGame;
 		
+		for (int k = 0; k < 5; k++) {
+			variables.p1_keyboardState[k] = false;
+			variables.p2_keyboardState[k] = false;
+		}
+		variables.gameOver = false;
+		variables.playerThatWon = -1;
+		variables.slimeHasMoved_1 = false;
+		variables.slimeHasMoved_2 = false;
+		
 		// set game stats
 		variables.player1_username = player1_username;
 		variables.player2_username = player2_username;

@@ -79,9 +79,7 @@ public class ServerHelperThread extends Thread {
 					P - add to random (play)
 					Q - add to waiting (play)
 					R - remove from random and waiting
-					S - spectate!
-					T - finish playing game
-					U - leave spectating
+					S - leave
 					
 					Z - remove all
 					*/
@@ -349,6 +347,13 @@ public class ServerHelperThread extends Thread {
 						}
 						synchronized (st.waitingPlayers) {
 							if (st.waitingPlayers.contains(this)) st.waitingPlayers.remove(this);
+						}
+					}
+					
+					else if (str.charAt(0) == 'S')
+					{
+						synchronized (st.ongoingGames) {
+							for (Set<ServerHelperThread> set : st.ongoingGames.values()) if (set.contains(this)) set.remove(this);
 						}
 					}
 					

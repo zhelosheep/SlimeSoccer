@@ -45,6 +45,8 @@ public class GameThread extends Thread {
             game.variables.player1scored = false;
             game.variables.player2scored = false;
             
+            if (game.variables.gameOver) break;
+            
             // determine how long to wait until loop starts again
             timeTaken = System.nanoTime() - beginTime;
             timeLeft = ( (1000000000L/25) - timeTaken) / 1000000L; // in milliseconds
@@ -55,5 +57,6 @@ public class GameThread extends Thread {
                  Thread.sleep(timeLeft);
             } catch (InterruptedException ex) {}
         }
+        st.ongoingGames.remove(this);
 	}
 }

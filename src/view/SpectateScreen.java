@@ -146,9 +146,13 @@ public class SpectateScreen extends JFrame {
 		switchButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (isGuest) {
+					((MainMenuGuest) prevScreen).sWriter.println("S");
+					((MainMenuGuest) prevScreen).sWriter.flush();
 					((MainMenuGuest) prevScreen).sWriter.println("NG" + gameIDField.getText());
 					((MainMenuGuest) prevScreen).sWriter.flush();
 				} else {
+					((MainMenuUserSpectate) prevScreen).prevScreen.sWriter.println("S");
+					((MainMenuUserSpectate) prevScreen).prevScreen.sWriter.flush();
 					((MainMenuUserSpectate) prevScreen).prevScreen.sWriter.println("NU" + gameIDField.getText());
 					((MainMenuUserSpectate) prevScreen).prevScreen.sWriter.flush();
 				}
@@ -157,9 +161,13 @@ public class SpectateScreen extends JFrame {
 		randomButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (isGuest) {
+					((MainMenuGuest) prevScreen).sWriter.println("S");
+					((MainMenuGuest) prevScreen).sWriter.flush();
 					((MainMenuGuest) prevScreen).sWriter.println("MG");
 					((MainMenuGuest) prevScreen).sWriter.flush();
 				} else {
+					((MainMenuUserSpectate) prevScreen).prevScreen.sWriter.println("S");
+					((MainMenuUserSpectate) prevScreen).prevScreen.sWriter.flush();
 					((MainMenuUserSpectate) prevScreen).prevScreen.sWriter.println("MU");
 					((MainMenuUserSpectate) prevScreen).prevScreen.sWriter.flush();
 				}				
@@ -169,6 +177,13 @@ public class SpectateScreen extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				prevScreen.setVisible(true);
 				setVisible(false);
+				if (isGuest) {
+					((MainMenuGuest) prevScreen).sWriter.println("S");
+					((MainMenuGuest) prevScreen).sWriter.flush();
+				} else {
+					((MainMenuUserSpectate) prevScreen).prevScreen.sWriter.println("S");
+					((MainMenuUserSpectate) prevScreen).prevScreen.sWriter.flush();
+				}				
 			}
 		});
 		

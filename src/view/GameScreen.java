@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.AbstractAction;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -324,6 +325,10 @@ public class GameScreen extends JFrame{
 				setVisible(false);
 				prevScreen.prevScreen.setVisible(true);
 				LoginPage.sqli.toggleLog(MainMenuUser.username);
+				if (!isPvCGame) {
+					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("S");
+					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();					
+				}
 			}
 		});
 	}
@@ -344,6 +349,15 @@ public class GameScreen extends JFrame{
 		primary.variables.specialMode = specialMode;
 		primary.variables.player1scored = false;
 		primary.variables.player2scored = false;
+		primary.variables.playerThatWon = -1;
+		primary.variables.slimeHasMoved_1 = false;
+		primary.variables.slimeHasMoved_2 = false;
+		primary.variables.gameOver = false;
+		
+		for (int k = 0; k < 5; k++) {
+			primary.variables.p1_keyboardState[k] = false;
+			primary.variables.p2_keyboardState[k] = false;
+		}
 		
 		if (player1_slimeType.equals("SlimeBomb")) {
 			primary.variables.slime1 = new SlimeBomb(primary.variables.leftBoundary + 50, primary.variables.groundLevel, 1, primary.variables.imgSlime1, primary.variables);
@@ -428,9 +442,5 @@ public class GameScreen extends JFrame{
 		primary.variables.goal1 = new Goal(primary.variables.leftBoundary, primary.variables);
 		primary.variables.goal2 = new Goal(primary.variables.rightBoundary, primary.variables);
 		primary.begin();
-	}
-	
-	public static void main(String[] args) {
-
 	}
 }
