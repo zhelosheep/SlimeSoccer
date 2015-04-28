@@ -380,6 +380,7 @@ public class MainMenuUserPlaySlime extends JFrame{
 		for (int i = 0; i < specialSlimes.length; i++) {
 			specialSlimes[i].addActionListener(new SpecialSlimeListener(i));
 		}
+		
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
@@ -387,8 +388,10 @@ public class MainMenuUserPlaySlime extends JFrame{
 				//no need to add code that updates chat. Chat should not be retroactive since login
 			}
 		});
+		
 		continueButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				MainMenuUserPlaySlime.this.setEnabled(false);
 				if (!isPvCGame) {
 					if (isPlayer1) {
 						((MainMenuUserPlayPlayer) prevScreen).prevScreen.sWriter.println("O1" + p1SlimeType + "$" + p2SlimeType + "$" + p1Username + "$" + p2Username + "$" + specialModeCombo.getSelectedItem().toString() + "$" + backgroundCombo.getSelectedItem().toString() + "$" + regenRateSlider.getValue() + "$" + totalManaSlider.getValue()); // append game settings!						
