@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 
 public class ServerHelperThread extends Thread {
@@ -222,15 +223,35 @@ public class ServerHelperThread extends Thread {
 					else if (str.charAt(0) == 'M')
 					{
 						synchronized (st.ongoingGames) {
-							for (GameThread thread : st.ongoingGames.keySet()) {
-								
+							Random rand = new Random();
+							int num = rand.nextInt(st.ongoingGames.size());
+							int counter = 0;
+							st.ongoingGames.values();
+							for (Set<ServerHelperThread> set : st.ongoingGames.values()) {
+								if (counter == num) {
+									set.add(this);
+									this.pw.println(""); // send variables
+									this.pw.flush();
+								}
+								else counter++;
 							}
 						}
 					}
 
 					else if (str.charAt(0) == 'N')
 					{
-
+						Long search = Long.parseLong(str.substring(1));
+						synchronized (st.ongoingGames) {
+							for (GameThread thread : st.ongoingGames.keySet()) {
+								if (thread.gameID == search) {
+									st.ongoingGames.get(thread).add(this);
+									this.pw.println(""); // found gameID, send variables
+									this.pw.flush();
+								}
+							}
+							this.pw.println(""); // invalid gameID, send error message?
+							this.pw.flush();
+						}
 					}
 
 					else if (str.charAt(0) == 'O')
