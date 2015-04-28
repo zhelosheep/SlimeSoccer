@@ -51,8 +51,10 @@ public class MainMenuUserPlaySlime extends JFrame{
 	
 	private void instantiateVariables() {
 		if (isPvCGame) {
-			p1Username = "<html><div style=\"text-align: center;\">" + ((MainMenuUser)prevScreen).getUsername();
-			p2Username = "<html><div style=\"text-align: center;\">Computer";
+			p1Username = "<html><div style=\"text-align: center;\">Computer";
+			p2Username = "<html><div style=\"text-align: center;\">" + ((MainMenuUser)prevScreen).getUsername();
+			p1UsernameNoHTML = "Computer";
+			p2UsernameNoHTML = ((MainMenuUser)prevScreen).getUsername();
 		} else {
 			if (isPlayer1) {
 				p1Username = "<html><div style=\"text-align: center;\">" + ((MainMenuUserPlayPlayer)prevScreen).getUsername();			
@@ -420,7 +422,7 @@ public class MainMenuUserPlaySlime extends JFrame{
 //						((MainMenuUserPlayPlayer) prevScreen).prevScreen.sWriter.flush();
 //					}
 					
-					gameScreen.gt = new GameThread(backgroundCombo.getSelectedItem().toString(), p1SlimeType, p2SlimeType, p1Username, p2Username, totalManaSlider.getValue(), totalManaSlider.getValue(), regenRateSlider.getValue(), specialModeCombo.getSelectedItem().toString(), null, true);
+					gameScreen.gt = new GameThread(backgroundCombo.getSelectedItem().toString(), p1SlimeType, p2SlimeType, p1UsernameNoHTML, p2UsernameNoHTML, totalManaSlider.getValue(), totalManaSlider.getValue(), regenRateSlider.getValue(), specialModeCombo.getSelectedItem().toString(), null, true);
 					gameScreen.primary.variables = gameScreen.gt.game.variables;
 					Controller controller = new Controller(gameScreen);
 					gameScreen.primary.addKeyListener(controller);
