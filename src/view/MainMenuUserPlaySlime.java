@@ -47,6 +47,7 @@ public class MainMenuUserPlaySlime extends JFrame{
 		addComponents();
 		addListeners();
 		setResizable(false);
+		if (isPvCGame) isPlayer1 = false;
 	}
 	
 	private void instantiateVariables() {
