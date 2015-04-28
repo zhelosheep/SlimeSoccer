@@ -352,8 +352,17 @@ public class ServerHelperThread extends Thread {
 					
 					else if (str.charAt(0) == 'S')
 					{
+						System.out.println("in s");
 						synchronized (st.ongoingGames) {
-							for (Set<ServerHelperThread> set : st.ongoingGames.values()) if (set.contains(this)) set.remove(this);
+							for (Set<ServerHelperThread> set : st.ongoingGames.values()) {
+								if (set.contains(this)) {
+									System.out.println("remove");
+									set.remove(this);
+									if (set.contains(this)) {
+										System.out.println("SHOULD NOT BE HERE");
+									}
+								}
+							}
 						}
 					}
 					

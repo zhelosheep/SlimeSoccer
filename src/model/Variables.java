@@ -68,6 +68,7 @@ public class Variables {
 		this.background = background;
 		try {
 			if (background.equals("Soccer Field")) {
+				groundLevel = 400;
 				imgBackground = ImageIO.read((getClass().getClassLoader().getResource("game/backgrounds/soccerfield.png")));
 			} else if (background.equals("Desk")) {
 				imgBackground = ImageIO.read((getClass().getClassLoader().getResource("game/backgrounds/desk.jpg")));
@@ -79,6 +80,7 @@ public class Variables {
 				leftBoundary = 88;
 				rightBoundary = 511;
 			} else if (background.equals("Outer Space")) {
+				groundLevel = 400;
 				imgBackground = ImageIO.read((getClass().getClassLoader().getResource("game/backgrounds/outerspace.jpg")));
 			}			
 		} catch (IOException ioe) {
