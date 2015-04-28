@@ -56,14 +56,14 @@ public class ClientThread extends Thread {
 						ptr.slime2.y = Integer.parseInt(splited[10]);
 						ptr.slime2.width = Integer.parseInt(splited[11]);
 						ptr.slime2.height = Integer.parseInt(splited[12]);
-						ptr.player1_manaCurrent = Integer.parseInt(splited[13]);
-						ptr.player2_manaCurrent = Integer.parseInt(splited[14]);
+						ptr.player1_manaCurrent = Double.parseDouble(splited[13]);
+						ptr.player2_manaCurrent = Double.parseDouble(splited[14]);
 						ptr.player1scored = Boolean.parseBoolean(splited[15]);
 						ptr.player2scored = Boolean.parseBoolean(splited[16]);
 						ptr.gameOver = Boolean.parseBoolean(splited[17]);
 						ptr.playerThatWon = Integer.parseInt(splited[18]);
 						ptr.player1_score = Integer.parseInt(splited[19]);
-						ptr.player2_score = Integer.parseInt(splited[20]);
+						ptr.player2_score = Integer.parseInt(splited[20]);							
 					}
 				} else { // this one uses mmu
 					str = mmu.sReader.readLine();
