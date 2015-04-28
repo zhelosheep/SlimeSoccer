@@ -65,9 +65,9 @@ public class Canvas extends JPanel implements Runnable {
 		g.drawString(variables.player2_score.toString(), drawAtLeft - 50, 45); // update
 		
 		// if a player scores, let them know
-		if (variables.player1scored) { // update
+/*		if (variables.player1scored) { // update
 			p1numTimesLeftToPrintScore = numTimesToPrintScore;
-		}
+		}*/
 		if (p1numTimesLeftToPrintScore > 0) {
 			g.setFont(new Font("Helvetica", Font.PLAIN, 30));
 			if (variables.background.equals("Outer Space")) { g.setColor(Color.WHITE); }
@@ -81,9 +81,9 @@ public class Canvas extends JPanel implements Runnable {
 //				numTimesLeftToPrintScore--;
 //			}
 		}
-		if (variables.player2scored) { // update
+/*		if (variables.player2scored) { // update
 			p2numTimesLeftToPrintScore = numTimesToPrintScore;
-		}
+		}*/
 		if (p2numTimesLeftToPrintScore > 0) {
 			g.setFont(new Font("Helvetica", Font.PLAIN, 30));
 			if (variables.background.equals("Outer Space")) { g.setColor(Color.WHITE); }
