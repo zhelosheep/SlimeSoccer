@@ -36,6 +36,7 @@ public class Canvas extends JPanel implements Runnable {
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		
 		// draw background
 		g.drawImage(variables.imgBackground, 0,0, null);
 		if (variables.background.equals("Outer Space")) { g.setColor(Color.WHITE); }

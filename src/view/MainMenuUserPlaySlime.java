@@ -210,7 +210,7 @@ public class MainMenuUserPlaySlime extends JFrame{
 		regenRateSlider = new JSlider(JSlider.HORIZONTAL);
 		totalManaSlider = new JSlider(JSlider.HORIZONTAL);
 		
-		if (isPlayer1) {
+		if (isPlayer1 && !isPvCGame) {
 			gameScreen = new GameScreen(p1UsernameNoHTML, this, isPvCGame);			
 		} else {
 			gameScreen = new GameScreen(p2UsernameNoHTML, this, isPvCGame);

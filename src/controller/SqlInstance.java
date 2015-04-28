@@ -41,6 +41,8 @@ public class SqlInstance {
 	}
 	
 	private ResultSet getUser(String u) {
+		if (u.toLowerCase().equals("guest") || u.toLowerCase().equals("computer")) return null;
+		
 		try {
 			Statement st = c.createStatement();
 			ResultSet rs = st.executeQuery("SELECT * FROM account_data WHERE username = '" + u + "'");
@@ -54,11 +56,14 @@ public class SqlInstance {
 	}
 	
 	public boolean findUser(String u) {
+		if (u.toLowerCase().equals("guest") || u.toLowerCase().equals("computer")) return false;
 		if (getUser(u) != null) return true;
 		else return false;
 	}
 	
 	public boolean validateLogin(String u, String pw) {
+		if (u.toLowerCase().equals("guest") || u.toLowerCase().equals("computer")) return false;
+		
 		ResultSet rs = getUser(u);
 		
 		if (rs == null) return false;
@@ -75,6 +80,8 @@ public class SqlInstance {
 	}
 	
 	public void register(String fn, String ln, String u, String pw, int img, String desc) {
+		if (u.toLowerCase().equals("guest") || u.toLowerCase().equals("computer")) return;
+		
 		try {
 			ps = c.prepareStatement("INSERT INTO account_data (player_firstName, player_lastName, username, password, player_avatar, player_description) VALUES (?, ?, ?, ?, ?, ?)");
 			ps.setString(1, fn);
@@ -91,6 +98,7 @@ public class SqlInstance {
 	}
 	
 	public void setAchievement(String u, model.Achievement ach) {
+		if (u.toLowerCase().equals("guest") || u.toLowerCase().equals("computer")) return;
 		if (checkAchievement(u, ach.getName())) return;
 		
 		ResultSet u_rs = getUser(u);
@@ -109,6 +117,8 @@ public class SqlInstance {
 	}
 	
 	public ArrayList<model.Achievement> getAchievements(String u) {
+		if (u.toLowerCase().equals("guest") || u.toLowerCase().equals("computer")) return null;
+		
 		ResultSet u_rs = getUser(u);
 		
 		ArrayList<model.Achievement> achieve = new ArrayList<model.Achievement>();
@@ -138,6 +148,8 @@ public class SqlInstance {
 	}
 	
 	public boolean checkAchievement(String u, String ach) {
+		if (u.toLowerCase().equals("guest") || u.toLowerCase().equals("computer")) return false;
+		
 		ResultSet u_rs = getUser(u);
 		
 		try {
@@ -156,44 +168,49 @@ public class SqlInstance {
 		//if wl is true, user won
 		//if wl is false, user lost
 		
+		if (u.toLowerCase().equals("guest") || u.toLowerCase().equals("computer")) return;
+		
 		ResultSet u_rs = getUser(u);
 		
 		try {
-			int userID = u_rs.getInt("userID");
-			int numgames = u_rs.getInt("player_games") + 1;
-			int numwin = u_rs.getInt("player_won");
-			int numloss = u_rs.getInt("player_loss");
-			long ratio = u_rs.getLong("player_ratio");
-			int gamesLost = u_rs.getInt("gamesLost");
-			
-			if (wl) {
-				numwin++;
-				gamesLost = 0;
-			}
-			else {
-				numloss++;
-				gamesLost++;
-			}
-			if (numloss > 0) {
-				ratio = (long) numwin/ (long) numloss;
-			} else ratio = 0;
-			
-			ps = c.prepareStatement("UPDATE account_data SET player_games = ?, player_won = ?, player_loss = ?,"
-					+ " player_ratio = ?, gamesLost = ? WHERE userID = ?");
-			ps.setInt(1,  numgames);
-			ps.setInt(2,  numwin);
-			ps.setInt(3,  numloss);
-			ps.setLong(4, ratio);
-			ps.setInt(5,  gamesLost);
-			ps.setInt(6,  userID);
-			ps.executeUpdate();
-			
+			if (u_rs.next()) {
+				int userID = u_rs.getInt("userID");
+				int numgames = u_rs.getInt("player_games") + 1;
+				int numwin = u_rs.getInt("player_won");
+				int numloss = u_rs.getInt("player_loss");
+				long ratio = u_rs.getLong("player_ratio");
+				int gamesLost = u_rs.getInt("gamesLost");
+				
+				if (wl) {
+					numwin++;
+					gamesLost = 0;
+				}
+				else {
+					numloss++;
+					gamesLost++;
+				}
+				if (numloss > 0) {
+					ratio = (long) numwin/ (long) numloss;
+				} else ratio = 0;
+				
+				ps = c.prepareStatement("UPDATE account_data SET player_games = ?, player_won = ?, player_loss = ?,"
+						+ " player_ratio = ?, gamesLost = ? WHERE userID = ?");
+				ps.setInt(1,  numgames);
+				ps.setInt(2,  numwin);
+				ps.setInt(3,  numloss);
+				ps.setLong(4, ratio);
+				ps.setInt(5,  gamesLost);
+				ps.setInt(6,  userID);
+				ps.executeUpdate();
+				}
 		} catch (SQLException sqle) {
 			System.out.println("SQLException in SqlInstance.updateStats: " + sqle.getMessage());
 		}
 	}
 	
 	public String getName(String u) {
+		if (u.toLowerCase().equals("guest") || u.toLowerCase().equals("computer")) return null;
+		
 		ResultSet u_rs = getUser(u);
 		String name = "";
 		try {
@@ -205,6 +222,7 @@ public class SqlInstance {
 	}
 	
 	public String getDesc(String u) {
+		if (u.toLowerCase().equals("guest") || u.toLowerCase().equals("computer")) return null;
 		ResultSet u_rs = getUser(u);
 		String desc = "";
 		try {
@@ -216,6 +234,7 @@ public class SqlInstance {
 	}
 	
 	public int getImage(String u) {
+		if (u.toLowerCase().equals("guest") || u.toLowerCase().equals("computer")) return -1;
 		ResultSet u_rs = getUser(u);
 		int img = -1;
 		try {
@@ -227,6 +246,8 @@ public class SqlInstance {
 	}
 	
 	public long getRatio(String u) {
+		if (u.toLowerCase().equals("guest") || u.toLowerCase().equals("computer")) return -1;
+		
 		ResultSet u_rs = getUser(u);
 		long ratio = 0;
 		try {
@@ -238,6 +259,8 @@ public class SqlInstance {
 	}
 	
 	public int getGames(String u) {
+		if (u.toLowerCase().equals("guest") || u.toLowerCase().equals("computer")) return -1;
+		
 		ResultSet u_rs = getUser(u);
 		int games = -1;
 		try {
@@ -249,6 +272,7 @@ public class SqlInstance {
 	}
 	
 	public int getGamesLostInARow(String u) {
+		if (u.toLowerCase().equals("guest") || u.toLowerCase().equals("computer")) return -1;
 		ResultSet u_rs = getUser(u);
 		int row = -1;
 		try {
@@ -260,6 +284,7 @@ public class SqlInstance {
 	}
 	
 	public int getWins(String u) {
+		if (u.toLowerCase().equals("guest") || u.toLowerCase().equals("computer")) return -1;
 		ResultSet u_rs = getUser(u);
 		int wins = -1;
 		try {
@@ -271,6 +296,8 @@ public class SqlInstance {
 	}
 	
 	public int getLosses(String u) {
+		if (u.toLowerCase().equals("guest") || u.toLowerCase().equals("computer")) return -1;
+		
 		ResultSet u_rs = getUser(u);
 		int loss = -1;
 		try {
@@ -282,6 +309,8 @@ public class SqlInstance {
 	}
 	
 	public void changePassword(String u, String pw) {
+		if (u.toLowerCase().equals("guest") || u.toLowerCase().equals("computer")) return;
+		
 		ResultSet u_rs = getUser(u);
 		
 		try {
@@ -297,6 +326,8 @@ public class SqlInstance {
 	}
 	
 	public void setFriends(String u, String fu) {
+		if (u.toLowerCase().equals("guest") || u.toLowerCase().equals("computer")) return;
+		
 		if (findFriend(u, fu)) return;
 		
 		ResultSet u_rs = getUser(u);
@@ -317,6 +348,7 @@ public class SqlInstance {
 	}
 	
 	public ArrayList<String> getFriends(String u) {
+		if (u.toLowerCase().equals("guest") || u.toLowerCase().equals("computer")) return null;
 		ResultSet u_rs = getUser(u);
 		
 		ArrayList<String> franz = new ArrayList<String>();
@@ -334,6 +366,7 @@ public class SqlInstance {
 	}
 	
 	public boolean findFriend(String u, String fu) {
+		if (u.toLowerCase().equals("guest") || u.toLowerCase().equals("computer")) return false;
 		ResultSet u_rs = getUser(u);
 		
 		try {
@@ -348,6 +381,8 @@ public class SqlInstance {
 	}
 	
 	public void changeAvatar(String u, int ava) {
+		if (u.toLowerCase().equals("guest") || u.toLowerCase().equals("computer")) return;
+		
 		ResultSet u_rs = getUser(u);
 		
 		try {
@@ -363,6 +398,8 @@ public class SqlInstance {
 	}
 	
 	public boolean checkLoggedIn (String u) {
+		if (u.toLowerCase().equals("guest") || u.toLowerCase().equals("computer")) return false;
+		
 		ResultSet u_rs = getUser(u);
 		boolean log = false;
 		
@@ -375,6 +412,8 @@ public class SqlInstance {
 	}
 	
 	public void toggleLog (String u) {
+		if (u.toLowerCase().equals("guest") || u.toLowerCase().equals("computer")) return;
+		
 		ResultSet u_rs = getUser(u);
 		
 		try {
