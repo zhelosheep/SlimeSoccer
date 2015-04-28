@@ -19,6 +19,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 
+import controller.Controller;
+import network.GameThread;
+
 public class MainMenuUserPlaySlime extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private JButton continueButton, backButton;
@@ -417,6 +420,14 @@ public class MainMenuUserPlaySlime extends JFrame{
 //						((MainMenuUserPlayPlayer) prevScreen).prevScreen.sWriter.flush();
 //					}
 					
+					gameScreen.gt = new GameThread(backgroundCombo.getSelectedItem().toString(), p1SlimeType, p2SlimeType, p1Username, p2Username, totalManaSlider.getValue(), totalManaSlider.getValue(), regenRateSlider.getValue(), specialModeCombo.getSelectedItem().toString(), null, true);
+					gameScreen.primary.variables = gameScreen.gt.game.variables;
+					Controller controller = new Controller(gameScreen);
+					gameScreen.primary.addKeyListener(controller);
+					gameScreen.setVisible(true);
+					setVisible(false);
+					gameScreen.gt.start();
+					gameScreen.primary.begin();
 					/*
 					gameScreen.setVariables(backgroundCombo.getSelectedItem().toString(), p1SlimeType, p2SlimeType, p1Username, p2Username, totalManaSlider.getValue(), totalManaSlider.getValue(), regenRateSlider.getValue(), specialModeCombo.getSelectedItem().toString());
 					Controller controller = new Controller(gameScreen);
