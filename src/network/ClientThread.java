@@ -162,7 +162,7 @@ public class ClientThread extends Thread {
 //						}
 						
 						//!! If we find a game, then we get the rest of the varibles.
-						mmu.mainMenuUserSpectate.spectateScreen.setVariables(tokens[5], tokens[0], tokens[1], tokens[2], tokens[3], Integer.valueOf(tokens[7]), Integer.valueOf(tokens[7]), Integer.valueOf(tokens[6]), tokens[4]);
+						//mmu.mainMenuUserSpectate.spectateScreen.setVariables(tokens[5], tokens[0], tokens[1], tokens[2], tokens[3], Integer.valueOf(tokens[7]), Integer.valueOf(tokens[7]), Integer.valueOf(tokens[6]), tokens[4]);
 						
 						//Variables ptr = mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.gameScreen.primary.variables;
 //						ptr.ball.x = Integer.parseInt(splited[1]);
