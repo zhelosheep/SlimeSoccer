@@ -97,6 +97,10 @@ public class ClientThread extends Thread {
 						mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.gameScreen.gameIDLabel.setText("Game ID: " + Long.parseLong(tokens[8]));
 						mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.gameScreen.setVisible(true);
 						mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.setVisible(false);
+						mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.gameScreen.setTitle(mmu.getUsername() + " - GameScreen");
+						
+						mmu.mainMenuUserSpectate.spectateScreen.setVariables(tokens[5], tokens[0], tokens[1], tokens[2], tokens[3], Integer.valueOf(tokens[7]), Integer.valueOf(tokens[7]), Integer.valueOf(tokens[6]), tokens[4]);
+						//mmu.mainMenuUserSpectate.spectateScreen.setVisible(true);
 					} else if (str.charAt(0) == 'I') {
 						str = str.substring(2);
 						

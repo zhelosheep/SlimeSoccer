@@ -293,7 +293,7 @@ public class Profile extends JFrame{
 				// Social Butterfly – Have over 25 friends
 				if (LoginPage.sqli.getFriends(MainMenuUser.username).size() == 25 && !LoginPage.sqli.checkAchievement(MainMenuUser.username, LoginPage.soc_a.getName())) {
 					LoginPage.sqli.setAchievement(MainMenuUser.username, LoginPage.soc_a);
-					JOptionPane.showMessageDialog(Profile.this, "You received the SOCIAL BUTTERFLY achievement!", "Achievement Earned!", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(Profile.this, "You received the SOCIAL BUTTERFLY achievement!", "Achievement Earned!", JOptionPane.PLAIN_MESSAGE);
 				}
 			}
 		});
