@@ -54,7 +54,11 @@ public class SpectateScreen extends JFrame {
 		setResizable(false);
 	}
 	private void instantiateVariables() {
-		backButton = new JButton("Back");
+		if (isGuest) {
+			backButton = new JButton("Logout");
+		} else {
+			backButton = new JButton("Back");
+		}
 		switchButton = new JButton("Switch");
 		randomButton = new JButton("Random");
 		sendButton = new JButton("Send");
