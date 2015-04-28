@@ -46,29 +46,38 @@ public class ArtificialIntelligence {
 	}
 	
 	void moveLeft() {
-		Controller.changeKeyboardKeyState(KeyEvent.VK_A, true);
-		Controller.changeKeyboardKeyState(KeyEvent.VK_D, false);
+		game.variables.p1_keyboardState[2] = true;
+		game.variables.p1_keyboardState[3] = false;
+//		Controller.changeKeyboardKeyState(KeyEvent.VK_A, true);
+//		Controller.changeKeyboardKeyState(KeyEvent.VK_D, false);
 	}
 	void moveRight() {
-		Controller.changeKeyboardKeyState(KeyEvent.VK_D, true);
-		Controller.changeKeyboardKeyState(KeyEvent.VK_A, false);
+		game.variables.p1_keyboardState[3] = true;
+		game.variables.p1_keyboardState[2] = false;
+//		Controller.changeKeyboardKeyState(KeyEvent.VK_D, true);
+//		Controller.changeKeyboardKeyState(KeyEvent.VK_A, false);
 	}
 	void moveUp() {
 		new Thread() {
 			public void run() {
-				Controller.changeKeyboardKeyState(KeyEvent.VK_W, true);
-				Controller.changeKeyboardKeyState(KeyEvent.VK_S, false);
+				game.variables.p1_keyboardState[0] = true;
+				game.variables.p1_keyboardState[1] = false;
+//				Controller.changeKeyboardKeyState(KeyEvent.VK_W, true);
+//				Controller.changeKeyboardKeyState(KeyEvent.VK_S, false);
 				try {
 					Thread.sleep(300);
 				} catch (InterruptedException e) {
 					System.out.println("Thread sleep InterruptedException in moveUp() in Artificial Intelligence: " + e.getMessage());
 				}
-				Controller.changeKeyboardKeyState(KeyEvent.VK_W, false);
+				game.variables.p1_keyboardState[0] = false;
+//				Controller.changeKeyboardKeyState(KeyEvent.VK_W, false);
 			}
 		}.start();
 	}
 	void moveDown() {
-		Controller.changeKeyboardKeyState(KeyEvent.VK_S, true);
-		Controller.changeKeyboardKeyState(KeyEvent.VK_D, false);
+		game.variables.p1_keyboardState[1] = true;
+		game.variables.p1_keyboardState[0] = false;
+//		Controller.changeKeyboardKeyState(KeyEvent.VK_S, true);
+//		Controller.changeKeyboardKeyState(KeyEvent.VK_D, false);
 	}
 }
