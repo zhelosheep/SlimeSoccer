@@ -15,6 +15,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -180,8 +181,11 @@ public class MainMenuUserSpectate extends JFrame{
 		});
 		searchButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				prevScreen.sWriter.println("NU" + gameIDField.getText());
-				prevScreen.sWriter.flush();
+				String ID = gameIDField.getText();
+				if (ID.matches("\\d+")) {
+					prevScreen.sWriter.println("NU" + ID);
+					prevScreen.sWriter.flush();
+				} else JOptionPane.showMessageDialog(MainMenuUserSpectate.this, "Invalid entry", "ERROR", JOptionPane.ERROR_MESSAGE);
 			}
 		});
 		randomButton.addActionListener(new ActionListener() {
@@ -196,6 +200,11 @@ public class MainMenuUserSpectate extends JFrame{
 				setVisible(false);
 				Profile pro = new Profile(MainMenuUserSpectate.this.prevScreen.getUsername(), MainMenuUserSpectate.this);
 				pro.setVisible(true);
+			}
+		});
+		gameIDField.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent ae) {
+				searchButton.doClick();
 			}
 		});
 	}

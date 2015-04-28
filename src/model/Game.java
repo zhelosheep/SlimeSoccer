@@ -9,17 +9,19 @@ import view.LoginPage;
 
 public class Game {
 	public Variables variables;
+	boolean isPvCGame;
 	
 	// game objects
-//	public ArtificialIntelligence ai;
+	public ArtificialIntelligence ai;
 	
 	// game stats
 	
-	public Game(String background, String player1_slimeType, String player2_slimeType, String player1_username, String player2_username, int player1_manaMax, int player2_manaMax, int manaRegenerationRate, String specialMode) {
+	public Game(String background, String player1_slimeType, String player2_slimeType, String player1_username, String player2_username, int player1_manaMax, int player2_manaMax, int manaRegenerationRate, String specialMode, boolean isPvCGame) {
 		variables = new Variables();
 		variables.setBackground(background);
 		variables.setSlimeImage(1, player1_slimeType);
 		variables.setSlimeImage(2, player2_slimeType);
+		this.isPvCGame = isPvCGame;
 		
 		// set game stats
 		variables.player1_username = player1_username;
@@ -118,6 +120,11 @@ public class Game {
 		variables.ball = new Ball((variables.leftBoundary + variables.rightBoundary)/2, variables.groundLevel - 12 - 100, variables);
 		variables.goal1 = new Goal(variables.leftBoundary, variables);
 		variables.goal2 = new Goal(variables.rightBoundary, variables);
+		
+		// initiate ArtificialIntelligence object if this is PvC
+		if (this.isPvCGame) {
+			ai = new ArtificialIntelligence(this, variables.slime1, variables.slime2);
+		}
 	}
 	
 	public void update() {
