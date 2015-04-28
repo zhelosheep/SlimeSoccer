@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 
 public class ServerHelperThread extends Thread {
@@ -159,7 +160,6 @@ public class ServerHelperThread extends Thread {
 					
 					else if (str.charAt(0) == 'L') //player 2 key detection
 					{
-						System.out.println("in L");
 						str = str.substring(1); //lop off the L
 						synchronized (st.ongoingGames) {
 							for (GameThread gt : st.ongoingGames.keySet()) {
@@ -221,19 +221,64 @@ public class ServerHelperThread extends Thread {
 
 					else if (str.charAt(0) == 'M')
 					{
-						
+						synchronized (st.ongoingGames) {
+							Random rand = new Random();
+							int num = rand.nextInt(st.ongoingGames.size());
+							int counter = 0;
+							st.ongoingGames.values();
+							for (GameThread thread : st.ongoingGames.keySet()) {
+								if (counter == num) {
+									st.ongoingGames.get(thread).add(this);
+									if (str.charAt(1) == 'U') {
+										this.pw.println("P" + thread.game.variables.stringify()); // send variables
+										this.pw.flush();										
+									} else if (str.charAt(1) == 'G') {
+										this.pw.println("Q" + thread.game.variables.stringify()); // send variables
+										this.pw.flush();
+									}
+								}
+								else counter++;
+							}
+						}
 					}
 
 					else if (str.charAt(0) == 'N')
 					{
-
+						if (str.charAt(1) == 'U') {
+							Long search = Long.parseLong(str.substring(2));
+							synchronized (st.ongoingGames) {
+								boolean found = false;
+								for (GameThread thread : st.ongoingGames.keySet()) {
+									if (thread.gameID == search) {
+										st.ongoingGames.get(thread).add(this);
+										this.pw.println("P" + thread.game.variables.stringify()); // found gameID, send variables
+										this.pw.flush();
+										found = true;
+									}
+								}
+								if (!found) {
+									this.pw.println("R"); // invalid gameID, send error message?
+									this.pw.flush();									
+								}
+							}							
+						} else if (str.charAt(1) == 'G') {
+							Long search = Long.parseLong(str.substring(2));
+							synchronized (st.ongoingGames) {
+								for (GameThread thread : st.ongoingGames.keySet()) {
+									if (thread.gameID == search) {
+										st.ongoingGames.get(thread).add(this);
+										this.pw.println("Q" + thread.game.variables.stringify()); // found gameID, send variables
+										this.pw.flush();
+									}
+								}
+								this.pw.println("S"); // invalid gameID, send error message?
+								this.pw.flush();
+							}														
+						}
 					}
 
 					else if (str.charAt(0) == 'O')
 					{
-						System.out.println("in O");
-						System.out.println(str);
-						
 						synchronized (st) {
 							if (opponentThread.readyToPlay) {
 								opponentThread.readyToPlay = false;
@@ -243,26 +288,15 @@ public class ServerHelperThread extends Thread {
 								str = str.substring(2);
 								String delims = "[$]";
 								String [] tokens = str.split(delims);
-								for (int j = 0; j < tokens.length; j++)
-								{
-									System.out.println("SHT: Printing tokens");
-									System.out.println(tokens[j]);
-									//tokens[0] = p1SlimeType
-									//tokens[1] = p2SlimeType
-									//tokens[2] = p1Username
-									//tokens[3] = p2Username
-									//tokens[4] = special mode
-									//tokens[5] = backgroundCombo
-									//tokens[6] = regenRate
-									//tokens[7] = totalMana
-								}
 								GameThread gt = new GameThread(tokens[5], tokens[0], tokens[1], tokens[2], tokens[3], Integer.valueOf(tokens[7]), Integer.valueOf(tokens[7]), Integer.valueOf(tokens[6]), tokens[4], st, false);
+								gt.gameID = st.gameIDcounter;
 								st.ongoingGames.put(gt, set);
 								// made the game on the server, now set variables for the two clients
-								this.pw.println("G" + str);
+								this.pw.println("G" + str + "$" + st.gameIDcounter);
 								this.pw.flush();
-								opponentThread.pw.println("G" + str);
+								opponentThread.pw.println("G" + str + "$" + st.gameIDcounter);
 								opponentThread.pw.flush();
+								st.gameIDcounter++;
 								gt.start();
 							} else {
 								this.readyToPlay = true;

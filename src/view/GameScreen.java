@@ -52,6 +52,7 @@ public class GameScreen extends JFrame{
 	GameThread gt; // delete later
 	public MainMenuUserPlaySlime prevScreen;
 	public boolean isPvCGame;
+	public JLabel gameIDLabel;
 	
 	public GameScreen(String username, MainMenuUserPlaySlime prevScreen, boolean isPvCGame)
 	{
@@ -81,12 +82,11 @@ public class GameScreen extends JFrame{
 		// set up controller
 		controller = new Controller(this);
 
-		primary = new Canvas();
+		primary = new Canvas(username);
 
-//		uniqueIDLabel = new JLabel("Game ID: " + primary.variables.gameID);
-////		uniqueIDLabel = new JLabel();
-//		uniqueIDLabel.setFont(new Font("Arial", Font.BOLD, 20));
-//		uniqueIDLabel.setBorder(BorderFactory.createEmptyBorder(5, 15, 5, 5));
+		gameIDLabel = new JLabel("Game ID: ");
+		gameIDLabel.setFont(new Font("Arial", Font.BOLD, 20));
+		gameIDLabel.setBorder(BorderFactory.createEmptyBorder(5, 15, 5, 5));
 	}
 	
 	private void addComponents()
@@ -102,7 +102,7 @@ public class GameScreen extends JFrame{
 		logoutButton.setFont(new Font("Arial", Font.BOLD, 16));
 		logoutButton.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 15));
 		northPanel.add(slimeSoccerLabel);
-//		northPanel.add(uniqueIDLabel);
+		northPanel.add(gameIDLabel);
 		northPanel.add(Box.createGlue());
 		northPanel.add(avatarLabel);
 		northPanel.add(settingsButton);
@@ -336,44 +336,6 @@ public class GameScreen extends JFrame{
 		});
 	}
 	
-	public void checkAchievements() {
-		// N00b – Play first game
-		if (LoginPage.sqli.getGames(username) == 1 && !LoginPage.sqli.checkAchievement(username, LoginPage.noob_a.getName())) {
-			LoginPage.sqli.setAchievement(username, LoginPage.noob_a);
-		}
-		
-		// No Life Award – Play 1000 games
-		if (LoginPage.sqli.getGames(username) == 1000 && !LoginPage.sqli.checkAchievement(username, LoginPage.nolife_a.getName())) {
-			LoginPage.sqli.setAchievement(username, LoginPage.nolife_a);
-		}
-	
-		// Victorious – Win 10 games
-		if (LoginPage.sqli.getWins(username) == 10 && !LoginPage.sqli.checkAchievement(username, LoginPage.vict_a.getName())) {
-			LoginPage.sqli.setAchievement(username, LoginPage.vict_a);
-		}
-		
-		// Loser – Lose 5 games in a row
-		if (LoginPage.sqli.getGamesLostInARow(username) == 5 && !LoginPage.sqli.checkAchievement(username, LoginPage.loser_a.getName())) {
-			LoginPage.sqli.setAchievement(username, LoginPage.loser_a);
-		}
-		
-		// Cristiano Ronaldo – Have a 2:1 win lose ratio or greater
-		if (LoginPage.sqli.getRatio(username) >= 2 && !LoginPage.sqli.checkAchievement(username, LoginPage.chris_a.getName())) {
-			LoginPage.sqli.setAchievement(username, LoginPage.chris_a);
-		}
-
-		// Unathletic Athlete – Have a 1:10 win/loss ratio or less
-		if (LoginPage.sqli.getRatio(username) <= 1/10 && LoginPage.sqli.getGames(username) >= 10 && !LoginPage.sqli.checkAchievement(username, LoginPage.unath_a.getName())) {
-			LoginPage.sqli.setAchievement(username, LoginPage.unath_a);
-		}
-		
-		// Packing on the Pounds – Don’t move your slime at all during a game
-		if (!primary.variables.slimeHasMoved_1 && !LoginPage.sqli.checkAchievement(username, LoginPage.pack_a.getName())) {
-			LoginPage.sqli.setAchievement(username, LoginPage.pack_a);
-		}
-
-	}
-	
 	public void setVariables(String background, String player1_slimeType, String player2_slimeType, String player1_username, String player2_username, int player1_manaMax, int player2_manaMax, int manaRegenerationRate, String specialMode) {
 		primary.variables.setBackground(background);
 		primary.variables.setSlimeImage(1, player1_slimeType);
@@ -391,8 +353,6 @@ public class GameScreen extends JFrame{
 		primary.variables.player1scored = false;
 		primary.variables.player2scored = false;
 		
-		System.out.println(player1_slimeType + " " + player2_slimeType);
-
 		if (player1_slimeType.equals("SlimeBomb")) {
 			primary.variables.slime1 = new SlimeBomb(primary.variables.leftBoundary + 50, primary.variables.groundLevel, 1, primary.variables.imgSlime1, primary.variables);
 		} else if (player1_slimeType.equals("SlimeBowAndArrow")) {

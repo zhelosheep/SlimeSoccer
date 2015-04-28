@@ -22,6 +22,8 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.text.DefaultCaret;
 
+import network.GameThread;
+import controller.Controller;
 import model.Ball;
 import model.Goal;
 import model.Slime;
@@ -44,8 +46,6 @@ public class SpectateScreen extends JFrame {
 	private JTextField gameIDField, chatField;
 	public JTextArea chatArea;
 	public Canvas primary;
-	public BufferedReader sReader;
-	public PrintWriter sWriter;
 	
 	SpectateScreen(boolean isGuest, JFrame prevScreen) {
 		setSize(800, 600);
@@ -65,7 +65,7 @@ public class SpectateScreen extends JFrame {
 		gameIDField = new JTextField(10);
 		chatField = new JTextField(10);
 		chatArea = new JTextArea();
-		primary = new Canvas();
+		primary = new Canvas("guest");
 	}
 	
 	private void addComponents() {
@@ -210,6 +210,8 @@ public class SpectateScreen extends JFrame {
 		primary.variables.player2scored = false;
 		
 		System.out.println(player1_slimeType + " " + player2_slimeType);
+		System.out.println(player1_username + player2_username);
+		System.out.println(player1_manaMax + player2_manaMax);
 
 		if (player1_slimeType.equals("SlimeBomb")) {
 			primary.variables.slime1 = new SlimeBomb(primary.variables.leftBoundary + 50, primary.variables.groundLevel, 1, primary.variables.imgSlime1, primary.variables);
