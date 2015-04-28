@@ -70,7 +70,7 @@ public class GameScreen extends JFrame{
 	private void instantiateVariables()
 	{
 		sendButton = new JButton("Send");
-		backButton = new JButton("Logout");
+		backButton = new JButton("Back");
 		settingsButton = new JButton("Settings");
 		chatArea = new JTextArea();
 		chatField = new JTextField(10);
