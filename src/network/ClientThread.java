@@ -3,10 +3,12 @@ package network;
 import java.io.IOException;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import model.Variables;
 import view.MainMenuGuest;
 import view.MainMenuUser;
+import view.SettingsPage;
 
 public class ClientThread extends Thread {
 	private MainMenuGuest mmg = null;
@@ -40,7 +42,7 @@ public class ClientThread extends Thread {
 						mmg.setVisible(false);
 						mmg.spectateScreen.setTitle("Guest - SpectateScreen");
 					} else if (str.charAt(0) == 'S') {
-						System.out.println("Invalid game id");						
+						JOptionPane.showMessageDialog(mmg, "Game ID does not exist", "ERROR404", JOptionPane.ERROR_MESSAGE);
 					} else if (str.charAt(0) == 'M') {
 						String[] splited = str.split("\\s+");
 						Variables ptr = mmg.spectateScreen.primary.variables;
@@ -224,7 +226,7 @@ public class ClientThread extends Thread {
 						mmu.mainMenuUserSpectate.setVisible(false);
 						mmu.mainMenuUserSpectate.spectateScreen.setTitle(mmu.getUsername() + " - SpectateScreen");
 					} else if (str.charAt(0) == 'R') {
-						System.out.println("R - Invalid game id");												
+						JOptionPane.showMessageDialog(mmu, "Game ID does not exist", "ERROR404", JOptionPane.ERROR_MESSAGE);												
 					}
 				}
 			} catch (IOException ioe) {
