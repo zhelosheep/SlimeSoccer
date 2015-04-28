@@ -16,7 +16,7 @@ public class Variables {
 	public BufferedImage imgBackground;
 	public BufferedImage imgGoal;
 	public BufferedImage imgSlime1, imgSlime2;
-	public BufferedImage imgSlimeBombSpecial, imgSlimeBowAndArrowSpecial, imgSlimeCosmicSpecial, imgFisherSpecial;
+	public BufferedImage imgSlimeBombSpecial, imgSlimeBowAndArrowSpecial, imgSlimeCosmicSpecial, imgFisherSpecial, imgGameoverLose;
 	public BufferedImage imgGameoverPlayer1, imgGameoverPlayer2;
 	
 	// game objects
@@ -53,6 +53,7 @@ public class Variables {
 			imgGoal = ImageIO.read((getClass().getClassLoader().getResource("game/others/Goal.png")));
 			imgGameoverPlayer1 = ImageIO.read((getClass().getClassLoader().getResource("game/others/gameover1.png")));
 			imgGameoverPlayer2 = ImageIO.read((getClass().getClassLoader().getResource("game/others/gameover2.png")));
+			imgGameoverLose = ImageIO.read((getClass().getClassLoader().getResource("game/others/gameoverLose.png")));
 			imgSlimeBombSpecial = ImageIO.read((getClass().getClassLoader().getResource("game/slimes/SlimeSpecialEffects/Bomb.png")));
 			imgSlimeBowAndArrowSpecial = ImageIO.read((getClass().getClassLoader().getResource("game/slimes/SlimeSpecialEffects/BowAndArrow.png")));
 			imgSlimeCosmicSpecial = ImageIO.read((getClass().getClassLoader().getResource("game/slimes/SlimeSpecialEffects/Cosmic.png")));

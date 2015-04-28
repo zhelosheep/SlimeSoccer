@@ -81,7 +81,7 @@ public class GameScreen extends JFrame{
 		// set up controller
 		controller = new Controller(this);
 
-		primary = new Canvas();
+		primary = new Canvas(username);
 
 //		uniqueIDLabel = new JLabel("Game ID: " + primary.variables.gameID);
 ////		uniqueIDLabel = new JLabel();
