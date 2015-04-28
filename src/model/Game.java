@@ -137,7 +137,6 @@ public class Game {
 	}
 	
 	public void update() {
-		System.out.println("here");
 		// update positions
 		variables.slime1.update();
 		variables.slime2.update();

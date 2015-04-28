@@ -291,6 +291,98 @@ public class GameScreen extends JFrame{
 		    primary.getActionMap().put("rLEFT", rleftAction);
 		    primary.getActionMap().put("rRIGHT", rrightAction);
 		    primary.getActionMap().put("rSPACE", rspaceAction);			
+		} else {
+			AbstractAction upAction = new AbstractAction()
+		    {   
+		        public void actionPerformed(ActionEvent ae)
+		        {
+		        	gt.game.variables.p2_keyboardState[0] = false;
+		        }
+		    };
+		    AbstractAction downAction = new AbstractAction()
+		    {   
+		        public void actionPerformed(ActionEvent ae)
+		        {
+		        	gt.game.variables.p2_keyboardState[1] = true;
+		        }
+		    };
+		    AbstractAction leftAction = new AbstractAction()
+		    {   
+		        public void actionPerformed(ActionEvent ae)
+		        {
+		        	gt.game.variables.p2_keyboardState[2] = true;
+		        }
+		    };
+		    AbstractAction rightAction = new AbstractAction()
+		    {   
+		        public void actionPerformed(ActionEvent ae)
+		        {
+		        	gt.game.variables.p2_keyboardState[3] = true;
+		        }
+		    };
+		    AbstractAction spaceAction = new AbstractAction()
+		    {   
+		        public void actionPerformed(ActionEvent ae)
+		        {
+		        	gt.game.variables.p2_keyboardState[4] = true;
+		        }
+		    };
+			AbstractAction rupAction = new AbstractAction()
+		    {   
+		        public void actionPerformed(ActionEvent ae)
+		        {
+		        	gt.game.variables.p2_keyboardState[0] = false;
+		        }
+		    };
+		    AbstractAction rdownAction = new AbstractAction()
+		    {   
+		        public void actionPerformed(ActionEvent ae)
+		        {
+		        	gt.game.variables.p2_keyboardState[1] = false;
+		        }
+		    };
+		    AbstractAction rleftAction = new AbstractAction()
+		    {   
+		        public void actionPerformed(ActionEvent ae)
+		        {
+		        	gt.game.variables.p2_keyboardState[2] = false;
+		        }
+		    };
+		    AbstractAction rrightAction = new AbstractAction()
+		    {   
+		        public void actionPerformed(ActionEvent ae)
+		        {
+		        	gt.game.variables.p2_keyboardState[3] = false;
+		        }
+		    };
+		    AbstractAction rspaceAction = new AbstractAction()
+		    {   
+		        public void actionPerformed(ActionEvent ae)
+		        {
+		        	gt.game.variables.p2_keyboardState[4] = false;
+		        }
+		    };
+		    
+		    primary.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("UP"), "UP");
+		    primary.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("DOWN"), "DOWN");
+		    primary.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("LEFT"), "LEFT");
+		    primary.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("RIGHT"), "RIGHT");
+		    primary.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("P"), "SPACE");
+		    primary.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("released UP"), "rUP");
+		    primary.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("released DOWN"), "rDOWN");
+		    primary.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("released LEFT"), "rLEFT");
+		    primary.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("released RIGHT"), "rRIGHT");
+		    primary.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("released P"), "rSPACE");
+		    primary.getActionMap().put("UP", upAction);
+		    primary.getActionMap().put("DOWN", downAction);
+		    primary.getActionMap().put("LEFT", leftAction);
+		    primary.getActionMap().put("RIGHT", rightAction);
+		    primary.getActionMap().put("SPACE", spaceAction);
+		    primary.getActionMap().put("rUP", rupAction);
+		    primary.getActionMap().put("rDOWN", rdownAction);
+		    primary.getActionMap().put("rLEFT", rleftAction);
+		    primary.getActionMap().put("rRIGHT", rrightAction);
+		    primary.getActionMap().put("rSPACE", rspaceAction);						
 		}
 	    
 	    sendButton.addActionListener(new ActionListener() {
