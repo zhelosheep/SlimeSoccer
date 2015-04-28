@@ -190,7 +190,7 @@ public class MainMenuUserPlaySlime extends JFrame{
 		specialSlimeDescriptions[2] = "<html><div style=\"text-align: center;\">Cristiano Ronaldo";
 		specialSlimeDescriptions[3] = "<html><div style=\"text-align: center;\">Unathletic Athlete";
 		specialSlimeDescriptions[4] = "<html><div style=\"text-align: center;\">Victorious";
-		specialSlimeDescriptions[5] = "<html><div style=\"text-align: center;\">N00b'";
+		specialSlimeDescriptions[5] = "<html><div style=\"text-align: center;\">N00b";
 		specialSlimeDescriptions[6] = "<html><div style=\"text-align: center;\">Loser";
 		specialSlimeDescriptions[7] = "<html><div style=\"text-align: center;\">No Life Award";
 		
