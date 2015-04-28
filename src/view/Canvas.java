@@ -47,6 +47,7 @@ public class Canvas extends JPanel implements Runnable {
 		g.drawString(variables.player1_slimeType, 20, 20);
 		g.drawString(variables.player1_username, 20, 40);
 		g.drawRoundRect(20, 50, 80, 10, 5, 5);
+//		System.out.println("p1: " + variables.player1_manaCurrent + "/" + variables.player1_manaMax + " -> " + (int)((variables.player1_manaCurrent/variables.player1_manaMax)*80));
 		g.fillRoundRect(20, 50, (int)((variables.player1_manaCurrent/variables.player1_manaMax)*80), 10, 5, 5); // update
 		g.setFont(new Font("Helvetica", Font.PLAIN, 40));
 		if (variables.background.equals("Outer Space")) { g.setColor(Color.WHITE); }
@@ -59,6 +60,7 @@ public class Canvas extends JPanel implements Runnable {
 		g.drawString(variables.player2_slimeType, drawAtLeft, 20);
 		g.drawString(variables.player2_username, drawAtLeft, 40);
 		g.drawRoundRect(drawAtLeft, 50, 80, 10, 5, 5);
+//		System.out.println("p2: " + variables.player2_manaCurrent + "/" + variables.player2_manaMax + " -> " + (int)((variables.player2_manaCurrent/variables.player2_manaMax)*80));
 		g.fillRoundRect(drawAtLeft, 50, (int)((variables.player2_manaCurrent/variables.player2_manaMax)*80), 10, 5, 5); // update
 		g.setFont(new Font("Helvetica", Font.PLAIN, 40));
 		if (variables.background.equals("Outer Space")) { g.setColor(Color.WHITE); }

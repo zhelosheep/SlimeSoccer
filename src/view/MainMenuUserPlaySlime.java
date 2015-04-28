@@ -19,10 +19,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 
-import controller.Controller;
-import model.Game;
-import network.GameThread;
-
 public class MainMenuUserPlaySlime extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private JButton continueButton, backButton;
@@ -407,7 +403,17 @@ public class MainMenuUserPlaySlime extends JFrame{
 				// Player vs Computer Game
 				else {
 					//****** COME BACK TO THIS LATER!!!!!!! ******//
-
+					
+//					if (isPlayer1) {
+//						((MainMenuUserPlayPlayer) prevScreen).prevScreen.sWriter.println("O1" + p1SlimeType + "$" + p2SlimeType + "$" + p1Username + "$" + p2Username + "$" + specialModeCombo.getSelectedItem().toString() + "$" + backgroundCombo.getSelectedItem().toString() + "$" + regenRateSlider.getValue() + "$" + totalManaSlider.getValue()); // append game settings!						
+//						//System.out.println("O1" + "$" + specialModeCombo.getSelectedItem().toString() + "$" + backgroundCombo.getSelectedItem().toString() + "$" + regenRateSlider.getValue() + "$" + totalManaSlider.getValue());
+//						((MainMenuUserPlayPlayer) prevScreen).prevScreen.sWriter.flush();						
+//					} else {
+//						((MainMenuUserPlayPlayer) prevScreen).prevScreen.sWriter.println("O2" + p1SlimeType + "$" + p2SlimeType + "$" + p1Username + "$" + p2Username + "$" + specialModeCombo.getSelectedItem().toString() + "$" + backgroundCombo.getSelectedItem().toString() + "$" + regenRateSlider.getValue() + "$" + totalManaSlider.getValue()); // append game settings!						
+//						//System.out.println("O2" + "$" + specialModeCombo.getSelectedItem().toString() + "$" + backgroundCombo.getSelectedItem().toString() + "$" + regenRateSlider.getValue() + "$" + totalManaSlider.getValue());												
+//						((MainMenuUserPlayPlayer) prevScreen).prevScreen.sWriter.flush();
+//					}
+					
 					/*
 					gameScreen.setVariables(backgroundCombo.getSelectedItem().toString(), p1SlimeType, p2SlimeType, p1Username, p2Username, totalManaSlider.getValue(), totalManaSlider.getValue(), regenRateSlider.getValue(), specialModeCombo.getSelectedItem().toString());
 					Controller controller = new Controller(gameScreen);
