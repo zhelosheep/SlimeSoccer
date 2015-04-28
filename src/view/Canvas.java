@@ -118,14 +118,18 @@ public class Canvas extends JPanel implements Runnable {
 			if (variables.playerThatWon == 1) { // update
 				if (variables.player1_username.equals(username)) {
 					g.drawImage(variables.imgGameoverPlayer1, 0, 0, null);
-				} else {
+				} else if (variables.player2_username.equals(username)) {
 					g.drawImage(variables.imgGameoverLose, 0, 0, null);
+				} else {
+					g.drawImage(variables.imgGuestEndSpectate, 0, 0, null);
 				}
 			} else if (variables.playerThatWon == 2) {
 				if (variables.player2_username.equals(username)) {
 					g.drawImage(variables.imgGameoverPlayer2, 0, 0, null);
-				} else {
+				} else if (variables.player1_username.equals(username)){
 					g.drawImage(variables.imgGameoverLose, 0, 0, null);
+				} else {
+					g.drawImage(variables.imgGuestEndSpectate, 0, 0, null);
 				}
 			}
 			g.setColor(Color.WHITE);

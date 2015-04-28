@@ -7,8 +7,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.BufferedReader;
-import java.io.PrintWriter;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -22,8 +20,6 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.text.DefaultCaret;
 
-import network.GameThread;
-import controller.Controller;
 import model.Ball;
 import model.Goal;
 import model.Slime;
@@ -141,8 +137,32 @@ public class SpectateScreen extends JFrame {
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
-				LoginPage.sqli.toggleLog(MainMenuUser.username);
+				if (!isGuest) {
+					LoginPage.sqli.toggleLog(MainMenuUser.username);
+				}
 				quit();
+			}
+		});
+		switchButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (isGuest) {
+					((MainMenuGuest) prevScreen).sWriter.println("NG" + gameIDField.getText());
+					((MainMenuGuest) prevScreen).sWriter.flush();
+				} else {
+					((MainMenuUserSpectate) prevScreen).prevScreen.sWriter.println("NU" + gameIDField.getText());
+					((MainMenuUserSpectate) prevScreen).prevScreen.sWriter.flush();
+				}
+			}
+		});
+		randomButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (isGuest) {
+					((MainMenuGuest) prevScreen).sWriter.println("MG");
+					((MainMenuGuest) prevScreen).sWriter.flush();
+				} else {
+					((MainMenuUserSpectate) prevScreen).prevScreen.sWriter.println("MU");
+					((MainMenuUserSpectate) prevScreen).prevScreen.sWriter.flush();
+				}				
 			}
 		});
 		backButton.addActionListener(new ActionListener() {

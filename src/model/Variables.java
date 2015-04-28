@@ -1,12 +1,8 @@
 package model;
 
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
-
-import network.ServerThread;
 
 public class Variables {
 	// try 
@@ -18,7 +14,7 @@ public class Variables {
 	public BufferedImage imgBackground;
 	public BufferedImage imgGoal;
 	public BufferedImage imgSlime1, imgSlime2;
-	public BufferedImage imgSlimeBombSpecial, imgSlimeBowAndArrowSpecial, imgSlimeCosmicSpecial, imgFisherSpecial, imgGameoverLose;
+	public BufferedImage imgSlimeBombSpecial, imgSlimeBowAndArrowSpecial, imgSlimeCosmicSpecial, imgFisherSpecial, imgGameoverLose, imgGuestEndSpectate;
 	public BufferedImage imgGameoverPlayer1, imgGameoverPlayer2;
 	
 	// game objects
@@ -56,6 +52,7 @@ public class Variables {
 			imgGameoverPlayer1 = ImageIO.read((getClass().getClassLoader().getResource("game/others/gameover1.png")));
 			imgGameoverPlayer2 = ImageIO.read((getClass().getClassLoader().getResource("game/others/gameover2.png")));
 			imgGameoverLose = ImageIO.read((getClass().getClassLoader().getResource("game/others/gameoverLose.png")));
+			imgGuestEndSpectate = ImageIO.read((getClass().getClassLoader().getResource("game/others/guestEndSpectate.png"))); 
 			imgSlimeBombSpecial = ImageIO.read((getClass().getClassLoader().getResource("game/slimes/SlimeSpecialEffects/Bomb.png")));
 			imgSlimeBowAndArrowSpecial = ImageIO.read((getClass().getClassLoader().getResource("game/slimes/SlimeSpecialEffects/BowAndArrow.png")));
 			imgSlimeCosmicSpecial = ImageIO.read((getClass().getClassLoader().getResource("game/slimes/SlimeSpecialEffects/Cosmic.png")));
