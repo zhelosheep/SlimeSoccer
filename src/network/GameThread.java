@@ -11,6 +11,7 @@ public class GameThread extends Thread {
 	public GameThread(String background, String player1_slimeType, String player2_slimeType, String player1_username, String player2_username, int player1_manaMax, int player2_manaMax, int manaRegenerationRate, String specialMode, ServerThread st, boolean isPvCGame) {
 		game = new Game(background, player1_slimeType, player2_slimeType, player1_username, player2_username, player1_manaMax, player2_manaMax, manaRegenerationRate, specialMode, isPvCGame);
 		this.st = st;
+		this.isPvCGame = isPvCGame;
 	}
 	
 	public void run() {
@@ -19,31 +20,26 @@ public class GameThread extends Thread {
         while(true)
         {
             beginTime = System.nanoTime();
-            
-            // do something
-//            if (isPvCGame) {
             game.update();
-//            } else {
-//            	
-//            }
              
-//            System.out.println("slime1: " + game.variables.slime1.x + " " + game.variables.slime1.y + " slime2: " + game.variables.slime2.x + " " + game.variables.slime2.y);
-            String output = "M " + game.variables.ball.x + " " + game.variables.ball.y + " " + game.variables.ball.width + " " + game.variables.ball.height + " " +
-            				game.variables.slime1.x + " " + game.variables.slime1.y + " " + game.variables.slime1.width + " " + game.variables.slime1.height + " " +
-            				game.variables.slime2.x + " " + game.variables.slime2.y + " " + game.variables.slime2.width + " " + game.variables.slime2.height + " " +
-            				game.variables.player1_manaCurrent + " " + game.variables.player2_manaCurrent + " " + game.variables.player1scored + " " + game.variables.player2scored + " " + 
-            				game.variables.gameOver + " " + game.variables.playerThatWon + " " + game.variables.player1_score + " " + game.variables.player2_score + " " + game.variables.slimeHasMoved_1 + " " + game.variables.slimeHasMoved_2;
-            
-            
-            // repaint screen
-            // tell the canvases to paint themselves
-            for (ServerHelperThread thread : st.ongoingGames.get(this)) {
-                thread.pw.println(output);
-                thread.pw.flush();
+            if (!isPvCGame) {
+            	String output = "M " + game.variables.ball.x + " " + game.variables.ball.y + " " + game.variables.ball.width + " " + game.variables.ball.height + " " +
+            			game.variables.slime1.x + " " + game.variables.slime1.y + " " + game.variables.slime1.width + " " + game.variables.slime1.height + " " +
+            			game.variables.slime2.x + " " + game.variables.slime2.y + " " + game.variables.slime2.width + " " + game.variables.slime2.height + " " +
+            			game.variables.player1_manaCurrent + " " + game.variables.player2_manaCurrent + " " + game.variables.player1scored + " " + game.variables.player2scored + " " + 
+            			game.variables.gameOver + " " + game.variables.playerThatWon + " " + game.variables.player1_score + " " + game.variables.player2_score + " " + game.variables.slimeHasMoved_1 + " " + game.variables.slimeHasMoved_2;
+
+
+            	// repaint screen
+            	// tell the canvases to paint themselves
+            	for (ServerHelperThread thread : st.ongoingGames.get(this)) {
+            		thread.pw.println(output);
+            		thread.pw.flush();
+            	}
+
+            	game.variables.player1scored = false;
+            	game.variables.player2scored = false;
             }
-            
-            game.variables.player1scored = false;
-            game.variables.player2scored = false;
             
             if (game.variables.gameOver) break;
             
@@ -57,6 +53,8 @@ public class GameThread extends Thread {
                  Thread.sleep(timeLeft);
             } catch (InterruptedException ex) {}
         }
-        st.ongoingGames.remove(this);
+        if (!isPvCGame) {
+            st.ongoingGames.remove(this);        	
+        }
 	}
 }

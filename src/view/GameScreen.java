@@ -77,10 +77,6 @@ public class GameScreen extends JFrame{
 		slimeSoccerLabel.setFont(new Font("Arial", Font.BOLD, 20));
 		slimeSoccerLabel.setBorder(BorderFactory.createEmptyBorder(5, 15, 5, 5));
 		
-		gt = new GameThread("Outer Space", "SlimeBowAndArrow", "SlimeSuperSize", "shawnren", "josemama", 100, 100, 1, "", null, this.isPvCGame);
-		// set up controller
-		controller = new Controller(this);
-
 		primary = new Canvas(username);
 
 		gameIDLabel = new JLabel("Game ID: ");
@@ -114,7 +110,7 @@ public class GameScreen extends JFrame{
 		JPanel leftPanel = new JPanel();
 		leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
 		leftPanel.setPreferredSize(new Dimension(610, 460));
-//		leftPanel.setBorder(BorderFactory.createEmptyBorder(0, 30, 15, 0));
+		leftPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 0, 0));
 		leftPanel.add(primary);
 		
 		JPanel rightPanel = new JPanel();
@@ -143,157 +139,251 @@ public class GameScreen extends JFrame{
 	
 	private void addListeners()
 	{
-		AbstractAction upAction = new AbstractAction()
-	    {   
-	        public void actionPerformed(ActionEvent ae)
-	        {
-	        	if (prevScreen.isPlayer1) {
-					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "up");
-					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();					        		
-	        	} else {
-					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("L" + "up");
-					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();					        		
-	        	}
-	        }
-	    };
-	    AbstractAction downAction = new AbstractAction()
-	    {   
-	        public void actionPerformed(ActionEvent ae)
-	        {
-	        	if (prevScreen.isPlayer1) {
-					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "down");
-					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();					        		
-	        	} else {
-					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("L" + "down");
-					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();				
-	        	}
-	        }
-	    };
-	    AbstractAction leftAction = new AbstractAction()
-	    {   
-	        public void actionPerformed(ActionEvent ae)
-	        {
-	        	if (prevScreen.isPlayer1) {
-					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "left");
-					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();				
-	        	} else {
-					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("L" + "left");
-					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();				
-	        	}
-	        }
-	    };
-	    AbstractAction rightAction = new AbstractAction()
-	    {   
-	        public void actionPerformed(ActionEvent ae)
-	        {
-	        	if (prevScreen.isPlayer1) {
-					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "right");
-					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();					        		
-	        	} else {
-					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("L" + "right");
-					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();				
-	        	}
-	        }
-	    };
-	    AbstractAction spaceAction = new AbstractAction()
-	    {   
-	        public void actionPerformed(ActionEvent ae)
-	        {
-	        	if (prevScreen.isPlayer1) {
-					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "space");
-					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();					        		
-	        	} else {
-					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("L" + "space");
-					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();				
-	        	}
-	        }
-	    };
-		AbstractAction rupAction = new AbstractAction()
-	    {   
-	        public void actionPerformed(ActionEvent ae)
-	        {
-	        	if (prevScreen.isPlayer1) {
-					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "upno");
-					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();					        		
-	        	} else {
-					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("L" + "upno");
-					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();				
-	        	}
-	        }
-	    };
-	    AbstractAction rdownAction = new AbstractAction()
-	    {   
-	        public void actionPerformed(ActionEvent ae)
-	        {
-	        	if (prevScreen.isPlayer1) {
-					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "downno");
-					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();					        		
-	        	} else {
-					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("L" + "downno");
-					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();				
-	        	}
-	        }
-	    };
-	    AbstractAction rleftAction = new AbstractAction()
-	    {   
-	        public void actionPerformed(ActionEvent ae)
-	        {
-	        	if (prevScreen.isPlayer1) {
-					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "leftno");
-					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();					        		
-	        	} else {
-					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("L" + "leftno");
-					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();				
-	        	}
-	        }
-	    };
-	    AbstractAction rrightAction = new AbstractAction()
-	    {   
-	        public void actionPerformed(ActionEvent ae)
-	        {
-	        	if (prevScreen.isPlayer1) {
-					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "rightno");
-					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();					        		
-	        	} else {
-					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("L" + "rightno");
-					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();				
-	        	}
-	        }
-	    };
-	    AbstractAction rspaceAction = new AbstractAction()
-	    {   
-	        public void actionPerformed(ActionEvent ae)
-	        {
-	        	if (prevScreen.isPlayer1) {
-					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "spaceno");
-					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();	        		
-	        	} else {
-					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("L" + "spaceno");
-					((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();				
-	        	}
-	        }
-	    };
-	    
-	    primary.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("UP"), "UP");
-	    primary.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("DOWN"), "DOWN");
-	    primary.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("LEFT"), "LEFT");
-	    primary.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("RIGHT"), "RIGHT");
-	    primary.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("P"), "SPACE");
-	    primary.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("released UP"), "rUP");
-	    primary.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("released DOWN"), "rDOWN");
-	    primary.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("released LEFT"), "rLEFT");
-	    primary.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("released RIGHT"), "rRIGHT");
-	    primary.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("released P"), "rSPACE");
-	    primary.getActionMap().put("UP", upAction);
-	    primary.getActionMap().put("DOWN", downAction);
-	    primary.getActionMap().put("LEFT", leftAction);
-	    primary.getActionMap().put("RIGHT", rightAction);
-	    primary.getActionMap().put("SPACE", spaceAction);
-	    primary.getActionMap().put("rUP", rupAction);
-	    primary.getActionMap().put("rDOWN", rdownAction);
-	    primary.getActionMap().put("rLEFT", rleftAction);
-	    primary.getActionMap().put("rRIGHT", rrightAction);
-	    primary.getActionMap().put("rSPACE", rspaceAction);
+		if (!isPvCGame) {
+			AbstractAction upAction = new AbstractAction()
+		    {   
+		        public void actionPerformed(ActionEvent ae)
+		        {
+		        	if (prevScreen.isPlayer1) {
+						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "up");
+						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();					        		
+		        	} else {
+						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("L" + "up");
+						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();					        		
+		        	}
+		        }
+		    };
+		    AbstractAction downAction = new AbstractAction()
+		    {   
+		        public void actionPerformed(ActionEvent ae)
+		        {
+		        	if (prevScreen.isPlayer1) {
+						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "down");
+						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();					        		
+		        	} else {
+						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("L" + "down");
+						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();				
+		        	}
+		        }
+		    };
+		    AbstractAction leftAction = new AbstractAction()
+		    {   
+		        public void actionPerformed(ActionEvent ae)
+		        {
+		        	if (prevScreen.isPlayer1) {
+						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "left");
+						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();				
+		        	} else {
+						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("L" + "left");
+						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();				
+		        	}
+		        }
+		    };
+		    AbstractAction rightAction = new AbstractAction()
+		    {   
+		        public void actionPerformed(ActionEvent ae)
+		        {
+		        	if (prevScreen.isPlayer1) {
+						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "right");
+						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();					        		
+		        	} else {
+						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("L" + "right");
+						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();				
+		        	}
+		        }
+		    };
+		    AbstractAction spaceAction = new AbstractAction()
+		    {   
+		        public void actionPerformed(ActionEvent ae)
+		        {
+		        	if (prevScreen.isPlayer1) {
+						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "space");
+						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();					        		
+		        	} else {
+						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("L" + "space");
+						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();				
+		        	}
+		        }
+		    };
+			AbstractAction rupAction = new AbstractAction()
+		    {   
+		        public void actionPerformed(ActionEvent ae)
+		        {
+		        	if (prevScreen.isPlayer1) {
+						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "upno");
+						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();					        		
+		        	} else {
+						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("L" + "upno");
+						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();				
+		        	}
+		        }
+		    };
+		    AbstractAction rdownAction = new AbstractAction()
+		    {   
+		        public void actionPerformed(ActionEvent ae)
+		        {
+		        	if (prevScreen.isPlayer1) {
+						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "downno");
+						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();					        		
+		        	} else {
+						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("L" + "downno");
+						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();				
+		        	}
+		        }
+		    };
+		    AbstractAction rleftAction = new AbstractAction()
+		    {   
+		        public void actionPerformed(ActionEvent ae)
+		        {
+		        	if (prevScreen.isPlayer1) {
+						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "leftno");
+						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();					        		
+		        	} else {
+						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("L" + "leftno");
+						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();				
+		        	}
+		        }
+		    };
+		    AbstractAction rrightAction = new AbstractAction()
+		    {   
+		        public void actionPerformed(ActionEvent ae)
+		        {
+		        	if (prevScreen.isPlayer1) {
+						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "rightno");
+						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();					        		
+		        	} else {
+						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("L" + "rightno");
+						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();				
+		        	}
+		        }
+		    };
+		    AbstractAction rspaceAction = new AbstractAction()
+		    {   
+		        public void actionPerformed(ActionEvent ae)
+		        {
+		        	if (prevScreen.isPlayer1) {
+						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "spaceno");
+						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();	        		
+		        	} else {
+						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("L" + "spaceno");
+						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();				
+		        	}
+		        }
+		    };
+		    
+		    primary.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("UP"), "UP");
+		    primary.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("DOWN"), "DOWN");
+		    primary.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("LEFT"), "LEFT");
+		    primary.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("RIGHT"), "RIGHT");
+		    primary.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("P"), "SPACE");
+		    primary.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("released UP"), "rUP");
+		    primary.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("released DOWN"), "rDOWN");
+		    primary.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("released LEFT"), "rLEFT");
+		    primary.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("released RIGHT"), "rRIGHT");
+		    primary.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("released P"), "rSPACE");
+		    primary.getActionMap().put("UP", upAction);
+		    primary.getActionMap().put("DOWN", downAction);
+		    primary.getActionMap().put("LEFT", leftAction);
+		    primary.getActionMap().put("RIGHT", rightAction);
+		    primary.getActionMap().put("SPACE", spaceAction);
+		    primary.getActionMap().put("rUP", rupAction);
+		    primary.getActionMap().put("rDOWN", rdownAction);
+		    primary.getActionMap().put("rLEFT", rleftAction);
+		    primary.getActionMap().put("rRIGHT", rrightAction);
+		    primary.getActionMap().put("rSPACE", rspaceAction);			
+		} else {
+			AbstractAction upAction = new AbstractAction()
+		    {   
+		        public void actionPerformed(ActionEvent ae)
+		        {
+		        	gt.game.variables.p2_keyboardState[0] = true;
+		        }
+		    };
+		    AbstractAction downAction = new AbstractAction()
+		    {   
+		        public void actionPerformed(ActionEvent ae)
+		        {
+		        	gt.game.variables.p2_keyboardState[1] = true;
+		        }
+		    };
+		    AbstractAction leftAction = new AbstractAction()
+		    {   
+		        public void actionPerformed(ActionEvent ae)
+		        {
+		        	gt.game.variables.p2_keyboardState[2] = true;
+		        }
+		    };
+		    AbstractAction rightAction = new AbstractAction()
+		    {   
+		        public void actionPerformed(ActionEvent ae)
+		        {
+		        	gt.game.variables.p2_keyboardState[3] = true;
+		        }
+		    };
+		    AbstractAction spaceAction = new AbstractAction()
+		    {   
+		        public void actionPerformed(ActionEvent ae)
+		        {
+		        	gt.game.variables.p2_keyboardState[4] = true;
+		        }
+		    };
+			AbstractAction rupAction = new AbstractAction()
+		    {   
+		        public void actionPerformed(ActionEvent ae)
+		        {
+		        	gt.game.variables.p2_keyboardState[0] = false;
+		        }
+		    };
+		    AbstractAction rdownAction = new AbstractAction()
+		    {   
+		        public void actionPerformed(ActionEvent ae)
+		        {
+		        	gt.game.variables.p2_keyboardState[1] = false;
+		        }
+		    };
+		    AbstractAction rleftAction = new AbstractAction()
+		    {   
+		        public void actionPerformed(ActionEvent ae)
+		        {
+		        	gt.game.variables.p2_keyboardState[2] = false;
+		        }
+		    };
+		    AbstractAction rrightAction = new AbstractAction()
+		    {   
+		        public void actionPerformed(ActionEvent ae)
+		        {
+		        	gt.game.variables.p2_keyboardState[3] = false;
+		        }
+		    };
+		    AbstractAction rspaceAction = new AbstractAction()
+		    {   
+		        public void actionPerformed(ActionEvent ae)
+		        {
+		        	gt.game.variables.p2_keyboardState[4] = false;
+		        }
+		    };
+		    
+		    primary.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("UP"), "UP");
+		    primary.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("DOWN"), "DOWN");
+		    primary.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("LEFT"), "LEFT");
+		    primary.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("RIGHT"), "RIGHT");
+		    primary.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("P"), "SPACE");
+		    primary.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("released UP"), "rUP");
+		    primary.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("released DOWN"), "rDOWN");
+		    primary.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("released LEFT"), "rLEFT");
+		    primary.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("released RIGHT"), "rRIGHT");
+		    primary.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("released P"), "rSPACE");
+		    primary.getActionMap().put("UP", upAction);
+		    primary.getActionMap().put("DOWN", downAction);
+		    primary.getActionMap().put("LEFT", leftAction);
+		    primary.getActionMap().put("RIGHT", rightAction);
+		    primary.getActionMap().put("SPACE", spaceAction);
+		    primary.getActionMap().put("rUP", rupAction);
+		    primary.getActionMap().put("rDOWN", rdownAction);
+		    primary.getActionMap().put("rLEFT", rleftAction);
+		    primary.getActionMap().put("rRIGHT", rrightAction);
+		    primary.getActionMap().put("rSPACE", rspaceAction);						
+		}
 	    
 	    sendButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
