@@ -171,6 +171,7 @@ public class MainMenuUser extends JFrame{
 		});
 		playCompButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				mainMenuUserPlaySlime.setEnabled(true);
 				mainMenuUserPlaySlime.setVisible(true);
 				setVisible(false);
 			}

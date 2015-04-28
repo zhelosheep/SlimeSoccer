@@ -92,6 +92,7 @@ public class ClientThread extends Thread {
 							mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.p1Username = str.substring(2);
 							mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.p1UsernameLabel.setText("<html><div style=\"text-align: center;\">" + str.substring(2));
 						}
+						mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.setEnabled(true);
 						mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.setVisible(true);
 						mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.setVisible(false);
 					} else if (str.charAt(0) == 'G') {
