@@ -19,6 +19,7 @@ public class ServerThread extends Thread{
 	LinkedList<ServerHelperThread> randomPlayers;
 	HashSet<ServerHelperThread> waitingPlayers;
 	boolean b = true;
+	Long gameIDcounter = (long) 1;
 	
 //	public static Integer gameID = 1, gameIDTimesRequested = 0; // unique game id
 

@@ -92,13 +92,13 @@ public class ClientThread extends Thread {
 							//tokens[5] = backgroundCombo
 							//tokens[6] = regenRate
 							//tokens[7] = totalMana
+						    //tokens[8] = gameID
 						mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.gameScreen.setVariables(tokens[5], tokens[0], tokens[1], tokens[2], tokens[3], Integer.valueOf(tokens[7]), Integer.valueOf(tokens[7]), Integer.valueOf(tokens[6]), tokens[4]);
+						mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.gameScreen.gameIDLabel.setText("Game ID: " + Long.parseLong(tokens[8]));
 						mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.gameScreen.setVisible(true);
 						mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.setVisible(false);
 						mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.gameScreen.setTitle(mmu.getUsername() + " - GameScreen");
 						
-						mmu.mainMenuUserSpectate.spectateScreen.setVariables(tokens[5], tokens[0], tokens[1], tokens[2], tokens[3], Integer.valueOf(tokens[7]), Integer.valueOf(tokens[7]), Integer.valueOf(tokens[6]), tokens[4]);
-						//mmu.mainMenuUserSpectate.spectateScreen.setVisible(true);
 					} else if (str.charAt(0) == 'I') {
 						str = str.substring(2);
 						
@@ -145,36 +145,52 @@ public class ClientThread extends Thread {
 								mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.p2SlimeType = str;
 							}
 						}
-					} else if (str.charAt(0) == 'M') {
-						String[] splited = str.split("\\s+");
-						
+					} else if (str.charAt(0) == 'M') {		//random game is found and plays
+						String delims = "[$]";
+						String [] tokens = str.substring(1).split(delims);
+							//tokens[0] = p1SlimeType
+							//tokens[1] = p2SlimeType
+							//tokens[2] = p1Username
+							//tokens[3] = p2Username
+							//tokens[4] = special mode
+							//tokens[5] = backgroundCombo
+							//tokens[6] = regenRate
+							//tokens[7] = totalMana
+						    //tokens[8] = gameID
 //						for (int i = 0; i < splited.length; i++) {
 //							System.out.println(i + " " + splited[i]);
 //						}
 						
+						//!! If we find a game, then we get the rest of the varibles.
+						mmu.mainMenuUserSpectate.spectateScreen.setVariables(tokens[5], tokens[0], tokens[1], tokens[2], tokens[3], Integer.valueOf(tokens[7]), Integer.valueOf(tokens[7]), Integer.valueOf(tokens[6]), tokens[4]);
 						
-						Variables ptr = mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.gameScreen.primary.variables;
-						ptr.ball.x = Integer.parseInt(splited[1]);
-						ptr.ball.y = Integer.parseInt(splited[2]);
-						ptr.ball.width = Integer.parseInt(splited[3]);
-						ptr.ball.height = Integer.parseInt(splited[4]);
-						ptr.slime1.x = Integer.parseInt(splited[5]);
-						ptr.slime1.y = Integer.parseInt(splited[6]);
-						ptr.slime1.width = Integer.parseInt(splited[7]);
-						ptr.slime1.height = Integer.parseInt(splited[8]);
-						ptr.slime2.x = Integer.parseInt(splited[9]);
-						ptr.slime2.y = Integer.parseInt(splited[10]);
-						ptr.slime2.width = Integer.parseInt(splited[11]);
-						ptr.slime2.height = Integer.parseInt(splited[12]);
-						ptr.player1_manaCurrent = Double.parseDouble(splited[13]);
-						ptr.player2_manaCurrent = Double.parseDouble(splited[14]);
-						ptr.player1scored = Boolean.parseBoolean(splited[15]);
-						ptr.player2scored = Boolean.parseBoolean(splited[16]);
-						ptr.gameOver = Boolean.parseBoolean(splited[17]);
-						ptr.playerThatWon = Integer.parseInt(splited[18]);
-						ptr.player1_score = Integer.parseInt(splited[19]);
-						ptr.player2_score = Integer.parseInt(splited[20]);
+						//Variables ptr = mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.gameScreen.primary.variables;
+//						ptr.ball.x = Integer.parseInt(splited[1]);
+//						ptr.ball.y = Integer.parseInt(splited[2]);
+//						ptr.ball.width = Integer.parseInt(splited[3]);
+//						ptr.ball.height = Integer.parseInt(splited[4]);
+//						ptr.slime1.x = Integer.parseInt(splited[5]);
+//						ptr.slime1.y = Integer.parseInt(splited[6]);
+//						ptr.slime1.width = Integer.parseInt(splited[7]);
+//						ptr.slime1.height = Integer.parseInt(splited[8]);
+//						ptr.slime2.x = Integer.parseInt(splited[9]);
+//						ptr.slime2.y = Integer.parseInt(splited[10]);
+//						ptr.slime2.width = Integer.parseInt(splited[11]);
+//						ptr.slime2.height = Integer.parseInt(splited[12]);
+//						ptr.player1_manaCurrent = Double.parseDouble(splited[13]);
+//						ptr.player2_manaCurrent = Double.parseDouble(splited[14]);
+//						ptr.player1scored = Boolean.parseBoolean(splited[15]);
+//						ptr.player2scored = Boolean.parseBoolean(splited[16]);
+//						ptr.gameOver = Boolean.parseBoolean(splited[17]);
+//						ptr.playerThatWon = Integer.parseInt(splited[18]);
+//						ptr.player1_score = Integer.parseInt(splited[19]);
+//						ptr.player2_score = Integer.parseInt(splited[20]);
 //			            System.out.println("slime1: " + ptr.slime1.x + " " + ptr.slime1.y + " slime2: " + ptr.slime2.x + " " + ptr.slime2.y);
+					}
+					
+					else if (str.charAt(0) == 'N') {			//specific game found and to be set up
+						String delims = "[$]";
+						String [] tokens = str.substring(1).split(delims);
 					}
 				}
 			} catch (IOException ioe) {

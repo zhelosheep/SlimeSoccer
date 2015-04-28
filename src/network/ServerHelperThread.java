@@ -221,7 +221,11 @@ public class ServerHelperThread extends Thread {
 
 					else if (str.charAt(0) == 'M')
 					{
-						
+						synchronized (st.ongoingGames) {
+							for (GameThread thread : st.ongoingGames.keySet()) {
+								
+							}
+						}
 					}
 
 					else if (str.charAt(0) == 'N')
@@ -257,12 +261,14 @@ public class ServerHelperThread extends Thread {
 									//tokens[7] = totalMana
 								}
 								GameThread gt = new GameThread(tokens[5], tokens[0], tokens[1], tokens[2], tokens[3], Integer.valueOf(tokens[7]), Integer.valueOf(tokens[7]), Integer.valueOf(tokens[6]), tokens[4], st, false);
+								gt.gameID = st.gameIDcounter;
 								st.ongoingGames.put(gt, set);
 								// made the game on the server, now set variables for the two clients
-								this.pw.println("G" + str);
+								this.pw.println("G" + str + "$" + st.gameIDcounter);
 								this.pw.flush();
-								opponentThread.pw.println("G" + str);
+								opponentThread.pw.println("G" + str + "$" + st.gameIDcounter);
 								opponentThread.pw.flush();
+								st.gameIDcounter++;
 								gt.start();
 							} else {
 								this.readyToPlay = true;
