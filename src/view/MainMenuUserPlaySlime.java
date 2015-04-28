@@ -365,8 +365,6 @@ public class MainMenuUserPlaySlime extends JFrame{
 					p2SlimeType = slimeTypes[10 + index];
 				}
 				if (!isPvCGame) {
-					
-					System.out.println("Sending I string");
 					if (isPlayer1) {
 						((MainMenuUserPlayPlayer) prevScreen).prevScreen.sWriter.println("IA" + p1SlimeType); // append game settings!						
 						((MainMenuUserPlayPlayer) prevScreen).prevScreen.sWriter.flush();						

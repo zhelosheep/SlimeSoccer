@@ -229,8 +229,13 @@ public class ServerHelperThread extends Thread {
 							for (GameThread thread : st.ongoingGames.keySet()) {
 								if (counter == num) {
 									st.ongoingGames.get(thread).add(this);
-									this.pw.println("P" + thread.game.variables.stringify()); // send variables
-									this.pw.flush();
+									if (str.charAt(1) == 'U') {
+										this.pw.println("P" + thread.game.variables.stringify()); // send variables
+										this.pw.flush();										
+									} else if (str.charAt(1) == 'G') {
+										this.pw.println("Q" + thread.game.variables.stringify()); // send variables
+										this.pw.flush();
+									}
 								}
 								else counter++;
 							}
@@ -242,15 +247,19 @@ public class ServerHelperThread extends Thread {
 						if (str.charAt(1) == 'U') {
 							Long search = Long.parseLong(str.substring(2));
 							synchronized (st.ongoingGames) {
+								boolean found = false;
 								for (GameThread thread : st.ongoingGames.keySet()) {
 									if (thread.gameID == search) {
 										st.ongoingGames.get(thread).add(this);
 										this.pw.println("P" + thread.game.variables.stringify()); // found gameID, send variables
 										this.pw.flush();
+										found = true;
 									}
 								}
-								this.pw.println("R"); // invalid gameID, send error message?
-								this.pw.flush();
+								if (!found) {
+									this.pw.println("R"); // invalid gameID, send error message?
+									this.pw.flush();									
+								}
 							}							
 						} else if (str.charAt(1) == 'G') {
 							Long search = Long.parseLong(str.substring(2));
