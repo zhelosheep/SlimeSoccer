@@ -1,14 +1,11 @@
 package network;
 
 import java.io.IOException;
-
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-
 import model.Variables;
 import view.MainMenuGuest;
 import view.MainMenuUser;
-import view.SettingsPage;
 
 public class ClientThread extends Thread {
 	private MainMenuGuest mmg = null;
@@ -65,7 +62,9 @@ public class ClientThread extends Thread {
 						ptr.gameOver = Boolean.parseBoolean(splited[17]);
 						ptr.playerThatWon = Integer.parseInt(splited[18]);
 						ptr.player1_score = Integer.parseInt(splited[19]);
-						ptr.player2_score = Integer.parseInt(splited[20]);							
+						ptr.player2_score = Integer.parseInt(splited[20]);
+						ptr.slimeHasMoved_1 = Boolean.parseBoolean(splited[21]);
+						ptr.slimeHasMoved_2 = Boolean.parseBoolean(splited[22]);
 					}
 				} else { // this one uses mmu
 					str = mmu.sReader.readLine();
@@ -193,7 +192,9 @@ public class ClientThread extends Thread {
 							ptr.gameOver = Boolean.parseBoolean(splited[17]);
 							ptr.playerThatWon = Integer.parseInt(splited[18]);
 							ptr.player1_score = Integer.parseInt(splited[19]);
-							ptr.player2_score = Integer.parseInt(splited[20]);							
+							ptr.player2_score = Integer.parseInt(splited[20]);
+							ptr.slimeHasMoved_1 = Boolean.parseBoolean(splited[21]);
+							ptr.slimeHasMoved_2 = Boolean.parseBoolean(splited[22]);
 						} else if (mmu.mainMenuUserSpectate.spectateScreen.isVisible()) {
 							Variables ptr = mmu.mainMenuUserSpectate.spectateScreen.primary.variables;
 							ptr.ball.x = Integer.parseInt(splited[1]);
@@ -216,6 +217,8 @@ public class ClientThread extends Thread {
 							ptr.playerThatWon = Integer.parseInt(splited[18]);
 							ptr.player1_score = Integer.parseInt(splited[19]);
 							ptr.player2_score = Integer.parseInt(splited[20]);
+							ptr.slimeHasMoved_1 = Boolean.parseBoolean(splited[21]);
+							ptr.slimeHasMoved_2 = Boolean.parseBoolean(splited[22]);
 						}
 //			            System.out.println("slime1: " + ptr.slime1.x + " " + ptr.slime1.y + " slime2: " + ptr.slime2.x + " " + ptr.slime2.y);
 					} else if (str.charAt(0) == 'P') {

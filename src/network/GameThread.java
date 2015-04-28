@@ -32,7 +32,7 @@ public class GameThread extends Thread {
             				game.variables.slime1.x + " " + game.variables.slime1.y + " " + game.variables.slime1.width + " " + game.variables.slime1.height + " " +
             				game.variables.slime2.x + " " + game.variables.slime2.y + " " + game.variables.slime2.width + " " + game.variables.slime2.height + " " +
             				game.variables.player1_manaCurrent + " " + game.variables.player2_manaCurrent + " " + game.variables.player1scored + " " + game.variables.player2scored + " " + 
-            				game.variables.gameOver + " " + game.variables.playerThatWon + " " + game.variables.player1_score + " " + game.variables.player2_score;
+            				game.variables.gameOver + " " + game.variables.playerThatWon + " " + game.variables.player1_score + " " + game.variables.player2_score + " " + game.variables.slimeHasMoved_1 + " " + game.variables.slimeHasMoved_2;
             
             
             // repaint screen
