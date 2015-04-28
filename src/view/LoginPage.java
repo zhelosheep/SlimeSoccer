@@ -259,14 +259,15 @@ public class LoginPage extends JFrame{
 		pw = String.valueOf(passwordField.getPassword());
 		host = hostField.getText();
 		
-		if (host.equals("")) {
+		//System.out.println(host);
+		
+		if ((u.equals("") || pw.equals("")) && !host.equals("")) {
 			login.setEnabled(false);
+			guest.setEnabled(true);
+		} else if (host.equals("")) {
 			guest.setEnabled(false);
-		}
-		else if (u.equals("") || pw.equals("")) {
 			login.setEnabled(false);
-		}
-		else {
+		} else {
 			login.setEnabled(true);
 			guest.setEnabled(true);
 		}

@@ -36,6 +36,7 @@ public class MainMenuUserPlayPlayer extends JFrame{
 	public MainMenuUserWaiting mainMenuUserWaiting;
 
 	public MainMenuUserPlayPlayer(MainMenuUser prevScreen) {
+		//super("MainMenuUserPlayPlayer");
 		setSize(800, 600);
 		setLocation(300,100);
 		this.prevScreen = prevScreen;
