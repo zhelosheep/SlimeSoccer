@@ -25,7 +25,7 @@ public class Slime {
 	public int width = finalWidth, height = finalHeight, radius = finalRadius;
 	final public int mass = 1;
 	protected int player;
-	final protected int manaUsageRate = 5; // determines how fast mana is consumed when slime uses special power
+	final protected int manaUsageRate = 20; // determines how fast mana is consumed when slime uses special power
 	private int upKey, leftKey, rightKey, downKey, powerKey; // KeyEvent codes
 	
 	public Slime(int x, int y, int player, BufferedImage slimeImage, Variables variables) {
@@ -217,19 +217,25 @@ public class Slime {
 //        if(Controller.keyboardKeyState(powerKey) && !specialPowerBeingUsed) {
 		if (player == 1) {
 			if(variables.p1_keyboardState[4] && !specialPowerBeingUsed) {
+//				System.out.println("power button pushed");
 				if (variables.player1_manaCurrent > 0) {
+//					System.out.println("manaCurrent " + variables.player1_manaCurrent + " > zero");
 					this.useSpecialPower();
 					variables.player1_manaCurrent -= manaUsageRate;
 				} else {
+//					System.out.println("manaCurrent " + variables.player1_manaCurrent + " <= zero");
 					retractSpecialPower();
 				}
 	        }			
 		} else {
 			if(variables.p2_keyboardState[4] && !specialPowerBeingUsed) {
+//				System.out.println("power button pushed");
 				if (variables.player2_manaCurrent > 0) {
 					this.useSpecialPower();
+//					System.out.println("manaCurrent " + variables.player1_manaCurrent + " > zero");
 					variables.player2_manaCurrent -= manaUsageRate;
 				} else {
+//					System.out.println("manaCurrent " + variables.player1_manaCurrent + " <= zero");
 					retractSpecialPower();
 				}
 	        }
