@@ -32,6 +32,15 @@ public class ClientThread extends Thread {
 					// str.charAt(0) is an identifier we add which tells us what to do with the string
 					if (str.charAt(0) == 'C') { // chat
 						mmg.chatArea.setText(mmg.chatArea.getText() + "\n" + str.substring(1));
+					} else if (str.charAt(0) == 'Q') {
+						String delims = "[$]";
+						String [] tokens = str.substring(1).split(delims);
+						mmg.spectateScreen.setVariables(tokens[5], tokens[0], tokens[1], tokens[2], tokens[3], Integer.valueOf(tokens[7]), Integer.valueOf(tokens[7]), Integer.valueOf(tokens[6]), tokens[4]);
+						mmg.spectateScreen.setVisible(true);
+						mmg.setVisible(false);
+						mmg.spectateScreen.setTitle("Guest - SpectateScreen");
+					} else if (str.charAt(0) == 'S') {
+						System.out.println("Invalid game id");						
 					} else if (str.charAt(0) == 'M') {
 						String[] splited = str.split("\\s+");
 						Variables ptr = mmg.spectateScreen.primary.variables;
@@ -158,40 +167,64 @@ public class ClientThread extends Thread {
 							//tokens[6] = regenRate
 							//tokens[7] = totalMana
 						    //tokens[8] = gameID
-						for (int i = 0; i < splited.length; i++) {
-							System.out.println(i + " " + splited[i]);
-						}
-						
 						//!! If we find a game, then we get the rest of the varibles.
 						//mmu.mainMenuUserSpectate.spectateScreen.setVariables(tokens[5], tokens[0], tokens[1], tokens[2], tokens[3], Integer.valueOf(tokens[7]), Integer.valueOf(tokens[7]), Integer.valueOf(tokens[6]), tokens[4]);
 						
-						Variables ptr = mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.gameScreen.primary.variables;
-						ptr.ball.x = Integer.parseInt(splited[1]);
-						ptr.ball.y = Integer.parseInt(splited[2]);
-						ptr.ball.width = Integer.parseInt(splited[3]);
-						ptr.ball.height = Integer.parseInt(splited[4]);
-						ptr.slime1.x = Integer.parseInt(splited[5]);
-						ptr.slime1.y = Integer.parseInt(splited[6]);
-						ptr.slime1.width = Integer.parseInt(splited[7]);
-						ptr.slime1.height = Integer.parseInt(splited[8]);
-						ptr.slime2.x = Integer.parseInt(splited[9]);
-						ptr.slime2.y = Integer.parseInt(splited[10]);
-						ptr.slime2.width = Integer.parseInt(splited[11]);
-						ptr.slime2.height = Integer.parseInt(splited[12]);
-						ptr.player1_manaCurrent = Double.parseDouble(splited[13]);
-						ptr.player2_manaCurrent = Double.parseDouble(splited[14]);
-						ptr.player1scored = Boolean.parseBoolean(splited[15]);
-						ptr.player2scored = Boolean.parseBoolean(splited[16]);
-						ptr.gameOver = Boolean.parseBoolean(splited[17]);
-						ptr.playerThatWon = Integer.parseInt(splited[18]);
-						ptr.player1_score = Integer.parseInt(splited[19]);
-						ptr.player2_score = Integer.parseInt(splited[20]);
+						if (mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.gameScreen.isVisible()) {
+							Variables ptr = mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.gameScreen.primary.variables;
+							ptr.ball.x = Integer.parseInt(splited[1]);
+							ptr.ball.y = Integer.parseInt(splited[2]);
+							ptr.ball.width = Integer.parseInt(splited[3]);
+							ptr.ball.height = Integer.parseInt(splited[4]);
+							ptr.slime1.x = Integer.parseInt(splited[5]);
+							ptr.slime1.y = Integer.parseInt(splited[6]);
+							ptr.slime1.width = Integer.parseInt(splited[7]);
+							ptr.slime1.height = Integer.parseInt(splited[8]);
+							ptr.slime2.x = Integer.parseInt(splited[9]);
+							ptr.slime2.y = Integer.parseInt(splited[10]);
+							ptr.slime2.width = Integer.parseInt(splited[11]);
+							ptr.slime2.height = Integer.parseInt(splited[12]);
+							ptr.player1_manaCurrent = Double.parseDouble(splited[13]);
+							ptr.player2_manaCurrent = Double.parseDouble(splited[14]);
+							ptr.player1scored = Boolean.parseBoolean(splited[15]);
+							ptr.player2scored = Boolean.parseBoolean(splited[16]);
+							ptr.gameOver = Boolean.parseBoolean(splited[17]);
+							ptr.playerThatWon = Integer.parseInt(splited[18]);
+							ptr.player1_score = Integer.parseInt(splited[19]);
+							ptr.player2_score = Integer.parseInt(splited[20]);							
+						} else if (mmu.mainMenuUserSpectate.spectateScreen.isVisible()) {
+							Variables ptr = mmu.mainMenuUserSpectate.spectateScreen.primary.variables;
+							ptr.ball.x = Integer.parseInt(splited[1]);
+							ptr.ball.y = Integer.parseInt(splited[2]);
+							ptr.ball.width = Integer.parseInt(splited[3]);
+							ptr.ball.height = Integer.parseInt(splited[4]);
+							ptr.slime1.x = Integer.parseInt(splited[5]);
+							ptr.slime1.y = Integer.parseInt(splited[6]);
+							ptr.slime1.width = Integer.parseInt(splited[7]);
+							ptr.slime1.height = Integer.parseInt(splited[8]);
+							ptr.slime2.x = Integer.parseInt(splited[9]);
+							ptr.slime2.y = Integer.parseInt(splited[10]);
+							ptr.slime2.width = Integer.parseInt(splited[11]);
+							ptr.slime2.height = Integer.parseInt(splited[12]);
+							ptr.player1_manaCurrent = Double.parseDouble(splited[13]);
+							ptr.player2_manaCurrent = Double.parseDouble(splited[14]);
+							ptr.player1scored = Boolean.parseBoolean(splited[15]);
+							ptr.player2scored = Boolean.parseBoolean(splited[16]);
+							ptr.gameOver = Boolean.parseBoolean(splited[17]);
+							ptr.playerThatWon = Integer.parseInt(splited[18]);
+							ptr.player1_score = Integer.parseInt(splited[19]);
+							ptr.player2_score = Integer.parseInt(splited[20]);
+						}
 //			            System.out.println("slime1: " + ptr.slime1.x + " " + ptr.slime1.y + " slime2: " + ptr.slime2.x + " " + ptr.slime2.y);
-					}
-					
-					else if (str.charAt(0) == 'N') {			//specific game found and to be set up
+					} else if (str.charAt(0) == 'P') {
 						String delims = "[$]";
 						String [] tokens = str.substring(1).split(delims);
+						mmu.mainMenuUserSpectate.spectateScreen.setVariables(tokens[5], tokens[0], tokens[1], tokens[2], tokens[3], Integer.valueOf(tokens[7]), Integer.valueOf(tokens[7]), Integer.valueOf(tokens[6]), tokens[4]);
+						mmu.mainMenuUserSpectate.spectateScreen.setVisible(true);
+						mmu.mainMenuUserSpectate.setVisible(false);
+						mmu.mainMenuUserSpectate.spectateScreen.setTitle(mmu.getUsername() + " - SpectateScreen");
+					} else if (str.charAt(0) == 'R') {
+						System.out.println("R - Invalid game id");												
 					}
 				}
 			} catch (IOException ioe) {

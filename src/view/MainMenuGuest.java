@@ -153,14 +153,14 @@ public class MainMenuGuest extends JFrame{
 		});
 		searchButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				spectateScreen.setVisible(true);
-				setVisible(false);
+				sWriter.println("NG" + gameIDField.getText());
+				sWriter.flush();
 			}
 		});
 		randomButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				spectateScreen.setVisible(true);
-				setVisible(false);
+				sWriter.println("MG");
+				sWriter.flush();
 			}
 		});		
 		

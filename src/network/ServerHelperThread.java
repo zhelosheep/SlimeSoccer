@@ -160,7 +160,6 @@ public class ServerHelperThread extends Thread {
 					
 					else if (str.charAt(0) == 'L') //player 2 key detection
 					{
-						System.out.println("in L");
 						str = str.substring(1); //lop off the L
 						synchronized (st.ongoingGames) {
 							for (GameThread gt : st.ongoingGames.keySet()) {
@@ -227,10 +226,10 @@ public class ServerHelperThread extends Thread {
 							int num = rand.nextInt(st.ongoingGames.size());
 							int counter = 0;
 							st.ongoingGames.values();
-							for (Set<ServerHelperThread> set : st.ongoingGames.values()) {
+							for (GameThread thread : st.ongoingGames.keySet()) {
 								if (counter == num) {
-									set.add(this);
-									this.pw.println(""); // send variables
+									st.ongoingGames.get(thread).add(this);
+									this.pw.println("P" + thread.game.variables.stringify()); // send variables
 									this.pw.flush();
 								}
 								else counter++;
@@ -240,25 +239,37 @@ public class ServerHelperThread extends Thread {
 
 					else if (str.charAt(0) == 'N')
 					{
-						Long search = Long.parseLong(str.substring(1));
-						synchronized (st.ongoingGames) {
-							for (GameThread thread : st.ongoingGames.keySet()) {
-								if (thread.gameID == search) {
-									st.ongoingGames.get(thread).add(this);
-									this.pw.println(""); // found gameID, send variables
-									this.pw.flush();
+						if (str.charAt(1) == 'U') {
+							Long search = Long.parseLong(str.substring(2));
+							synchronized (st.ongoingGames) {
+								for (GameThread thread : st.ongoingGames.keySet()) {
+									if (thread.gameID == search) {
+										st.ongoingGames.get(thread).add(this);
+										this.pw.println("P" + thread.game.variables.stringify()); // found gameID, send variables
+										this.pw.flush();
+									}
 								}
-							}
-							this.pw.println(""); // invalid gameID, send error message?
-							this.pw.flush();
+								this.pw.println("R"); // invalid gameID, send error message?
+								this.pw.flush();
+							}							
+						} else if (str.charAt(1) == 'G') {
+							Long search = Long.parseLong(str.substring(2));
+							synchronized (st.ongoingGames) {
+								for (GameThread thread : st.ongoingGames.keySet()) {
+									if (thread.gameID == search) {
+										st.ongoingGames.get(thread).add(this);
+										this.pw.println("Q" + thread.game.variables.stringify()); // found gameID, send variables
+										this.pw.flush();
+									}
+								}
+								this.pw.println("S"); // invalid gameID, send error message?
+								this.pw.flush();
+							}														
 						}
 					}
 
 					else if (str.charAt(0) == 'O')
 					{
-						System.out.println("in O");
-						System.out.println(str);
-						
 						synchronized (st) {
 							if (opponentThread.readyToPlay) {
 								opponentThread.readyToPlay = false;
@@ -268,19 +279,6 @@ public class ServerHelperThread extends Thread {
 								str = str.substring(2);
 								String delims = "[$]";
 								String [] tokens = str.split(delims);
-								for (int j = 0; j < tokens.length; j++)
-								{
-									System.out.println("SHT: Printing tokens");
-									System.out.println(tokens[j]);
-									//tokens[0] = p1SlimeType
-									//tokens[1] = p2SlimeType
-									//tokens[2] = p1Username
-									//tokens[3] = p2Username
-									//tokens[4] = special mode
-									//tokens[5] = backgroundCombo
-									//tokens[6] = regenRate
-									//tokens[7] = totalMana
-								}
 								GameThread gt = new GameThread(tokens[5], tokens[0], tokens[1], tokens[2], tokens[3], Integer.valueOf(tokens[7]), Integer.valueOf(tokens[7]), Integer.valueOf(tokens[6]), tokens[4], st, false);
 								gt.gameID = st.gameIDcounter;
 								st.ongoingGames.put(gt, set);

@@ -180,17 +180,13 @@ public class MainMenuUserSpectate extends JFrame{
 		});
 		searchButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				spectateScreen.setVisible(true);
-				setVisible(false);
-				prevScreen.sWriter.println("N");
+				prevScreen.sWriter.println("NU" + gameIDField.getText());
 				prevScreen.sWriter.flush();
 			}
 		});
 		randomButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				spectateScreen.setVisible(true);
-				setVisible(false);
-				prevScreen.sWriter.println("M");
+				prevScreen.sWriter.println("MU");
 				prevScreen.sWriter.flush();
 			}
 		});

@@ -3,7 +3,9 @@ package model;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+
 import javax.imageio.ImageIO;
+
 import network.ServerThread;
 
 public class Variables {
@@ -172,5 +174,9 @@ public class Variables {
 		} catch (IOException ioe) {
 			System.out.println("IOException in Variables.setSlimeImages(): " + ioe.getMessage());
 		}
+	}
+	
+	public String stringify() {
+		return player1_slimeType + "$" + player2_slimeType + "$" + player1_username + "$" + player2_username + "$" + specialMode + "$" + background + "$" + manaRegenerationRate + "$" + player1_manaMax;
 	}
 }

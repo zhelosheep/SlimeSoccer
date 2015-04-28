@@ -353,8 +353,6 @@ public class GameScreen extends JFrame{
 		primary.variables.player1scored = false;
 		primary.variables.player2scored = false;
 		
-		System.out.println(player1_slimeType + " " + player2_slimeType);
-
 		if (player1_slimeType.equals("SlimeBomb")) {
 			primary.variables.slime1 = new SlimeBomb(primary.variables.leftBoundary + 50, primary.variables.groundLevel, 1, primary.variables.imgSlime1, primary.variables);
 		} else if (player1_slimeType.equals("SlimeBowAndArrow")) {
