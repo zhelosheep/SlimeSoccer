@@ -296,7 +296,7 @@ public class GameScreen extends JFrame{
 		    {   
 		        public void actionPerformed(ActionEvent ae)
 		        {
-		        	gt.game.variables.p2_keyboardState[0] = false;
+		        	gt.game.variables.p2_keyboardState[0] = true;
 		        }
 		    };
 		    AbstractAction downAction = new AbstractAction()
