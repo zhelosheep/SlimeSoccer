@@ -65,7 +65,7 @@ public class SpectateScreen extends JFrame {
 		gameIDField = new JTextField(10);
 		chatField = new JTextField(10);
 		chatArea = new JTextArea();
-		primary = new Canvas();
+		primary = new Canvas("guest");
 	}
 	
 	private void addComponents() {
