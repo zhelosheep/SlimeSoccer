@@ -147,6 +147,28 @@ public class SpectateScreen extends JFrame {
 				quit();
 			}
 		});
+		switchButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (isGuest) {
+					((MainMenuGuest) prevScreen).sWriter.println("NG" + gameIDField.getText());
+					((MainMenuGuest) prevScreen).sWriter.flush();
+				} else {
+					((MainMenuUserSpectate) prevScreen).prevScreen.sWriter.println("NU" + gameIDField.getText());
+					((MainMenuUserSpectate) prevScreen).prevScreen.sWriter.flush();
+				}
+			}
+		});
+		randomButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (isGuest) {
+					((MainMenuGuest) prevScreen).sWriter.println("MG");
+					((MainMenuGuest) prevScreen).sWriter.flush();
+				} else {
+					((MainMenuUserSpectate) prevScreen).prevScreen.sWriter.println("MU");
+					((MainMenuUserSpectate) prevScreen).prevScreen.sWriter.flush();
+				}				
+			}
+		});
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				prevScreen.setVisible(true);

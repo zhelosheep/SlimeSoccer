@@ -43,7 +43,7 @@ public class GameScreen extends JFrame{
 	private static final long serialVersionUID = 1L;
 	public JTextArea chatArea;
 	private JTextField chatField;
-	private JButton sendButton, logoutButton, settingsButton;
+	private JButton sendButton, backButton, settingsButton;
 	private JLabel slimeSoccerLabel;
 	private ImageIcon avatar;
 	private String username;
@@ -70,7 +70,7 @@ public class GameScreen extends JFrame{
 	private void instantiateVariables()
 	{
 		sendButton = new JButton("Send");
-		logoutButton = new JButton("Logout");
+		backButton = new JButton("Logout");
 		settingsButton = new JButton("Settings");
 		chatArea = new JTextArea();
 		chatField = new JTextField(10);
@@ -99,14 +99,14 @@ public class GameScreen extends JFrame{
 		JLabel avatarLabel = new JLabel(avatar);
 		avatarLabel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		settingsButton.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-		logoutButton.setFont(new Font("Arial", Font.BOLD, 16));
-		logoutButton.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 15));
+		backButton.setFont(new Font("Arial", Font.BOLD, 16));
+		backButton.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 15));
 		northPanel.add(slimeSoccerLabel);
 		northPanel.add(gameIDLabel);
 		northPanel.add(Box.createGlue());
 		northPanel.add(avatarLabel);
 		northPanel.add(settingsButton);
-		northPanel.add(logoutButton);
+		northPanel.add(backButton);
 		add(northPanel, BorderLayout.NORTH);
 		
 		JPanel centerPanel = new JPanel();
@@ -296,12 +296,6 @@ public class GameScreen extends JFrame{
 	    primary.getActionMap().put("rRIGHT", rrightAction);
 	    primary.getActionMap().put("rSPACE", rspaceAction);
 	    
-//	    primary.registerKeyboardAction(upAction, "UP", KeyStroke.getKeyStroke("UP"), JComponent.WHEN_IN_FOCUSED_WINDOW);
-//	    primary.registerKeyboardAction(downAction, "DOWN", KeyStroke.getKeyStroke("DOWN"), JComponent.WHEN_IN_FOCUSED_WINDOW);
-//	    primary.registerKeyboardAction(leftAction, "LEFT", KeyStroke.getKeyStroke("LEFT"), JComponent.WHEN_IN_FOCUSED_WINDOW);
-//	    primary.registerKeyboardAction(rightAction, "RIGHT", KeyStroke.getKeyStroke("RIGHT"), JComponent.WHEN_IN_FOCUSED_WINDOW);
-//	    primary.registerKeyboardAction(spaceAction, "SPACE", KeyStroke.getKeyStroke("SPACE"), JComponent.WHEN_IN_FOCUSED_WINDOW);
-	    
 	    sendButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (!isPvCGame) {
@@ -327,7 +321,7 @@ public class GameScreen extends JFrame{
 			}
 		});
 		
-		logoutButton.addActionListener(new ActionListener() {
+		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				prevScreen.prevScreen.setVisible(true);
