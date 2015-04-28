@@ -210,6 +210,8 @@ public class SpectateScreen extends JFrame {
 		primary.variables.player2scored = false;
 		
 		System.out.println(player1_slimeType + " " + player2_slimeType);
+		System.out.println(player1_username + player2_username);
+		System.out.println(player1_manaMax + player2_manaMax);
 
 		if (player1_slimeType.equals("SlimeBomb")) {
 			primary.variables.slime1 = new SlimeBomb(primary.variables.leftBoundary + 50, primary.variables.groundLevel, 1, primary.variables.imgSlime1, primary.variables);
