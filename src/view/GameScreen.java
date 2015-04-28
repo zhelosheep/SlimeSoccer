@@ -52,6 +52,7 @@ public class GameScreen extends JFrame{
 	GameThread gt; // delete later
 	public MainMenuUserPlaySlime prevScreen;
 	public boolean isPvCGame;
+	public JLabel gameIDLabel;
 	
 	public GameScreen(String username, MainMenuUserPlaySlime prevScreen, boolean isPvCGame)
 	{
@@ -83,10 +84,9 @@ public class GameScreen extends JFrame{
 
 		primary = new Canvas();
 
-//		uniqueIDLabel = new JLabel("Game ID: " + primary.variables.gameID);
-////		uniqueIDLabel = new JLabel();
-//		uniqueIDLabel.setFont(new Font("Arial", Font.BOLD, 20));
-//		uniqueIDLabel.setBorder(BorderFactory.createEmptyBorder(5, 15, 5, 5));
+		gameIDLabel = new JLabel("Game ID: ");
+		gameIDLabel.setFont(new Font("Arial", Font.BOLD, 20));
+		gameIDLabel.setBorder(BorderFactory.createEmptyBorder(5, 15, 5, 5));
 	}
 	
 	private void addComponents()
@@ -102,7 +102,7 @@ public class GameScreen extends JFrame{
 		logoutButton.setFont(new Font("Arial", Font.BOLD, 16));
 		logoutButton.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 15));
 		northPanel.add(slimeSoccerLabel);
-//		northPanel.add(uniqueIDLabel);
+		northPanel.add(gameIDLabel);
 		northPanel.add(Box.createGlue());
 		northPanel.add(avatarLabel);
 		northPanel.add(settingsButton);

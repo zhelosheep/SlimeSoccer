@@ -92,7 +92,9 @@ public class ClientThread extends Thread {
 							//tokens[5] = backgroundCombo
 							//tokens[6] = regenRate
 							//tokens[7] = totalMana
+						    //tokens[8] = gameID
 						mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.gameScreen.setVariables(tokens[5], tokens[0], tokens[1], tokens[2], tokens[3], Integer.valueOf(tokens[7]), Integer.valueOf(tokens[7]), Integer.valueOf(tokens[6]), tokens[4]);
+						mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.gameScreen.gameIDLabel.setText("Game ID: " + Long.parseLong(tokens[8]));
 						mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.gameScreen.setVisible(true);
 						mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.setVisible(false);
 					} else if (str.charAt(0) == 'I') {
