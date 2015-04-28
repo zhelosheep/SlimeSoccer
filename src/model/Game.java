@@ -132,6 +132,9 @@ public class Game {
 		variables.slime1.update();
 		variables.slime2.update();
 		variables.ball.update();
+		if (this.isPvCGame) {
+			ai.update();
+		}
 		
 		// check for ball collision with slimes
 		Double [] slime1CollideNewVelocities = variables.slime1.detectCollision(variables.ball);
