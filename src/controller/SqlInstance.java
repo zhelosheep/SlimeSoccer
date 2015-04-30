@@ -173,36 +173,36 @@ public class SqlInstance {
 		ResultSet u_rs = getUser(u);
 		
 		try {
-			if (u_rs.next()) {
-				int userID = u_rs.getInt("userID");
-				int numgames = u_rs.getInt("player_games") + 1;
-				int numwin = u_rs.getInt("player_won");
-				int numloss = u_rs.getInt("player_loss");
-				long ratio = u_rs.getLong("player_ratio");
-				int gamesLost = u_rs.getInt("gamesLost");
-				
-				if (wl) {
-					numwin++;
-					gamesLost = 0;
-				}
-				else {
-					numloss++;
-					gamesLost++;
-				}
-				if (numloss > 0) {
-					ratio = (long) numwin/ (long) numloss;
-				} else ratio = 0;
-				
-				ps = c.prepareStatement("UPDATE account_data SET player_games = ?, player_won = ?, player_loss = ?,"
-						+ " player_ratio = ?, gamesLost = ? WHERE userID = ?");
-				ps.setInt(1,  numgames);
-				ps.setInt(2,  numwin);
-				ps.setInt(3,  numloss);
-				ps.setLong(4, ratio);
-				ps.setInt(5,  gamesLost);
-				ps.setInt(6,  userID);
-				ps.executeUpdate();
-				}
+			int userID = u_rs.getInt("userID");
+			int numgames = u_rs.getInt("player_games") + 1;
+			int numwin = u_rs.getInt("player_won");
+			int numloss = u_rs.getInt("player_loss");
+			long ratio = u_rs.getLong("player_ratio");
+			int gamesLost = u_rs.getInt("gamesLost");
+			
+			//System.out.println("doing smt");
+			
+			if (wl) {
+				numwin++;
+				gamesLost = 0;
+			}
+			else {
+				numloss++;
+				gamesLost++;
+			}
+			if (numloss > 0) {
+				ratio = (long) numwin/ (long) numloss;
+			} else ratio = 0;
+			
+			ps = c.prepareStatement("UPDATE account_data SET player_games = ?, player_won = ?, player_loss = ?,"
+					+ " player_ratio = ?, gamesLost = ? WHERE userID = ?");
+			ps.setInt(1,  numgames);
+			ps.setInt(2,  numwin);
+			ps.setInt(3,  numloss);
+			ps.setLong(4, ratio);
+			ps.setInt(5,  gamesLost);
+			ps.setInt(6,  userID);
+			ps.executeUpdate();
 		} catch (SQLException sqle) {
 			System.out.println("SQLException in SqlInstance.updateStats: " + sqle.getMessage());
 		}

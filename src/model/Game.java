@@ -226,9 +226,12 @@ public class Game {
 	
 	public void saveStats(int playerThatWon) {
 		if (playerThatWon == 1) {
+			//System.out.println(variables.player1_username + " " + playerThatWon);
 			LoginPage.sqli.updateStats(variables.player1_username, true);
 			LoginPage.sqli.updateStats(variables.player2_username, false);
 		} else {
+			//System.out.println(variables.player1_username + " " + playerThatWon);
+			//System.out.println(variables.player2_username);
 			LoginPage.sqli.updateStats(variables.player1_username, false);
 			LoginPage.sqli.updateStats(variables.player2_username, true);
 		}

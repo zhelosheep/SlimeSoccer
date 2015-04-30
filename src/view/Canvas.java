@@ -137,7 +137,10 @@ public class Canvas extends JPanel implements Runnable {
 			g.setFont(new Font("Arial", Font.PLAIN, 20));
 			g.drawString("Score: " + variables.player1_score + "-" + variables.player2_score, 250, 250); // update
 			
-			if (!username.toLowerCase().equals("guest") && !username.toLowerCase().equals("computer")) checkAchievements();
+			if (!username.toLowerCase().equals("guest") && !username.toLowerCase().equals("computer")) {
+				//System.out.println(username);
+				checkAchievements();
+			}
 		}
 	}
 	
