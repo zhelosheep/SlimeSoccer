@@ -1,5 +1,5 @@
 Slime Soccer
-Team: Shawn Ren, Ashley Yu-chih, Ashley Tj.., Joseph Chen, Sheng Chen
+Team: Shawn Ren, Ashley Yu-Chih, Ashley Tjahjadi , Joseph Chen, Sheng Chen
 
 
 How to run: 
