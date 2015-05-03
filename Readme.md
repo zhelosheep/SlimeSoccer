@@ -6,6 +6,9 @@ How to run:
 1. start java application network.ServerThread
 2. start java application view.LoginPage
 
+To play:
+arrow keys to move, p to use special powers
+
 Login Screen
    User
       - Can create a new user with a new icon and profile
