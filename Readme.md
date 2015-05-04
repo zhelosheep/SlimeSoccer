@@ -2,6 +2,7 @@
 
 Team: Shawn Ren, Ashley Yu-Chih, Ashley Tjahjadi, Joseph Chen, Sheng Chen
 
+![Image of Slime Soccer](https://raw.githubusercontent.com/zhelosheep/SlimeSoccer/master/resources/MenuPage.png)
 
 How to run: 
 
