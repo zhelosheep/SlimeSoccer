@@ -1,14 +1,9 @@
 package model;
 
 import java.awt.Graphics;
-import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
-
-import controller.Controller;
 
 public class Ball {
 	public int x, y;

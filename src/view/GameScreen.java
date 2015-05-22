@@ -142,7 +142,12 @@ public class GameScreen extends JFrame{
 		if (!isPvCGame) {
 			AbstractAction upAction = new AbstractAction()
 		    {   
-		        public void actionPerformed(ActionEvent ae)
+		        /**
+				 * 
+				 */
+				private static final long serialVersionUID = 1L;
+
+				public void actionPerformed(ActionEvent ae)
 		        {
 		        	if (prevScreen.isPlayer1) {
 						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "up");
@@ -155,7 +160,12 @@ public class GameScreen extends JFrame{
 		    };
 		    AbstractAction downAction = new AbstractAction()
 		    {   
-		        public void actionPerformed(ActionEvent ae)
+		        /**
+				 * 
+				 */
+				private static final long serialVersionUID = 1L;
+
+				public void actionPerformed(ActionEvent ae)
 		        {
 		        	if (prevScreen.isPlayer1) {
 						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "down");
@@ -168,7 +178,12 @@ public class GameScreen extends JFrame{
 		    };
 		    AbstractAction leftAction = new AbstractAction()
 		    {   
-		        public void actionPerformed(ActionEvent ae)
+		        /**
+				 * 
+				 */
+				private static final long serialVersionUID = 1L;
+
+				public void actionPerformed(ActionEvent ae)
 		        {
 		        	if (prevScreen.isPlayer1) {
 						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "left");
@@ -181,7 +196,12 @@ public class GameScreen extends JFrame{
 		    };
 		    AbstractAction rightAction = new AbstractAction()
 		    {   
-		        public void actionPerformed(ActionEvent ae)
+		        /**
+				 * 
+				 */
+				private static final long serialVersionUID = 1L;
+
+				public void actionPerformed(ActionEvent ae)
 		        {
 		        	if (prevScreen.isPlayer1) {
 						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "right");
@@ -194,7 +214,12 @@ public class GameScreen extends JFrame{
 		    };
 		    AbstractAction spaceAction = new AbstractAction()
 		    {   
-		        public void actionPerformed(ActionEvent ae)
+		        /**
+				 * 
+				 */
+				private static final long serialVersionUID = 1L;
+
+				public void actionPerformed(ActionEvent ae)
 		        {
 		        	if (prevScreen.isPlayer1) {
 						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "space");
@@ -207,7 +232,12 @@ public class GameScreen extends JFrame{
 		    };
 			AbstractAction rupAction = new AbstractAction()
 		    {   
-		        public void actionPerformed(ActionEvent ae)
+		        /**
+				 * 
+				 */
+				private static final long serialVersionUID = 1L;
+
+				public void actionPerformed(ActionEvent ae)
 		        {
 		        	if (prevScreen.isPlayer1) {
 						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "upno");
@@ -220,7 +250,12 @@ public class GameScreen extends JFrame{
 		    };
 		    AbstractAction rdownAction = new AbstractAction()
 		    {   
-		        public void actionPerformed(ActionEvent ae)
+		        /**
+				 * 
+				 */
+				private static final long serialVersionUID = 1L;
+
+				public void actionPerformed(ActionEvent ae)
 		        {
 		        	if (prevScreen.isPlayer1) {
 						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "downno");
@@ -233,7 +268,12 @@ public class GameScreen extends JFrame{
 		    };
 		    AbstractAction rleftAction = new AbstractAction()
 		    {   
-		        public void actionPerformed(ActionEvent ae)
+		        /**
+				 * 
+				 */
+				private static final long serialVersionUID = 1L;
+
+				public void actionPerformed(ActionEvent ae)
 		        {
 		        	if (prevScreen.isPlayer1) {
 						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "leftno");
@@ -246,7 +286,12 @@ public class GameScreen extends JFrame{
 		    };
 		    AbstractAction rrightAction = new AbstractAction()
 		    {   
-		        public void actionPerformed(ActionEvent ae)
+		        /**
+				 * 
+				 */
+				private static final long serialVersionUID = 1L;
+
+				public void actionPerformed(ActionEvent ae)
 		        {
 		        	if (prevScreen.isPlayer1) {
 						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "rightno");
@@ -259,7 +304,12 @@ public class GameScreen extends JFrame{
 		    };
 		    AbstractAction rspaceAction = new AbstractAction()
 		    {   
-		        public void actionPerformed(ActionEvent ae)
+		        /**
+				 * 
+				 */
+				private static final long serialVersionUID = 1L;
+
+				public void actionPerformed(ActionEvent ae)
 		        {
 		        	if (prevScreen.isPlayer1) {
 						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "spaceno");
@@ -294,70 +344,120 @@ public class GameScreen extends JFrame{
 		} else {
 			AbstractAction upAction = new AbstractAction()
 		    {   
-		        public void actionPerformed(ActionEvent ae)
+		        /**
+				 * 
+				 */
+				private static final long serialVersionUID = 1L;
+
+				public void actionPerformed(ActionEvent ae)
 		        {
 		        	gt.game.variables.p2_keyboardState[0] = true;
 		        }
 		    };
 		    AbstractAction downAction = new AbstractAction()
 		    {   
-		        public void actionPerformed(ActionEvent ae)
+		        /**
+				 * 
+				 */
+				private static final long serialVersionUID = 1L;
+
+				public void actionPerformed(ActionEvent ae)
 		        {
 		        	gt.game.variables.p2_keyboardState[1] = true;
 		        }
 		    };
 		    AbstractAction leftAction = new AbstractAction()
 		    {   
-		        public void actionPerformed(ActionEvent ae)
+		        /**
+				 * 
+				 */
+				private static final long serialVersionUID = 1L;
+
+				public void actionPerformed(ActionEvent ae)
 		        {
 		        	gt.game.variables.p2_keyboardState[2] = true;
 		        }
 		    };
 		    AbstractAction rightAction = new AbstractAction()
 		    {   
-		        public void actionPerformed(ActionEvent ae)
+		        /**
+				 * 
+				 */
+				private static final long serialVersionUID = 1L;
+
+				public void actionPerformed(ActionEvent ae)
 		        {
 		        	gt.game.variables.p2_keyboardState[3] = true;
 		        }
 		    };
 		    AbstractAction spaceAction = new AbstractAction()
 		    {   
-		        public void actionPerformed(ActionEvent ae)
+		        /**
+				 * 
+				 */
+				private static final long serialVersionUID = 1L;
+
+				public void actionPerformed(ActionEvent ae)
 		        {
 		        	gt.game.variables.p2_keyboardState[4] = true;
 		        }
 		    };
 			AbstractAction rupAction = new AbstractAction()
 		    {   
-		        public void actionPerformed(ActionEvent ae)
+		        /**
+				 * 
+				 */
+				private static final long serialVersionUID = 1L;
+
+				public void actionPerformed(ActionEvent ae)
 		        {
 		        	gt.game.variables.p2_keyboardState[0] = false;
 		        }
 		    };
 		    AbstractAction rdownAction = new AbstractAction()
 		    {   
-		        public void actionPerformed(ActionEvent ae)
+		        /**
+				 * 
+				 */
+				private static final long serialVersionUID = 1L;
+
+				public void actionPerformed(ActionEvent ae)
 		        {
 		        	gt.game.variables.p2_keyboardState[1] = false;
 		        }
 		    };
 		    AbstractAction rleftAction = new AbstractAction()
 		    {   
-		        public void actionPerformed(ActionEvent ae)
+		        /**
+				 * 
+				 */
+				private static final long serialVersionUID = 1L;
+
+				public void actionPerformed(ActionEvent ae)
 		        {
 		        	gt.game.variables.p2_keyboardState[2] = false;
 		        }
 		    };
 		    AbstractAction rrightAction = new AbstractAction()
 		    {   
-		        public void actionPerformed(ActionEvent ae)
+		        /**
+				 * 
+				 */
+				private static final long serialVersionUID = 1L;
+
+				public void actionPerformed(ActionEvent ae)
 		        {
 		        	gt.game.variables.p2_keyboardState[3] = false;
 		        }
 		    };
 		    AbstractAction rspaceAction = new AbstractAction()
 		    {   
-		        public void actionPerformed(ActionEvent ae)
+		        /**
+				 * 
+				 */
+				private static final long serialVersionUID = 1L;
+
+				public void actionPerformed(ActionEvent ae)
 		        {
 		        	gt.game.variables.p2_keyboardState[4] = false;
 		        }

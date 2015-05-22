@@ -8,9 +8,7 @@ import java.net.ServerSocket;
 import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.LinkedList;
-import java.util.UUID;
 import java.util.Vector;
-
 
 public class ServerThread extends Thread{
 	ServerSocket ss;

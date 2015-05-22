@@ -198,9 +198,9 @@ public class SpectateScreen extends JFrame {
 					((MainMenuGuest) prevScreen).sWriter.flush();
 					chatArea.setText(chatArea.getText() + "\n" + "Guest: " + chatField.getText());
 				} else{
-					((MainMenuUserSpectate) prevScreen).prevScreen.sWriter.println("D" + ((MainMenuUserSpectate) prevScreen).prevScreen.username + ": " + chatField.getText());
+					((MainMenuUserSpectate) prevScreen).prevScreen.sWriter.println("D" + MainMenuUser.username + ": " + chatField.getText());
 					((MainMenuUserSpectate) prevScreen).prevScreen.sWriter.flush();
-					chatArea.setText(chatArea.getText() + "\n" + ((MainMenuUserSpectate) prevScreen).prevScreen.username + ": " + chatField.getText());
+					chatArea.setText(chatArea.getText() + "\n" + MainMenuUser.username + ": " + chatField.getText());
 				}
 				chatField.setText("");
 			}
@@ -214,9 +214,9 @@ public class SpectateScreen extends JFrame {
 					((MainMenuGuest) prevScreen).sWriter.flush();
 					chatArea.setText(chatArea.getText() + "\n" + "Guest: " + chatField.getText());
 				} else{
-					((MainMenuUserSpectate) prevScreen).prevScreen.sWriter.println("D" + ((MainMenuUserSpectate) prevScreen).prevScreen.username + ": " + chatField.getText());
+					((MainMenuUserSpectate) prevScreen).prevScreen.sWriter.println("D" + MainMenuUser.username + ": " + chatField.getText());
 					((MainMenuUserSpectate) prevScreen).prevScreen.sWriter.flush();
-					chatArea.setText(chatArea.getText() + "\n" + ((MainMenuUserSpectate) prevScreen).prevScreen.username + ": " + chatField.getText());
+					chatArea.setText(chatArea.getText() + "\n" + MainMenuUser.username + ": " + chatField.getText());
 				}
 				chatField.setText("");
 			}

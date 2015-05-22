@@ -1,9 +1,5 @@
 package model;
 
-import java.awt.event.KeyEvent;
-
-import controller.Controller;
-
 public class ArtificialIntelligence {
 	Game game;
 	Slime slimeAI, slimeHuman;

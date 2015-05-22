@@ -1,12 +1,9 @@
 package network;
 
 import java.io.IOException;
-
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-
 import model.Variables;
-import view.Canvas;
 import view.MainMenuGuest;
 import view.MainMenuUser;
 
