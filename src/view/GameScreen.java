@@ -140,15 +140,10 @@ public class GameScreen extends JFrame{
 	private void addListeners()
 	{
 		if (!isPvCGame) {
-			AbstractAction upAction = new AbstractAction()
-		    {   
-		        /**
-				 * 
-				 */
+			AbstractAction upAction = new AbstractAction() {
 				private static final long serialVersionUID = 1L;
 
-				public void actionPerformed(ActionEvent ae)
-		        {
+				public void actionPerformed(ActionEvent ae) {
 		        	if (prevScreen.isPlayer1) {
 						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "up");
 						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();					        		
@@ -158,15 +153,10 @@ public class GameScreen extends JFrame{
 		        	}
 		        }
 		    };
-		    AbstractAction downAction = new AbstractAction()
-		    {   
-		        /**
-				 * 
-				 */
+		    AbstractAction downAction = new AbstractAction() {
 				private static final long serialVersionUID = 1L;
 
-				public void actionPerformed(ActionEvent ae)
-		        {
+				public void actionPerformed(ActionEvent ae) {
 		        	if (prevScreen.isPlayer1) {
 						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "down");
 						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();					        		
@@ -176,15 +166,10 @@ public class GameScreen extends JFrame{
 		        	}
 		        }
 		    };
-		    AbstractAction leftAction = new AbstractAction()
-		    {   
-		        /**
-				 * 
-				 */
+		    AbstractAction leftAction = new AbstractAction() {
 				private static final long serialVersionUID = 1L;
 
-				public void actionPerformed(ActionEvent ae)
-		        {
+				public void actionPerformed(ActionEvent ae) {
 		        	if (prevScreen.isPlayer1) {
 						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "left");
 						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();				
@@ -194,15 +179,10 @@ public class GameScreen extends JFrame{
 		        	}
 		        }
 		    };
-		    AbstractAction rightAction = new AbstractAction()
-		    {   
-		        /**
-				 * 
-				 */
+		    AbstractAction rightAction = new AbstractAction() {
 				private static final long serialVersionUID = 1L;
 
-				public void actionPerformed(ActionEvent ae)
-		        {
+				public void actionPerformed(ActionEvent ae) {
 		        	if (prevScreen.isPlayer1) {
 						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "right");
 						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();					        		
@@ -212,15 +192,10 @@ public class GameScreen extends JFrame{
 		        	}
 		        }
 		    };
-		    AbstractAction spaceAction = new AbstractAction()
-		    {   
-		        /**
-				 * 
-				 */
+		    AbstractAction spaceAction = new AbstractAction() {
 				private static final long serialVersionUID = 1L;
 
-				public void actionPerformed(ActionEvent ae)
-		        {
+				public void actionPerformed(ActionEvent ae) {
 		        	if (prevScreen.isPlayer1) {
 						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "space");
 						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();					        		
@@ -230,15 +205,10 @@ public class GameScreen extends JFrame{
 		        	}
 		        }
 		    };
-			AbstractAction rupAction = new AbstractAction()
-		    {   
-		        /**
-				 * 
-				 */
+			AbstractAction rupAction = new AbstractAction() {
 				private static final long serialVersionUID = 1L;
 
-				public void actionPerformed(ActionEvent ae)
-		        {
+				public void actionPerformed(ActionEvent ae) {
 		        	if (prevScreen.isPlayer1) {
 						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "upno");
 						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();					        		
@@ -248,15 +218,10 @@ public class GameScreen extends JFrame{
 		        	}
 		        }
 		    };
-		    AbstractAction rdownAction = new AbstractAction()
-		    {   
-		        /**
-				 * 
-				 */
+		    AbstractAction rdownAction = new AbstractAction() {
 				private static final long serialVersionUID = 1L;
 
-				public void actionPerformed(ActionEvent ae)
-		        {
+				public void actionPerformed(ActionEvent ae) {
 		        	if (prevScreen.isPlayer1) {
 						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "downno");
 						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();					        		
@@ -266,15 +231,10 @@ public class GameScreen extends JFrame{
 		        	}
 		        }
 		    };
-		    AbstractAction rleftAction = new AbstractAction()
-		    {   
-		        /**
-				 * 
-				 */
+		    AbstractAction rleftAction = new AbstractAction() {
 				private static final long serialVersionUID = 1L;
 
-				public void actionPerformed(ActionEvent ae)
-		        {
+				public void actionPerformed(ActionEvent ae) {
 		        	if (prevScreen.isPlayer1) {
 						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "leftno");
 						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();					        		
@@ -284,11 +244,7 @@ public class GameScreen extends JFrame{
 		        	}
 		        }
 		    };
-		    AbstractAction rrightAction = new AbstractAction()
-		    {   
-		        /**
-				 * 
-				 */
+		    AbstractAction rrightAction = new AbstractAction() {
 				private static final long serialVersionUID = 1L;
 
 				public void actionPerformed(ActionEvent ae)
@@ -302,15 +258,10 @@ public class GameScreen extends JFrame{
 		        	}
 		        }
 		    };
-		    AbstractAction rspaceAction = new AbstractAction()
-		    {   
-		        /**
-				 * 
-				 */
+		    AbstractAction rspaceAction = new AbstractAction() {
 				private static final long serialVersionUID = 1L;
 
-				public void actionPerformed(ActionEvent ae)
-		        {
+				public void actionPerformed(ActionEvent ae) {
 		        	if (prevScreen.isPlayer1) {
 						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.println("K" + "spaceno");
 						((MainMenuUserPlayPlayer) prevScreen.prevScreen).prevScreen.sWriter.flush();	        		
@@ -342,95 +293,56 @@ public class GameScreen extends JFrame{
 		    primary.getActionMap().put("rRIGHT", rrightAction);
 		    primary.getActionMap().put("rSPACE", rspaceAction);			
 		} else {
-			AbstractAction upAction = new AbstractAction()
-		    {   
-		        /**
-				 * 
-				 */
+			AbstractAction upAction = new AbstractAction() {
 				private static final long serialVersionUID = 1L;
 
-				public void actionPerformed(ActionEvent ae)
-		        {
+				public void actionPerformed(ActionEvent ae) {
 		        	gt.game.variables.p2_keyboardState[0] = true;
 		        }
 		    };
-		    AbstractAction downAction = new AbstractAction()
-		    {   
-		        /**
-				 * 
-				 */
+		    AbstractAction downAction = new AbstractAction() {
 				private static final long serialVersionUID = 1L;
 
-				public void actionPerformed(ActionEvent ae)
-		        {
+				public void actionPerformed(ActionEvent ae) {
 		        	gt.game.variables.p2_keyboardState[1] = true;
 		        }
 		    };
-		    AbstractAction leftAction = new AbstractAction()
-		    {   
-		        /**
-				 * 
-				 */
+		    AbstractAction leftAction = new AbstractAction() {
 				private static final long serialVersionUID = 1L;
 
-				public void actionPerformed(ActionEvent ae)
-		        {
+				public void actionPerformed(ActionEvent ae) {
 		        	gt.game.variables.p2_keyboardState[2] = true;
 		        }
 		    };
-		    AbstractAction rightAction = new AbstractAction()
-		    {   
-		        /**
-				 * 
-				 */
+		    AbstractAction rightAction = new AbstractAction() {
 				private static final long serialVersionUID = 1L;
 
-				public void actionPerformed(ActionEvent ae)
-		        {
+				public void actionPerformed(ActionEvent ae) {
 		        	gt.game.variables.p2_keyboardState[3] = true;
 		        }
 		    };
-		    AbstractAction spaceAction = new AbstractAction()
-		    {   
-		        /**
-				 * 
-				 */
+		    AbstractAction spaceAction = new AbstractAction() {
 				private static final long serialVersionUID = 1L;
 
-				public void actionPerformed(ActionEvent ae)
-		        {
+				public void actionPerformed(ActionEvent ae) {
 		        	gt.game.variables.p2_keyboardState[4] = true;
 		        }
 		    };
-			AbstractAction rupAction = new AbstractAction()
-		    {   
-		        /**
-				 * 
-				 */
+			AbstractAction rupAction = new AbstractAction() {
 				private static final long serialVersionUID = 1L;
 
-				public void actionPerformed(ActionEvent ae)
-		        {
+				public void actionPerformed(ActionEvent ae) {
 		        	gt.game.variables.p2_keyboardState[0] = false;
 		        }
 		    };
-		    AbstractAction rdownAction = new AbstractAction()
-		    {   
-		        /**
-				 * 
-				 */
+		    AbstractAction rdownAction = new AbstractAction() {
 				private static final long serialVersionUID = 1L;
 
-				public void actionPerformed(ActionEvent ae)
-		        {
+				public void actionPerformed(ActionEvent ae) {
 		        	gt.game.variables.p2_keyboardState[1] = false;
 		        }
 		    };
-		    AbstractAction rleftAction = new AbstractAction()
-		    {   
-		        /**
-				 * 
-				 */
+		    AbstractAction rleftAction = new AbstractAction() {
 				private static final long serialVersionUID = 1L;
 
 				public void actionPerformed(ActionEvent ae)
@@ -438,11 +350,7 @@ public class GameScreen extends JFrame{
 		        	gt.game.variables.p2_keyboardState[2] = false;
 		        }
 		    };
-		    AbstractAction rrightAction = new AbstractAction()
-		    {   
-		        /**
-				 * 
-				 */
+		    AbstractAction rrightAction = new AbstractAction() {
 				private static final long serialVersionUID = 1L;
 
 				public void actionPerformed(ActionEvent ae)
@@ -450,11 +358,7 @@ public class GameScreen extends JFrame{
 		        	gt.game.variables.p2_keyboardState[3] = false;
 		        }
 		    };
-		    AbstractAction rspaceAction = new AbstractAction()
-		    {   
-		        /**
-				 * 
-				 */
+		    AbstractAction rspaceAction = new AbstractAction() {
 				private static final long serialVersionUID = 1L;
 
 				public void actionPerformed(ActionEvent ae)

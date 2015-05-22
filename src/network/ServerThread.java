@@ -44,7 +44,7 @@ public class ServerThread extends Thread{
 //		}
 //		return gameID;
 //	}
-	
+
 	public void run() {
 		while (true) {
 			if (ss == null) break;

@@ -31,6 +31,8 @@ public class ClientThread extends Thread {
 					// str.charAt(0) is an identifier we add which tells us what to do with the string
 					if (str.charAt(0) == 'C') { // chat
 						mmg.chatArea.setText(mmg.chatArea.getText() + "\n" + str.substring(1));
+					} else if (str.charAt(0) == 'D') {
+						mmg.spectateScreen.chatArea.append("\n" + str.substring(1));
 					} else if (str.charAt(0) == 'Q') {
 						String delims = "[$]";
 						String [] tokens = str.substring(1).split(delims);
@@ -71,7 +73,7 @@ public class ClientThread extends Thread {
 					if (str == null) break;
 					if (str.charAt(0) == 'C') { // chat
 						mmu.chatArea.setText(mmu.chatArea.getText() + "\n" + str.substring(1));
-					} else if (str.charAt(0) == 'D') { 
+					} else if (str.charAt(0) == 'D') {
 						mmu.mainMenuUserPlayPlayer.mainMenuUserWaiting.mainMenuUserPlaySlime.gameScreen.chatArea.append("\n" + str.substring(1));
 						mmu.mainMenuUserSpectate.spectateScreen.chatArea.append("\n" + str.substring(1));
 					} else if (str.charAt(0) == 'Y') {

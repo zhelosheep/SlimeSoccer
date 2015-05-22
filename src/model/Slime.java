@@ -2,7 +2,6 @@ package model;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
 public class Slime {
@@ -25,7 +24,6 @@ public class Slime {
 	final public int mass = 1;
 	protected int player;
 	final protected int manaUsageRate = 5; // determines how fast mana is consumed when slime uses special power
-	private int upKey, leftKey, rightKey, downKey, powerKey; // KeyEvent codes
 	
 	public Slime(int x, int y, int player, BufferedImage slimeImage, Variables variables) {
 		this.x = x;
@@ -35,18 +33,8 @@ public class Slime {
 		this.slimeImage = slimeImage;
 		this.player = player;
 		if (player == 1) {
-			upKey = KeyEvent.VK_W;
-			downKey = KeyEvent.VK_S;
-			leftKey = KeyEvent.VK_A;
-			rightKey = KeyEvent.VK_D;
-			powerKey = KeyEvent.VK_1;
 			facingLeft = false;
 		} else if (player == 2) {
-			upKey = KeyEvent.VK_UP;
-			downKey = KeyEvent.VK_DOWN;
-			leftKey = KeyEvent.VK_LEFT;
-			rightKey = KeyEvent.VK_RIGHT;
-			powerKey = KeyEvent.VK_SPACE;
 			facingLeft = true;
 		}
 		this.slimeImage = slimeImage;
@@ -138,8 +126,7 @@ public class Slime {
 		// special case: only for antigravity mode
 		else {
 			if (player == 1) {
-		        // Calculating velocity for moving up 
-//		        if(Controller.keyboardKeyState(upKey)) {
+		        // Calculating velocity for moving up
 				if(variables.p1_keyboardState[0]) {
 					variables.slimeHasMoved_1 = true;
 					if (velocityY >= -maxSpeed) {
@@ -147,7 +134,6 @@ public class Slime {
 		        	}
 		        }
 		        // Calculating velocity for moving down
-//		        if(Controller.keyboardKeyState(downKey)) {
 				if(variables.p1_keyboardState[1]) {
 					variables.slimeHasMoved_1 = true;
 					if (velocityY <= maxSpeed) {
@@ -155,7 +141,6 @@ public class Slime {
 		        	}
 		        }
 		        // Calculating velocity for moving or stopping to the left
-//		        if(Controller.keyboardKeyState(leftKey)) {
 				if(variables.p1_keyboardState[2]) {
 		        	facingLeft = true;
 		        	variables.slimeHasMoved_1 = true;
@@ -164,7 +149,6 @@ public class Slime {
 		        	}
 		        }
 		        // Calculating velocity for moving or stopping to the right
-//		        if(Controller.keyboardKeyState(rightKey)) {
 				if(variables.p1_keyboardState[3]) {
 		        	facingLeft = false;
 		        	variables.slimeHasMoved_1 = true;
@@ -174,7 +158,6 @@ public class Slime {
 		        }				
 			} else {
 		        // Calculating velocity for moving up 
-//		        if(Controller.keyboardKeyState(upKey)) {
 				if(variables.p2_keyboardState[0]) {
 					variables.slimeHasMoved_2 = true;
 					if (velocityY >= -maxSpeed) {
@@ -182,7 +165,6 @@ public class Slime {
 		        	}
 		        }
 		        // Calculating velocity for moving down
-//		        if(Controller.keyboardKeyState(downKey)) {
 				if(variables.p2_keyboardState[1]) {
 					variables.slimeHasMoved_2 = true;
 					if (velocityY <= maxSpeed) {
@@ -190,7 +172,6 @@ public class Slime {
 		        	}
 		        }
 		        // Calculating velocity for moving or stopping to the left
-//		        if(Controller.keyboardKeyState(leftKey)) {
 				if(variables.p2_keyboardState[2]) {
 		        	facingLeft = true;
 		        	variables.slimeHasMoved_2 = true;
@@ -199,7 +180,6 @@ public class Slime {
 		        	}
 		        }
 		        // Calculating velocity for moving or stopping to the right
-//		        if(Controller.keyboardKeyState(rightKey)) {
 				if(variables.p2_keyboardState[3]) {
 		        	facingLeft = false;
 		            variables.slimeHasMoved_2 = true;

@@ -332,9 +332,4 @@ public class SpectateScreen extends JFrame {
 		primary.variables.goal2 = new Goal(primary.variables.rightBoundary, primary.variables);
 		primary.begin();
 	}
-	
-//	static public void main(String [] args) {
-//		SpectateScreen s = new SpectateScreen(false, null);
-//		s.setVisible(true);
-//	}
 }
